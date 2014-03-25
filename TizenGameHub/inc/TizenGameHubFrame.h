@@ -9,6 +9,12 @@
 #include <FGraphics.h>
 #include <gl.h>
 
+extern const wchar_t* SCENE_MAIN;
+extern const wchar_t* SCENE_JOIN;
+extern const wchar_t* SCENE_LOGIN;
+extern const wchar_t* SCENE_GAME;
+extern const wchar_t* SCENE_PLAYER;
+
 class TizenGameHubFrame
 	: public Tizen::Ui::Controls::Frame
 {
