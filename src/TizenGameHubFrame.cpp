@@ -19,6 +19,8 @@ TizenGameHubFrame::~TizenGameHubFrame(void)
 result
 TizenGameHubFrame::OnInitializing(void)
 {
+	// kichul zzang!
+
 	// Prepare Scene management.
 	SceneManager* pSceneManager = SceneManager::GetInstance();
 	static TizenGameHubFormFactory formFactory;
