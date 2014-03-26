@@ -33,20 +33,21 @@ public:
 
 private:
 	GHPlayer *mPlayer;	// Player 자기 자신 (getPlayerInstance)
-	Boolean* isLocalPlayer;
-	Boolean* isFriend;
+	Boolean *isLocalPlayer, *isFriend;
 
-	Button* pButtonUserFriend;
-	Panel* pPanelGame;
-	Panel* pPanelFriend;
+	Panel *pPanelUser;
+	Label *pLabelUserName, *pLabelUserScore;
+	Gallery *pGalleryUserProfile;
+	Button *pButtonUserFriend;
 
-	ListView *pListViewGame;
+	Panel *pPanelScroll, *pPanelGame, *pPanelFriend;
+	ListView *pListViewGame, *pListViewFriend;
+
+	ArrayList *pGameList, *pFriendList;
 	GHGameProvider *pGameProvider;
 	GHGameListItemEventListener *pGameListItemEventListener;
-//	ListView *pListViewFriend;
-//	GHPlayerProvider *pFriendProvider;
-//	GHPlayerListItemEventListener *pFriendListItemEventListener;
-	ArrayList *pGameList, *pFriendList;
+	GHPlayerProvider *pFriendProvider;
+	GHPlayerListItemEventListener *pFriendListItemEventListener;
 
 	virtual result OnInitializing(void);
 	virtual result OnTerminating(void);
@@ -62,8 +63,14 @@ private:
 
 	//
 	void setCurrentPlayerData(long playerId);
-	void PlayerForm::setGameList();
-	void PlayerForm::setPlayerList();
+	void setGameList();
+	void setPlayerList();
+
+	void changePanel(int selected);
+	void setFooterMenu();
+	static const int ID_FOOTER_FIRST_TAB = 801;
+	static const int ID_FOOTER_SECOND_TAB = 802;
+	static const int IDA_BUTTON_USER = 101;
 };
 
 #endif /* PLAYERFORM_H_ */

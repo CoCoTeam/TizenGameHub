@@ -38,19 +38,26 @@ extern const wchar_t* IDC_USER_SCROLLPANEL;
 extern const wchar_t* IDC_USER_PANEL_GAME;
 extern const wchar_t* IDC_USER_LABEL_GAMETITLE;
 extern const wchar_t* IDC_USER_LISTVIEW_GAME;
+extern const wchar_t* IDC_USER_PANEL_FRIEND;
+extern const wchar_t* IDC_USER_LABEL_FRIENDTITLE;
+extern const wchar_t* IDC_USER_LISTVIEW_FRIEND;
 /* IDL_FORM_GAME */
 extern const wchar_t* IDL_FORM_GAME;
-extern const wchar_t* IDC_GAME_BUTTON_ACHIEVEMENT;
-extern const wchar_t* IDC_GAME_BUTTON_DOWNLOAD;
-extern const wchar_t* IDC_GAME_BUTTON_LEADERBOARD;
+extern const wchar_t* IDC_GAME_PANEL_GAME;
 extern const wchar_t* IDC_GAME_IMG_GAMEIMG;
+extern const wchar_t* IDC_GAME_LABEL_GAMENAME;
+extern const wchar_t* IDC_GAME_LABEL_DEVELOPER;
+extern const wchar_t* IDC_GAME_BUTTON_DOWNLOAD;
+//
+extern const wchar_t* IDC_GAME_SCROLLPANEL;
+extern const wchar_t* IDC_GAME_PANEL_GAMEDETAIL;
+extern const wchar_t* IDC_GAME_PANEL_FUNCTION;
+extern const wchar_t* IDC_GAME_BUTTON_LEADERBOARD;
+extern const wchar_t* IDC_GAME_BUTTON_ACHIEVEMENT;
 extern const wchar_t* IDC_GAME_LABEL_DESCRIPTIONTITLE;
 extern const wchar_t* IDC_GAME_LABEL_DESC;
-extern const wchar_t* IDC_GAME_LABEL_DEVELOPER;
-extern const wchar_t* IDC_GAME_LABEL_GAMENAME;
-extern const wchar_t* IDC_GAME_PANEL_FUNCTION;
-extern const wchar_t* IDC_GAME_PANEL_GAME;
-extern const wchar_t* IDC_GAME_PANEL_GAMEDETAIL;
-extern const wchar_t* IDC_GAME_SCROLLPANEL;
+extern const wchar_t* IDC_GAME_PANEL_FRIEND;
+extern const wchar_t* IDC_GAME_LABEL_FRIENDTITLE;
+extern const wchar_t* IDC_GAME_LISTVIEW_FRIEND;
 
 #endif // _APP_RESOURCE_ID_H_

@@ -4,11 +4,11 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>4OYpheLCy3moA7W5TJfAKURdhLxksmYYj0f4SdBy92o=</DigestValue>
+<DigestValue>aCH4Q/zx6SLom0odNP1y6rQlkbqy0YB4kiuqPsTnJas=</DigestValue>
 </Reference>
 <Reference URI="bin/TizenGameHub.exe">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>meWUg3ohwWSZE0ox5FIa/JHgDJxCoSXspMcM8UsPlKE=</DigestValue>
+<DigestValue>rrhGRJNX1VbZXupKxVTTAhw5Z6jSEJ95iW63RL+U6VA=</DigestValue>
 </Reference>
 <Reference URI="info/manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -16,7 +16,7 @@
 </Reference>
 <Reference URI="lib/libTizenGameHubLibrary.so">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>2ebczt9mzLrtnkZyMsc11+XE//TP9P84yzOgx3zyv4E=</DigestValue>
+<DigestValue>EMPZOq+Lknt3ro7YdY8lslacYM6eAxRvFWEF/AXvZw4=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -24,7 +24,7 @@
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM_GAME.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>UjT0mU45rsCGMjVax3bTpulwNzZxyQbCGB2AyS6cSBc=</DigestValue>
+<DigestValue>VDDHuGenq1Aj65FU4h9uSi8SrjjTEFeOlBBrwkXEgzM=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM_JOIN.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -36,7 +36,7 @@
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM_PLAYER.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>G090Cs0bcs+572p8ZdSiFubxIAHBYw0c++YZugqV1W8=</DigestValue>
+<DigestValue>ALGOVGySwy+RVSJC+AhSgtvDGt7ftgl53hZ6g+SvMKA=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/workflow.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -55,9 +55,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-SrpqbQr62cY6Xfv+omv7CqlhJxYbgJXkW/SIpqCpaHcNK0Dpwn1qXcqAH59qs4qfJtdwfV3/OM/H
-7A36dTGSVtyVpkfLC8To7cJ/Edp30Jjt2tLAlRRI7hsGirrNpoRFcAIfZf7joq9Slr5CMLkRUtRG
-JpUjWN/GSfu7GMm/OvQ=
+S77wWpNefHfCLPFDHnaGyy5UA+M+RpFucbaXi8FaJqUFBcrja16A0afmesIo2SkDiQRKAFwPDeGe
+pUdX6eAs1xw4mWVpUqqo3gRdxTeNiNe7Bb1spVa097SuRAXT0zri+QXZJLJTLroQ02R2DDR7GpqD
+pdwf7vsSidjsIMLbVdc=
 </SignatureValue>
 <KeyInfo>
 <X509Data>

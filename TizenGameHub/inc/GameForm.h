@@ -10,6 +10,12 @@
 
 #include <GHTizen.h>
 #include "GHGame.h"
+#include "GHPlayer.h"
+#include "GHPlayerProvider.h"
+#include "GHPlayerListItemEventListener.h"
+
+using namespace Tizen::Ui::Controls;
+using namespace Tizen::Base::Collection;
 
 class GameForm
 	: public Tizen::Ui::Controls::Form
@@ -25,6 +31,19 @@ public:
 private:
 	GHGame *mGame;
 
+	Panel *pPanelGame;
+	Gallery *pGalleryGameImg;
+	Label *pLabelGameName, *pLabelDeveloper;
+	Button *pButtonGame;
+	Panel *pPanelScroll, *pPanelGameDetail, *pPanelFriend;
+	Label *pLabelGameDesc;
+
+	ListView *pListViewFriend;
+
+	ArrayList *pFriendList;
+	GHPlayerProvider *pFriendProvider;
+	GHPlayerListItemEventListener *pFriendListItemEventListener;
+
 	virtual result OnInitializing(void);
 	virtual result OnTerminating(void);
 	//IActionEventListener
@@ -38,6 +57,12 @@ private:
 									const Tizen::Ui::Scenes::SceneId& nextSceneId);
 
 	GHGame* getGameInstance(long id);
+	void setPlayerList();
+
+	void changePanel(int selected);
+	void setFooterMenu();
+	static const int ID_FOOTER_FIRST_TAB = 101;
+	static const int ID_FOOTER_SECOND_TAB = 102;
 };
 
 #endif /* GAMEFORM_H_ */

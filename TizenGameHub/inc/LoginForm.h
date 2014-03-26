@@ -9,6 +9,7 @@
 #define LOGINFORM_H_
 
 #include <GHTizen.h>
+using namespace Tizen::Ui::Controls;
 
 class LoginForm
 	: public Tizen::Ui::Controls::Form
@@ -21,6 +22,8 @@ public:
 	bool Initialize(void);
 
 private:
+	EditField *pTextEmail, *pTextPw;
+
 	virtual result OnInitializing(void);
 	virtual result OnTerminating(void);
 	//IActionEventListener
@@ -28,9 +31,10 @@ private:
 	//IFormBackEventListener
 	virtual void OnFormBackRequested(Tizen::Ui::Controls::Form& source);
 
-private:
 	static const int IDA_BUTTON_LOGIN = 101;
 	static const int IDA_BUTTON_JOIN = 102;
+
+	result doLogin();
 };
 
 #endif /* LOGINFORM_H_ */
