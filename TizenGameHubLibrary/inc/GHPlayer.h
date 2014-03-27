@@ -21,7 +21,7 @@ getGameInstance();
  */
 class GHPlayer{
 protected:
-	long id;			// 사용자 고유 ID
+	STRING* id;			// 사용자 고유 ID
 	STRING* email;		// 사용자 이메일
 	STRING* name;		// 사용자 이름
 	STRING* imgUrl;		// 사용자 프로필이미지 URL
@@ -30,7 +30,7 @@ protected:
 
 public:
 	GHPlayer();
-	GHPlayer(long _id, STRING _email, STRING _name, STRING _imgUrl);
+	GHPlayer(STRING _id, STRING _email, STRING _name, STRING _imgUrl);
 //	GHPlayer(Tizen::Web::Json::JsonObject *jsonData);
 	~GHPlayer();
 
@@ -44,7 +44,7 @@ public:
 	//////////
 
 	/// Get Functions
-	long getId();
+	STRING* getId();
 	STRING* getEmail();
 	STRING* getName();
 	STRING* getImgUrl();

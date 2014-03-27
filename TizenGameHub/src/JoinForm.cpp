@@ -41,39 +41,17 @@ JoinForm::OnInitializing(void)
 	SetFormBackEventListener(this);
 
 	// Get a button via resource ID
-	Button* pButtonJoin = static_cast< Button* >(GetControl(IDC_JOIN_BUTTON_JOIN));
-	if (pButtonJoin != null)
-	{
-		pButtonJoin->SetActionId(IDA_BUTTON_JOIN);
-		pButtonJoin->AddActionEventListener(*this);
-	}
+	pButtonJoin = static_cast< Button* >(GetControl(IDC_JOIN_BUTTON_JOIN));
+	pButtonJoin->SetActionId(IDA_BUTTON_JOIN);
+	pButtonJoin->AddActionEventListener(*this);
 	Button* pButtonCancel = static_cast< Button* >(GetControl(IDC_JOIN_BUTTON_CANCEL));
-	if (pButtonCancel != null)
-	{
-		pButtonCancel->SetActionId(IDA_BUTTON_CANCEL);
-		pButtonCancel->AddActionEventListener(*this);
-	}
+	pButtonCancel->SetActionId(IDA_BUTTON_CANCEL);
+	pButtonCancel->AddActionEventListener(*this);
 
-	EditField* pTextEmail = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_EMAIL));
-	if(pTextEmail != null)
-	{
-
-	}
-	EditField* pTextPw = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_PW));
-	if(pTextPw != null)
-	{
-
-	}
-	EditField* pTextPwconfirm = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_PWCONFIRM));
-	if(pTextPwconfirm != null)
-	{
-
-	}
-	EditField* pTextName = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_NAME));
-	if(pTextName != null)
-	{
-
-	}
+	pTextEmail = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_EMAIL));
+	pTextPw = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_PW));
+	pTextPwconfirm = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_PWCONFIRM));
+	pTextName = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_NAME));
 
 
 
@@ -98,9 +76,16 @@ JoinForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 	switch(actionId)
 	{
 	case IDA_BUTTON_JOIN:
-		//!! do Join
+		if( isPlayerJoin )	//!! do Join
+		{
 
-		pSceneManager->GoForward(ForwardSceneTransition(SCENE_LOGIN));
+		}
+		else	// do Edit
+		{
+
+		}
+
+		pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_OUT));
 		break;
 	case IDA_BUTTON_CANCEL:
 		pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_OUT));
@@ -117,3 +102,34 @@ JoinForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 	pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_OUT));
 }
 
+
+void
+JoinForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
+										  const Tizen::Ui::Scenes::SceneId& currentSceneId, Tizen::Base::Collection::IList* pArgs)
+{
+	// TODO: Activate your scene here.
+	if (pArgs != null)
+	{
+		if (pArgs->GetCount())
+		{
+			AppLog("[JoinForm] Argument Received");
+			isPlayerJoin = static_cast<Tizen::Base::Boolean*>(pArgs->GetAt(0));
+
+			if( isPlayerJoin )	// (수정 시퀀스면) 프로필 편집 Panel 추가
+			{
+				pButtonJoin->SetText( "Edit" );
+			}
+
+		}
+		pArgs->RemoveAll(true);
+		delete pArgs;
+	}
+}
+
+void
+JoinForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
+										   const Tizen::Ui::Scenes::SceneId& nextSceneId)
+{
+	// TODO: Deactivate your scene here.
+
+}

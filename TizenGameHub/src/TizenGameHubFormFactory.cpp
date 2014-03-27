@@ -44,6 +44,7 @@ TizenGameHubFormFactory::CreateFormN(const Tizen::Base::String& formId, const Ti
 	{
 		JoinForm *pForm = new (std::nothrow) JoinForm();
 		TryReturn(pForm != null, null, "The memory is insufficient.");
+		pSceneManager->AddSceneEventListener(sceneId, *pForm);
 		pForm->Initialize();
 		pNewForm = pForm;
 	}

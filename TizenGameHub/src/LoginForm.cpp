@@ -9,9 +9,12 @@
 #include "AppResourceId.h"
 #include "TizenGameHubFrame.h"
 
+#include "GHAchievementController.h"
+
 using namespace Tizen::App;
 using namespace Tizen::Ui::Scenes;
 using namespace Tizen::Ui::Controls;
+using namespace Tizen::Base;
 using namespace Tizen::Base::Collection;
 
 LoginForm::LoginForm() {
@@ -56,18 +59,8 @@ LoginForm::OnInitializing(void)
 		pButtonJoin->AddActionEventListener(*this);
 	}
 
-	EditField* pTextEmail = static_cast< EditField* >(GetControl(IDC_LOGIN_EDITTEXT_EMAIL));
-	if(pTextEmail != null)
-	{
-
-	}
-	EditField* pTextPw = static_cast< EditField* >(GetControl(IDC_LOGIN_EDITTEXT_PW));
-	if(pTextPw != null)
-	{
-
-	}
-
-
+	pTextEmail = static_cast< EditField* >(GetControl(IDC_LOGIN_EDITTEXT_EMAIL));
+	pTextPw = static_cast< EditField* >(GetControl(IDC_LOGIN_EDITTEXT_PW));
 
 	return r;
 }
@@ -87,28 +80,58 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 	SceneManager* pSceneManager = SceneManager::GetInstance();
 	AppAssert(pSceneManager);
 
+	AppLog("[Login Form] OnActionPerformed(%d)", actionId);
+
+	ArrayList* pList = new (std::nothrow)ArrayList;
+	AppAssert(pList);
+	pList->Construct();
+
+	GHAchievementController* achivementController = new GHAchievementController;
+
 	switch(actionId)
 	{
 	case IDA_BUTTON_JOIN:
-		pSceneManager->GoForward(ForwardSceneTransition(SCENE_JOIN, SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_IN));
+//		pList->Add( new Tizen::Base::Boolean(true) );	// isJoin
+//		pSceneManager->GoForward(ForwardSceneTransition(SCENE_JOIN, SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_IN), pList);
+
+		// Achievement TEST
+		achivementController->loadAchievements();
+
 		break;
 	case IDA_BUTTON_LOGIN:
 		//!! do Login
+//		doLogin();
+		if(true)	// (로그인 성공 시) 로그인, 개인페이지로 이동
+		{
+			pList->Add( new Tizen::Base::String("1001") );	// playerId
+			pList->Add( new Tizen::Base::Boolean(true) );	// isLocalPlayer
+			pList->Add( new Tizen::Base::Boolean(false) );	// isFriend
+			pSceneManager->GoForward(ForwardSceneTransition(SCENE_PLAYER, SCENE_TRANSITION_ANIMATION_TYPE_RIGHT, SCENE_HISTORY_OPTION_NO_HISTORY), pList);
+		}
+		else		// (로그인 실패 시) 로그인 실패 팝업
+		{
+			//!! 로그인 실패 팝업
 
-		ArrayList* pList = new (std::nothrow)ArrayList;
-		AppAssert(pList);
-		pList->Construct();
-		pList->Add( new Tizen::Base::Boolean(true) );	// isLocalPlayer
-		pList->Add( new Tizen::Base::Boolean(false) );	// isFriend
-		pSceneManager->GoForward(ForwardSceneTransition(SCENE_PLAYER, SCENE_TRANSITION_ANIMATION_TYPE_RIGHT, SCENE_HISTORY_OPTION_NO_HISTORY), pList);
+		}
 		break;
 	}
 }
 
-void
-LoginForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
+void LoginForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 {
 	UiApp* pApp = UiApp::GetInstance();
 	AppAssert(pApp);
 	pApp->Terminate();
+}
+
+result LoginForm::doLogin()
+{
+	result r = E_SUCCESS;
+
+	String strEmail = pTextEmail->GetText();
+	String strPw = pTextPw->GetText();
+
+
+
+	return r;
 }

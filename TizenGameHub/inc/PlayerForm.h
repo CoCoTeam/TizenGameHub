@@ -32,21 +32,23 @@ public:
 	bool Initialize(void);
 
 private:
+	String *mPlayerId;
 	GHPlayer *mPlayer;	// Player 자기 자신 (getPlayerInstance)
-	Boolean* isLocalPlayer;
-	Boolean* isFriend;
+	Boolean *isLocalPlayer, *isFriend;
 
-	Button* pButtonUserFriend;
-	Panel* pPanelGame;
-	Panel* pPanelFriend;
+	Panel *pPanelUser;
+	Label *pLabelUserName, *pLabelUserScore;
+	Gallery *pGalleryUserProfile;
+	Button *pButtonUserFriend;
 
-	ListView *pListViewGame;
+	Panel *pPanelScroll, *pPanelGame, *pPanelFriend;
+	ListView *pListViewGame, *pListViewFriend;
+
+	ArrayList *pGameList, *pFriendList;
 	GHGameProvider *pGameProvider;
 	GHGameListItemEventListener *pGameListItemEventListener;
-//	ListView *pListViewFriend;
-//	GHPlayerProvider *pFriendProvider;
-//	GHPlayerListItemEventListener *pFriendListItemEventListener;
-	ArrayList *pGameList, *pFriendList;
+	GHPlayerProvider *pFriendProvider;
+	GHPlayerListItemEventListener *pFriendListItemEventListener;
 
 	virtual result OnInitializing(void);
 	virtual result OnTerminating(void);
@@ -61,9 +63,18 @@ private:
 									const Tizen::Ui::Scenes::SceneId& nextSceneId);
 
 	//
-	void setCurrentPlayerData(long playerId);
-	void PlayerForm::setGameList();
-	void PlayerForm::setPlayerList();
+	void getCurrentPlayerData(String playerId);	// 서버로부터 플레이어의 정보를 받아온다.
+	void setPlayerData();						// 플레이어의 정보를 뷰에 적용한다.
+	void getGames(String playerId);				// 서버로부터 플레이어의 게임 리스트를 받아온다.
+	void setGameList();							// 플레이어의 게임 정보를 리스트뷰에 적용한다.
+	void getFriends(String playerId);			// 서버로부터 플레이어의 친구 리스트를 받아온다.
+	void setPlayerList();						// 플레이어의 친구 정보를 리스트뷰에 적용한다.
+
+	void changePanel(int selected);
+	void setFooterMenu();
+	static const int ID_FOOTER_FIRST_TAB = 801;
+	static const int ID_FOOTER_SECOND_TAB = 802;
+	static const int IDA_BUTTON_USER = 101;
 };
 
 #endif /* PLAYERFORM_H_ */
