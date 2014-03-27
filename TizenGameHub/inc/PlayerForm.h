@@ -32,6 +32,7 @@ public:
 	bool Initialize(void);
 
 private:
+	String *mPlayerId;
 	GHPlayer *mPlayer;	// Player 자기 자신 (getPlayerInstance)
 	Boolean *isLocalPlayer, *isFriend;
 
@@ -62,9 +63,12 @@ private:
 									const Tizen::Ui::Scenes::SceneId& nextSceneId);
 
 	//
-	void setCurrentPlayerData(long playerId);
-	void setGameList();
-	void setPlayerList();
+	void getCurrentPlayerData(String playerId);	// 서버로부터 플레이어의 정보를 받아온다.
+	void setPlayerData();						// 플레이어의 정보를 뷰에 적용한다.
+	void getGames(String playerId);				// 서버로부터 플레이어의 게임 리스트를 받아온다.
+	void setGameList();							// 플레이어의 게임 정보를 리스트뷰에 적용한다.
+	void getFriends(String playerId);			// 서버로부터 플레이어의 친구 리스트를 받아온다.
+	void setPlayerList();						// 플레이어의 친구 정보를 리스트뷰에 적용한다.
 
 	void changePanel(int selected);
 	void setFooterMenu();

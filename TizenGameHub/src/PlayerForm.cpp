@@ -28,9 +28,6 @@ PlayerForm::Initialize(void)
 	result r = Construct(IDL_FORM_PLAYER);
 	TryReturn(r == E_SUCCESS, false, "Failed to construct form");
 
-	//!! 임시 더미 데이터
-	setCurrentPlayerData(1001);
-
 	return true;
 }
 
@@ -56,18 +53,6 @@ PlayerForm::OnInitializing(void)
 	pPanelFriend = static_cast< Panel* >(pPanelScroll->GetControl(IDC_USER_PANEL_FRIEND));
 	pPanelFriend->SetShowState(false);
 
-	pLabelUserName->SetText( *(mPlayer->getName()) );
-	String *totalScoreStr = new String();
-	totalScoreStr->Append(mPlayer->getTotalScore());
-	pLabelUserScore->SetText( *totalScoreStr );
-	//!! 프로필 이미지 세팅, 버튼 속성 세팅
-	//	pGalleryUserProfile->Set
-	//	pButtonUserFriend->Set
-
-	pButtonUserFriend->SetActionId(IDA_BUTTON_USER);
-	pButtonUserFriend->AddActionEventListener(*this);
-
-	setGameList();
 	setFooterMenu();
 
 	return r;
@@ -128,13 +113,14 @@ PlayerForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 void
 PlayerForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 {
-	//!! SceneHistory가 있으면
-	if(false) {
-		SceneManager* pSceneManager = SceneManager::GetInstance();
-		AppAssert(pSceneManager);
+	SceneManager* pSceneManager = SceneManager::GetInstance();
+	AppAssert(pSceneManager);
+
+	//!! (SceneHistory가 있으면) 이전 Scene으로 이동
+	if(pSceneManager->GetSceneHistoryN()->GetCount() != 0) {
 		pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_OUT));
 	}
-	else {	// 없으면
+	else {	// (없으면) 앱 종료
 		UiApp* pApp = UiApp::GetInstance();
 		AppAssert(pApp);
 		pApp->Terminate();
@@ -151,9 +137,16 @@ PlayerForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 		if (pArgs->GetCount())
 		{
 			AppLog("[PlayerForm] Argument Received");
-			Tizen::Base::String *pPlayerIdStr = static_cast<Tizen::Base::String*>(pArgs->GetAt(0));
+			mPlayerId = static_cast<Tizen::Base::String*>(pArgs->GetAt(0));
 			isLocalPlayer = static_cast<Tizen::Base::Boolean*>(pArgs->GetAt(1));
 			isFriend = static_cast<Tizen::Base::Boolean*>(pArgs->GetAt(2));
+
+			//!! 임시 더미 데이터
+			getCurrentPlayerData( *mPlayerId );
+			getGames( *mPlayerId );
+
+			setPlayerData();
+			setGameList();
 
 			if( isLocalPlayer ) {
 				//!! Footer 정보 변경
@@ -163,6 +156,7 @@ PlayerForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 				pButtonUserFriend->SetText( "정보 수정" );
 
 				// 친구 리스트 설정
+				getFriends("1001");
 				setPlayerList();
 			}
 			else {
@@ -188,23 +182,46 @@ PlayerForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
 										   const Tizen::Ui::Scenes::SceneId& nextSceneId)
 {
 	// TODO: Deactivate your scene here.
-
 }
 
 //
-void PlayerForm::setCurrentPlayerData(long playerId)
+void PlayerForm::getCurrentPlayerData(String playerId)
 {
-	mPlayer = new GHPlayer(1001, "aaa@aaa.com", "홍길동", "profile_user_333");
+	if(playerId == "1")
+		mPlayer = new GHPlayer("1", "aaa@aaa.com", "전경호", "default");
+	else if(playerId == "2")
+		mPlayer = new GHPlayer("2", "bbb@aaa.com", "김기철", "default");
+	else if(playerId == "3")
+		mPlayer = new GHPlayer("3", "ccc@aaa.com", "노동완", "default");
+	else if(playerId == "1001")
+		mPlayer = new GHPlayer("1001", "aaa@aaa.com", "홍길동", "profile_user_333");
+	else
+		mPlayer = new GHPlayer("1", "aaa@aaa.com", "전경호", "default");
+}
+void PlayerForm::setPlayerData()
+{
+	pLabelUserName->SetText( *(mPlayer->getName()) );
+	String *totalScoreStr = new String();
+	totalScoreStr->Append(mPlayer->getTotalScore());
+	pLabelUserScore->SetText( *totalScoreStr );
+	//!! 프로필 이미지 세팅, 버튼 속성 세팅
+	//	pGalleryUserProfile->Set
+	//	pButtonUserFriend->Set
+
+	pButtonUserFriend->SetActionId(IDA_BUTTON_USER);
+	pButtonUserFriend->AddActionEventListener(*this);
 }
 
-void PlayerForm::setGameList()
+void PlayerForm::getGames(String playerId)
 {
 	pGameList = new ArrayList();
 
-	pGameList->Add( (Object*)new GHGame(111, 100, "FunnyGame", "This Game is really fun.", "default", 1, 1, 1, false, false) );
-	pGameList->Add( (Object*)new GHGame(222, 101, "MultiGame", "This Game provides Turn-Based Multiplay.", "default", 2, 2, 2, false, true) );
-	pGameList->Add( (Object*)new GHGame(333, 100, "CloudGame", "This Game provides Cloud Save.", "default", 1, 3, 2, true, false) );
-
+	pGameList->Add( (Object*)new GHGame("111", 100, "FunnyGame", "This Game is really fun.", "default", 1, 1, 1, false, false) );
+	pGameList->Add( (Object*)new GHGame("222", 101, "MultiGame", "This Game provides Turn-Based Multiplay.", "default", 2, 2, 2, false, true) );
+	pGameList->Add( (Object*)new GHGame("333", 100, "CloudGame", "This Game provides Cloud Save.", "default", 1, 3, 2, true, false) );
+}
+void PlayerForm::setGameList()
+{
 	pGameProvider = new GHGameProvider();
 	pGameProvider->setItemList(pGameList);
 	pGameListItemEventListener = new GHGameListItemEventListener();
@@ -213,16 +230,19 @@ void PlayerForm::setGameList()
 	pListViewGame = static_cast< ListView* >(pPanelGame->GetControl(IDC_USER_LISTVIEW_GAME));
 	pListViewGame->SetItemProvider( *pGameProvider );
 	pListViewGame->AddListViewItemEventListener( *pGameListItemEventListener );
-
 }
-void PlayerForm::setPlayerList()
+
+
+void PlayerForm::getFriends(String playerId)
 {
 	pFriendList = new ArrayList();
 
-	pFriendList->Add( (Object*)new GHPlayer(1, "aaa@aaa.com", "전경호", "default") );
-	pFriendList->Add( (Object*)new GHPlayer(2, "bbb@aaa.com", "김기철", "default") );
-	pFriendList->Add( (Object*)new GHPlayer(3, "ccc@aaa.com", "노동완", "default") );
-
+	pFriendList->Add( (Object*)new GHPlayer("1", "aaa@aaa.com", "전경호", "default") );
+	pFriendList->Add( (Object*)new GHPlayer("2", "bbb@aaa.com", "김기철", "default") );
+	pFriendList->Add( (Object*)new GHPlayer("3", "ccc@aaa.com", "노동완", "default") );
+}
+void PlayerForm::setPlayerList()
+{
 	pFriendProvider = new GHPlayerProvider();
 	pFriendProvider->setItemList(pFriendList);
 	pFriendListItemEventListener = new GHPlayerListItemEventListener();
@@ -232,6 +252,7 @@ void PlayerForm::setPlayerList()
 	pListViewFriend->SetItemProvider( *pFriendProvider );
 	pListViewFriend->AddListViewItemEventListener( *pFriendListItemEventListener );
 }
+
 
 void PlayerForm::setFooterMenu()
 {

@@ -56,7 +56,7 @@ private:
 	virtual void OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
 									const Tizen::Ui::Scenes::SceneId& nextSceneId);
 
-	GHGame* getGameInstance(long id);
+	GHGame* getGameInstance(Tizen::Base::String id);
 	void setPlayerList();
 
 	void changePanel(int selected);
