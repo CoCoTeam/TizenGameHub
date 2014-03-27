@@ -21,12 +21,13 @@
 using namespace Tizen::App;
 using namespace Tizen::Base;
 using namespace Tizen::Net::Http;
-
+using namespace Tizen::Base::Collection;
 using namespace Tizen::Base::Utility;
 
 
 httpClient::httpClient(void)
 	: __pHttpSession(null)
+	, hostAddr(L"http://54.238.195.222:8081")
 {
 }
 
@@ -280,4 +281,340 @@ CATCH:
 //
 //	delete pCert;
 //}
+
+
+result
+httpClient::RequestHttpGetTran(IHttpTransactionEventListener* listener, Tizen::Base::String *url)
+{
+	AppLog("------------------>Request<-------------------------");
+
+	// Construct an HTTP session
+	result r = E_SUCCESS;
+	HttpTransaction* pHttpTransaction = null;
+	HttpRequest* pHttpRequest = null;
+
+	// 주소
+	String requestAddr(hostAddr + *url);
+
+	if (__pHttpSession == null)
+	{
+		__pHttpSession = new (std::nothrow) HttpSession();
+
+		r = __pHttpSession->Construct(NET_HTTP_SESSION_MODE_NORMAL, null, hostAddr, null);
+		if (IsFailed(r))
+		{
+			delete __pHttpSession;
+			__pHttpSession = null;
+			AppLogException("Failed to create the HttpSession.");
+			goto CATCH;
+		}
+
+		r = __pHttpSession->SetAutoRedirectionEnabled(true);
+		TryCatch(r == E_SUCCESS, , "Failed to set the redirection automatically.");
+	}
+	//----------------------------------------------------------------------
+
+	// Open a new transaction
+	pHttpTransaction = __pHttpSession->OpenTransactionN();
+	r = GetLastResult();
+	TryCatch(pHttpTransaction != null, , "Failed to open the HttpTransaction.");
+
+	// Add a listener
+	r = pHttpTransaction->AddHttpTransactionListener(*listener);
+	TryCatch(r == E_SUCCESS, , "Failed to add the HttpTransactionListener.");
+
+	// Get an HTTP request
+	pHttpRequest = const_cast< HttpRequest* >(pHttpTransaction->GetRequest());
+
+	// Set the HTTP method and URI
+	r = pHttpRequest->SetUri(requestAddr);
+	TryCatch(r == E_SUCCESS, , "Failed to set the uri.");
+
+	r = pHttpRequest->SetMethod(NET_HTTP_METHOD_GET);
+	TryCatch(r == E_SUCCESS, , "Failed to set the method.");
+
+	// Submit the request
+	r = pHttpTransaction->Submit();
+	TryCatch(r == E_SUCCESS, , "Failed to submit the HttpTransaction.");
+
+	return r;
+
+CATCH:
+
+	delete pHttpTransaction;
+	pHttpTransaction = null;
+
+	AppLog("RequestHttpGet() failed. (%s)", GetErrorMessage(r));
+	return r;
+}
+
+
+result
+httpClient::RequestHttpPostTran(IHttpTransactionEventListener* listener, Tizen::Base::String *url, Tizen::Base::Collection::IMap *map)
+
+{
+
+	AppLog("------------------>Request<-------------------------");
+
+	// Construct an HTTP session
+	result r = E_SUCCESS;
+	HttpTransaction* pHttpTransaction = null;
+	HttpRequest* pHttpRequest = null;
+	HttpUrlEncodedEntity* pHttpUrlEncodedEntity = null;
+
+	// 주소
+	String player_id = "hhhh";
+
+	//map에서 사용 .. goto 뒤에 변수 선언이 있으면 안됨
+	IMapEnumerator* pMapEnum;
+	String* pKey = null;
+	String* pValue = null;
+
+	/*	String hostAddr(L"http://211.189.127.187:8081");
+	String requestAddr(L"http://211.189.127.187:8081/players");*/
+
+
+	//String hostAddr(L"http://54.238.195.222:8081");
+	//String requestAddr(L"http://54.238.195.222:8081/players");
+	String requestAddr( hostAddr + *url);
+
+	if (__pHttpSession == null)
+	{
+		__pHttpSession = new (std::nothrow) HttpSession();
+
+		r = __pHttpSession->Construct(NET_HTTP_SESSION_MODE_NORMAL, null, hostAddr, null);
+		if (IsFailed(r))
+		{
+			delete __pHttpSession;
+			__pHttpSession = null;
+			AppLogException("Failed to create the HttpSession.");
+			goto CATCH;
+		}
+
+		r = __pHttpSession->SetAutoRedirectionEnabled(true);
+		TryCatch(r == E_SUCCESS, , "Failed to set the redirection automatically.");
+	}
+	//----------------------------------------------------------------------
+
+	// Open a new transaction
+	pHttpTransaction = __pHttpSession->OpenTransactionN();
+	r = GetLastResult();
+	TryCatch(pHttpTransaction != null, , "Failed to open the HttpTransaction.");
+
+	// Add a listener
+	r = pHttpTransaction->AddHttpTransactionListener(*listener);
+	TryCatch(r == E_SUCCESS, , "Failed to add the HttpTransactionListener.");
+
+	// Get an HTTP request
+	pHttpRequest = const_cast< HttpRequest* >(pHttpTransaction->GetRequest());
+
+	//----------------------------------------------------------------------
+	// Set the HTTP method and URI
+	r = pHttpRequest->SetUri(requestAddr);
+	TryCatch(r == E_SUCCESS, , "Failed to set the uri.");
+
+	r = pHttpRequest->SetMethod(NET_HTTP_METHOD_POST);
+	TryCatch(r == E_SUCCESS, , "Failed to set the method.");
+
+	// POST 데이터 설정
+	pHttpUrlEncodedEntity = new HttpUrlEncodedEntity();
+	r = pHttpUrlEncodedEntity->Construct();
+
+	/*
+	r = pHttpUrlEncodedEntity->AddParameter(L"email", L"kichul");
+	r = pHttpUrlEncodedEntity->AddParameter(L"pwd", L"kichulbabo");
+	r = pHttpUrlEncodedEntity->AddParameter(L"name", L"kichul");
+	r = pHttpUrlEncodedEntity->AddParameter(L"img_url", L"kichul.jpg");
+
+	r = pHttpRequest->SetEntity(*pHttpUrlEncodedEntity);*/
+	//----------------------------------------------------------------------
+
+	pMapEnum = map->GetMapEnumeratorN();
+	while (pMapEnum->MoveNext() == E_SUCCESS)
+	{
+		pKey = static_cast< String* > (pMapEnum->GetKey());
+		pValue = static_cast< String* > (pMapEnum->GetValue());
+		r = pHttpUrlEncodedEntity->AddParameter(*pKey, *pValue);
+
+	}
+		delete pMapEnum;
+
+	r = pHttpRequest->SetEntity(*pHttpUrlEncodedEntity);
+
+	// Submit the request
+	r = pHttpTransaction->Submit();
+	TryCatch(r == E_SUCCESS, , "Failed to submit the HttpTransaction.");
+
+	return r;
+
+CATCH:
+
+	delete pHttpTransaction;
+	pHttpTransaction = null;
+
+	AppLog("RequestHttpGet() failed. (%s)", GetErrorMessage(r));
+	return r;
+}
+
+
+result
+httpClient::RequestHttpPutTran(IHttpTransactionEventListener* listener, Tizen::Base::String *url, Tizen::Base::Collection::IMap *map)
+{
+	AppLog("------------------>Request<-------------------------");
+
+	// Construct an HTTP session
+	result r = E_SUCCESS;
+	HttpTransaction* pHttpTransaction = null;
+	HttpRequest* pHttpRequest = null;
+	HttpUrlEncodedEntity* pHttpUrlEncodedEntity = null;
+
+	// 주소
+	String player_id = "hhhh";
+
+	//map에서 사용 .. goto 뒤에 변수 선언이 있으면 안됨
+	IMapEnumerator* pMapEnum;
+	String* pKey = null;
+	String* pValue = null;
+
+
+	String requestAddr( hostAddr + *url);
+
+	if (__pHttpSession == null)
+	{
+		__pHttpSession = new (std::nothrow) HttpSession();
+
+		r = __pHttpSession->Construct(NET_HTTP_SESSION_MODE_NORMAL, null, hostAddr, null);
+		if (IsFailed(r))
+		{
+			delete __pHttpSession;
+			__pHttpSession = null;
+			AppLogException("Failed to create the HttpSession.");
+			goto CATCH;
+		}
+
+		r = __pHttpSession->SetAutoRedirectionEnabled(true);
+		TryCatch(r == E_SUCCESS, , "Failed to set the redirection automatically.");
+	}
+	//----------------------------------------------------------------------
+
+	// Open a new transaction
+	pHttpTransaction = __pHttpSession->OpenTransactionN();
+	r = GetLastResult();
+
+	TryCatch(pHttpTransaction != null, , "Failed to open the HttpTransaction.");
+
+	// Add a listener
+	r = pHttpTransaction->AddHttpTransactionListener(*listener);
+	TryCatch(r == E_SUCCESS, , "Failed to add the HttpTransactionListener.");
+
+	// Get an HTTP request
+	pHttpRequest = const_cast< HttpRequest* >(pHttpTransaction->GetRequest());
+
+	//----------------------------------------------------------------------
+	// Set the HTTP method and URI
+	r = pHttpRequest->SetUri(requestAddr);
+	TryCatch(r == E_SUCCESS, , "Failed to set the uri.");
+
+	r = pHttpRequest->SetMethod(NET_HTTP_METHOD_PUT);
+	TryCatch(r == E_SUCCESS, , "Failed to set the method.");
+
+	// POST 데이터 설정
+	pHttpUrlEncodedEntity = new HttpUrlEncodedEntity();
+	r = pHttpUrlEncodedEntity->Construct();
+
+
+
+	pMapEnum = map->GetMapEnumeratorN();
+	while (pMapEnum->MoveNext() == E_SUCCESS)
+	{
+		pKey = static_cast< String* > (pMapEnum->GetKey());
+		pValue = static_cast< String* > (pMapEnum->GetValue());
+		r = pHttpUrlEncodedEntity->AddParameter(*pKey, *pValue);
+
+	}
+	delete pMapEnum;
+
+
+	r = pHttpRequest->SetEntity(*pHttpUrlEncodedEntity);
+
+	// Submit the request
+	r = pHttpTransaction->Submit();
+	TryCatch(r == E_SUCCESS, , "Failed to submit the HttpTransaction.");
+
+	return r;
+
+CATCH:
+
+	delete pHttpTransaction;
+	pHttpTransaction = null;
+
+	AppLog("RequestHttpGet() failed. (%s)", GetErrorMessage(r));
+	return r;
+}
+
+result
+httpClient::RequestHttpDelTran(IHttpTransactionEventListener* listener, Tizen::Base::String *url)
+{
+	AppLog("------------------>Request<-------------------------");
+
+		// Construct an HTTP session
+		result r = E_SUCCESS;
+		HttpTransaction* pHttpTransaction = null;
+		HttpRequest* pHttpRequest = null;
+
+		// 주소
+		String requestAddr(hostAddr + *url);
+
+		if (__pHttpSession == null)
+		{
+			__pHttpSession = new (std::nothrow) HttpSession();
+
+			r = __pHttpSession->Construct(NET_HTTP_SESSION_MODE_NORMAL, null, hostAddr, null);
+			if (IsFailed(r))
+			{
+				delete __pHttpSession;
+				__pHttpSession = null;
+				AppLogException("Failed to create the HttpSession.");
+				goto CATCH;
+			}
+
+			r = __pHttpSession->SetAutoRedirectionEnabled(true);
+			TryCatch(r == E_SUCCESS, , "Failed to set the redirection automatically.");
+		}
+		//----------------------------------------------------------------------
+
+		// Open a new transaction
+		pHttpTransaction = __pHttpSession->OpenTransactionN();
+		r = GetLastResult();
+		TryCatch(pHttpTransaction != null, , "Failed to open the HttpTransaction.");
+
+		// Add a listener
+		r = pHttpTransaction->AddHttpTransactionListener(*listener);
+		TryCatch(r == E_SUCCESS, , "Failed to add the HttpTransactionListener.");
+
+		// Get an HTTP request
+		pHttpRequest = const_cast< HttpRequest* >(pHttpTransaction->GetRequest());
+
+		// Set the HTTP method and URI
+		r = pHttpRequest->SetUri(requestAddr);
+		TryCatch(r == E_SUCCESS, , "Failed to set the uri.");
+
+		r = pHttpRequest->SetMethod(NET_HTTP_METHOD_DELETE);
+		TryCatch(r == E_SUCCESS, , "Failed to set the method.");
+
+		// Submit the request
+		r = pHttpTransaction->Submit();
+		TryCatch(r == E_SUCCESS, , "Failed to submit the HttpTransaction.");
+
+		return r;
+
+	CATCH:
+
+		delete pHttpTransaction;
+		pHttpTransaction = null;
+
+		AppLog("RequestHttpGet() failed. (%s)", GetErrorMessage(r));
+		return r;
+}
+
 

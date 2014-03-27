@@ -20,8 +20,8 @@ public:
 	virtual ~GHAchievementController();
 
 	// achievement 목록을 가져온다.
-	void loadAchievements(GHAchievementsLoadedListener * listener);
-	//void loadAchievements();
+//	void loadAchievements(GHAchievementsLoadedListener * listener);
+	void loadAchievements();
 
 	// hidden -> reveal 상태로 바꾼다.
 	void revealAchievement(STRING* id);
@@ -45,6 +45,11 @@ public:
 	virtual void OnTransactionHeaderCompleted(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction, int headerLen, bool authRequired);
 	virtual void OnTransactionCompleted(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction);
 	virtual void OnTransactionCertVerificationRequiredN(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction, Tizen::Base::String* pCert);
+
+
+private:
+	Tizen::Base::Collection::HashMap* __pMap;
+
 };
 
 
