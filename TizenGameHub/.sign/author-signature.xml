@@ -4,7 +4,7 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="bin/TizenGameHub.exe">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>meWUg3ohwWSZE0ox5FIa/JHgDJxCoSXspMcM8UsPlKE=</DigestValue>
+<DigestValue>rrhGRJNX1VbZXupKxVTTAhw5Z6jSEJ95iW63RL+U6VA=</DigestValue>
 </Reference>
 <Reference URI="info/manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -12,7 +12,7 @@
 </Reference>
 <Reference URI="lib/libTizenGameHubLibrary.so">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>2ebczt9mzLrtnkZyMsc11+XE//TP9P84yzOgx3zyv4E=</DigestValue>
+<DigestValue>EMPZOq+Lknt3ro7YdY8lslacYM6eAxRvFWEF/AXvZw4=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -20,7 +20,7 @@
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM_GAME.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>UjT0mU45rsCGMjVax3bTpulwNzZxyQbCGB2AyS6cSBc=</DigestValue>
+<DigestValue>VDDHuGenq1Aj65FU4h9uSi8SrjjTEFeOlBBrwkXEgzM=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM_JOIN.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -32,7 +32,7 @@
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM_PLAYER.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>G090Cs0bcs+572p8ZdSiFubxIAHBYw0c++YZugqV1W8=</DigestValue>
+<DigestValue>ALGOVGySwy+RVSJC+AhSgtvDGt7ftgl53hZ6g+SvMKA=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/workflow.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -51,9 +51,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-ITIbNkUvC1PmfwVrYzfNI0a27XVvJ8B+w/vh03qfg8f6Tgm3tXtkTE9MDC9+Tfiqh4+P22QGo9wX
-bO122mRY3Y+yVPZWqXnqoqUj9uW617tGc6uQSaNRSLhgZRdc2Mm1z+pAVgUJocORGsPFKes64XNK
-q7Jm6PmbMrkQfeqV9y4=
+RrqgspLKLWIA/H1JRxuTJOjlQY737jGd0Mvtb+rLc5tBTXcgA+6Ik5bbxW9oy4E/SBTtdkt2ZVry
+7ew2sSE1Nc36jbndY/pfDrl98iUwqlEp5TOUft5bU0cZCPIGV37s9n8Oli6qFwZZmrepa3ShCnlV
+z33GR2C9md+Q7uUA/uw=
 </SignatureValue>
 <KeyInfo>
 <X509Data>

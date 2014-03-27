@@ -56,6 +56,11 @@
         <layout height="61.0" mode="Portrait" width="353.0" x="0.0" y="0.0"/>
         <layout height="61.0" mode="Landscape" width="353.0" x="10.0" y="10.0"/>
     </Label>
+    <Label id="IDC_GAME_LABEL_DESC" parent="IDC_GAME_PANEL_GAMEDETAIL">
+        <property accessibilityHint="" backgroundBitmapPath="" backgroundColor="" backgroundColorOpacity="0" horizontalAlign="ALIGN_LEFT" leftMargin="16" text="Game Description" textColor="" textSize="23.0" textStyle="LABEL_TEXT_STYLE_NORMAL" topMargin="0" verticalAlign="ALIGN_TOP"/>
+        <layout height="522.0" mode="Portrait" width="620.0" x="21.0" y="125.0"/>
+        <layout height="337.0" mode="Landscape" width="620.0" x="21.0" y="125.0"/>
+    </Label>
     <Panel id="IDC_GAME_PANEL_FUNCTION" parent="IDC_GAME_PANEL_GAMEDETAIL">
         <property backgroundColor="" backgroundColorOpacity="0" compositeEnabled="true" groupStyle="GROUP_STYLE_NONE"/>
         <layout height="54.0" mode="Portrait" type="NONE" width="662.0" x="0.0" y="60.0"/>
@@ -71,9 +76,20 @@
         <layout height="38.0" mode="Portrait" width="138.0" x="179.0" y="9.0"/>
         <layout height="38.0" mode="Landscape" width="138.0" x="14.0" y="17.0"/>
     </Button>
-    <Label id="IDC_GAME_LABEL_DESC" parent="IDL_FORM_GAME">
-        <property accessibilityHint="" backgroundBitmapPath="" backgroundColor="" backgroundColorOpacity="0" horizontalAlign="ALIGN_LEFT" leftMargin="16" text="Game Description" textColor="" textSize="20.0" textStyle="LABEL_TEXT_STYLE_NORMAL" topMargin="0" verticalAlign="ALIGN_TOP"/>
-        <layout height="488.0" mode="Portrait" width="632.0" x="43.0" y="467.0"/>
-        <layout height="488.0" mode="Landscape" width="632.0" x="43.0" y="53.0"/>
+    
+    <Panel id="IDC_GAME_PANEL_FRIEND" parent="IDC_GAME_SCROLLPANEL">
+        <property backgroundColor="" backgroundColorOpacity="0" compositeEnabled="true" groupStyle="GROUP_STYLE_NONE"/>
+        <layout height="673.0" mode="Portrait" type="NONE" width="665.0" x="28.0" y="0.0"/>
+        <layout height="337.0" mode="Landscape" type="NONE" width="661.0" x="38.0" y="107.0"/>
+    </Panel>
+    <Label id="IDC_GAME_LABEL_FRIENDTITLE" parent="IDC_GAME_PANEL_FRIEND">
+        <property accessibilityHint="" backgroundBitmapPath="" backgroundColor="" backgroundColorOpacity="0" horizontalAlign="ALIGN_LEFT" leftMargin="16" text="이 게임을 하는 친구" textColor="" textSize="32.0" textStyle="LABEL_TEXT_STYLE_NORMAL" topMargin="0" verticalAlign="ALIGN_MIDDLE"/>
+        <layout height="61.0" mode="Portrait" width="353.0" x="0.0" y="0.0"/>
+        <layout height="61.0" mode="Landscape" width="353.0" x="10.0" y="10.0"/>
     </Label>
+    <ListView id="IDC_GAME_LISTVIEW_FRIEND" parent="IDC_GAME_PANEL_FRIEND">
+        <property backgroundBitmapPath="" backgroundColor="" backgroundColorOpacity="0" bitmapPathOfEmptyList="" colorOfEmptyListText="" itemDivider="true" itemDividerColor="" listScrollStyle="SCROLL_STYLE_FADE_OUT" scrollInputMode="SCROLL_INPUT_MODE_ALLOW_ANY_DIRECTION" sweepEnabled="false" textOfEmptyList=""/>
+        <layout height="599.0" mode="Portrait" width="620.0" x="20.0" y="70.0"/>
+        <layout height="238.0" mode="Landscape" width="629.0" x="12.0" y="80.0"/>
+    </ListView>
 </Scene>

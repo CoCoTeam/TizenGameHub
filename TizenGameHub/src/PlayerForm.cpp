@@ -7,6 +7,7 @@
 
 #include "PlayerForm.h"
 #include "AppResourceId.h"
+#include "TizenGameHubFrame.h"
 
 using namespace Tizen::App;
 using namespace Tizen::Ui::Scenes;
@@ -39,30 +40,35 @@ PlayerForm::OnInitializing(void)
 	result r = E_SUCCESS;
 
 	// TODO: Add your initialization code here
+	AppLog("[PlayerForm] OnInitializing");
 
 	// Setup back event listener
 	SetFormBackEventListener(this);
 
 	// Get a button via resource ID
-	Panel* pPanelUser = static_cast< Panel* >(GetControl(IDC_USER_PANEL_USER));
-	Gallery* pGalleryUserProfile = static_cast< Gallery* >(pPanelUser->GetControl(IDC_USER_IMG_USERIMG));
-	Label* pLabelUserName = static_cast< Label* >(pPanelUser->GetControl(IDC_USER_LABEL_USERNAME));
-	Label* pLabelUserScore = static_cast< Label* >(pPanelUser->GetControl(IDC_USER_LABEL_USERSCORE));
+	pPanelUser = static_cast< Panel* >(GetControl(IDC_USER_PANEL_USER));
+	pGalleryUserProfile = static_cast< Gallery* >(pPanelUser->GetControl(IDC_USER_IMG_USERIMG));
+	pLabelUserName = static_cast< Label* >(pPanelUser->GetControl(IDC_USER_LABEL_USERNAME));
+	pLabelUserScore = static_cast< Label* >(pPanelUser->GetControl(IDC_USER_LABEL_USERSCORE));
 	pButtonUserFriend = static_cast< Button* >(pPanelUser->GetControl(IDC_USER_BUTTON_USERFRIEND));
+	pPanelScroll = static_cast< Panel* >(GetControl(IDC_USER_SCROLLPANEL));
+	pPanelGame = static_cast< Panel* >(pPanelScroll->GetControl(IDC_USER_PANEL_GAME));
+	pPanelFriend = static_cast< Panel* >(pPanelScroll->GetControl(IDC_USER_PANEL_FRIEND));
+	pPanelFriend->SetShowState(false);
 
 	pLabelUserName->SetText( *(mPlayer->getName()) );
 	String *totalScoreStr = new String();
 	totalScoreStr->Append(mPlayer->getTotalScore());
 	pLabelUserScore->SetText( *totalScoreStr );
-	//! 프로필 이미지 세팅, 버튼 속성 세팅
+	//!! 프로필 이미지 세팅, 버튼 속성 세팅
 	//	pGalleryUserProfile->Set
 	//	pButtonUserFriend->Set
 
-	Panel* pPanelScroll = static_cast< Panel* >(GetControl(IDC_USER_SCROLLPANEL));
-	pPanelGame = static_cast< Panel* >(pPanelScroll->GetControl(IDC_USER_PANEL_GAME));
-//	pPanelFriend = static_cast< Panel* >(pPanelScroll->GetControl(IDC_USER_PANEL_FRIEND));
+	pButtonUserFriend->SetActionId(IDA_BUTTON_USER);
+	pButtonUserFriend->AddActionEventListener(*this);
 
 	setGameList();
+	setFooterMenu();
 
 	return r;
 }
@@ -79,17 +85,43 @@ PlayerForm::OnTerminating(void)
 void
 PlayerForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 {
-//	SceneManager* pSceneManager = SceneManager::GetInstance();
-//	AppAssert(pSceneManager);
+	SceneManager* pSceneManager = SceneManager::GetInstance();
+	AppAssert(pSceneManager);
 
+	AppLog("[PlayerForm] OnActionPerformed(%d)", actionId);
 	switch(actionId)
 	{
-//	case IDA_BUTTON_OK:
-//		AppLog("OK Button is clicked!");
-//		break;
-//
-//	default:
-//		break;
+	case IDA_BUTTON_USER:
+		if( isLocalPlayer ) {	// (나 자신이면) 정보 수정 페이지로 이동
+			ArrayList* pList = new (std::nothrow)ArrayList;
+			AppAssert(pList);
+			pList->Construct();
+			pList->Add( new Tizen::Base::Boolean(false) );	// isJoin -> isEdit
+			pSceneManager->GoForward(ForwardSceneTransition(SCENE_JOIN, SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_IN), pList);
+		}
+		else {		// (나 자신이 아니면)
+			if( isFriend ) {	//!! (친구이면) 친구 해제
+
+			}
+			else {	//!! (친구가 아니면) 친구 요청
+
+			}
+
+		}
+		break;
+
+	case ID_FOOTER_FIRST_TAB:
+		changePanel(0);
+		break;
+
+	case ID_FOOTER_SECOND_TAB:
+		if( isLocalPlayer ) {	// (나 자신이면) 친구 리스트 Panel 보이기
+			changePanel(1);
+		}
+		else {		//!! (아니면) 내 정보 페이지로 이동하기
+
+		}
+		break;
 	}
 }
 
@@ -118,24 +150,35 @@ PlayerForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 	{
 		if (pArgs->GetCount())
 		{
-			AppLog("[GameHub] Argument Received");
-			isLocalPlayer = static_cast<Tizen::Base::Boolean*>(pArgs->GetAt(0));
-			isFriend = static_cast<Tizen::Base::Boolean*>(pArgs->GetAt(1));
+			AppLog("[PlayerForm] Argument Received");
+			Tizen::Base::String *pPlayerIdStr = static_cast<Tizen::Base::String*>(pArgs->GetAt(0));
+			isLocalPlayer = static_cast<Tizen::Base::Boolean*>(pArgs->GetAt(1));
+			isFriend = static_cast<Tizen::Base::Boolean*>(pArgs->GetAt(2));
 
-//				pPanelFriend->SetShowState(isLocalPlayer);
-			if(isLocalPlayer->Equals(true)) {
+			if( isLocalPlayer ) {
+				//!! Footer 정보 변경
+//				setFooterMenu();
 
-				//!! 버튼 정보 변경 및 리스너 수정
+				// 버튼 정보 변경
 				pButtonUserFriend->SetText( "정보 수정" );
+
+				// 친구 리스트 설정
+				setPlayerList();
+			}
+			else {
 
 				//!! Footer 정보 변경
 
-
-			}
-			if(isFriend->Equals(true)) {
+				// 버튼 정보 변경
+				if( isFriend ) {
+					pButtonUserFriend->SetText( "친구 해제" );
+				}
+				else {
+					pButtonUserFriend->SetText( "친구 요청" );
+				}
 			}
 		}
-//			pArgs->RemoveAll(true);
+		pArgs->RemoveAll(true);
 		delete pArgs;
 	}
 }
@@ -174,16 +217,55 @@ void PlayerForm::setGameList()
 }
 void PlayerForm::setPlayerList()
 {
-//	pFriendList = new ArrayList();
-//	pFriendList->Add( (Object*)new GHPlayer(1, "aaa@aaa.com", "전경호", "default") );
-//	pFriendList->Add( (Object*)new GHPlayer(2, "bbb@aaa.com", "김기철", "default") );
-//	pFriendList->Add( (Object*)new GHPlayer(3, "ccc@aaa.com", "노동완", "default") );
-//	pFriendProvider = new GHPlayerProvider();
-//	pFriendProvider->setItemList(pFriendList);
-//	pFriendListItemEventListener = new GHPlayerListItemEventListener();
-//	pFriendListItemEventListener->setItemList(pFriendList);
-//
-//	pListViewFriend = static_cast< ListView* >(pPanelFriend->GetControl(IDC_USER_LISTVIEW_FRIEND));
-//	pListViewFriend->SetItemProvider( *pFriendProvider );
-//	pListViewFriend->AddListViewItemEventListener( *pFriendListItemEventListener );
+	pFriendList = new ArrayList();
+
+	pFriendList->Add( (Object*)new GHPlayer(1, "aaa@aaa.com", "전경호", "default") );
+	pFriendList->Add( (Object*)new GHPlayer(2, "bbb@aaa.com", "김기철", "default") );
+	pFriendList->Add( (Object*)new GHPlayer(3, "ccc@aaa.com", "노동완", "default") );
+
+	pFriendProvider = new GHPlayerProvider();
+	pFriendProvider->setItemList(pFriendList);
+	pFriendListItemEventListener = new GHPlayerListItemEventListener();
+	pFriendListItemEventListener->setItemList(pFriendList);
+
+	pListViewFriend = static_cast< ListView* >(pPanelFriend->GetControl(IDC_USER_LISTVIEW_FRIEND));
+	pListViewFriend->SetItemProvider( *pFriendProvider );
+	pListViewFriend->AddListViewItemEventListener( *pFriendListItemEventListener );
+}
+
+void PlayerForm::setFooterMenu()
+{
+	// Set-up footer
+	Footer* pFooter = GetFooter();
+	AppAssert(pFooter)
+	pFooter->SetStyle(FOOTER_STYLE_BUTTON_TEXT);
+	pFooter->SetBackButton();
+
+	FooterItem footerItem1;
+	footerItem1.Construct(ID_FOOTER_FIRST_TAB);
+	footerItem1.SetText(L"사용자 정보");
+	pFooter->AddItem(footerItem1);
+
+	FooterItem footerItem2;
+	footerItem2.Construct(ID_FOOTER_SECOND_TAB);
+	footerItem2.SetText(L"친구 정보");
+	pFooter->AddItem(footerItem2);
+//	pFooter->SetItemSelected(0);
+	pFooter->AddActionEventListener(*this);
+}
+
+void PlayerForm::changePanel(int selected)
+{
+	AppLog("[GameForm] changePanel(%d)", selected);
+	switch(selected)
+	{
+	case 0:
+		pPanelFriend->SetShowState(false);
+		pPanelGame->SetShowState(true);
+		break;
+	case 1:
+		pPanelGame->SetShowState(false);
+		pPanelFriend->SetShowState(true);
+		break;
+	}
 }

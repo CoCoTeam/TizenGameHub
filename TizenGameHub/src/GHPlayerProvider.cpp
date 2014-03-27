@@ -9,7 +9,6 @@
 
 GHPlayerProvider::GHPlayerProvider() {
 	// TODO Auto-generated constructor stub
-
 }
 
 GHPlayerProvider::~GHPlayerProvider() {
