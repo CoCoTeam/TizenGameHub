@@ -16,3 +16,4 @@ GHAchievementUpdatedListener::~GHAchievementUpdatedListener() {
 	// TODO Auto-generated destructor stub
 }
 
+void GHAchievementUpdatedListener::doAchievementFinished(GHAchievement* achievementArray) {};

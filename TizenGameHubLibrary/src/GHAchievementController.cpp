@@ -26,13 +26,17 @@ GHAchievementController::~GHAchievementController() {
 
 
 // Achievement 목록을 가져온다.
-void GHAchievementController::loadAchievements(GHAchievementsLoadedListener* listener) {
+void GHAchievementController::loadAchievements(GHAchievementListener* listener) {
+
+	this->currentListener = listener;
+
 	GHhttpClient* httpPost = new GHhttpClient();
+
 	//httpPost->RequestHttpPost(this);
 
 	//GET 함수 호출
-/*	String game_id("key_aa");
-	httpPost->RequestHttpGetTran(this, new String(L"/achievements/" + game_id));*/
+	//String game_id("key_aa");
+	//httpPost->RequestHttpGetTran(this, new String(L"/achievements/" + game_id));
 
 
 	//post 함수 호출
@@ -62,9 +66,9 @@ void GHAchievementController::loadAchievements(GHAchievementsLoadedListener* lis
 	httpPost->RequestHttpPutTran(this, new String(L"/achievements/" + game_id + "/" + ac_id), __pMap);*/
 
 	//DELETE함수 호출
-	String game_id("key_aa");
-	String ac_id("3");
-	httpPost->RequestHttpDelTran(this, new String(L"/achievements/" + game_id + "/" + ac_id));
+//	String game_id("key_aa");
+//	String ac_id("3");
+//	httpPost->RequestHttpDelTran(this, new String(L"/achievements/" + game_id + "/" + ac_id));
 
 
 	// 통신끝난 후 호출하면서 데이터를 전달해야 한다. // 개발자는 GHAchievementLoadedListener를 상속받아서 아래 함수를 구현해놔야 한다.
@@ -76,24 +80,24 @@ void GHAchievementController::loadAchievements(GHAchievementsLoadedListener* lis
 void GHAchievementController::revealAchievement(STRING* id) {
 
 }
-void GHAchievementController::revealAchievement(GHAchievementsUpdatedListener* listener, STRING* id) {
-	listener->updateAchievementsFinished();
+void GHAchievementController::revealAchievement(GHAchievementListener* listener, STRING* id) {
+	this->currentListener = listener;
 }
 
 // normal achievement update
 void GHAchievementController::completeAchievement(STRING* id) {
 
 }
-void GHAchievementController::completeAchievement(GHAchievementsUpdatedListener* listener, STRING* id) {
-	listener->updateAchievementsFinished();
+void GHAchievementController::completeAchievement(GHAchievementListener* listener, STRING* id) {
+	this->currentListener = listener;
 }
 
 // incremental achievement update
 void GHAchievementController::increaseAchievement(STRING* id) {
 
 }
-void GHAchievementController::increaseAchievement(GHAchievementsUpdatedListener* listener, STRING* id) {
-	listener->updateAchievementsFinished();
+void GHAchievementController::increaseAchievement(GHAchievementListener* listener, STRING* id) {
+	this->currentListener = listener;
 }
 
 
@@ -127,13 +131,8 @@ void GHAchievementController::OnTransactionReadyToRead(HttpSession& httpSession,
 
 			AppLogDebug("[HTTP] response data : %s", (char *)tempBody);
 
-
-
-			//Plistener->function();
-
-			//String text = (const char *)tempBody;
-			// text control에 가져온 데이터를 보여준다.
-			//_pEditArea->SetText(text);
+			// 실제 리턴값을 가공해서 넘겨준다.
+			currentListener->doAchievementFinished(3);
 
 			delete tempHeaderString;
 			delete pBuffer;

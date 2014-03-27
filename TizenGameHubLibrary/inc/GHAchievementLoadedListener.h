@@ -9,14 +9,18 @@
 #define GHACHIEVEMENTLOADEDLISTENER_H_
 
 #include <GHAchievement.h>
+#include <GHAchievementListener.h>
 
-class GHAchievementLoadedListener {
+class GHAchievementLoadedListener
+	: public GHAchievementListener
+{
 public:
 	GHAchievementLoadedListener();
 	virtual ~GHAchievementLoadedListener();
+	virtual void doAchievementFinished(GHAchievement* achievementArray) = 0;
 
-	virtual void loadAchievementsFinished(GHAchievement* achievementArray) = 0;
-
+private:
+	void doAchievementFinished(int statusCode);
 };
 
-#endif /* GHACHIEVEMENTSLOADEDLISTENER_H_ */
+#endif /* GHACHIEVEMENTLOADEDLISTENER_H_ */

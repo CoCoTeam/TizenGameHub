@@ -7,12 +7,13 @@
 
 #include "GHAchievementLoadedListener.h"
 
-GHAchievementsLoadedListener::GHAchievementLoadedListener() {
+GHAchievementLoadedListener::GHAchievementLoadedListener() {
 	// TODO Auto-generated constructor stub
 
 }
 
-GHAchievementsLoadedListener::~GHAchievementLoadedListener() {
+GHAchievementLoadedListener::~GHAchievementLoadedListener() {
 	// TODO Auto-generated destructor stub
 }
 
+void GHAchievementLoadedListener::doAchievementFinished(int statusCode){};

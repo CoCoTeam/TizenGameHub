@@ -1,5 +1,5 @@
 src/PrefClass.d: ../src/PrefClass.cpp \
-  C:\Users\hursujung\Documents\GitHub\TizenGameHub\SampleGame\inc\PrefClass.h \
+  C:\Users\KICHUL\Documents\Tizen\workspace\TizenGameHub\SampleGame\inc\PrefClass.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include/osp\FBase.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include/osp\FBaseTypes.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include/osp\FBaseLog.h \
@@ -456,7 +456,7 @@ src/PrefClass.d: ../src/PrefClass.cpp \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include/osp\FAppPkgPackageInfo.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include/osp\FAppPkgPackageAppInfo.h
 
-C:\Users\hursujung\Documents\GitHub\TizenGameHub\SampleGame\inc\PrefClass.h:
+C:\Users\KICHUL\Documents\Tizen\workspace\TizenGameHub\SampleGame\inc\PrefClass.h:
 
 C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include/osp\FBase.h:
 

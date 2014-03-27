@@ -11,6 +11,7 @@
 #define GHACHIEVEMENTCONTROLLER_H_
 
 #include <GHTizen.h>
+#include <GHAchievementListener.h>
 #include <GHAchievementLoadedListener.h>
 #include <GHAchievementUpdatedListener.h>
 #include <GHhttpClient.h>
@@ -22,19 +23,19 @@ public:
 	virtual ~GHAchievementController();
 
 	// achievement 목록을 가져온다.
-	void loadAchievements(GHAchievementsLoadedListener * listener);
+	void loadAchievements(GHAchievementListener * listener);
 
 	// hidden -> reveal 상태로 바꾼다.
 	void revealAchievement(STRING* id);
-	void revealAchievement(GHAchievementsUpdatedListener* listener, STRING* id);
+	void revealAchievement(GHAchievementListener* listener, STRING* id);
 
 	// normal achievement update
 	void completeAchievement(STRING* id);
-	void completeAchievement(GHAchievementsUpdatedListener* listener, STRING* id);
+	void completeAchievement(GHAchievementListener* listener, STRING* id);
 
 	// incremental achievement update
 	void increaseAchievement(STRING* id);
-	void increaseAchievement(GHAchievementsUpdatedListener* listener, STRING* id);
+	void increaseAchievement(GHAchievementListener* listener, STRING* id);
 
 
 
@@ -49,7 +50,7 @@ public:
 
 private:
 	Tizen::Base::Collection::HashMap* __pMap;
-
+	GHAchievementListener* currentListener;
 
 };
 

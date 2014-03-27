@@ -9,6 +9,7 @@
 #define LOGINFORM_H_
 
 #include <GHTizen.h>
+#include <GHAchievementUpdatedListener.h>
 using namespace Tizen::Ui::Controls;
 
 class LoginForm
@@ -35,6 +36,7 @@ private:
 	static const int IDA_BUTTON_JOIN = 102;
 
 	result doLogin();
+
 };
 
 #endif /* LOGINFORM_H_ */
