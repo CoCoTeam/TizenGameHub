@@ -1,3 +1,5 @@
+
+
 /*
  * GHAchievementController.h
  *
@@ -9,9 +11,9 @@
 #define GHACHIEVEMENTCONTROLLER_H_
 
 #include <GHTizen.h>
-#include <GHAchievementsLoadedListener.h>
-#include <GHAchievementsUpdatedListener.h>
-#include <httpClient.h>
+#include <GHAchievementLoadedListener.h>
+#include <GHAchievementUpdatedListener.h>
+#include <GHhttpClient.h>
 
 class GHAchievementController
 	: public Tizen::Net::Http::IHttpTransactionEventListener{
@@ -44,6 +46,11 @@ public:
 	virtual void OnTransactionHeaderCompleted(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction, int headerLen, bool authRequired);
 	virtual void OnTransactionCompleted(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction);
 	virtual void OnTransactionCertVerificationRequiredN(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction, Tizen::Base::String* pCert);
+
+private:
+	Tizen::Base::Collection::HashMap* __pMap;
+
+
 };
 
 
@@ -59,3 +66,4 @@ public:
 
 
 #endif /* GHACHIEVEMENTCONTROLLER_H_ */
+
