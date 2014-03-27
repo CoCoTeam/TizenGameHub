@@ -8,6 +8,10 @@
 #ifndef GHACHIEVEMENTCONTROLLER_H_
 #define GHACHIEVEMENTCONTROLLER_H_
 
+#include <GHTizen.h>
+#include <GHAchievementsLoadedListener.h>
+#include <GHAchievementsUpdatedListener.h>
+
 class GHAchievementController {
 public:
 	GHAchievementController();
@@ -22,21 +26,23 @@ public:
 
 	// normal achievement update
 	void completeAchievement(STRING* id);
-	void completeAchievement(GHAchievementsUpdatedListener* listner, STRING* id);
+	void completeAchievement(GHAchievementsUpdatedListener* listener, STRING* id);
 
 	// incremental achievement update
 	void increaseAchievement(STRING* id);
-	void increaseAchievement(GHAchievementsUpdatedListener* listner, STRING* id);
-};
-
-// Interface Class (Listener)
-class GHAchievementsLoadedListener {
+	void increaseAchievement(GHAchievementsUpdatedListener* listener, STRING* id);
 };
 
 
 // Interface Class (Listener)
-class GHAchievementsUpdatedListener {
-};
+//class GHAchievementsLoadedListener {
+//};
+//
+//
+
+// Interface Class (Listener)
+//class GHAchievementsUpdatedListener {
+//};
 
 
 #endif /* GHACHIEVEMENTCONTROLLER_H_ */

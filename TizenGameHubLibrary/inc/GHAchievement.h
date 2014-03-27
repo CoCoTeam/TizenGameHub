@@ -8,6 +8,8 @@
 #ifndef GHACHIEVEMENT_H_
 #define GHACHIEVEMENT_H_
 
+#include <GHTizen.h>
+
 class GHAchievement {
 public:
 	GHAchievement();

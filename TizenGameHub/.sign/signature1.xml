@@ -4,11 +4,11 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>aCH4Q/zx6SLom0odNP1y6rQlkbqy0YB4kiuqPsTnJas=</DigestValue>
+<DigestValue>K730inv0f5ENrdKQHhytQPxbwJNjcgsrybQMI1dOHZc=</DigestValue>
 </Reference>
 <Reference URI="bin/TizenGameHub.exe">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>rrhGRJNX1VbZXupKxVTTAhw5Z6jSEJ95iW63RL+U6VA=</DigestValue>
+<DigestValue>tFRMxlTlF7dO9minxBEniviWVW9dJ9MC1nF3slQbPwM=</DigestValue>
 </Reference>
 <Reference URI="info/manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -16,11 +16,11 @@
 </Reference>
 <Reference URI="lib/libTizenGameHubLibrary.so">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>EMPZOq+Lknt3ro7YdY8lslacYM6eAxRvFWEF/AXvZw4=</DigestValue>
+<DigestValue>5WAGuoNofENWHOqn88HJktOq2f5t9z960E2BjlTeUSo=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>YdmGieIiYRZKbHrnVKcr8Ij3LY5NN4+LRXEl8Z0qBIk=</DigestValue>
+<DigestValue>j5jN5tPdw73GdcyVvOE5A4Jem2AOpwGub02vQL4NvZk=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM_GAME.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -40,7 +40,7 @@
 </Reference>
 <Reference URI="res/screen-size-normal/workflow.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>13oDp3lzaNV0KUkkKB2CPSVruifqtmk5tfItLzSwCBs=</DigestValue>
+<DigestValue>0oJL8oakIOPByUsQGGMKg6kyp50RzKEHKL7XzBAb2jY=</DigestValue>
 </Reference>
 <Reference URI="shared/res/screen-density-xhigh/mainmenu.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -55,9 +55,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-S77wWpNefHfCLPFDHnaGyy5UA+M+RpFucbaXi8FaJqUFBcrja16A0afmesIo2SkDiQRKAFwPDeGe
-pUdX6eAs1xw4mWVpUqqo3gRdxTeNiNe7Bb1spVa097SuRAXT0zri+QXZJLJTLroQ02R2DDR7GpqD
-pdwf7vsSidjsIMLbVdc=
+RnltA/D+xFXpCNMUlqZ4Ok8VAHLVZmjNl4dU9illzvypeNhMWQRWDULIi3Jo0ykzF2uQ4iOMO4jv
+1phY/aMEGLNVkODhgQNfay0Wje+N6K0a1mV9W4V4Ojoiqguyo3UrwfGV5/GDNi4ukD0C0SeB7PxE
+dL9LFccjoBRBqzjaGkM=
 </SignatureValue>
 <KeyInfo>
 <X509Data>
