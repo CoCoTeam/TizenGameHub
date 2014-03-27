@@ -5,15 +5,15 @@
  *      Author: KICHUL
  */
 
-#ifndef GHACHIEVEMENTSLOADEDLISTENER_H_
-#define GHACHIEVEMENTSLOADEDLISTENER_H_
+#ifndef GHACHIEVEMENTLOADEDLISTENER_H_
+#define GHACHIEVEMENTLOADEDLISTENER_H_
 
 #include <GHAchievement.h>
 
-class GHAchievementsLoadedListener {
+class GHAchievementLoadedListener {
 public:
-	GHAchievementsLoadedListener();
-	virtual ~GHAchievementsLoadedListener();
+	GHAchievementLoadedListener();
+	virtual ~GHAchievementLoadedListener();
 
 	virtual void loadAchievementsFinished(GHAchievement* achievementArray) = 0;
 

@@ -13,6 +13,8 @@ using namespace Tizen::Base;
 //game id: key_aa
 //player id: pkeykichul
 
+//GHListener* Plistener;
+
 GHAchievementController::GHAchievementController() {
 	// TODO Auto-generated constructor stub
 
@@ -25,10 +27,10 @@ GHAchievementController::~GHAchievementController() {
 
 // Achievement 목록을 가져온다.
 void GHAchievementController::loadAchievements(GHAchievementsLoadedListener* listener) {
-//void GHAchievementController::loadAchievements() {
 	httpClient* httpPost = new httpClient();
 	httpPost->RequestHttpPost(this);
 
+	//Plistener  = listener;
 	// 통신끝난 후 호출하면서 데이터를 전달해야 한다. // 개발자는 GHAchievementLoadedListener를 상속받아서 아래 함수를 구현해놔야 한다.
 	//GHAchievement* array = new GHAchievement[3];
 	//listener->loadAchievementsFinished(array, this);
@@ -59,8 +61,9 @@ void GHAchievementController::increaseAchievement(GHAchievementsUpdatedListener*
 }
 
 
+// HTTP 통신 Listener -------------------------------------------------------------------------------------------------------
 
-// Request 후 Response를 받았을 때 처리
+// Request 후 Response 를 받았을 때 처리
 void GHAchievementController::OnTransactionReadyToRead(HttpSession& httpSession, HttpTransaction& httpTransaction, int availableBodyLen)
 {
 	// 현재는 response data를 받아서 화면에 뿌리도록 함.
@@ -88,6 +91,9 @@ void GHAchievementController::OnTransactionReadyToRead(HttpSession& httpSession,
 
 			AppLogDebug("[HTTP] response data : %s", (char *)tempBody);
 
+
+
+			//Plistener->function();
 
 			//String text = (const char *)tempBody;
 			// text control에 가져온 데이터를 보여준다.

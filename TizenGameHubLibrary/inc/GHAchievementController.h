@@ -21,7 +21,6 @@ public:
 
 	// achievement 목록을 가져온다.
 	void loadAchievements(GHAchievementsLoadedListener * listener);
-	//void loadAchievements();
 
 	// hidden -> reveal 상태로 바꾼다.
 	void revealAchievement(STRING* id);

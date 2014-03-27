@@ -5,14 +5,14 @@
  *      Author: KICHUL
  */
 
-#include "GHAchievementsLoadedListener.h"
+#include "GHAchievementLoadedListener.h"
 
-GHAchievementsLoadedListener::GHAchievementsLoadedListener() {
+GHAchievementsLoadedListener::GHAchievementLoadedListener() {
 	// TODO Auto-generated constructor stub
 
 }
 
-GHAchievementsLoadedListener::~GHAchievementsLoadedListener() {
+GHAchievementsLoadedListener::~GHAchievementLoadedListener() {
 	// TODO Auto-generated destructor stub
 }
 

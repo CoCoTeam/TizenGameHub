@@ -5,15 +5,15 @@
  *      Author: KICHUL
  */
 
-#ifndef GHACHIEVEMENTSUPDATEDLISTENER_H_
-#define GHACHIEVEMENTSUPDATEDLISTENER_H_
+#ifndef GHACHIEVEMENTUPDATEDLISTENER_H_
+#define GHACHIEVEMENTUPDATEDLISTENER_H_
 
 #include <GHAchievement.h>
 
-class GHAchievementsUpdatedListener {
+class GHAchievementUpdatedListener {
 public:
-	GHAchievementsUpdatedListener();
-	virtual ~GHAchievementsUpdatedListener();
+	GHAchievementUpdatedListener();
+	virtual ~GHAchievementUpdatedListener();
 
 	virtual void updateAchievementsFinished() = 0;
 
