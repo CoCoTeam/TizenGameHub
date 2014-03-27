@@ -9,7 +9,6 @@
 #define LOGINFORM_H_
 
 #include <GHTizen.h>
-#include <GHAchievementUpdatedListener.h>
 using namespace Tizen::Ui::Controls;
 
 class LoginForm

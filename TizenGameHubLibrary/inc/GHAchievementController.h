@@ -11,6 +11,7 @@
 #define GHACHIEVEMENTCONTROLLER_H_
 
 #include <GHTizen.h>
+#include <GHAchievement.h>
 #include <GHAchievementListener.h>
 #include <GHAchievementLoadedListener.h>
 #include <GHAchievementUpdatedListener.h>

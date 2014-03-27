@@ -9,8 +9,6 @@
 #include "AppResourceId.h"
 #include "TizenGameHubFrame.h"
 
-#include "GHAchievementController.h"
-
 using namespace Tizen::App;
 using namespace Tizen::Ui::Scenes;
 using namespace Tizen::Ui::Controls;
@@ -86,13 +84,12 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 	AppAssert(pList);
 	pList->Construct();
 
-	GHAchievementController* achivementController = new GHAchievementController;
-
 	switch(actionId)
 	{
 	case IDA_BUTTON_JOIN:
 		pList->Add( new Tizen::Base::Boolean(true) );	// isJoin
 		pSceneManager->GoForward(ForwardSceneTransition(SCENE_JOIN, SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_IN), pList);
+
 
 		break;
 	case IDA_BUTTON_LOGIN:

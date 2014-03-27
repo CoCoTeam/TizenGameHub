@@ -32,48 +32,11 @@ void GHAchievementController::loadAchievements(GHAchievementListener* listener) 
 
 	GHhttpClient* httpPost = new GHhttpClient();
 
-	//httpPost->RequestHttpPost(this);
 
 	//GET 함수 호출
-	//String game_id("key_aa");
-	//httpPost->RequestHttpGetTran(this, new String(L"/achievements/" + game_id));
-
-
-	//post 함수 호출
-/*	__pMap = new (std::nothrow) HashMap();
-	__pMap->Construct();
-
-	__pMap->Add(new String(L"email"), new String(L"kichulee"));
-	__pMap->Add(new String(L"pwd"), new String(L"kichulbabo"));
-	__pMap->Add(new String(L"name"), new String(L"kichul"));
-	__pMap->Add(new String(L"img_url"), new String(L"kichul.jpg"));
-
-	httpPost->RequestHttpPostTran(this, new String(L"/players"), __pMap);*/
-
-
-	////put함수 호출
-/*	String game_id("key_aa");
-	String ac_id("3");
-
-	__pMap = new (std::nothrow) HashMap();
-	__pMap->Construct();
-
-	__pMap->Add(new String(L"title"), new String(L"kichul"));
-	__pMap->Add(new String(L"description"), new String(L"kichul"));
-	__pMap->Add(new String(L"img_url"), new String(L"kichul"));
-	__pMap->Add(new String(L"list_order"), new String(L"1"));
-
-	httpPost->RequestHttpPutTran(this, new String(L"/achievements/" + game_id + "/" + ac_id), __pMap);*/
-
-	//DELETE함수 호출
-//	String game_id("key_aa");
-//	String ac_id("3");
-//	httpPost->RequestHttpDelTran(this, new String(L"/achievements/" + game_id + "/" + ac_id));
-
-
-	// 통신끝난 후 호출하면서 데이터를 전달해야 한다. // 개발자는 GHAchievementLoadedListener를 상속받아서 아래 함수를 구현해놔야 한다.
-	//GHAchievement* array = new GHAchievement[3];
-	//listener->loadAchievementsFinished(array, this);
+	String game_id("key_aa");
+	String player_id("pkeykichul");
+	httpPost->RequestHttpGetTran(this, new String(L"/f_achievements/" + game_id + "/" + player_id));
 }
 
 // hidden -> reveal 상태로 바꾼다.
@@ -131,8 +94,12 @@ void GHAchievementController::OnTransactionReadyToRead(HttpSession& httpSession,
 
 			AppLogDebug("[HTTP] response data : %s", (char *)tempBody);
 
-			// 실제 리턴값을 가공해서 넘겨준다.
-			currentListener->doAchievementFinished(3);
+			//////////////////////////////////////////////////////////////////
+			// 실제로는 리턴값을 상황에 따라 가공해서 넘겨준다.//////////////////////
+			GHAchievement* array = new GHAchievement[3];
+			currentListener->doAchievementFinished(array);
+			//////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////
 
 			delete tempHeaderString;
 			delete pBuffer;
