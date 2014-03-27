@@ -15,10 +15,10 @@
 #include <FText.h>
 
 
-class httpClient {
+class GHhttpClient {
 public:
-	httpClient();
-	virtual ~httpClient();
+	GHhttpClient();
+	virtual ~GHhttpClient();
 
 public:
 	result RequestHttpGet(Tizen::Net::Http::IHttpTransactionEventListener* listener);

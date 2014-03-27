@@ -16,7 +16,7 @@
 //
 
 #include <new>
-#include "httpClient.h"
+#include "GHhttpClient.h"
 
 using namespace Tizen::App;
 using namespace Tizen::Base;
@@ -25,13 +25,13 @@ using namespace Tizen::Base::Collection;
 using namespace Tizen::Base::Utility;
 
 
-httpClient::httpClient(void)
+GHhttpClient::GHhttpClient(void)
 	: __pHttpSession(null)
 	, hostAddr(L"http://54.238.195.222:8081")
 {
 }
 
-httpClient::~httpClient(void)
+GHhttpClient::~GHhttpClient(void)
 {
 	if (__pHttpSession != null)
 	{
@@ -43,7 +43,7 @@ httpClient::~httpClient(void)
 
 // GET 방식의 요청 보내기.
 result
-httpClient::RequestHttpGet(IHttpTransactionEventListener* listener)
+GHhttpClient::RequestHttpGet(IHttpTransactionEventListener* listener)
 {
 	//----------------------------------------------------------------------
 	// Construct an HTTP session
@@ -111,7 +111,7 @@ CATCH:
 
 // POST 방식의 요청 보내기.
 result
-httpClient::RequestHttpPost(IHttpTransactionEventListener* listener)
+GHhttpClient::RequestHttpPost(IHttpTransactionEventListener* listener)
 {
 	//----------------------------------------------------------------------
 	// Construct an HTTP session
@@ -284,7 +284,7 @@ CATCH:
 
 
 result
-httpClient::RequestHttpGetTran(IHttpTransactionEventListener* listener, Tizen::Base::String *url)
+GHhttpClient::RequestHttpGetTran(IHttpTransactionEventListener* listener, Tizen::Base::String *url)
 {
 	AppLog("------------------>Request<-------------------------");
 
@@ -350,7 +350,7 @@ CATCH:
 
 
 result
-httpClient::RequestHttpPostTran(IHttpTransactionEventListener* listener, Tizen::Base::String *url, Tizen::Base::Collection::IMap *map)
+GHhttpClient::RequestHttpPostTran(IHttpTransactionEventListener* listener, Tizen::Base::String *url, Tizen::Base::Collection::IMap *map)
 
 {
 
@@ -458,7 +458,7 @@ CATCH:
 
 
 result
-httpClient::RequestHttpPutTran(IHttpTransactionEventListener* listener, Tizen::Base::String *url, Tizen::Base::Collection::IMap *map)
+GHhttpClient::RequestHttpPutTran(IHttpTransactionEventListener* listener, Tizen::Base::String *url, Tizen::Base::Collection::IMap *map)
 {
 	AppLog("------------------>Request<-------------------------");
 
@@ -553,7 +553,7 @@ CATCH:
 }
 
 result
-httpClient::RequestHttpDelTran(IHttpTransactionEventListener* listener, Tizen::Base::String *url)
+GHhttpClient::RequestHttpDelTran(IHttpTransactionEventListener* listener, Tizen::Base::String *url)
 {
 	AppLog("------------------>Request<-------------------------");
 

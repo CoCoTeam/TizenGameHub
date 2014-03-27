@@ -27,7 +27,7 @@ GHAchievementController::~GHAchievementController() {
 // Achievement 목록을 가져온다.
 //void GHAchievementController::loadAchievements(GHAchievementsLoadedListener* listener) {
 void GHAchievementController::loadAchievements() {
-	httpClient* httpPost = new httpClient();
+	GHhttpClient* httpPost = new GHhttpClient();
 	//httpPost->RequestHttpPost(this);
 
 	//GET 함수 호출

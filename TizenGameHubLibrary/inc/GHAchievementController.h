@@ -11,7 +11,7 @@
 #include <GHTizen.h>
 #include <GHAchievementsLoadedListener.h>
 #include <GHAchievementsUpdatedListener.h>
-#include <httpClient.h>
+#include <GHhttpClient.h>
 
 class GHAchievementController
 	: public Tizen::Net::Http::IHttpTransactionEventListener{
