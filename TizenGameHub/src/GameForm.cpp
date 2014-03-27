@@ -105,10 +105,9 @@ GameForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 	{
 		if (pArgs->GetCount())
 		{
-			AppLog("[GameForm] Argument Received");
-
-			Tizen::Base::Long *gameId = static_cast<Tizen::Base::Long*>(pArgs->GetAt(0));
-			mGame = getGameInstance( gameId->ToLong() );
+			Tizen::Base::String *gameId = static_cast<Tizen::Base::String*>(pArgs->GetAt(0));
+			AppLog("[GameForm] Argument Received %s", gameId);
+			mGame = getGameInstance( *gameId );
 
 			pLabelGameName->SetText( *(mGame->getTitle()) );
 			pLabelGameDesc->SetText( *(mGame->getDescription()) );
@@ -116,7 +115,6 @@ GameForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 		pArgs->RemoveAll(true);
 		delete pArgs;
 	}
-	AppLog("[GameForm] Argument Received");
 }
 
 void
@@ -127,35 +125,35 @@ GameForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
 
 }
 
-
-GHGame* GameForm::getGameInstance(long id)
+GHGame* GameForm::getGameInstance(Tizen::Base::String id)
 {
-	AppLog("Id : %d", id);
 	GHGame* game;
-	switch(id)
-	{
-	case 111:
-		game = new GHGame(111, 100, "FunnyGame", "This Game is really fun.", "default", 1, 1, 1, false, false);
-		break;
-	case 222:
-		game = new GHGame(222, 101, "MultiGame", "This Game provides Turn-Based Multiplay.", "default", 2, 2, 2, false, true);
-		break;
-	case 333:
-		game = new GHGame(333, 100, "CloudGame", "This Game provides Cloud Save.", "default", 1, 3, 2, true, false);
-		break;
-	default:
-		game = null;
-		break;
+	if(id == "111") {
+		AppLog("111");
+		game = new GHGame("111", 100, "FunnyGame", "This Game is really fun.", "default", 1, 1, 1, false, false);
 	}
+	else if(id == "222") {
+		AppLog("222");
+		game = new GHGame("222", 101, "MultiGame", "This Game provides Turn-Based Multiplay.", "default", 2, 2, 2, false, true);
+	}
+	else if(id == "333") {
+		AppLog("333");
+		game = new GHGame("333", 100, "CloudGame", "This Game provides Cloud Save.", "default", 1, 3, 2, true, false);
+	}
+	else {
+		AppLog("null");
+		game = new GHGame("111", 100, "FunnyGame", "This Game is really fun.", "default", 1, 1, 1, false, false);
+	}
+
 	return game;
 }
 void GameForm::setPlayerList()
 {
 	pFriendList = new ArrayList();
 
-	pFriendList->Add( (Object*)new GHPlayer(1, "aaa@aaa.com", "전경호", "default") );
-	pFriendList->Add( (Object*)new GHPlayer(2, "bbb@aaa.com", "김기철", "default") );
-	pFriendList->Add( (Object*)new GHPlayer(3, "ccc@aaa.com", "노동완", "default") );
+	pFriendList->Add( (Object*)new GHPlayer("1", "aaa@aaa.com", "전경호", "default") );
+	pFriendList->Add( (Object*)new GHPlayer("2", "bbb@aaa.com", "김기철", "default") );
+	pFriendList->Add( (Object*)new GHPlayer("3", "ccc@aaa.com", "노동완", "default") );
 
 	pFriendProvider = new GHPlayerProvider();
 	pFriendProvider->setItemList(pFriendList);

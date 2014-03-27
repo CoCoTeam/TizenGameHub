@@ -20,9 +20,9 @@ GHPlayer::~GHPlayer() {
 }
 
 
-GHPlayer::GHPlayer(long _id, STRING _email, STRING _name, STRING _imgUrl)
-: id(_id)
+GHPlayer::GHPlayer(STRING _id, STRING _email, STRING _name, STRING _imgUrl)
 {
+	id = new Tizen::Base::String(_id);
 	email = new Tizen::Base::String(_email);
 	name = new Tizen::Base::String(_name);
 	imgUrl = new Tizen::Base::String(_imgUrl);
@@ -30,7 +30,7 @@ GHPlayer::GHPlayer(long _id, STRING _email, STRING _name, STRING _imgUrl)
 	totalScore = this->getTotalScore();
 }
 
-long GHPlayer::getId()			{	return id;}
+STRING* GHPlayer::getId()		{	return id;}
 STRING* GHPlayer::getEmail()	{	return email;}
 STRING* GHPlayer::getName()		{	return name;}
 STRING* GHPlayer::getImgUrl()	{	return imgUrl;}
