@@ -21,7 +21,7 @@
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-				<configuration artifactExtension="exe" artifactName="${ProjName}" buildArtefactType="org.tizen.nativecpp.buildArtefactType.app" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug,org.eclipse.cdt.build.core.buildArtefactType=org.tizen.nativecpp.buildArtefactType.app" description="" id="org.tizen.nativecpp.config.sbi.gcc45.app.debug.1052713438" name="Debug" parent="org.tizen.nativecpp.config.sbi.gcc45.app.debug" prebuildStep="cp -rf ${workspace_loc:/TizenGameHubLibrary/Debug/libTizenGameHubLibrary.so} ${workspace_loc:/${ProjName}/lib/}">
+				<configuration artifactExtension="exe" artifactName="TizenGameHub" buildArtefactType="org.tizen.nativecpp.buildArtefactType.app" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug,org.eclipse.cdt.build.core.buildArtefactType=org.tizen.nativecpp.buildArtefactType.app" description="" id="org.tizen.nativecpp.config.sbi.gcc45.app.debug.1052713438" name="Debug" parent="org.tizen.nativecpp.config.sbi.gcc45.app.debug" prebuildStep="cp -rf ${workspace_loc:/TizenGameHubLibrary/Debug/libTizenGameHubLibrary.so} ${workspace_loc:/${ProjName}/lib/}">
 					<folderInfo id="org.tizen.nativecpp.config.sbi.gcc45.app.debug.1052713438." name="/" resourcePath="">
 						<toolChain id="org.tizen.nativecpp.toolchain.sbi.gcc45.app.debug.2120280396" name="Tizen Native Toolchain" superClass="org.tizen.nativecpp.toolchain.sbi.gcc45.app.debug">
 							<targetPlatform id="org.tizen.nativeide.target.sbi.gnu.platform.base.195775400" osList="linux,win32" superClass="org.tizen.nativeide.target.sbi.gnu.platform.base"/>

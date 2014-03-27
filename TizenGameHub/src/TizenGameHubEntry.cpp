@@ -18,6 +18,7 @@ extern "C"
 _EXPORT_ int
 OspMain(int argc, char* pArgv[])
 {
+
 	AppLog("Application started.");
 	ArrayList args(SingleObjectDeleter);
 	args.Construct();
@@ -25,6 +26,7 @@ OspMain(int argc, char* pArgv[])
 	{
 		args.Add(new (std::nothrow) String(pArgv[i]));
 	}
+
 
 	result r = Tizen::App::UiApp::Execute(TizenGameHubApp::CreateInstance, &args);
 	TryLog(r == E_SUCCESS, "[%s] Application execution failed.", GetErrorMessage(r));
