@@ -9,52 +9,39 @@
 #define GHLEADERBOARD_H_
 
 #include <GHTizen.h>
-/*
-lb_id		리더보드 고유키
-title		leaderboard 제목
-//format		numeric/time
-img_url		leaderboard 대표 이미지 url
-unit		단위
-order		오름차순/내림차순 순서
-is_time		자신의 점수 데이터를 시간형태로 표현하는 것을 설정하는 여부
 
-player_id		사용자 고유키
-score			해당 leaderboard에서 비교되는 점수
-update_time		기록 업데이트 시간
- */
 class GHLeaderboard {
 private:
-	long id;
-	long gameId;	//!!
-	STRING* title;
-	STRING* imgUrl;
-	STRING* unit;
-	bool misAscendingOrder;
-	bool misTimeFormat;
+
+	//----------------------------------------------------------------
+	// variables
+	STRING* id;					// leaderboard 고유키
+	STRING* title;				// leaderboard 제목
+	STRING* imgUrl;				// leaderboard 대표 이미지
+	STRING* unit;				// leaderboard 표시 단위
+
+	bool isAscendingOrder;		// 정렬 순서 ()
+	bool isTimeFormat;			// 데이터 타입 시간 ()
 
 public:
 	GHLeaderboard();
-//	GHLeaderboard(Tizen::Web::Json::JsonObject *jsonData);
 	virtual ~GHLeaderboard();
 
-	/// Get Instance
-//	static GHLeaderboard* getLeaderboardInstance(long leaderboardId)
-//	{
-//		Tizen::Web::Json::JsonObject *jsonData;
-//		jsonData->Construct();
-//		return new GHLeaderboard(jsonData);
-//	}
-	//////////
-
-	/// Get Functions
-	long getId();
-//	long getGameId();
+	//----------------------------------------------------------------
+	// GET Functions
+	STRING* getId();
 	STRING* getTitle();
 	STRING* getImgUrl();
 	STRING* getUnit();
-	bool isAscendingOrder();
-	bool isTimeFormat();
-	//////////
+
+	bool getIsAscendingOrder();
+	bool getIsTimeFormat();
+	//----------------------------------------------------------------
+};
+
+#endif /* GHLEADERBOARD_H_ */
+
+/*
 
 	// 현재 게임의 리더보드 리스트 호출  //!!GHGame으로?
 
@@ -89,7 +76,4 @@ public:
 	long getTotalLeaderboardTotalScore();
 	long getTotalLeaderboardTotalScore(long playerId);
 
-
-};
-
-#endif /* GHLEADERBOARD_H_ */
+*/

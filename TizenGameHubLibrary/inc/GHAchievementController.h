@@ -29,6 +29,7 @@ public:
 	// hidden -> reveal 상태로 바꾼다.
 	void revealAchievement(STRING* id);
 	void revealAchievement(GHAchievementListener* listener, STRING* id);
+//	void revealAchievement(STRING* id, GHAchievementListener* listener);
 
 	// normal achievement update
 	void completeAchievement(STRING* id);
