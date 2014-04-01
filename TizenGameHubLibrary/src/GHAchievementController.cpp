@@ -32,7 +32,6 @@ void GHAchievementController::loadAchievements(GHAchievementListener* listener) 
 
 	GHhttpClient* httpPost = new GHhttpClient();
 
-
 	//GET 함수 호출
 	String game_id("key_aa");
 	String player_id("pkeykichul");
