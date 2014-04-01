@@ -21,7 +21,8 @@ using namespace Tizen::Ui;
 class PrefClass
 {
 public:
-	static String name;
+	static String email;
+	static String pwd;
 public:
 	PrefClass();
 	virtual ~PrefClass();

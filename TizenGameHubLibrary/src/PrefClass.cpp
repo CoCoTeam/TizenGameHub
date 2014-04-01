@@ -7,7 +7,8 @@
 
 #include "PrefClass.h"
 
-String PrefClass::name = "PREF_ID";
+String PrefClass::email = NULL;
+String PrefClass::pwd = NULL;
 
 PrefClass::PrefClass() {
 	// TODO Auto-generated constructor stub
