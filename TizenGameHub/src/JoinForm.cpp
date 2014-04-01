@@ -54,7 +54,6 @@ JoinForm::OnInitializing(void)
 	pTextName = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_NAME));
 
 
-
 	return r;
 }
 

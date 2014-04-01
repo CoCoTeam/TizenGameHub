@@ -7,13 +7,13 @@
 
 #include "GHAchievementController.h"
 
+using namespace Tizen::Base::Collection;
 using namespace Tizen::Net::Http;
+using namespace Tizen::Web::Json;
 using namespace Tizen::Base;
 
 //game id: key_aa
 //player id: pkeykichul
-
-//GHListener* Plistener;
 
 GHAchievementController::GHAchievementController() {
 	// TODO Auto-generated constructor stub
@@ -64,78 +64,29 @@ void GHAchievementController::increaseAchievement(GHAchievementListener* listene
 }
 
 
-// HTTP 통신 Listener -------------------------------------------------------------------------------------------------------
+void GHAchievementController::OnTransactionReadyToRead(IJsonValue* data){
+	// IJsonValue를 JsonArray로 변환한다. (배열인 경우)
+	JsonArray* pJsonArray = static_cast<JsonArray*>(data);
 
-// Request 후 Response 를 받았을 때 처리
-void GHAchievementController::OnTransactionReadyToRead(HttpSession& httpSession, HttpTransaction& httpTransaction, int availableBodyLen)
-{
-	// 현재는 response data를 받아서 화면에 뿌리도록 함.
+	// 0번째 있는 배열의 값(JsonObject를 가지고 온다.)
+	IJsonValue* pValue = null;
+	pJsonArray->GetAt(0, pValue);
+	JsonObject* pJsonObj = static_cast<JsonObject*>(pValue);
 
-	AppLog("OnTransactionReadyToRead");
+	// Key에 대한 값을 뽑는다.
+	String  *pStrFNKey      = new String(L"img_url");
+	IJsonValue* pObjValue = null;
+	pJsonObj->GetValue(pStrFNKey, pObjValue);
 
-	HttpResponse* pHttpResponse = httpTransaction.GetResponse();
-	if (pHttpResponse->GetHttpStatusCode() == HTTP_STATUS_OK)
-	{
-		HttpHeader* pHttpHeader = pHttpResponse->GetHeader();
-		if (pHttpHeader != null)
-		{
+	String  *pStrFNKey2      = new String(L"ac_id");
+	IJsonValue* pObjValue2 = null;
+	pJsonObj->GetValue(pStrFNKey2, pObjValue2);
 
-			String* tempHeaderString = pHttpHeader->GetRawHeaderN();
+	// 형변환 한다.
+	JsonString* pJsonStr = static_cast<JsonString*>(pObjValue);
+	JsonNumber* pJsonNum = static_cast<JsonNumber*>(pObjValue2);
 
-			// 응답받은 데이터를 버퍼에 가져온다.
-			ByteBuffer* pBuffer = pHttpResponse->ReadBodyN();
 
-			AppLogDebug("[HTTP] response body size : %d " , availableBodyLen );
-
-			// 버퍼의 데이터를 string으로 추출.
-			byte* tempBody = new byte[availableBodyLen+1];
-			pBuffer->GetArray(tempBody, 0, availableBodyLen);
-			tempBody[availableBodyLen] = '\0';
-
-			AppLogDebug("[HTTP] response data : %s", (char *)tempBody);
-
-			//////////////////////////////////////////////////////////////////
-			// 실제로는 리턴값을 상황에 따라 가공해서 넘겨준다.//////////////////////
-			GHAchievement* array = new GHAchievement[3];
-			currentListener->doAchievementFinished(array);
-			//////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////
-
-			delete tempHeaderString;
-			delete pBuffer;
-		}
-	}
-}
-
-void GHAchievementController::OnTransactionAborted(HttpSession& httpSession, HttpTransaction& httpTransaction, result r)
-{
-	AppLog("OnTransactionAborted(%s)", GetErrorMessage(r));
-
-	delete &httpTransaction;
-}
-
-void GHAchievementController::OnTransactionReadyToWrite(HttpSession& httpSession, HttpTransaction& httpTransaction, int recommendedChunkSize)
-{
-	AppLog("OnTransactionReadyToWrite");
-}
-
-void GHAchievementController::OnTransactionHeaderCompleted(HttpSession& httpSession, HttpTransaction& httpTransaction, int headerLen, bool authRequired)
-{
-	AppLog("OnTransactionHeaderCompleted");
-}
-
-void GHAchievementController::OnTransactionCompleted(HttpSession& httpSession, HttpTransaction& httpTransaction)
-{
-	AppLog("OnTransactionCompleted");
-
-	delete &httpTransaction;
-}
-
-void GHAchievementController::OnTransactionCertVerificationRequiredN(HttpSession& httpSession, HttpTransaction& httpTransaction, Tizen::Base::String* pCert)
-{
-	AppLog("OnTransactionCertVerificationRequiredN");
-
-	httpTransaction.Resume();
-
-	delete pCert;
+	AppLogDebug("value : %S", pJsonStr->GetPointer());
+	AppLogDebug("value : %d", pJsonNum->ToInt());
 }

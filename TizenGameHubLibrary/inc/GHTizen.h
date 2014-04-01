@@ -8,6 +8,7 @@
 #include <FUi.h>
 #include <FUiIme.h>
 #include <FGraphics.h>
+#include <FWeb.h>
 #include <gl.h>
 
 #define STRING Tizen::Base::String

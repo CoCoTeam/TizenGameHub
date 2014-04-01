@@ -11,61 +11,44 @@
 #define GHACHIEVEMENTCONTROLLER_H_
 
 #include <GHTizen.h>
+#include <GHController.h>
 #include <GHAchievement.h>
 #include <GHAchievementListener.h>
-#include <GHAchievementLoadedListener.h>
-#include <GHAchievementUpdatedListener.h>
 #include <GHhttpClient.h>
 
+const int ERROR					= 0;
+const int ACHIEVEMENT_LOAD		= 11;
+const int ACHIEVEMENT_REVEAL 	= 12;
+const int ACHIEVEMENT_COMPLETE 	= 13;
+const int ACHIEVEMENT_SET 		= 14;
+
 class GHAchievementController
-	: public Tizen::Net::Http::IHttpTransactionEventListener{
+	: public GHController{
 public:
 	GHAchievementController();
 	virtual ~GHAchievementController();
 
 	// achievement 목록을 가져온다.
-	void loadAchievements(GHAchievementListener * listener);
+	void loadAchievements(GHAchievementListener * listener);				// load listener
 
 	// hidden -> reveal 상태로 바꾼다.
 	void revealAchievement(STRING* id);
-	void revealAchievement(GHAchievementListener* listener, STRING* id);
+	void revealAchievement(GHAchievementListener* listener, STRING* id); 	// update listener
 
 	// normal achievement update
 	void completeAchievement(STRING* id);
-	void completeAchievement(GHAchievementListener* listener, STRING* id);
+	void completeAchievement(GHAchievementListener* listener, STRING* id); 	// update listener
 
 	// incremental achievement update
 	void increaseAchievement(STRING* id);
-	void increaseAchievement(GHAchievementListener* listener, STRING* id);
+	void increaseAchievement(GHAchievementListener* listener, STRING* id); 	// update listener
 
-
-
-public:
-	// IHttpTransactionEventListener
-	virtual void OnTransactionReadyToRead(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction, int availableBodyLen);
-	virtual void OnTransactionAborted(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction, result r);
-	virtual void OnTransactionReadyToWrite(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction, int recommendedChunkSize);
-	virtual void OnTransactionHeaderCompleted(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction, int headerLen, bool authRequired);
-	virtual void OnTransactionCompleted(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction);
-	virtual void OnTransactionCertVerificationRequiredN(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction, Tizen::Base::String* pCert);
 
 private:
+	virtual void OnTransactionReadyToRead(Tizen::Web::Json::IJsonValue* data);
 	Tizen::Base::Collection::HashMap* __pMap;
 	GHAchievementListener* currentListener;
-
 };
-
-
-// Interface Class (Listener)
-//class GHAchievementsLoadedListener {
-//};
-//
-//
-
-// Interface Class (Listener)
-//class GHAchievementsUpdatedListener {
-//};
-
 
 #endif /* GHACHIEVEMENTCONTROLLER_H_ */
 

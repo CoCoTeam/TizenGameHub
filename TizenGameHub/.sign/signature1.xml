@@ -4,11 +4,11 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>DsKy0iDZ3X3+75b2ynXnDYLoQtzL0tj0/e4qNTPv/4U=</DigestValue>
+<DigestValue>VZnPi1wl0fXclCuNRSiPTL0mnybmflTMsBRRd6RLCHw=</DigestValue>
 </Reference>
 <Reference URI="bin/TizenGameHub.exe">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>TtXQigcPQAXfD5Qo+gmFFDuYhGtl5XeZBmJu9+5bAl0=</DigestValue>
+<DigestValue>gLSdvELYCzStSxqxt3AzDuYUAHEdj/bUMw7bd8tMprA=</DigestValue>
 </Reference>
 <Reference URI="info/manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -16,7 +16,7 @@
 </Reference>
 <Reference URI="lib/libTizenGameHubLibrary.so">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>CVFsAFQ7YAHmHOOUEZPlKmvO/NSxaIc6Rw2f9N6Bfho=</DigestValue>
+<DigestValue>/fAR9prng3F2/0n7FMycN4Zxkxb/Rc8iFrVL47xreH8=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -32,7 +32,7 @@
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM_LOGIN.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>RRfDQQK2aYQMobx/Zdj4wVHdXH9cNM46mcH6NW8eydU=</DigestValue>
+<DigestValue>RMR78e6vW96AYrAGKmZWJFk9a4kVAmsaZHG/BQZ9Pl0=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM_PLAYER.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -55,9 +55,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-gVU1+8zzbfQ4d9GOSgSyTy/eN21Eqjhb4+HHqbnAo5A3Y1ougTzokfMZqPxGFHV1lit60vVWvFNC
-2/F8xEeVVOCzKawgJQjCUSV6bQtm+sKrwiiyankAJb++MQPPoa3oJB5xOoci+CHB/MZHU6YTVRxQ
-h86GRJ4pf2E8AqsdcJk=
+DDhOIzsaT8XoWjPWbhR6pFOIiEaP6k8hv9j+ufx7NtE/VCD3v3G3kZVblEoHpb4n/ACOz/FuliCw
+gtDCGemPIl8rZvraDXYZ5/98xEb8enElwOh2qPBIz7xsfhITFSY99Ck9yvSX6iLSUFV5L6ckrTtl
+/6ZiLx4dNsyfiYB4wWI=
 </SignatureValue>
 <KeyInfo>
 <X509Data>

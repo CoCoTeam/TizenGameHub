@@ -60,6 +60,14 @@ LoginForm::OnInitializing(void)
 	pTextEmail = static_cast< EditField* >(GetControl(IDC_LOGIN_EDITTEXT_EMAIL));
 	pTextPw = static_cast< EditField* >(GetControl(IDC_LOGIN_EDITTEXT_PW));
 
+	//Button Test----------------------------
+	Button* pButtonTest = static_cast< Button* >(GetControl(IDC_LOGIN_BUTTON_TEST));
+	if (pButtonTest != null)
+	{
+		pButtonTest->SetActionId(IDA_BUTTON_TEST);
+		pButtonTest->AddActionEventListener(*this);
+	}
+
 	return r;
 }
 
@@ -108,7 +116,20 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 
 		}
 		break;
+
+	// API TEST
+	case IDA_BUTTON_TEST:
+		//---------------------------------------------------------
+		GHAchievementController* controller = new GHAchievementController();
+		controller->loadAchievements(this);
+
+		break;
 	}
+}
+
+// API TEST
+void LoginForm::doAchievementFinished(GHAchievement* achievementArray) {
+
 }
 
 void LoginForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
