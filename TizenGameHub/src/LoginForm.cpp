@@ -117,7 +117,9 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		//---------------------------------------------------------
 		GHAchievementController* controller = new GHAchievementController();
 		//controller->loadAchievements(this);
-		controller->revealAchievement("4");
+		//controller->revealAchievement("4");
+		//controller->completeAchievement("4");
+		controller->increaseAchievement("4");
 		break;
 	}
 }
