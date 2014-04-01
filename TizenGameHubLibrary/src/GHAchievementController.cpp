@@ -55,16 +55,37 @@ void GHAchievementController::revealAchievement(GHAchievementListener* listener,
 }
 
 // normal achievement update
-void GHAchievementController::completeAchievement(String id) {
+void GHAchievementController::completeAchievement(String ac_id) {
 	this->currentListener = null;
+	String game_id("key_aa");
+	String player_id("pkeykichul");
+	String url(L"/f_achievements/complete");
+	__pMap = new (std::nothrow) Tizen::Base::Collection::HashMap();
+	__pMap->Construct();
+	__pMap->Add(new String("game_id"), new String(game_id));
+	__pMap->Add(new String("player_id"), new String(player_id));
+	__pMap->Add(new String("ac_id"), new String(ac_id));
+
+	httpPost.RequestHttpPutTran(this, url, __pMap);
 }
 void GHAchievementController::completeAchievement(GHAchievementListener* listener, String ac_id) {
 	this->currentListener = listener;
 }
 
 // incremental achievement update
-void GHAchievementController::increaseAchievement(String id) {
+void GHAchievementController::increaseAchievement(String ac_id) {
 	this->currentListener = null;
+	String game_id("key_aa");
+	String player_id("pkeykichul");
+	String url(L"/f_achievements/set");
+	__pMap = new (std::nothrow) Tizen::Base::Collection::HashMap();
+	__pMap->Construct();
+	__pMap->Add(new String("game_id"), new String(game_id));
+	__pMap->Add(new String("player_id"), new String(player_id));
+	__pMap->Add(new String("ac_id"), new String(ac_id));
+	__pMap->Add(new String("point"), new Long(10));
+
+	httpPost.RequestHttpPutTran(this, url, __pMap);
 }
 void GHAchievementController::increaseAchievement(GHAchievementListener* listener, String ac_id) {
 	this->currentListener = listener;
@@ -76,7 +97,7 @@ void GHAchievementController::increaseAchievement(GHAchievementListener* listene
 void GHAchievementController::OnTransactionReadyToRead(IJsonValue* data){
 	JsonObject* pJsonObj = static_cast<JsonObject*>(data);
 
-	// reveal TEST /////////////////////////////////////////////////////////
+	// reveal, complete, increase TEST /////////////////////////////////////////////////////////
 	JsonArray* pJsonArray = static_cast<JsonArray*>(data);
 	String* pStrFNKey      = new String(L"statusCode");
 	IJsonValue* pObjValue = null;
