@@ -284,7 +284,7 @@ CATCH:
 
 
 result
-GHhttpClient::RequestHttpGetTran(IHttpTransactionEventListener* listener, Tizen::Base::String *url)
+GHhttpClient::RequestHttpGetTran(IHttpTransactionEventListener* listener, String url)
 {
 	AppLog("------------------>Request<-------------------------");
 
@@ -294,7 +294,7 @@ GHhttpClient::RequestHttpGetTran(IHttpTransactionEventListener* listener, Tizen:
 	HttpRequest* pHttpRequest = null;
 
 	// 주소
-	String requestAddr(hostAddr + *url);
+	String requestAddr(hostAddr + url);
 
 	if (__pHttpSession == null)
 	{
@@ -350,7 +350,7 @@ CATCH:
 
 
 result
-GHhttpClient::RequestHttpPostTran(IHttpTransactionEventListener* listener, Tizen::Base::String *url, Tizen::Base::Collection::IMap *map)
+GHhttpClient::RequestHttpPostTran(IHttpTransactionEventListener* listener, String url, Tizen::Base::Collection::IMap *map)
 
 {
 
@@ -376,7 +376,7 @@ GHhttpClient::RequestHttpPostTran(IHttpTransactionEventListener* listener, Tizen
 
 	//String hostAddr(L"http://54.238.195.222:8081");
 	//String requestAddr(L"http://54.238.195.222:8081/players");
-	String requestAddr( hostAddr + *url);
+	String requestAddr( hostAddr + url);
 
 	if (__pHttpSession == null)
 	{
@@ -458,7 +458,7 @@ CATCH:
 
 
 result
-GHhttpClient::RequestHttpPutTran(IHttpTransactionEventListener* listener, Tizen::Base::String *url, Tizen::Base::Collection::IMap *map)
+GHhttpClient::RequestHttpPutTran(IHttpTransactionEventListener* listener, String url, Tizen::Base::Collection::IMap *map)
 {
 	AppLog("------------------>Request<-------------------------");
 
@@ -477,7 +477,7 @@ GHhttpClient::RequestHttpPutTran(IHttpTransactionEventListener* listener, Tizen:
 	String* pValue = null;
 
 
-	String requestAddr( hostAddr + *url);
+	String requestAddr( hostAddr + url);
 
 	if (__pHttpSession == null)
 	{
@@ -553,7 +553,7 @@ CATCH:
 }
 
 result
-GHhttpClient::RequestHttpDelTran(IHttpTransactionEventListener* listener, Tizen::Base::String *url)
+GHhttpClient::RequestHttpDelTran(IHttpTransactionEventListener* listener, String url)
 {
 	AppLog("------------------>Request<-------------------------");
 
@@ -563,7 +563,7 @@ GHhttpClient::RequestHttpDelTran(IHttpTransactionEventListener* listener, Tizen:
 		HttpRequest* pHttpRequest = null;
 
 		// 주소
-		String requestAddr(hostAddr + *url);
+		String requestAddr(hostAddr + url);
 
 		if (__pHttpSession == null)
 		{

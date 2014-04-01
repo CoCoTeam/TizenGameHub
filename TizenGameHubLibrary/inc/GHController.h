@@ -27,6 +27,7 @@ public:
 	virtual void OnTransactionCertVerificationRequiredN(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction, Tizen::Base::String* pCert);
 
 protected:
+	GHhttpClient httpPost;
 	virtual void OnTransactionReadyToRead(Tizen::Web::Json::IJsonValue* data) = 0;
 };
 

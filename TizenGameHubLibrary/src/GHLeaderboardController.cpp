@@ -7,6 +7,7 @@
 
 #include "GHLeaderboardController.h"
 
+using namespace Tizen::Web::Json;
 using namespace Tizen::Net::Http;
 using namespace Tizen::Base;
 
@@ -23,23 +24,23 @@ void GHLeaderboardController::loadLeaderboards(GHLeaderboardListener * listener)
 {
 	this->currentListener = listener;
 
-	GHhttpClient* httpPost = new GHhttpClient();
-
 	//GET 함수 호출
 	String game_id("key_aa");
-	httpPost->RequestHttpGetTran(this, new String(L"/f_leaderboards/" + game_id));
+	String url(L"/f_leaderboards/" + game_id);
+	httpPost.RequestHttpGetTran(this, url);
 }
 
 // leaderboard의 랭킹 목록을 가져온다.
 void GHLeaderboardController::loadLeaderboardRank(STRING* leaderboardId)
 {
-	GHhttpClient* httpPost = new GHhttpClient();
 
 	//GET 함수 호출
 	String game_id("key_aa");
 	String lb_id("key_lb");
 	String external = "?order=true&start_pos=0&max_length=10";
-	httpPost->RequestHttpGetTran(this, new String(L"/f_leaderboards/rank/" + game_id +"/"+ lb_id));
+	String url(L"/f_leaderboards/rank/" + game_id +"/"+ lb_id);
+
+	httpPost.RequestHttpGetTran(this, url);
 
 }
 void GHLeaderboardController::loadLeaderboardRank(STRING* leaderboardId, GHLeaderboardListener * listener)
@@ -53,8 +54,6 @@ void GHLeaderboardController::loadLeaderboardRank(STRING* leaderboardId, GHLeade
 void GHLeaderboardController::updateLeaderboardScore(STRING* leaderboardId, long score)
 {
 
-	GHhttpClient* httpPost = new GHhttpClient();
-
 	String* game_id = new String("key_aa");
 	String* lb_id = new String(*leaderboardId);
 	Long* pScore = new Long(score);
@@ -66,7 +65,8 @@ void GHLeaderboardController::updateLeaderboardScore(STRING* leaderboardId, long
 	__pMap->Add(new String("score"), pScore);
 
 	//Put 함수 호출
-	httpPost->RequestHttpPutTran(this, new String(L"/f_leaderboards/update"), __pMap);
+	String url(L"/f_leaderboards/update");
+	httpPost.RequestHttpPutTran(this, url, __pMap);
 }
 void GHLeaderboardController::updateLeaderboardScore(STRING* leaderboardId, long score, GHLeaderboardListener * listener)
 {
@@ -77,81 +77,86 @@ void GHLeaderboardController::updateLeaderboardScore(STRING* leaderboardId, long
 
 
 // HTTP 통신 Listener -------------------------------------------------------------------------------------------------------
+void GHLeaderboardController::OnTransactionReadyToRead(IJsonValue* data){
+	//전달받은 데이터(부모 리스너에서 다시 보내주는 데이터)
 
-// Request 후 Response 를 받았을 때 처리
-void GHLeaderboardController::OnTransactionReadyToRead(HttpSession& httpSession, HttpTransaction& httpTransaction, int availableBodyLen)
-{
-	// 현재는 response data를 받아서 화면에 뿌리도록 함.
-
-	AppLog("OnTransactionReadyToRead");
-
-	HttpResponse* pHttpResponse = httpTransaction.GetResponse();
-	if (pHttpResponse->GetHttpStatusCode() == HTTP_STATUS_OK)
-	{
-		HttpHeader* pHttpHeader = pHttpResponse->GetHeader();
-		if (pHttpHeader != null)
-		{
-
-			String* tempHeaderString = pHttpHeader->GetRawHeaderN();
-
-			// 응답받은 데이터를 버퍼에 가져온다.
-			ByteBuffer* pBuffer = pHttpResponse->ReadBodyN();
-
-			AppLogDebug("[HTTP] response body size : %d " , availableBodyLen );
-
-			// 버퍼의 데이터를 string으로 추출.
-			byte* tempBody = new byte[availableBodyLen+1];
-			pBuffer->GetArray(tempBody, 0, availableBodyLen);
-			tempBody[availableBodyLen] = '\0';
-
-			AppLogDebug("[HTTP] response data : %s", (char *)tempBody);
-
-			//////////////////////////////////////////////////////////////////
-			// 실제로는 리턴값을 상황에 따라 가공해서 넘겨준다.//////////////////////
-//			if(tmpeBody->header == "updateLeaderboardScore") {
-//				currentListener->doLeaderboardScoreUpdateFineshed();
-//			}
-//			else if(tmpeBody->header == "loadLeaderboardRank") {
-//				currentListener->fdfdf();
-//			}
-			//////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////
-
-			delete tempHeaderString;
-			delete pBuffer;
-		}
-	}
 }
 
-void GHLeaderboardController::OnTransactionAborted(HttpSession& httpSession, HttpTransaction& httpTransaction, result r)
-{
-	AppLog("OnTransactionAborted(%s)", GetErrorMessage(r));
 
-	delete &httpTransaction;
-}
-
-void GHLeaderboardController::OnTransactionReadyToWrite(HttpSession& httpSession, HttpTransaction& httpTransaction, int recommendedChunkSize)
-{
-	AppLog("OnTransactionReadyToWrite");
-}
-
-void GHLeaderboardController::OnTransactionHeaderCompleted(HttpSession& httpSession, HttpTransaction& httpTransaction, int headerLen, bool authRequired)
-{
-	AppLog("OnTransactionHeaderCompleted");
-}
-
-void GHLeaderboardController::OnTransactionCompleted(HttpSession& httpSession, HttpTransaction& httpTransaction)
-{
-	AppLog("OnTransactionCompleted");
-
-	delete &httpTransaction;
-}
-
-void GHLeaderboardController::OnTransactionCertVerificationRequiredN(HttpSession& httpSession, HttpTransaction& httpTransaction, Tizen::Base::String* pCert)
-{
-	AppLog("OnTransactionCertVerificationRequiredN");
-
-	httpTransaction.Resume();
-
-	delete pCert;
-}
+//// Request 후 Response 를 받았을 때 처리
+//void GHLeaderboardController::OnTransactionReadyToRead(HttpSession& httpSession, HttpTransaction& httpTransaction, int availableBodyLen)
+//{
+//	// 현재는 response data를 받아서 화면에 뿌리도록 함.
+//
+//	AppLog("OnTransactionReadyToRead");
+//
+//	HttpResponse* pHttpResponse = httpTransaction.GetResponse();
+//	if (pHttpResponse->GetHttpStatusCode() == HTTP_STATUS_OK)
+//	{
+//		HttpHeader* pHttpHeader = pHttpResponse->GetHeader();
+//		if (pHttpHeader != null)
+//		{
+//
+//			String* tempHeaderString = pHttpHeader->GetRawHeaderN();
+//
+//			// 응답받은 데이터를 버퍼에 가져온다.
+//			ByteBuffer* pBuffer = pHttpResponse->ReadBodyN();
+//
+//			AppLogDebug("[HTTP] response body size : %d " , availableBodyLen );
+//
+//			// 버퍼의 데이터를 string으로 추출.
+//			byte* tempBody = new byte[availableBodyLen+1];
+//			pBuffer->GetArray(tempBody, 0, availableBodyLen);
+//			tempBody[availableBodyLen] = '\0';
+//
+//			AppLogDebug("[HTTP] response data : %s", (char *)tempBody);
+//
+//			//////////////////////////////////////////////////////////////////
+//			// 실제로는 리턴값을 상황에 따라 가공해서 넘겨준다.//////////////////////
+////			if(tmpeBody->header == "updateLeaderboardScore") {
+////				currentListener->doLeaderboardScoreUpdateFineshed();
+////			}
+////			else if(tmpeBody->header == "loadLeaderboardRank") {
+////				currentListener->fdfdf();
+////			}
+//			//////////////////////////////////////////////////////////////////
+//			//////////////////////////////////////////////////////////////////
+//
+//			delete tempHeaderString;
+//			delete pBuffer;
+//		}
+//	}
+//}
+//
+//void GHLeaderboardController::OnTransactionAborted(HttpSession& httpSession, HttpTransaction& httpTransaction, result r)
+//{
+//	AppLog("OnTransactionAborted(%s)", GetErrorMessage(r));
+//
+//	delete &httpTransaction;
+//}
+//
+//void GHLeaderboardController::OnTransactionReadyToWrite(HttpSession& httpSession, HttpTransaction& httpTransaction, int recommendedChunkSize)
+//{
+//	AppLog("OnTransactionReadyToWrite");
+//}
+//
+//void GHLeaderboardController::OnTransactionHeaderCompleted(HttpSession& httpSession, HttpTransaction& httpTransaction, int headerLen, bool authRequired)
+//{
+//	AppLog("OnTransactionHeaderCompleted");
+//}
+//
+//void GHLeaderboardController::OnTransactionCompleted(HttpSession& httpSession, HttpTransaction& httpTransaction)
+//{
+//	AppLog("OnTransactionCompleted");
+//
+//	delete &httpTransaction;
+//}
+//
+//void GHLeaderboardController::OnTransactionCertVerificationRequiredN(HttpSession& httpSession, HttpTransaction& httpTransaction, Tizen::Base::String* pCert)
+//{
+//	AppLog("OnTransactionCertVerificationRequiredN");
+//
+//	httpTransaction.Resume();
+//
+//	delete pCert;
+//}
