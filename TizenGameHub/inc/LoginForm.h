@@ -10,6 +10,8 @@
 
 #include <GHTizen.h>
 #include <GHhttpClient.h>
+#include <GHAchievementController.h>
+#include <GHAchievementLoadedListener.h>
 
 using namespace Tizen::Ui::Controls;
 
@@ -18,6 +20,7 @@ class LoginForm
 	, public Tizen::Ui::IActionEventListener
 	, public Tizen::Ui::Controls::IFormBackEventListener
 	, public Tizen::Net::Http::IHttpTransactionEventListener
+	//, public GHAchievementLoadedListener // TEST API
 {
 public:
 	LoginForm();
@@ -36,6 +39,10 @@ private:
 
 	static const int IDA_BUTTON_LOGIN = 101;
 	static const int IDA_BUTTON_JOIN = 102;
+	static const int IDA_BUTTON_TEST = 103;
+
+	// API TEST
+	//virtual void doAchievementFinished(GHAchievement* achievementArray);
 
 	result doLogin();
 

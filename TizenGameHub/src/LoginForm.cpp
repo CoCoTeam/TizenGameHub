@@ -64,6 +64,14 @@ LoginForm::OnInitializing(void)
 	pTextEmail = static_cast< EditField* >(GetControl(IDC_LOGIN_EDITTEXT_EMAIL));
 	pTextPw = static_cast< EditField* >(GetControl(IDC_LOGIN_EDITTEXT_PW));
 
+	//Button Test----------------------------
+	Button* pButtonTest = static_cast< Button* >(GetControl(IDC_LOGIN_BUTTON_TEST));
+	if (pButtonTest != null)
+	{
+		pButtonTest->SetActionId(IDA_BUTTON_TEST);
+		pButtonTest->AddActionEventListener(*this);
+	}
+
 	return r;
 }
 
@@ -114,8 +122,23 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 			msgBox.ShowAndWait(modalResult);
 		}
 		break;
+
+	// API TEST
+	case IDA_BUTTON_TEST:
+		//---------------------------------------------------------
+		GHAchievementController* controller = new GHAchievementController();
+		//controller->loadAchievements(this);
+		controller->revealAchievement("4");
+		break;
 	}
 }
+
+// API TEST
+/*
+void LoginForm::doAchievementFinished(GHAchievement* achievementArray) {
+
+}
+*/
 
 void LoginForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 {
@@ -159,7 +182,7 @@ result LoginForm::doLogin()
 	__pMap->Add(new String("pwd"), new String(strPw));
 
 	//post 함수 호출
-	httpPost->RequestHttpPostTran(this, new String(L"/players/login"), __pMap);
+	httpPost->RequestHttpPostTran(this, L"/players/login", __pMap);
 
 	return r;
 }
@@ -196,7 +219,7 @@ void LoginForm::OnTransactionReadyToRead(HttpSession& httpSession, HttpTransacti
 
 			AppLogDebug("[HTTP] response data : %s", (char *)tempBody);
 
-			if(tempBody !=  )
+			/*if(tempBody !=  )
 			{
 				isLogin = true;
 
@@ -207,7 +230,7 @@ void LoginForm::OnTransactionReadyToRead(HttpSession& httpSession, HttpTransacti
 				isLogin = false;
 
 				AppLog("fail!!");
-			}
+			}*/
 
 
 			//////////////////////////////////////////////////////////////////

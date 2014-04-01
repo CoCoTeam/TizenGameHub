@@ -4,11 +4,11 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>C+PKT9esU5UiGY2O5T50mOKY+ghFOd0tWSfuqs6jMMI=</DigestValue>
+<DigestValue>zreL8Ax1U72i5z6Ss65qSLC4XT+gTv7XASkFeB2+ONY=</DigestValue>
 </Reference>
 <Reference URI="bin/TizenGameHub.exe">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>G4C57FzrUu/cuieMbMXG/eJNA+uxTAKKBliXI3gnMdw=</DigestValue>
+<DigestValue>fB5K/B2Ofo1Oev/DvvBgmLEGuM0ZIG+bf+aUopMypmw=</DigestValue>
 </Reference>
 <Reference URI="info/manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -16,7 +16,7 @@
 </Reference>
 <Reference URI="lib/libTizenGameHubLibrary.so">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>U9xn/zkXsHVmTvZ8uQw+S1e+nR6Ebj1JfSwEiHb8GA8=</DigestValue>
+<DigestValue>BWlPrX4Fn7MZW421+E4pIhjFoB7aZINs++bBc4L2+5g=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -32,7 +32,7 @@
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM_LOGIN.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>RRfDQQK2aYQMobx/Zdj4wVHdXH9cNM46mcH6NW8eydU=</DigestValue>
+<DigestValue>RMR78e6vW96AYrAGKmZWJFk9a4kVAmsaZHG/BQZ9Pl0=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM_PLAYER.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -55,9 +55,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-n559AGhejhWQ9s0zhJ9ajLifRIN15hVEAFagEWB46W/FoplAlp8HGeBFMs2zjEy4EzXDGh1ltnVj
-XU4u5GDhK5Y6pJcmd7uv09bG54f4CMol33Vz1LORaA7k07PGSBml24wLyA8YcLoy28zsCntmqfZJ
-OS3zuqKHNV/CzX4KoD0=
+eLHqSh2tsAKiBpczlMoYAIsufepnihwpljwz34LBVGv3Xcn51sk+lDB0qAR8bN/8vG8wsN2dSOuf
+cGlOscY9q2jicgheoefnoE4l9zkzApsHLkTkeMPm0pQv9nekABCWSLBHnmhwjiC6YIjwqjjUDrdN
+IKGtJ6QVHD3FvFl9TQg=
 </SignatureValue>
 <KeyInfo>
 <X509Data>
