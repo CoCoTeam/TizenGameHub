@@ -1,5 +1,3 @@
-
-
 /*
  * GHAchievementController.h
  *
@@ -51,4 +49,3 @@ private:
 };
 
 #endif /* GHACHIEVEMENTCONTROLLER_H_ */
-

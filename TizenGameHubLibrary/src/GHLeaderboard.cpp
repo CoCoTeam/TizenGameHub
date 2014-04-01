@@ -16,14 +16,15 @@ GHLeaderboard::~GHLeaderboard() {
 	// TODO Auto-generated destructor stub
 }
 
-long GHLeaderboard::getId()				{	return id;}
-//long GHLeaderboard::getGameId()		{	return gameId;}
-STRING* GHLeaderboard::getTitle()		{	return title;}
-STRING* GHLeaderboard::getImgUrl()		{	return imgUrl;}
-STRING* GHLeaderboard::getUnit()		{	return unit;}
-bool GHLeaderboard::isAscendingOrder()	{	return misAscendingOrder;}
-bool GHLeaderboard::isTimeFormat()		{	return misTimeFormat;}
+STRING* GHLeaderboard::getId()				{return id;}
+STRING* GHLeaderboard::getTitle()		{return title;}
+STRING* GHLeaderboard::getImgUrl()		{return imgUrl;}
+STRING* GHLeaderboard::getUnit()		{return unit;}
+bool GHLeaderboard::getIsAscendingOrder()	{return isAscendingOrder;}
+bool GHLeaderboard::getIsTimeFormat()		{return isTimeFormat;}
 
+
+/*
 // 현재 리더보드의 View 호출
 //(Default view)
 void GHLeaderboard::getLeaderboardList(int start, int max)
@@ -115,3 +116,4 @@ long GHLeaderboard::getTotalLeaderboardTotalScore(long playerId)
 {
 
 }
+*/
