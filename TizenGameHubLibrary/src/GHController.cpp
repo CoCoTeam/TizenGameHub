@@ -60,7 +60,7 @@ void GHController::OnTransactionReadyToRead(HttpSession& httpSession, HttpTransa
 			IJsonValue* pDataValue = null;
 			pJsonObj->GetValue(pStrDataKey, pDataValue);
 
-			//AppLogDebug("api : %S, status : %S", pApiStr->GetPointer(), pStatusStr->GetPointer());
+			AppLogDebug("api : %S, status : %S", pApiStr->GetPointer(), pStatusStr->GetPointer());
 
 			// 자식 객체의 함수를 호출한다.
 			String apiCode(pApiStr->GetPointer());

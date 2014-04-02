@@ -182,10 +182,12 @@ void JoinForm::OnTransactionReadyToRead(String apiCode, String statusCode,IJsonV
 //	AppLogDebug("value : %S", pJsonStr->GetPointer());
 //
 //	//JsonNumber* pJsonStr = static_cast<JsonNumber*>(pObjValue);
-//	//AppLogDebug("value : %d", pJsonStr->ToInt());
+//	AppLogDebug("value : %d", pJsonStr->ToInt());
 //	///////////////////////////////////////////////////////////////////
 //	//형변환
 //	String zString(pJsonStr->GetPointer());
+
+	//AppLogDebug("value : %s", statusCode->GetPointer());
 
 	MessageBox msgBox;
 	int modalResult;
