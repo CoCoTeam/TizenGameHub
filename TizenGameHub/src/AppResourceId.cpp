@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include "AppResourceId.h"
 /* IDL_FORM */
 const wchar_t* IDL_FORM = L"IDL_FORM";
