@@ -85,3 +85,145 @@ void GHController::OnTransactionCertVerificationRequiredN(HttpSession& httpSessi
 
 	delete pCert;
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///// JSON FUNCTION  /////////////////////////////////////////////////////////////////////////////////////////////////
+JsonArray* GHController::getJsonArrayByKey(JsonObject *pJsonObj, const String *key)
+{
+
+	IJsonValue * pObjValue = null;
+	pJsonObj->GetValue(key, pObjValue);
+
+	JsonArray * pRet = static_cast<JsonArray*>(pObjValue);
+
+	if(pObjValue != null) delete pObjValue;
+
+	return pRet;
+}
+
+JsonObject* GHController::getJsonObjectByKey(JsonObject* pJsonObj, const String *key)
+{
+	IJsonValue * pObjValue = null;
+	pJsonObj->GetValue(key, pObjValue);
+
+	JsonObject * pRet = static_cast<JsonObject*>(pObjValue);
+
+	if(pObjValue != null) delete pObjValue;
+
+	return pRet;
+}
+String GHController::getStringByKey(JsonObject* pJsonObj, const String *key)
+{
+	IJsonValue * pObjValue = null;
+	pJsonObj->GetValue(key, pObjValue);
+
+	JsonString * pJsonStr = static_cast<JsonString*>(pObjValue);
+	String ret(pJsonStr->GetPointer());
+
+	if(pObjValue!= null) delete pObjValue;
+
+	return ret;
+
+}
+int	GHController::getIntByKey(JsonObject* pJsonObj, const String *key)
+{
+
+	IJsonValue * pObjValue = null;
+	pJsonObj->GetValue(key, pObjValue);
+
+	JsonNumber * pJsonNum = static_cast<JsonNumber*>(pObjValue);
+	int ret = pJsonNum->ToInt();
+
+	if(pObjValue!= null) delete pObjValue;
+
+	return ret;
+
+}
+
+JsonArray* GHController::getJsonArrayByIndex(JsonArray* pJsonArr, const int index)
+{
+	IJsonValue* pObjValue = null;
+	pJsonArr->GetAt(index, pObjValue);
+
+	JsonArray * pRet = static_cast<JsonArray*>(pObjValue);
+
+	if(pObjValue != null) delete pObjValue;
+
+	return pRet;
+
+}
+JsonObject*	GHController::getJsonObjectByIndex(JsonArray* pJsonArr,  const int index)
+{
+	IJsonValue* pObjValue = null;
+	pJsonArr->GetAt(index, pObjValue);
+
+	JsonObject * pRet = static_cast<JsonObject*>(pObjValue);
+
+	if(pObjValue != null) delete pObjValue;
+
+	return pRet;
+
+}
+String GHController::getStringByIndex(JsonArray* pJsonArr,  const int index)
+{
+	IJsonValue* pObjValue = null;
+	pJsonArr->GetAt(index, pObjValue);
+
+	JsonString * pJsonStr = static_cast<JsonString*>(pObjValue);
+	String ret(pJsonStr->GetPointer());
+
+	if(pObjValue!= null) delete pObjValue;
+
+	return ret;
+
+}
+int GHController::getIntByIndex(JsonArray* pJsonArr, const int index)
+{
+	IJsonValue* pObjValue = null;
+	pJsonArr->GetAt(index, pObjValue);
+
+	JsonNumber * pJsonNum = static_cast<JsonNumber*>(pObjValue);
+	int ret = pJsonNum->ToInt();
+
+	if(pObjValue != null) delete pObjValue;
+	return ret;
+
+}
+
+//
+//// reveal, complete, increase TEST /////////////////////////////////////////////////////////
+//JsonArray* pJsonArray = static_cast<JsonArray*>(data);
+//String* pStrFNKey      = new String(L"statusCode");
+//IJsonValue* pObjValue = null;
+//pJsonObj->GetValue(pStrFNKey, pObjValue);
+//JsonString* pJsonStr = static_cast<JsonString*>(pObjValue);
+//AppLogDebug("value : %S", pJsonStr->GetPointer());
+/////////////////////////////////////////////////////////////////////
+
+
+
+//	// load TEST /////////////////////////////////////////////////////////
+//	// 0번째 있는 배열의 값(JsonObject를 가지고 온다.)
+//	IJsonValue* pValue = null;
+//	pJsonArray->GetAt(0, pValue);
+//	JsonObject* pJsonObj = static_cast<JsonObject*>(pValue);
+//
+//	// Key에 대한 값을 뽑는다.
+//	String* pStrFNKey      = new String(L"img_url");
+//	IJsonValue* pObjValue = null;
+//	pJsonObj->GetValue(pStrFNKey, pObjValue);
+//
+//	String* pStrFNKey2      = new String(L"ac_id");
+//	IJsonValue* pObjValue2 = null;
+//	pJsonObj->GetValue(pStrFNKey2, pObjValue2);
+//
+//	// 형변환 한다.
+//	JsonString* pJsonStr = static_cast<JsonString*>(pObjValue);
+//	JsonNumber* pJsonNum = static_cast<JsonNumber*>(pObjValue2);
+//
+//	// JsonString*을 String으로 변환한다.
+//	//String zString(pJsonStr->GetPointer());
+//
+//	AppLogDebug("value : %S", pJsonStr->GetPointer());
+//	AppLogDebug("value : %d", pJsonNum->ToInt());
+//	///////////////////////////////////////////////////////////////////
