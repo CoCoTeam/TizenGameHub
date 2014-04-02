@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include "AppResourceId.h"
 /* IDL_FORM */
 const wchar_t* IDL_FORM = L"IDL_FORM";
@@ -11,6 +12,7 @@ const wchar_t* IDC_LOGIN_EDITTEXT_EMAIL = L"IDC_LOGIN_EDITTEXT_EMAIL";
 const wchar_t* IDC_LOGIN_EDITTEXT_PW = L"IDC_LOGIN_EDITTEXT_PW";
 const wchar_t* IDC_LOGIN_BUTTON_JOIN = L"IDC_LOGIN_BUTTON_JOIN";
 const wchar_t* IDC_LOGIN_BUTTON_SIGN = L"IDC_LOGIN_BUTTON_SIGN";
+const wchar_t* IDC_LOGIN_BUTTON_TEST = L"IDC_LOGIN_BUTTON_TEST";
 /* IDL_FORM_JOIN */
 const wchar_t* IDL_FORM_JOIN = L"IDL_FORM_JOIN";
 const wchar_t* IDC_JOIN_BUTTON_CANCEL = L"IDC_JOIN_BUTTON_CANCEL";

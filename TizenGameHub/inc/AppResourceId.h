@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #ifndef _APP_RESOURCE_ID_H_
 #define _APP_RESOURCE_ID_H_
 //
@@ -13,6 +14,7 @@ extern const wchar_t* IDC_LOGIN_EDITTEXT_EMAIL;
 extern const wchar_t* IDC_LOGIN_EDITTEXT_PW;
 extern const wchar_t* IDC_LOGIN_BUTTON_JOIN;
 extern const wchar_t* IDC_LOGIN_BUTTON_SIGN;
+extern const wchar_t* IDC_LOGIN_BUTTON_TEST;
 /* IDL_FORM_JOIN */
 extern const wchar_t* IDL_FORM_JOIN;
 extern const wchar_t* IDC_JOIN_BUTTON_CANCEL;
