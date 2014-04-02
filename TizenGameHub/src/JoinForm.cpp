@@ -135,23 +135,23 @@ JoinForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
 
 }
 
-void JoinForm::OnTransactionReadyToRead(Tizen::Web::Json::IJsonValue* data)
+void JoinForm::OnTransactionReadyToRead(String apiCode, String statusCode,IJsonValue* data)
 {
-	JsonObject* pJsonObj = static_cast<JsonObject*>(data);
-
-	// reveal TEST /////////////////////////////////////////////////////////
-	//JsonArray* pJsonArray = static_cast<JsonArray*>(data);
-	String* pStrFNKey      = new String(L"statusCode");
-	IJsonValue* pObjValue = null;
-	pJsonObj->GetValue(pStrFNKey, pObjValue);
-	JsonString* pJsonStr = static_cast<JsonString*>(pObjValue);
-	AppLogDebug("value : %S", pJsonStr->GetPointer());
-
-	//JsonNumber* pJsonStr = static_cast<JsonNumber*>(pObjValue);
-	//AppLogDebug("value : %d", pJsonStr->ToInt());
-	///////////////////////////////////////////////////////////////////
-	//형변환
-	String zString(pJsonStr->GetPointer());
+//	JsonObject* pJsonObj = static_cast<JsonObject*>(data);
+//
+//	// reveal TEST /////////////////////////////////////////////////////////
+//	//JsonArray* pJsonArray = static_cast<JsonArray*>(data);
+//	String* pStrFNKey      = new String(L"statusCode");
+//	IJsonValue* pObjValue = null;
+//	pJsonObj->GetValue(pStrFNKey, pObjValue);
+//	JsonString* pJsonStr = static_cast<JsonString*>(pObjValue);
+//	AppLogDebug("value : %S", pJsonStr->GetPointer());
+//
+//	//JsonNumber* pJsonStr = static_cast<JsonNumber*>(pObjValue);
+//	//AppLogDebug("value : %d", pJsonStr->ToInt());
+//	///////////////////////////////////////////////////////////////////
+//	//형변환
+//	String zString(pJsonStr->GetPointer());
 
 
 	MessageBox msgBox;
@@ -164,7 +164,7 @@ void JoinForm::OnTransactionReadyToRead(Tizen::Web::Json::IJsonValue* data)
 	AppAssert(pList);
 	pList->Construct();
 
-	if(zString !=  "0")	// (로그인 성공 시) 로그인, 개인페이지로 이동
+	if(statusCode !=  "0")	// (로그인 성공 시) 로그인, 개인페이지로 이동
 	{
 		AppLog("success");
 
