@@ -11,6 +11,9 @@
 
 using namespace Tizen::Ui::Controls;
 using namespace Tizen::Ui::Scenes;
+using namespace Tizen::Web::Json;
+using namespace Tizen::Base;
+using namespace Tizen::Base::Collection;
 
 JoinForm::JoinForm() {
 	// TODO Auto-generated constructor stub

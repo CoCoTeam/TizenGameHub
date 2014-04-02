@@ -4,7 +4,7 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="bin/TizenGameHub.exe">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>NKMQNL1gK38HShHvKcuJ41xsfuMTwRmAA8eV5SgX7og=</DigestValue>
+<DigestValue>7ltWLefKqbpUZ5sQyYcaqhJVRY4OmtqLSRqmPpEtoVc=</DigestValue>
 </Reference>
 <Reference URI="info/manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -12,11 +12,15 @@
 </Reference>
 <Reference URI="lib/libTizenGameHubLibrary.so">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>BWlPrX4Fn7MZW421+E4pIhjFoB7aZINs++bBc4L2+5g=</DigestValue>
+<DigestValue>k7u22FiJud9BBtGOVLEfZFeDzstu2f704kGgYc0bHp0=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>j5jN5tPdw73GdcyVvOE5A4Jem2AOpwGub02vQL4NvZk=</DigestValue>
+</Reference>
+<Reference URI="res/screen-size-normal/IDL_FORM_ACHIEVEMENT.xml">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>e7pbVxSsdAIz/EAfrTBoh/iFXXHF/tqOcEpAzHM6cYU=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM_GAME.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -25,6 +29,10 @@
 <Reference URI="res/screen-size-normal/IDL_FORM_JOIN.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>Dm/B+l0WvyMq7oCTd8FfjejmwnpCYSeJcjGKMIHrtlg=</DigestValue>
+</Reference>
+<Reference URI="res/screen-size-normal/IDL_FORM_LEADERBOARD.xml">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>QsD4GkreFOB35oAH3fBzjb1o8mN/mdwgJjHa3I2Sz0A=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM_LOGIN.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -51,9 +59,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-lHqZfdKtj4ERKHl53YT+uur8ll1z/uY7JV6J173b4FgpwyvEmGMT8o6S7Py4KR2t51k6gKT9hD7y
-yJV5OvqmTX+fuA6FGVUXRy+T0K6wkxm+HeAeVgARdS0EDU9WEoAzKnn7nw4QskmDt2he5dpVKZAr
-rl16W+wN9HpgDQ2qlWc=
+V6X/1em7W0dV1x+wjXj+Pcp5VOhDnls+IqY3l8l8sDM0dfe+sLPMDDO7Zc+s6RRrZHP5iEeaCyuG
+Lc21EdeBPRG3RDOTOIXC8xGOHtEyv6/Ll+il7LoEcKj9GctPPPPLHyy1KatsAIhYM3qbdXcFZ3N5
+KuSAxf40Fgf7eozw360=
 </SignatureValue>
 <KeyInfo>
 <X509Data>

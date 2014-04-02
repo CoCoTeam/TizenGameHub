@@ -9,6 +9,8 @@
 #define JOINFORM_H_
 
 #include <GHTizen.h>
+#include <GHAchievementController.h>
+
 
 class JoinForm
 	: public Tizen::Ui::Controls::Form
