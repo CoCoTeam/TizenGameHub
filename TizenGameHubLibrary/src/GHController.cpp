@@ -121,7 +121,7 @@ JsonArray* GHController::getJsonArrayByKey(JsonObject *pJsonObj, const String *k
 
 	JsonArray * pRet = static_cast<JsonArray*>(pObjValue);
 
-	if(pObjValue != null) delete pObjValue;
+//	if(pObjValue != null) delete pObjValue;
 
 	return pRet;
 }
@@ -133,18 +133,18 @@ JsonObject* GHController::getJsonObjectByKey(JsonObject* pJsonObj, const String 
 
 	JsonObject * pRet = static_cast<JsonObject*>(pObjValue);
 
-	if(pObjValue != null) delete pObjValue;
+//	if(pObjValue != null) delete pObjValue;
 
 	return pRet;
 }
 String GHController::getStringByKey(JsonObject* pJsonObj, const String *key)
 {
 	IJsonValue * pObjValue = null;
+
 	pJsonObj->GetValue(key, pObjValue);
-
 	JsonString * pJsonStr = static_cast<JsonString*>(pObjValue);
-	String ret(pJsonStr->GetPointer());
 
+	String ret(pJsonStr->GetPointer());
 	if(pObjValue!= null) delete pObjValue;
 
 	return ret;
@@ -172,7 +172,7 @@ JsonArray* GHController::getJsonArrayByIndex(JsonArray* pJsonArr, const int inde
 
 	JsonArray * pRet = static_cast<JsonArray*>(pObjValue);
 
-	if(pObjValue != null) delete pObjValue;
+//	if(pObjValue != null) delete pObjValue;
 
 	return pRet;
 
@@ -184,7 +184,7 @@ JsonObject*	GHController::getJsonObjectByIndex(JsonArray* pJsonArr,  const int i
 
 	JsonObject * pRet = static_cast<JsonObject*>(pObjValue);
 
-	if(pObjValue != null) delete pObjValue;
+//	if(pObjValue != null) delete pObjValue;
 
 	return pRet;
 

@@ -4,11 +4,11 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>oX8aPJmICtnvJ+ObJhbaXTTF1z2jJj2VQeJJMbOFwAM=</DigestValue>
+<DigestValue>Uf2tYcjZqfFhTZWtcf+xCYuuMPWH9dtBG+gOGNnq2bE=</DigestValue>
 </Reference>
 <Reference URI="bin/TizenGameHub.exe">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>i4e0PJjJ8veGsXTTK+5qDSoAeg+uGcV19pRYZ7tyRNg=</DigestValue>
+<DigestValue>+k+DWyEK8uXMeYWTypyM6lGCv3EaBPyIqdcx+IMVW84=</DigestValue>
 </Reference>
 <Reference URI="info/manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -16,7 +16,7 @@
 </Reference>
 <Reference URI="lib/libTizenGameHubLibrary.so">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>fquZZzjSUKpKTT4J+F5f5ihab5AyviXU8pK97kVSobo=</DigestValue>
+<DigestValue>idFKrk1plOG0HqQxaTQnSGwhZPj1eK2914C7mVkrOb0=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -63,9 +63,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-kpyFWDSV/nPR7WuRClSlOWedxa01N/zTtMBg91CJbhn/3tBdGXICHO2v28Yb6KtY/Ns7X7aOZOjH
-gHbYV6pizNSb0sc++JrYCm9sxRM2KmHuJ7d/r4cr3P7ZEa5IgJc2P2UjjR+/1awx0Ih3BJLCFcTO
-Z9haThAbKryWS4lFoy0=
+fSrDC0fdd4vEkhF65BPEun27JPRn+ES7zDx0+o3g7bE0nxxWNJhKu4SWZraKyqV+d6RpbujX5wxX
+kfyCITfCQHuOcuGDA+zL5HxNiMfKpriUQD7HK5B+GA82Z6JoqJGUDMhnAeIuFVNl3zG12K069kYz
+bJ35x5NSbTQ+JaxIZJI=
 </SignatureValue>
 <KeyInfo>
 <X509Data>
