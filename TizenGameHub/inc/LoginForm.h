@@ -20,7 +20,7 @@ class LoginForm
 	, public Tizen::Ui::IActionEventListener
 	, public Tizen::Ui::Controls::IFormBackEventListener
 	, public GHController
-	//, public GHAchievementLoadedListener // TEST API
+	, public GHAchievementLoadedListener // TEST API
 {
 public:
 	LoginForm();
@@ -42,12 +42,12 @@ private:
 	static const int IDA_BUTTON_TEST = 103;
 
 	// API TEST
-	//virtual void doAchievementFinished(GHAchievement* achievementArray);
+	virtual void doAchievementFinished(GHAchievement* achievementArray);
 
 	result doLogin();
 
 	// GHControlle
-	virtual void OnTransactionReadyToRead(Tizen::Web::Json::IJsonValue* data);
+	virtual void OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data);
 
 };
 
