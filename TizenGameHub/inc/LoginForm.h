@@ -9,6 +9,7 @@
 #define LOGINFORM_H_
 
 #include <GHTizen.h>
+#include <GHhttpClient.h>
 #include <GHAchievementController.h>
 #include <GHAchievementLoadedListener.h>
 
@@ -18,6 +19,7 @@ class LoginForm
 	: public Tizen::Ui::Controls::Form
 	, public Tizen::Ui::IActionEventListener
 	, public Tizen::Ui::Controls::IFormBackEventListener
+	, public GHController
 	, public GHAchievementLoadedListener // TEST API
 {
 public:
@@ -43,6 +45,9 @@ private:
 	virtual void doAchievementFinished(GHAchievement* achievementArray);
 
 	result doLogin();
+
+	// GHControlle
+	virtual void OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data);
 
 };
 

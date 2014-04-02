@@ -77,7 +77,7 @@ void GHLeaderboardController::updateLeaderboardScore(STRING* leaderboardId, long
 
 
 // HTTP 통신 Listener -------------------------------------------------------------------------------------------------------
-void GHLeaderboardController::OnTransactionReadyToRead(IJsonValue* data){
+void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String statusCode, IJsonValue* data){
 	//전달받은 데이터(부모 리스너에서 다시 보내주는 데이터)
 
 }

@@ -27,23 +27,23 @@ public:
 	virtual ~GHAchievementController();
 
 	// achievement 목록을 가져온다.
-	void loadAchievements(GHAchievementListener * listener);				// load listener
+	void loadAchievements(GHAchievementListener * listener);							// load listener
 
 	// hidden -> reveal 상태로 바꾼다.
 	void revealAchievement(Tizen::Base::String id);
-	void revealAchievement(GHAchievementListener* listener, Tizen::Base::String id); 	// update listener
+	void revealAchievement(Tizen::Base::String id, GHAchievementListener* listener); 	// update listener
 
 	// normal achievement update
 	void completeAchievement(Tizen::Base::String id);
-	void completeAchievement(GHAchievementListener* listener, Tizen::Base::String id); 	// update listener
+	void completeAchievement(Tizen::Base::String id, GHAchievementListener* listener); 	// update listener
 
 	// incremental achievement update
 	void increaseAchievement(Tizen::Base::String id);
-	void increaseAchievement(GHAchievementListener* listener, Tizen::Base::String id); 	// update listener
+	void increaseAchievement(Tizen::Base::String id, GHAchievementListener* listener); 	// update listener
 
 
 private:
-	virtual void OnTransactionReadyToRead(Tizen::Web::Json::IJsonValue* data);
+	virtual void OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data);
 	Tizen::Base::Collection::HashMap* __pMap;
 	GHAchievementListener* currentListener;
 };
