@@ -48,6 +48,9 @@ private:
 	// GHControlle
 	virtual void OnTransactionReadyToRead(Tizen::Web::Json::IJsonValue* data);
 
+	result doJoin();
+
+
 };
 
 #endif /* JOINFORM_H_ */

@@ -57,6 +57,8 @@ JoinForm::OnInitializing(void)
 	pTextName = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_NAME));
 
 
+
+
 	return r;
 }
 
@@ -78,20 +80,52 @@ JoinForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 	switch(actionId)
 	{
 	case IDA_BUTTON_JOIN:
-		if( isPlayerJoin )	//!! do Join
-		{
-
-		}
-		else	// do Edit
-		{
-
-		}
-		pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_OUT));
+		doJoin();
 		break;
 	case IDA_BUTTON_CANCEL:
 		pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_OUT));
 		break;
 	}
+
+}
+
+result
+JoinForm::doJoin()
+{
+	result r = E_SUCCESS;
+
+	MessageBox msgBox;
+	int modalResult;
+
+	String strEmail = pTextEmail->GetText();
+	String strPw = pTextPw->GetText();
+	String strPwconfirm = pTextPwconfirm->GetText();
+	String strName = pTextName->GetText();
+
+	if(strEmail == null || strPw == null || strPwconfirm == null || strName == null)
+	{
+		msgBox.Construct(L"Join", L"빈칸을 채워주세요.", MSGBOX_STYLE_OK);
+		msgBox.ShowAndWait(modalResult);
+	}
+	else if(strPw != strPwconfirm)
+	{
+		msgBox.Construct(L"Join", L"비밀번호가 다릅니다.", MSGBOX_STYLE_OK);
+		msgBox.ShowAndWait(modalResult);
+	}
+	else
+	{
+		GHhttpClient* httpPost = new GHhttpClient();
+
+		Tizen::Base::Collection::HashMap* __pMap = new (std::nothrow) Tizen::Base::Collection::HashMap();
+		__pMap->Construct();
+		__pMap->Add(new String("email"), new String(strEmail));
+		__pMap->Add(new String("pwd"), new String(strPw));
+		__pMap->Add(new String("name"), new String(strName));
+
+		//post 함수 호출
+		httpPost->RequestHttpPostTran(this, L"/players", __pMap);
+	}
+	return r;
 }
 
 void
@@ -153,31 +187,26 @@ void JoinForm::OnTransactionReadyToRead(Tizen::Web::Json::IJsonValue* data)
 	//형변환
 	String zString(pJsonStr->GetPointer());
 
-
 	MessageBox msgBox;
 	int modalResult;
 
 	SceneManager* pSceneManager = SceneManager::GetInstance();
 	AppAssert(pSceneManager);
 
-	ArrayList* pList = new (std::nothrow)ArrayList;
-	AppAssert(pList);
-	pList->Construct();
-
-	if(zString !=  "0")	// (로그인 성공 시) 로그인, 개인페이지로 이동
-	{
-		AppLog("success");
-
-		pList->Add( new Tizen::Base::String("1001") );	// playerId
-		pList->Add( new Tizen::Base::Boolean(true) );	// isLocalPlayer
-		pList->Add( new Tizen::Base::Boolean(false) );	// isFriend
-		pSceneManager->GoForward(ForwardSceneTransition(SCENE_PLAYER, SCENE_TRANSITION_ANIMATION_TYPE_RIGHT, SCENE_HISTORY_OPTION_NO_HISTORY), pList);
-	}
-	else		// (로그인 실패 시) 로그인 실패 팝업
+	if(zString ==  "0")
 	{
 		AppLog("fail");
-
-		msgBox.Construct(L"Login", L"LOGIN fail", MSGBOX_STYLE_OK);
+		msgBox.Construct(L"Join", L"Join fail", MSGBOX_STYLE_OK);
 		msgBox.ShowAndWait(modalResult);
+	}
+	else if(zString == "2")
+	{
+		msgBox.Construct(L"Join", L"Join 중복", MSGBOX_STYLE_OK);
+		msgBox.ShowAndWait(modalResult);
+	}
+	else	// (가입 성공 시)
+	{
+		AppLog("success");
+		pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_OUT));
 	}
 }
