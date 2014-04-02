@@ -47,7 +47,7 @@ public:
 //	virtual void OnTransactionCertVerificationRequiredN(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction, Tizen::Base::String* pCert);
 
 private:
-	virtual void OnTransactionReadyToRead(Tizen::Web::Json::IJsonValue* data);
+	virtual void OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data);
 	Tizen::Base::Collection::HashMap* __pMap;
 	GHLeaderboardListener* currentListener;
 
