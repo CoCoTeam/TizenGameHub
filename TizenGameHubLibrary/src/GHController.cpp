@@ -44,9 +44,34 @@ void GHController::OnTransactionReadyToRead(HttpSession& httpSession, HttpTransa
 			// 받아온 buffer를  JsonValue로 파싱한다.
 			IJsonValue* pValue = JsonParser::ParseN(*pBuffer);
 
-			// 자식 객체의 함수를 호출한다.
-			this->OnTransactionReadyToRead(pValue);
+			JsonObject* pJsonObj = static_cast<JsonObject*>(pValue);
 
+			String* pStrApiKey     = new String(L"apiCode");
+			IJsonValue* pApiValue = null;
+			pJsonObj->GetValue(pStrApiKey, pApiValue);
+			JsonString* pApiStr = static_cast<JsonString*>(pApiValue);
+
+			String* pStrFNKey     = new String(L"statusCode");
+			IJsonValue* pStatusValue = null;
+			pJsonObj->GetValue(pStrFNKey, pStatusValue);
+			JsonString* pStatusStr = static_cast<JsonString*>(pStatusValue);
+
+			String* pStrDataKey     = new String(L"data");
+			IJsonValue* pDataValue = null;
+			pJsonObj->GetValue(pStrDataKey, pDataValue);
+
+			//AppLogDebug("api : %S, status : %S", pApiStr->GetPointer(), pStatusStr->GetPointer());
+
+			// 자식 객체의 함수를 호출한다.
+			String apiCode(pApiStr->GetPointer());
+			String statusCode(pStatusStr->GetPointer());
+
+			this->OnTransactionReadyToRead(apiCode, statusCode, pDataValue);
+
+			delete pApiStr;
+			delete pStatusStr;
+			delete pStrFNKey;
+			delete pStrApiKey;
 			delete tempHeaderString;
 			delete pBuffer;
 		}

@@ -50,8 +50,9 @@ void GHAchievementController::revealAchievement(String ac_id) {
 
 	httpPost.RequestHttpPutTran(this, url, __pMap);
 }
-void GHAchievementController::revealAchievement(GHAchievementListener* listener, String ac_id) {
+void GHAchievementController::revealAchievement(String ac_id, GHAchievementListener* listener) {
 	this->currentListener = listener;
+	this->revealAchievement(ac_id);
 }
 
 // normal achievement update
@@ -68,8 +69,9 @@ void GHAchievementController::completeAchievement(String ac_id) {
 
 	httpPost.RequestHttpPutTran(this, url, __pMap);
 }
-void GHAchievementController::completeAchievement(GHAchievementListener* listener, String ac_id) {
+void GHAchievementController::completeAchievement(String ac_id, GHAchievementListener* listener) {
 	this->currentListener = listener;
+	this->completeAchievement(ac_id);
 }
 
 // incremental achievement update
@@ -87,54 +89,57 @@ void GHAchievementController::increaseAchievement(String ac_id) {
 
 	httpPost.RequestHttpPutTran(this, url, __pMap);
 }
-void GHAchievementController::increaseAchievement(GHAchievementListener* listener, String ac_id) {
+void GHAchievementController::increaseAchievement(String ac_id, GHAchievementListener* listener) {
 	this->currentListener = listener;
+	this->increaseAchievement(ac_id);
 }
 
 
 
 // 모든 통신의 콜백에서 호출하는 함수
-void GHAchievementController::OnTransactionReadyToRead(IJsonValue* data){
-	JsonObject* pJsonObj = static_cast<JsonObject*>(data);
+void GHAchievementController::OnTransactionReadyToRead(String apiCode, String statusCode, IJsonValue* data){
 
-
-	// reveal TEST /////////////////////////////////////////////////////////
-	//JsonArray* pJsonArray = static_cast<JsonArray*>(data);
 
 	// reveal, complete, increase TEST /////////////////////////////////////////////////////////
-	JsonArray* pJsonArray = static_cast<JsonArray*>(data);
-	String* pStrFNKey      = new String(L"statusCode");
-	IJsonValue* pObjValue = null;
-	pJsonObj->GetValue(pStrFNKey, pObjValue);
-	JsonString* pJsonStr = static_cast<JsonString*>(pObjValue);
-	AppLogDebug("value : %S", pJsonStr->GetPointer());
-	///////////////////////////////////////////////////////////////////
+//	String* pStrFNKey      = new String(L"statusCode");
+//	IJsonValue* pObjValue = null;
+//	data->GetValue(pStrFNKey, pObjValue);
+//	JsonString* pJsonStr = static_cast<JsonString*>(pObjValue);
+//	AppLogDebug("value : %S", pJsonStr->GetPointer());
+	////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
 //	// load TEST /////////////////////////////////////////////////////////
 //	// 0번째 있는 배열의 값(JsonObject를 가지고 온다.)
-//	IJsonValue* pValue = null;
-//	pJsonArray->GetAt(0, pValue);
-//	JsonObject* pJsonObj = static_cast<JsonObject*>(pValue);
 //
-//	// Key에 대한 값을 뽑는다.
-//	String* pStrFNKey      = new String(L"img_url");
-//	IJsonValue* pObjValue = null;
-//	pJsonObj->GetValue(pStrFNKey, pObjValue);
-//
-//	String* pStrFNKey2      = new String(L"ac_id");
-//	IJsonValue* pObjValue2 = null;
-//	pJsonObj->GetValue(pStrFNKey2, pObjValue2);
-//
-//	// 형변환 한다.
-//	JsonString* pJsonStr = static_cast<JsonString*>(pObjValue);
-//	JsonNumber* pJsonNum = static_cast<JsonNumber*>(pObjValue2);
-//
-//	// JsonString*을 String으로 변환한다.
-//	//String zString(pJsonStr->GetPointer());
-//
-//	AppLogDebug("value : %S", pJsonStr->GetPointer());
-//	AppLogDebug("value : %d", pJsonNum->ToInt());
+//	String* pStrDataKey     = new String(L"data");
+//	IJsonValue* pDataValue = null;
+//	data->GetValue(pStrDataKey, pDataValue);
+
+	JsonArray* jsonArray = static_cast<JsonArray*>(data);
+
+	IJsonValue* pValue = null;
+	jsonArray->GetAt(0, pValue);
+	JsonObject* pJsonObj = static_cast<JsonObject*>(pValue);
+
+	// Key에 대한 값을 뽑는다.
+	String* pStrFNKey      = new String(L"img_url");
+	IJsonValue* pObjValue = null;
+	pJsonObj->GetValue(pStrFNKey, pObjValue);
+
+	String* pStrFNKey2      = new String(L"ac_id");
+	IJsonValue* pObjValue2 = null;
+	pJsonObj->GetValue(pStrFNKey2, pObjValue2);
+
+	// 형변환 한다.
+	JsonString* pJsonStr = static_cast<JsonString*>(pObjValue);
+	JsonNumber* pJsonNum = static_cast<JsonNumber*>(pObjValue2);
+
+	// JsonString*을 String으로 변환한다.
+	//String zString(pJsonStr->GetPointer());
+
+	AppLogDebug("value : %S", pJsonStr->GetPointer());
+	AppLogDebug("value : %d", pJsonNum->ToInt());
 //	///////////////////////////////////////////////////////////////////
 }

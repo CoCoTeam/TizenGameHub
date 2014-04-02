@@ -117,20 +117,19 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 	case IDA_BUTTON_TEST:
 		//---------------------------------------------------------
 		GHAchievementController* controller = new GHAchievementController();
-		//controller->loadAchievements(this);
+		controller->loadAchievements(this);
 		//controller->revealAchievement("4");
 		//controller->completeAchievement("4");
-		controller->increaseAchievement("4");
+		//controller->increaseAchievement("4");
 		break;
 	}
 }
 
 // API TEST
-/*
 void LoginForm::doAchievementFinished(GHAchievement* achievementArray) {
 
 }
-*/
+
 
 void LoginForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 {
@@ -199,23 +198,25 @@ result LoginForm::doLogin()
 	return r;
 }
 
-void LoginForm::OnTransactionReadyToRead(Tizen::Web::Json::IJsonValue* data)
-{
-	JsonObject* pJsonObj = static_cast<JsonObject*>(data);
+void LoginForm::OnTransactionReadyToRead(String apiCode, String statusCode, IJsonValue* data){
 
-	// reveal TEST /////////////////////////////////////////////////////////
-	//JsonArray* pJsonArray = static_cast<JsonArray*>(data);
-	String* pStrFNKey      = new String(L"statusCode");
-	IJsonValue* pObjValue = null;
-	pJsonObj->GetValue(pStrFNKey, pObjValue);
-	JsonString* pJsonStr = static_cast<JsonString*>(pObjValue);
-	AppLogDebug("value : %S", pJsonStr->GetPointer());
-
-	//JsonNumber* pJsonStr = static_cast<JsonNumber*>(pObjValue);
-	//AppLogDebug("value : %d", pJsonStr->ToInt());
-	///////////////////////////////////////////////////////////////////
-	//형변환
-	String zString(pJsonStr->GetPointer());
+//	JsonObject* pJsonObj = static_cast<JsonObject*>(data);
+//
+//	// reveal TEST /////////////////////////////////////////////////////////
+//	//JsonArray* pJsonArray = static_cast<JsonArray*>(data);
+//	String* pStrFNKey      = new String(L"statusCode");
+//	IJsonValue* pObjValue = null;
+//	pJsonObj->GetValue(pStrFNKey, pObjValue);
+//	JsonString* pJsonStr = static_cast<JsonString*>(pObjValue);
+//	AppLogDebug("value : %S", pJsonStr->GetPointer());
+//
+//	//JsonNumber* pJsonStr = static_cast<JsonNumber*>(pObjValue);
+//	//AppLogDebug("value : %d", pJsonStr->ToInt());
+//	///////////////////////////////////////////////////////////////////
+//
+//
+//	//형변환
+//	String zString(pJsonStr->GetPointer());
 
 
 	MessageBox msgBox;
@@ -228,7 +229,7 @@ void LoginForm::OnTransactionReadyToRead(Tizen::Web::Json::IJsonValue* data)
 	AppAssert(pList);
 	pList->Construct();
 
-	if(zString !=  "0")	// (로그인 성공 시) 로그인, 개인페이지로 이동
+	if(statusCode !=  "0")	// (로그인 성공 시) 로그인, 개인페이지로 이동
 	{
 		AppLog("success");
 

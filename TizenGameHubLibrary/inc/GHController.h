@@ -28,7 +28,7 @@ public:
 
 protected:
 	GHhttpClient httpPost;
-	virtual void OnTransactionReadyToRead(Tizen::Web::Json::IJsonValue* data) = 0;
+	virtual void OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data) = 0;
 
 	// JSON FUNCTION - JSON Object
 	Tizen::Web::Json::JsonArray	  getJsonArrayByKey(Tizen::Web::Json::JsonObject jsonObj, Tizen::Base::String key);
