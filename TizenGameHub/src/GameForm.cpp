@@ -34,7 +34,7 @@ result
 GameForm::OnInitializing(void)
 {
 	result r = E_SUCCESS;
-
+//dfdfd
 	// TODO: Add your initialization code here
 
 	// Setup back event listener
