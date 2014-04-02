@@ -1,0 +1,102 @@
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="AuthorSignature">
+<SignedInfo>
+<CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></CanonicalizationMethod>
+<SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
+<Reference URI="bin/TizenGameHub.exe">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>7ltWLefKqbpUZ5sQyYcaqhJVRY4OmtqLSRqmPpEtoVc=</DigestValue>
+</Reference>
+<Reference URI="info/manifest.xml">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>q+pOvsUXmGI+ZGsTZeHv5IK5cRXn/iuOqCmXlTs2Nus=</DigestValue>
+</Reference>
+<Reference URI="lib/libTizenGameHubLibrary.so">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>k7u22FiJud9BBtGOVLEfZFeDzstu2f704kGgYc0bHp0=</DigestValue>
+</Reference>
+<Reference URI="res/screen-size-normal/IDL_FORM.xml">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>j5jN5tPdw73GdcyVvOE5A4Jem2AOpwGub02vQL4NvZk=</DigestValue>
+</Reference>
+<Reference URI="res/screen-size-normal/IDL_FORM_ACHIEVEMENT.xml">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>e7pbVxSsdAIz/EAfrTBoh/iFXXHF/tqOcEpAzHM6cYU=</DigestValue>
+</Reference>
+<Reference URI="res/screen-size-normal/IDL_FORM_GAME.xml">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>VDDHuGenq1Aj65FU4h9uSi8SrjjTEFeOlBBrwkXEgzM=</DigestValue>
+</Reference>
+<Reference URI="res/screen-size-normal/IDL_FORM_JOIN.xml">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>Dm/B+l0WvyMq7oCTd8FfjejmwnpCYSeJcjGKMIHrtlg=</DigestValue>
+</Reference>
+<Reference URI="res/screen-size-normal/IDL_FORM_LEADERBOARD.xml">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>QsD4GkreFOB35oAH3fBzjb1o8mN/mdwgJjHa3I2Sz0A=</DigestValue>
+</Reference>
+<Reference URI="res/screen-size-normal/IDL_FORM_LOGIN.xml">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>RMR78e6vW96AYrAGKmZWJFk9a4kVAmsaZHG/BQZ9Pl0=</DigestValue>
+</Reference>
+<Reference URI="res/screen-size-normal/IDL_FORM_PLAYER.xml">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>ALGOVGySwy+RVSJC+AhSgtvDGt7ftgl53hZ6g+SvMKA=</DigestValue>
+</Reference>
+<Reference URI="res/screen-size-normal/workflow.xml">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>0oJL8oakIOPByUsQGGMKg6kyp50RzKEHKL7XzBAb2jY=</DigestValue>
+</Reference>
+<Reference URI="shared/res/screen-density-xhigh/mainmenu.png">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>1d0oEZHqPn+QzNzGIHwj9ODby6x9ggFs9uOsav6jPNs=</DigestValue>
+</Reference>
+<Reference URI="#prop">
+<Transforms>
+<Transform Algorithm="http://www.w3.org/2006/12/xml-c14n11"></Transform>
+</Transforms>
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>lpo8tUDs054eLlBQXiDPVDVKfw30ZZdtkRs1jd7H5K8=</DigestValue>
+</Reference>
+</SignedInfo>
+<SignatureValue>
+V6X/1em7W0dV1x+wjXj+Pcp5VOhDnls+IqY3l8l8sDM0dfe+sLPMDDO7Zc+s6RRrZHP5iEeaCyuG
+Lc21EdeBPRG3RDOTOIXC8xGOHtEyv6/Ll+il7LoEcKj9GctPPPPLHyy1KatsAIhYM3qbdXcFZ3N5
+KuSAxf40Fgf7eozw360=
+</SignatureValue>
+<KeyInfo>
+<X509Data>
+<X509Certificate>
+MIIClTCCAX2gAwIBAgIGAUSV/uxEMA0GCSqGSIb3DQEBBQUAMFYxGjAYBgNVBAoMEVRpemVuIEFz
+c29jaWF0aW9uMRowGAYDVQQLDBFUaXplbiBBc3NvY2lhdGlvbjEcMBoGA1UEAwwTVGl6ZW4gRGV2
+ZWxvcGVycyBDQTAeFw0xMjExMDEwMDAwMDBaFw0xOTAxMDEwMDAwMDBaMBExDzANBgNVBAMMBmF1
+dGhvcjCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAtPU9OryRPXi+sTclMzf+BbjAtEqA1hDB
+1pRb6mdXMD0aAaChyeCTGbbm3IiPZB2yhbr5Zhw8o84hOP5I+SKJbyWUCsD6V0EXBR2A6sjcKDtT
+cNmXSWuTd+ynD00Dt+LrtQBp1n75uxLcKVN4FG440W8Xgu/6fNCEpLZF7WzJVy0CAwEAAaMyMDAw
+DAYDVR0TAQH/BAIwADALBgNVHQ8EBAMCB4AwEwYDVR0lBAwwCgYIKwYBBQUHAwMwDQYJKoZIhvcN
+AQEFBQADggEBAGOxVXVCZCIqDlWBaxLt1IUPpB2zhUK0o0bOjwnKdzbbH9NeP4IUcAbkJH/eHwsi
+PaklkuV1iMHmRex3aO5tnOgcdka3bN/BMvwEMh4c5FlMJdDRUJgQMMeqV4ogBc96N6UpySsWWUri
+o4P4TbC+xp0D25WkgxAon0xs9lKmriAiHTpcYqRMZO+jwVqc5cSy2aFFuFIY30NZVDCbt+F2w4pE
+1PwDQBFbgyUDkjM9Anca3ZZxPEHsSO+wdNwS43mL8KbA70R2uVriLlz7lBjQJTG6f8Ua+y9oKwy6
+bhcNqNx/TZYovZJqeDwcnR3lvPYQba0uC8RIykaJ6O3TIpmK9GA=
+</X509Certificate>
+<X509Certificate>
+MIIDOTCCAiGgAwIBAgIBATANBgkqhkiG9w0BAQUFADBYMRowGAYDVQQKDBFUaXplbiBBc3NvY2lh
+dGlvbjEaMBgGA1UECwwRVGl6ZW4gQXNzb2NpYXRpb24xHjAcBgNVBAMMFVRpemVuIERldmVsb3Bl
+cnMgUm9vdDAeFw0xMjAxMDEwMDAwMDBaFw0yNzAxMDEwMDAwMDBaMFYxGjAYBgNVBAoMEVRpemVu
+IEFzc29jaWF0aW9uMRowGAYDVQQLDBFUaXplbiBBc3NvY2lhdGlvbjEcMBoGA1UEAwwTVGl6ZW4g
+RGV2ZWxvcGVycyBDQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANVGhRGmMIUyBA7o
+PCz8Sxut6z6HNkF4oDIuzuKaMzRYPeWodwe9O0gmqAkToQHfwg2giRhE5GoPld0fq+OYMMwSasCu
+g8dwODx1eDeSYVuOLWRxpAmbTXOsSFi6VoWeyaPEm18JBHvZBsU5YQtgZ6Kp7MqzvQg3pXOxtajj
+vyHxiatJl+xXrHgcXC1wgyG3buty7u/Fi2mvKXJ0PRJcCjjK81dqe/Vr20sRUCrbk02zbm5ggFt/
+jIEhV8wbFRQpliobc7J4dSTKhFfrqGM8rdd54LYhD7gSI1CFSe16pUXfcVR7FhJztRaiGLnCrwBE
+dyTZ248+D4L/qR/D0axb3jcCAwEAAaMQMA4wDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOC
+AQEAnOXXQ/1O/QTDHyrmQDtFziqPY3xWlJBqJtEqXiT7Y+Ljpe66e+Ee/OjQMlZe8gu21/8cKklH
+95RxjopMWCVedXDUbWdvS2+CdyvVW/quT2E0tjqIzXDekUTYwwhlPWlGxvfj3VsxqSFq3p8Brl04
+1Gx5RKAGyKVsMfTLhbbwSWwApuBUxYfcNpKwLWGPXkysu+HctY03OKv4/xKBnVWiN8ex/Sgesi0M
++OBAOMdZMPK32uJBTeKFx1xZgTLIhk45V0hPOomPjZloiv0LSS11eyd451ufjW0iHRE7WlpR6EvI
+W6TFyZgMpQq+kg4hWl2SBTf3s2VI8Ygz7gj8TMlClg==
+</X509Certificate>
+</X509Data>
+</KeyInfo>
+<Object Id="prop"><SignatureProperties xmlns:dsp="http://www.w3.org/2009/xmldsig-properties"><SignatureProperty Id="profile" Target="#AuthorSignature"><dsp:Profile URI="http://www.w3.org/ns/widgets-digsig#profile"></dsp:Profile></SignatureProperty><SignatureProperty Id="role" Target="#AuthorSignature"><dsp:Role URI="http://www.w3.org/ns/widgets-digsig#role-author"></dsp:Role></SignatureProperty><SignatureProperty Id="identifier" Target="#AuthorSignature"><dsp:Identifier></dsp:Identifier></SignatureProperty></SignatureProperties></Object>
+</Signature>

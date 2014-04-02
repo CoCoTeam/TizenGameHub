@@ -7,6 +7,7 @@
 
 #include "GameForm.h"
 #include "AppResourceId.h"
+#include "TizenGameHubFrame.h"
 
 using namespace Tizen::Ui::Scenes;
 using namespace Tizen::Ui::Controls;
@@ -50,9 +51,17 @@ GameForm::OnInitializing(void)
 	pPanelScroll = static_cast< Panel* >(GetControl(IDC_GAME_SCROLLPANEL));
 	pPanelGameDetail = static_cast< Panel* >(pPanelScroll->GetControl(IDC_GAME_PANEL_GAMEDETAIL));
 	pLabelGameDesc = static_cast< Label* >(pPanelGameDetail->GetControl(IDC_GAME_LABEL_DESC));
+	pPanelFunction = static_cast< Panel* >(pPanelGameDetail->GetControl(IDC_GAME_PANEL_FUNCTION));
+	pButtonLeaderboard = static_cast< Button* >(pPanelFunction->GetControl(IDC_GAME_BUTTON_LEADERBOARD));
+	pButtonAchievement = static_cast< Button* >(pPanelFunction->GetControl(IDC_GAME_BUTTON_ACHIEVEMENT));
 
 	pPanelFriend = static_cast< Panel* >(pPanelScroll->GetControl(IDC_GAME_PANEL_FRIEND));
 	pPanelFriend->SetShowState(false);
+
+	pButtonLeaderboard->SetActionId(ID_BUTTON_LEADERBOARD);
+	pButtonLeaderboard->AddActionEventListener(*this);
+	pButtonAchievement->SetActionId(ID_BUTTON_ACHIEVEMENT);
+	pButtonAchievement->AddActionEventListener(*this);
 
 	setFooterMenu();
 	setPlayerList();
@@ -72,8 +81,8 @@ GameForm::OnTerminating(void)
 void
 GameForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 {
-//	SceneManager* pSceneManager = SceneManager::GetInstance();
-//	AppAssert(pSceneManager);
+	SceneManager* pSceneManager = SceneManager::GetInstance();
+	AppAssert(pSceneManager);
 
 	switch(actionId)
 	{
@@ -82,6 +91,12 @@ GameForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		break;
 	case ID_FOOTER_SECOND_TAB:
 		changePanel(1);
+		break;
+	case ID_BUTTON_LEADERBOARD:
+		pSceneManager->GoForward(ForwardSceneTransition(SCENE_ACHIEVEMENT, SCENE_TRANSITION_ANIMATION_TYPE_LEFT));//, pList);
+		break;
+	case ID_BUTTON_ACHIEVEMENT:
+		pSceneManager->GoForward(ForwardSceneTransition(SCENE_LEADERBOARD, SCENE_TRANSITION_ANIMATION_TYPE_LEFT));//, pList);
 		break;
 	}
 }

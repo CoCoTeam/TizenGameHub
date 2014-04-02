@@ -11,6 +11,9 @@
 
 using namespace Tizen::Ui::Controls;
 using namespace Tizen::Ui::Scenes;
+using namespace Tizen::Web::Json;
+using namespace Tizen::Base;
+using namespace Tizen::Base::Collection;
 
 JoinForm::JoinForm() {
 	// TODO Auto-generated constructor stub
@@ -83,7 +86,6 @@ JoinForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		{
 
 		}
-
 		pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_OUT));
 		break;
 	case IDA_BUTTON_CANCEL:
@@ -131,4 +133,51 @@ JoinForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
 {
 	// TODO: Deactivate your scene here.
 
+}
+
+void JoinForm::OnTransactionReadyToRead(Tizen::Web::Json::IJsonValue* data)
+{
+	JsonObject* pJsonObj = static_cast<JsonObject*>(data);
+
+	// reveal TEST /////////////////////////////////////////////////////////
+	//JsonArray* pJsonArray = static_cast<JsonArray*>(data);
+	String* pStrFNKey      = new String(L"statusCode");
+	IJsonValue* pObjValue = null;
+	pJsonObj->GetValue(pStrFNKey, pObjValue);
+	JsonString* pJsonStr = static_cast<JsonString*>(pObjValue);
+	AppLogDebug("value : %S", pJsonStr->GetPointer());
+
+	//JsonNumber* pJsonStr = static_cast<JsonNumber*>(pObjValue);
+	//AppLogDebug("value : %d", pJsonStr->ToInt());
+	///////////////////////////////////////////////////////////////////
+	//형변환
+	String zString(pJsonStr->GetPointer());
+
+
+	MessageBox msgBox;
+	int modalResult;
+
+	SceneManager* pSceneManager = SceneManager::GetInstance();
+	AppAssert(pSceneManager);
+
+	ArrayList* pList = new (std::nothrow)ArrayList;
+	AppAssert(pList);
+	pList->Construct();
+
+	if(zString !=  "0")	// (로그인 성공 시) 로그인, 개인페이지로 이동
+	{
+		AppLog("success");
+
+		pList->Add( new Tizen::Base::String("1001") );	// playerId
+		pList->Add( new Tizen::Base::Boolean(true) );	// isLocalPlayer
+		pList->Add( new Tizen::Base::Boolean(false) );	// isFriend
+		pSceneManager->GoForward(ForwardSceneTransition(SCENE_PLAYER, SCENE_TRANSITION_ANIMATION_TYPE_RIGHT, SCENE_HISTORY_OPTION_NO_HISTORY), pList);
+	}
+	else		// (로그인 실패 시) 로그인 실패 팝업
+	{
+		AppLog("fail");
+
+		msgBox.Construct(L"Login", L"LOGIN fail", MSGBOX_STYLE_OK);
+		msgBox.ShowAndWait(modalResult);
+	}
 }

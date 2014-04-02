@@ -35,7 +35,8 @@ private:
 	Gallery *pGalleryGameImg;
 	Label *pLabelGameName, *pLabelDeveloper;
 	Button *pButtonGame;
-	Panel *pPanelScroll, *pPanelGameDetail, *pPanelFriend;
+	Panel *pPanelScroll, *pPanelGameDetail, *pPanelFriend, *pPanelFunction;
+	Button *pButtonLeaderboard, *pButtonAchievement;
 	Label *pLabelGameDesc;
 
 	ListView *pListViewFriend;
@@ -63,6 +64,9 @@ private:
 	void setFooterMenu();
 	static const int ID_FOOTER_FIRST_TAB = 101;
 	static const int ID_FOOTER_SECOND_TAB = 102;
+	static const int ID_BUTTON_LEADERBOARD = 201;
+	static const int ID_BUTTON_ACHIEVEMENT = 202;
+
 };
 
 #endif /* GAMEFORM_H_ */

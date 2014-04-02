@@ -132,8 +132,6 @@ Mode1::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 	case ID_BUTTON_OK:
 		{
 
-
-
 			/*PrefClass pref;
 
 			String str;
@@ -144,8 +142,6 @@ Mode1::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 			AppLog("-----------------------------------------------");
 			//AppLog("AppRegistry Name value [%ls]", PrefClass::name.GetPointer());
 			AppLog("AppRegistry Name value [%ls]", str.GetPointer());*/
-
-
 
 
 			Integer num(__score);
