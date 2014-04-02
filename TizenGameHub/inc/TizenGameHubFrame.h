@@ -14,6 +14,8 @@ extern const wchar_t* SCENE_JOIN;
 extern const wchar_t* SCENE_LOGIN;
 extern const wchar_t* SCENE_GAME;
 extern const wchar_t* SCENE_PLAYER;
+extern const wchar_t* SCENE_ACHIEVEMENT;
+extern const wchar_t* SCENE_LEADERBOARD;
 
 class TizenGameHubFrame
 	: public Tizen::Ui::Controls::Frame

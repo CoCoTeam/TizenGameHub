@@ -6,6 +6,7 @@
 #include "JoinForm.h"
 #include "PlayerForm.h"
 #include "GameForm.h"
+#include "AchievementForm.h"
 
 using namespace Tizen::Ui::Scenes;
 
@@ -59,6 +60,22 @@ TizenGameHubFormFactory::CreateFormN(const Tizen::Base::String& formId, const Ti
 	else if(formId == IDL_FORM_GAME)
 	{
 		GameForm *pForm = new (std::nothrow) GameForm();
+		TryReturn(pForm != null, null, "The memory is insufficient.");
+		pSceneManager->AddSceneEventListener(sceneId, *pForm);
+		pForm->Initialize();
+		pNewForm = pForm;
+	}
+	else if(formId == IDL_FORM_ACHIEVEMENT)
+	{
+		AchievementForm *pForm = new (std::nothrow) AchievementForm();
+		TryReturn(pForm != null, null, "The memory is insufficient.");
+		pSceneManager->AddSceneEventListener(sceneId, *pForm);
+		pForm->Initialize();
+		pNewForm = pForm;
+	}
+	else if(formId == IDL_FORM_LEADERBOARD)
+	{
+		AchievementForm *pForm = new (std::nothrow) AchievementForm();
 		TryReturn(pForm != null, null, "The memory is insufficient.");
 		pSceneManager->AddSceneEventListener(sceneId, *pForm);
 		pForm->Initialize();

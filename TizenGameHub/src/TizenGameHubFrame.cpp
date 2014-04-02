@@ -21,6 +21,9 @@ const wchar_t* SCENE_JOIN = L"JoinScene";
 const wchar_t* SCENE_LOGIN = L"LoginScene";
 const wchar_t* SCENE_GAME = L"GameScene";
 const wchar_t* SCENE_PLAYER = L"PlayerScene";
+const wchar_t* SCENE_ACHIEVEMENT= L"AchievementScene";
+const wchar_t* SCENE_LEADERBOARD = L"LeaderboardScene";
+
 
 result
 TizenGameHubFrame::OnInitializing(void)
@@ -37,6 +40,8 @@ TizenGameHubFrame::OnInitializing(void)
 	pSceneManager->RegisterScene(SCENE_LOGIN, IDL_FORM_LOGIN, L"");
 	pSceneManager->RegisterScene(SCENE_GAME, IDL_FORM_GAME, L"");
 	pSceneManager->RegisterScene(SCENE_PLAYER, IDL_FORM_PLAYER, L"");
+	pSceneManager->RegisterScene(SCENE_ACHIEVEMENT, IDL_FORM_ACHIEVEMENT, L"");
+	pSceneManager->RegisterScene(SCENE_LEADERBOARD, IDL_FORM_LEADERBOARD, L"");
 
 	// Go to the scene.
 //	result r = pSceneManager->GoForward(SceneTransitionId(IDSCNT_MAIN_SCENE));
