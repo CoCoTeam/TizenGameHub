@@ -60,5 +60,9 @@ extern const wchar_t* IDC_GAME_LABEL_DESC;
 extern const wchar_t* IDC_GAME_PANEL_FRIEND;
 extern const wchar_t* IDC_GAME_LABEL_FRIENDTITLE;
 extern const wchar_t* IDC_GAME_LISTVIEW_FRIEND;
+/* IDL_FORM_ACHIEVEMENT */
+extern const wchar_t* IDL_FORM_ACHIEVEMENT;
+/* IDL_FORM_LEADERBOARD */
+extern const wchar_t* IDL_FORM_LEADERBOARD;
 
 #endif // _APP_RESOURCE_ID_H_

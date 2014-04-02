@@ -46,7 +46,7 @@ private:
 
 	result doLogin();
 
-	// GHAchievementLoadedListener
+	// GHControlle
 	virtual void OnTransactionReadyToRead(Tizen::Web::Json::IJsonValue* data);
 
 };

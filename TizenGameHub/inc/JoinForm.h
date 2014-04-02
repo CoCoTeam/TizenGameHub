@@ -15,6 +15,7 @@ class JoinForm
 	, public Tizen::Ui::IActionEventListener
 	, public Tizen::Ui::Controls::IFormBackEventListener
 	, public Tizen::Ui::Scenes::ISceneEventListener
+	, public GHController
 {
 public:
 	JoinForm();
@@ -41,6 +42,10 @@ private:
 
 	static const int IDA_BUTTON_JOIN = 101;
 	static const int IDA_BUTTON_CANCEL = 102;
+
+	// GHControlle
+	virtual void OnTransactionReadyToRead(Tizen::Web::Json::IJsonValue* data);
+
 };
 
 #endif /* JOINFORM_H_ */

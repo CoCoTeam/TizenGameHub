@@ -110,6 +110,7 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 	case IDA_BUTTON_LOGIN:
 		//!! do Login
 		doLogin();
+
 		break;
 
 	// API TEST
