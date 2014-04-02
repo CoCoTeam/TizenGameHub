@@ -224,6 +224,9 @@ void LoginForm::OnTransactionReadyToRead(String apiCode, String statusCode, IJso
 //	String zString(pJsonStr->GetPointer());
 
 
+	AppLogDebug("SATUS : %S",statusCode.GetPointer());
+
+
 	MessageBox msgBox;
 	int modalResult;
 

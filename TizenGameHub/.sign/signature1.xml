@@ -4,11 +4,19 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<<<<<<< HEAD
 <DigestValue>Uf2tYcjZqfFhTZWtcf+xCYuuMPWH9dtBG+gOGNnq2bE=</DigestValue>
 </Reference>
 <Reference URI="bin/TizenGameHub.exe">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>+k+DWyEK8uXMeYWTypyM6lGCv3EaBPyIqdcx+IMVW84=</DigestValue>
+=======
+<DigestValue>jKstXV7Tiw00IWqcecg7DWfhEZzx9JNKRkL61lvIVqE=</DigestValue>
+</Reference>
+<Reference URI="bin/TizenGameHub.exe">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>3YgblvjtFzgiBkBMCjcHXZV2EGG1X9iw8tEGOZY0Am4=</DigestValue>
+>>>>>>> e994227c4cbb1b3cb5b29a802ec695d9f3589992
 </Reference>
 <Reference URI="info/manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -16,7 +24,11 @@
 </Reference>
 <Reference URI="lib/libTizenGameHubLibrary.so">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<<<<<<< HEAD
 <DigestValue>idFKrk1plOG0HqQxaTQnSGwhZPj1eK2914C7mVkrOb0=</DigestValue>
+=======
+<DigestValue>F8dVIiTN/Zl3jvxpHQ2s6RkpYatVlpEl7sLNAgfMIX0=</DigestValue>
+>>>>>>> e994227c4cbb1b3cb5b29a802ec695d9f3589992
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -63,9 +75,15 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
+<<<<<<< HEAD
 fSrDC0fdd4vEkhF65BPEun27JPRn+ES7zDx0+o3g7bE0nxxWNJhKu4SWZraKyqV+d6RpbujX5wxX
 kfyCITfCQHuOcuGDA+zL5HxNiMfKpriUQD7HK5B+GA82Z6JoqJGUDMhnAeIuFVNl3zG12K069kYz
 bJ35x5NSbTQ+JaxIZJI=
+=======
+VmEePexdRdG2pDPFUbuEKmWvySincEk9iPxLB6TG/cmmjgSPJSgLk/vI14zRk5v86x8DgaVXyaz8
+plpRd8Fr171F9rztgLeZYL/2xmyxihtsgj5Q9mJip00/5UEdxQ0/n2mSK0YpqAaGBwVZQWnEvJzG
++gHCWSkueCVL9t4dFVM=
+>>>>>>> e994227c4cbb1b3cb5b29a802ec695d9f3589992
 </SignatureValue>
 <KeyInfo>
 <X509Data>
