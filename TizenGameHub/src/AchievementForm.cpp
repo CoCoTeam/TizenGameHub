@@ -35,6 +35,7 @@ result AchievementForm::OnInitializing(void)
 	SetFormBackEventListener(this);
 
 	// Get a button via resource ID
+//	loadAchievements(this);
 
 	return r;
 }
@@ -85,4 +86,10 @@ void AchievementForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& curre
 	// TODO: Deactivate your scene here.
 
 }
+
+
+//void AchievementForm::doAchievementFinished(GHAchievement* achievementArray)
+//{
+//
+//}
 

@@ -21,11 +21,11 @@ public:
 	virtual ~GHPlayerController();
 
 	// 사용자 로그인
-	Tizen::Base::String playerLogin(Tizen::Base::String email, Tizen::Base::String pwd);
+	void playerLogin(Tizen::Base::String email, Tizen::Base::String pwd);
 //	Tizen::Base::String playerLogin(Tizen::Base::String email, Tizen::Base::String pwd, GHPlayerListener* listener);
 
 	// 사용자 정보 가져오기
-	GHPlayer getPlayerData(Tizen::Base::String playerId);
+	void getPlayerData(Tizen::Base::String playerId);
 //	GHPlayer getPlayerData(Tizen::Base::String playerId, GHPlayerListener* listener);
 
 	// 사용자 로그아웃
@@ -37,7 +37,7 @@ public:
 private:
 	virtual void OnTransactionReadyToRead(Tizen::Web::Json::IJsonValue* data);
 	Tizen::Base::Collection::HashMap* __pMap;
-	GHLeaderboardListener* currentListener;
+//	GHLeaderboardListener* currentListener;
 };
 
 #endif /* GHPLAYERCONTROLLER_H_ */

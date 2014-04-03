@@ -26,7 +26,10 @@ GHPlayerController::~GHPlayerController() {
  * data : email, pwd
  * return : status code ( 0: 실패, key: 성공) // {statusCode : 0}
  */
-String GHPlayerController::playerLogin(Tizen::Base::String email, Tizen::Base::String pwd);
+void GHPlayerController::playerLogin(Tizen::Base::String email, Tizen::Base::String pwd)
+{
+
+}
 //String playerLogin(Tizen::Base::String email, Tizen::Base::String pwd, GHPlayerListener* listener);
 
 // 사용자 정보 가져오기
@@ -37,7 +40,10 @@ String GHPlayerController::playerLogin(Tizen::Base::String email, Tizen::Base::S
  * data : player_id /
  * return : { statusCode : 1, data:{ email:"", name:"", img_url:"" } }
  */
-GHPlayer GHPlayerController::getPlayerData(Tizen::Base::String playerId);
+void GHPlayerController::getPlayerData(Tizen::Base::String playerId)
+{
+
+}
 //GHPlayer getPlayerData(Tizen::Base::String playerId, GHPlayerListener* listener);
 
 // 사용자 로그아웃
