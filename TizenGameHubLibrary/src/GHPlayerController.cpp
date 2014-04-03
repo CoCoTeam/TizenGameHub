@@ -54,7 +54,12 @@ void GHPlayerController::playerLogin(Tizen::Base::String email, Tizen::Base::Str
  */
 void GHPlayerController::getPlayerData(Tizen::Base::String playerId)
 {
+	//GET 함수 호출
+	//String game_id("key_aa");
+	//String player_id("pkeyS");
 
+	String url(L"/players/" + playerId);
+	httpPost.RequestHttpGetTran(this, url);
 }
 //GHPlayer getPlayerData(Tizen::Base::String playerId, GHPlayerListener* listener);
 
@@ -74,46 +79,47 @@ void GHPlayerController::getPlayerData(Tizen::Base::String playerId)
 void GHPlayerController::OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data)
 {
 	AppLogDebug("[DEBUG] apiCode : %S", apiCode.GetPointer() );
-	//AppLogDebug("[DEBUG] statusCode : %S", statusCode.GetPointer());
+	AppLogDebug("[DEBUG] statusCode : %S", statusCode.GetPointer());
 
 	if(apiCode.Equals(PLAYER_PLAYERDATA)) {	// ACHIEVEMENT LOAD
 			//GHAchievement *acArr;
-			GHPlayer *playerArr;
+
+			GHPlayer *player;
 
 			// 정상적으로 결과를 반환했을 때
 			if(statusCode == "1") {
-				JsonArray* 	pJsonArray 	= static_cast<JsonArray*>(data);
-				int 		arrNum 		= pJsonArray->GetCount();
-				playerArr = new GHPlayer[arrNum];
 
-				// KEY NAME
-				String* pkeyId 			= new String(L"ac_id");
+
+
+				JsonObject *pJsonOject 	= static_cast<JsonObject*>(data);
+
+				AppLogDebug("---------------------------2-----------------------");
+
 				String* pkeyEmail 		= new String(L"email");
 				String* pkeyName 		= new String(L"name");
 				String* pkeyImgUrl 		= new String(L"img_url");
 
-				//AppLogDebug("[DEBUG] arrNum : %d", arrNum );
+				String  sEmail 			= getStringByKey(pJsonOject, pkeyEmail);
+				String  sName			= getStringByKey(pJsonOject, pkeyName);
+				String  sImgUrl 		= getStringByKey(pJsonOject, pkeyImgUrl);
 
-				for(int i=0; i<arrNum; i++) {
-					JsonObject *pJsonOject 	= getJsonObjectByIndex(pJsonArray, i);
+				AppLogDebug("--------------------------------------------------");
 
-					// 데이터 파싱
-					String  sId 			= getStringByKey(pJsonOject, pkeyId);  // playerID 필요할듯!!
-					String  sEmail 			= getStringByKey(pJsonOject, pkeyEmail);
-					String  sName			= getStringByKey(pJsonOject, pkeyName);
-					String  sImgUrl 		= getStringByKey(pJsonOject, pkeyImgUrl);
-					// 배열에 추가
-					playerArr[i] = GHPlayer(sId, sEmail, sName, sImgUrl);
+				player = new GHPlayer("pkeyS", sEmail, sName, sImgUrl);
 
-				}
 				// KEY NAME DELETE
-				delete pkeyId; 			delete pkeyEmail;		delete pkeyName;	 delete pkeyImgUrl;
+				//delete pkeyId;
+
+				delete pkeyEmail;		delete pkeyName;	 delete pkeyImgUrl;
+
+
+
 			}
 			else { // 에러가 발생했을 때
-				playerArr = null;
+				player = null;
 			}
 
-			if(this->currentListener != null) this->currentListener->doPlayerFinished(playerArr);
+			if(this->currentListener != null) this->currentListener->doPlayerFinished(player);
 	}
 /*	else if(apiCode.Equals(PLAYER_LOGIN))
 	{
