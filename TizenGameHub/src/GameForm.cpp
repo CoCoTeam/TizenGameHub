@@ -93,10 +93,10 @@ GameForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		changePanel(1);
 		break;
 	case ID_BUTTON_LEADERBOARD:
-		pSceneManager->GoForward(ForwardSceneTransition(SCENE_ACHIEVEMENT, SCENE_TRANSITION_ANIMATION_TYPE_LEFT));//, pList);
+		pSceneManager->GoForward(ForwardSceneTransition(SCENE_LEADERBOARD, SCENE_TRANSITION_ANIMATION_TYPE_LEFT));//, pList);
 		break;
 	case ID_BUTTON_ACHIEVEMENT:
-		pSceneManager->GoForward(ForwardSceneTransition(SCENE_LEADERBOARD, SCENE_TRANSITION_ANIMATION_TYPE_LEFT));//, pList);
+		pSceneManager->GoForward(ForwardSceneTransition(SCENE_ACHIEVEMENT, SCENE_TRANSITION_ANIMATION_TYPE_LEFT));//, pList);
 		break;
 	}
 }
@@ -114,7 +114,6 @@ void
 GameForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 										  const Tizen::Ui::Scenes::SceneId& currentSceneId, Tizen::Base::Collection::IList* pArgs)
 {
-
 	// TODO: Activate your scene here.
 	if (pArgs != null)
 	{

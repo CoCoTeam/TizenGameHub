@@ -35,7 +35,7 @@ public:
 
 
 private:
-	virtual void OnTransactionReadyToRead(Tizen::Web::Json::IJsonValue* data);
+//	virtual void OnTransactionReadyToRead(Tizen::Web::Json::IJsonValue* data);
 	Tizen::Base::Collection::HashMap* __pMap;
 //	GHLeaderboardListener* currentListener;
 };
