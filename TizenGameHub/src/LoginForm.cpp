@@ -65,6 +65,11 @@ LoginForm::OnInitializing(void)
 	pTextEmail = static_cast< EditField* >(GetControl(IDC_LOGIN_EDITTEXT_EMAIL));
 	pTextPw = static_cast< EditField* >(GetControl(IDC_LOGIN_EDITTEXT_PW));
 
+	//For test(Default Id/Pw)-------------------------------
+	pTextEmail->SetText(L"kichul");
+	pTextPw->SetText(L"kichulbabo");
+	//------------------------------------------------------
+
 	//Button Test----------------------------
 	Button* pButtonTest = static_cast< Button* >(GetControl(IDC_LOGIN_BUTTON_TEST));
 	if (pButtonTest != null)
@@ -116,9 +121,9 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 	// API TEST
 	case IDA_BUTTON_TEST:
 		//---------------------------------------------------------
-		GHAchievementController* controller = new GHAchievementController();
+		//GHAchievementController* controller = new GHAchievementController();
 		//controller->loadAchievements(this);
-		controller->revealAchievement("4", this);
+		//controller->revealAchievement("4", this);
 		//controller->completeAchievement("4");
 		//controller->increaseAchievement("4");
 		break;

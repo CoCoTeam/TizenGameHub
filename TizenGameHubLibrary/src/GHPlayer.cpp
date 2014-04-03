@@ -14,26 +14,19 @@ GHPlayer::GHPlayer() {
 
 GHPlayer::~GHPlayer() {
 	// TODO Auto-generated destructor stub
-	delete email;
-	delete name;
-	delete imgUrl;
 }
 
 
-GHPlayer::GHPlayer(STRING _id, STRING _email, STRING _name, STRING _imgUrl)
+GHPlayer::GHPlayer(Tizen::Base::String _id, Tizen::Base::String _email, Tizen::Base::String _name, Tizen::Base::String _imgUrl)
+: id(_id), email(_email), name(_name), imgUrl(_imgUrl)
 {
-	id = new Tizen::Base::String(_id);
-	email = new Tizen::Base::String(_email);
-	name = new Tizen::Base::String(_name);
-	imgUrl = new Tizen::Base::String(_imgUrl);
-
 	totalScore = this->getTotalScore();
 }
 
-STRING* GHPlayer::getId()		{	return id;}
-STRING* GHPlayer::getEmail()	{	return email;}
-STRING* GHPlayer::getName()		{	return name;}
-STRING* GHPlayer::getImgUrl()	{	return imgUrl;}
+Tizen::Base::String GHPlayer::getId()		{	return id;}
+Tizen::Base::String GHPlayer::getEmail()	{	return email;}
+Tizen::Base::String GHPlayer::getName()		{	return name;}
+Tizen::Base::String GHPlayer::getImgUrl()	{	return imgUrl;}
 long GHPlayer::getTotalScore()
 {
 	//!! return Achievement.getTotalAchievementScore(id);

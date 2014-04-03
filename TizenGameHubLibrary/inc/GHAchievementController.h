@@ -32,16 +32,17 @@ public:
 	void loadAchievements(GHAchievementLoadedListener * listener);							// load listener
 
 	// hidden -> reveal 상태로 바꾼다.
-	void revealAchievement(Tizen::Base::String id);
-	void revealAchievement(Tizen::Base::String id, GHAchievementUpdatedListener* listener); 	// update listener
+	void revealAchievement(Tizen::Base::String ac_id);
+	void revealAchievement(Tizen::Base::String ac_id, GHAchievementUpdatedListener* listener); 	// update listener
 
 	// normal achievement update
-	void completeAchievement(Tizen::Base::String id);
-	void completeAchievement(Tizen::Base::String id, GHAchievementUpdatedListener* listener); 	// update listener
+	void completeAchievement(Tizen::Base::String ac_id);
+	void completeAchievement(Tizen::Base::String ac_id, GHAchievementUpdatedListener* listener); 	// update listener
 
 	// incremental achievement update
-	void increaseAchievement(Tizen::Base::String id);
-	void increaseAchievement(Tizen::Base::String id, GHAchievementUpdatedListener* listener); 	// update listener
+	void increaseAchievement(Tizen::Base::String ac_id);
+	void increaseAchievement(Tizen::Base::String ac_id, GHAchievementUpdatedListener* listener); 	// update listener
+
 
 
 private:

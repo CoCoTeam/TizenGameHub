@@ -1,4 +1,3 @@
-
 /*
  * GHController.h
  *
@@ -13,7 +12,8 @@
 #include <GHhttpClient.h>
 
 class GHController
-	: public Tizen::Net::Http::IHttpTransactionEventListener {
+	: public Tizen::Net::Http::IHttpTransactionEventListener
+{
 	public:
 		GHController();
 		virtual ~GHController();
