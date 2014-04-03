@@ -15,7 +15,7 @@ public:
 	GHPlayerListener();
 	virtual ~GHPlayerListener();
 
-	virtual void doPlayerFinished(int statusCode) = 0;
+	virtual void doPlayerFinished(Tizen::Base::String statusCode) = 0;
 	virtual void doPlayerFinished(GHPlayer* playerArray) = 0;
 };
 

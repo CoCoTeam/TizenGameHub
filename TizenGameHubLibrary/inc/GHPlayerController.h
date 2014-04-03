@@ -16,6 +16,9 @@
 #include <GHPlayerLoadedListener.h>
 #include <GHPlayerUpdatedListener.h>
 
+const Tizen::Base::String PLAYER_LOGIN = "02";
+const Tizen::Base::String PLAYER_PLAYERDATA = "04";
+const Tizen::Base::String PLAYER_GAMEJOIN = "05";
 
 class GHPlayerController
 	: public GHController
@@ -45,3 +48,10 @@ private:
 };
 
 #endif /* GHPLAYERCONTROLLER_H_ */
+
+/*
+ * GHPlayerController.h
+ *
+ *  Created on: Apr 2, 2014
+ *      Author: Administrator
+ */
