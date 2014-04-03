@@ -27,19 +27,19 @@ public:
 	virtual ~GHAchievementController();
 
 	// achievement 목록을 가져온다.
-	void loadAchievements(GHAchievementListener * listener);							// load listener
+	void loadAchievements(GHAchievementListener * listener);								// load listener
 
 	// hidden -> reveal 상태로 바꾼다.
-	void revealAchievement(Tizen::Base::String id);
-	void revealAchievement(Tizen::Base::String id, GHAchievementListener* listener); 	// update listener
+	void revealAchievement(Tizen::Base::String ad_id);
+	void revealAchievement(Tizen::Base::String ad_id, GHAchievementListener* listener); 	// update listener
 
 	// normal achievement update
-	void completeAchievement(Tizen::Base::String id);
-	void completeAchievement(Tizen::Base::String id, GHAchievementListener* listener); 	// update listener
+	void completeAchievement(Tizen::Base::String ad_id);
+	void completeAchievement(Tizen::Base::String ad_id, GHAchievementListener* listener); 	// update listener
 
 	// incremental achievement update
-	void increaseAchievement(Tizen::Base::String id);
-	void increaseAchievement(Tizen::Base::String id, GHAchievementListener* listener); 	// update listener
+	void increaseAchievement(Tizen::Base::String ad_id);
+	void increaseAchievement(Tizen::Base::String ad_id, GHAchievementListener* listener); 	// update listener
 
 
 private:

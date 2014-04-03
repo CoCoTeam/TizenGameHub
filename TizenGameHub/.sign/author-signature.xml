@@ -12,7 +12,7 @@
 </Reference>
 <Reference URI="lib/libTizenGameHubLibrary.so">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>fquZZzjSUKpKTT4J+F5f5ihab5AyviXU8pK97kVSobo=</DigestValue>
+<DigestValue>xMtbMh73G3qPdyEbEIC6o44FMog0y/RIReMi+WXWTk0=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -59,9 +59,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-AfugszNMBujw4WZyVFrfNXgTmPIUHdQ14cJbttRXlaUtQybvFtgifdk0wlaI96JVgEZhuHWiDuIM
-YPSRHSzTegO0e3POBwBbbQkkczLcDjgHCyDK3JX483j4vJNYfl4MGfYezcdcwRdPs8tD75/krCGU
-5mwE6umHq5/d3mDkcJU=
+bJ1ds5GLz0pp5U6EOrhD6w7KpGwUT8neYQ3m1luioSKob13tsVGVXjaa+4cK9+HZvPKaToCkUnCy
+VPDK7mzOBOulq/5gRFhAqxjATRFaRww/BzXIzeGJZGQGW4BfPR8yDF6o/AW9kMtpVp366+K2T2kg
+ywwTrKpmGVpiPxtPXuU=
 </SignatureValue>
 <KeyInfo>
 <X509Data>
