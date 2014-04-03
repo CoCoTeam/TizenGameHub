@@ -103,15 +103,14 @@ void GHAchievementController::OnTransactionReadyToRead(String apiCode, String st
 	AppLogDebug("[DEBUG] statusCode : %S", statusCode.GetPointer() );
 
 
-
 	if(apiCode.Equals(ACHIEVEMENT_LOAD)) {	// ACHIEVEMENT LOAD
-		GHAchievement *acArr;
+		ArrayList* acArr;
 
 		// 정상적으로 결과를 반환했을 때
 		if(statusCode == "1") {
 			JsonArray* 	pJsonArray 	= static_cast<JsonArray*>(data);
 			int 		arrNum 		= pJsonArray->GetCount();
-			acArr = new GHAchievement[arrNum];
+			acArr = new ArrayList();
 
 			// KEY NAME
 			String* pkeyId 			= new String(L"ac_id");
@@ -140,8 +139,8 @@ void GHAchievementController::OnTransactionReadyToRead(String apiCode, String st
 				int iGoalPoint 			= getIntByKey(pJsonOject, pkeyGoalPoint);
 				int iCurPoint 			= getIntByKey(pJsonOject, pkeyCurPoint);
 
-				// 배열에 추가
-				acArr[i] = GHAchievement(sId, sTitle, sDesc, sImgUrl, iPrize, iHidden, iComplete, iGoalPoint, iCurPoint);
+				// 리스트에 추가
+				acArr->Add(new GHAchievement(sId, sTitle, sDesc, sImgUrl, iPrize, iHidden, iComplete, iGoalPoint, iCurPoint));
 
 			}
 

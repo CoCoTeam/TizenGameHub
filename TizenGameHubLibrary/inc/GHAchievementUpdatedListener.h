@@ -20,7 +20,7 @@ public:
 	virtual void doAchievementFinished(int statusCode) = 0;
 
 private:
-	void doAchievementFinished(GHAchievement* achievementArray);
+	void doAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList);
 };
 
 #endif /* GHACHIEVEMENTUPDATEDLISTENER_H_ */

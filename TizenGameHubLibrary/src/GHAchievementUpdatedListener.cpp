@@ -16,4 +16,4 @@ GHAchievementUpdatedListener::~GHAchievementUpdatedListener() {
 	// TODO Auto-generated destructor stub
 }
 
-void GHAchievementUpdatedListener::doAchievementFinished(GHAchievement* achievementArray) {};
+void GHAchievementUpdatedListener::doAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList) {};
