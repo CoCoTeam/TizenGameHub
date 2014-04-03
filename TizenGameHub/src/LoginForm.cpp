@@ -9,7 +9,7 @@
 #include "AppResourceId.h"
 #include "TizenGameHubFrame.h"
 #include "PrefClass.h"
-//#include "GHPlayerController.h"
+#include "GHPlayerController.h"
 
 using namespace Tizen::App;
 using namespace Tizen::Ui::Scenes;
@@ -123,8 +123,8 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 	case IDA_BUTTON_TEST:
 		//---------------------------------------------------------
 
-/*		GHPlayerController* controller = new GHPlayerController();
-		controller->playerLogin("S","W");*/
+		GHPlayerController* controller = new GHPlayerController();
+		controller->playerLogin("S","W");
 
 
 		//GHAchievementController* controller = new GHAchievementController();

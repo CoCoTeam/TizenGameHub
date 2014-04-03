@@ -74,7 +74,7 @@ void GHPlayerController::getPlayerData(Tizen::Base::String playerId)
 void GHPlayerController::OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data)
 {
 	AppLogDebug("[DEBUG] apiCode : %S", apiCode.GetPointer() );
-	AppLogDebug("[DEBUG] statusCode : %S", statusCode.GetPointer());
+	//AppLogDebug("[DEBUG] statusCode : %S", statusCode.GetPointer());
 
 	if(apiCode.Equals(PLAYER_PLAYERDATA)) {	// ACHIEVEMENT LOAD
 			//GHAchievement *acArr;
@@ -113,12 +113,19 @@ void GHPlayerController::OnTransactionReadyToRead(Tizen::Base::String apiCode, T
 				playerArr = null;
 			}
 
-			//if(this->currentListener != null) this->currentListener->doAchievementFinished(acArr);
+			if(this->currentListener != null) this->currentListener->doPlayerFinished(playerArr);
+	}
+/*	else if(apiCode.Equals(PLAYER_LOGIN))
+	{
+		AppLogDebug("[DEBUG] statusCode : %S", statusCode.GetPointer());
 
-	} else { // PLAYER_LOGIN, PLAYER_GAMEJOIN
-		int stateCode;
-		Integer::Parse(statusCode, stateCode);
-
-		//if(this->currentListener != null) this->currentListener->doAchievementFinished(stateCode);
+		if(this->currentListener != null) this->currentListener->doAchievementFinished(statusCode);
+	}
+	else if(apiCode.Equals(PLAYER_GAMEJOIN))*/
+	else //PLAYER_LOGIN ,PLAYER_GAMEJOIN
+	{
+		//int stateCode;
+		//Integer::Parse(statusCode, stateCode);
+		if(this->currentListener != null) this->currentListener->doPlayerFinished(statusCode);
 	}
 }
