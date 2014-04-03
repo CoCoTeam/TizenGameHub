@@ -76,6 +76,7 @@ LoginForm::OnInitializing(void)
 	{
 		pButtonTest->SetActionId(IDA_BUTTON_TEST);
 		pButtonTest->AddActionEventListener(*this);
+		pButtonTest->SetText("LoginForm");
 	}
 
 	return r;

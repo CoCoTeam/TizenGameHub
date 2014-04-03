@@ -26,11 +26,11 @@ getGameInstance
  */
 class GHGame {
 private:
-	Tizen::Base::String* id;			// 게임 고유 ID
-	long developerId;					// 게임 개발자 고유 ID
-	Tizen::Base::String* title;			// 게임 제목
-	Tizen::Base::String* description;	// 게임 설명
-	Tizen::Base::String* imgUrl;		// 게임 아이콘 이미지 URL
+	Tizen::Base::String id;			// 게임 고유 ID
+	Tizen::Base::String developerId;					// 게임 개발자 고유 ID
+	Tizen::Base::String title;			// 게임 제목
+	Tizen::Base::String description;	// 게임 설명
+	Tizen::Base::String imgUrl;		// 게임 아이콘 이미지 URL
 
 	int leaderboardCount;				// 게임에서 사용하는 leaderboard 개수
 	int achievementCount;				// 게임에서 사용하는 achievement 개수
@@ -41,31 +41,20 @@ private:
 
 public:
 	GHGame();
-	GHGame(STRING _id, long _developerId, STRING _title, STRING _description, STRING _imgUrl,
+	GHGame(Tizen::Base::String _id, Tizen::Base::String _developerId, Tizen::Base::String _title, Tizen::Base::String _description, Tizen::Base::String _imgUrl,
 		int _leaderboardCount, int _achievementCount, int _attackhelperCount, bool _isCloudsaveEnable, bool _isTurnbasedMultiEnable);
 //	GHGame(Tizen::Web::Json::JsonObject *jsonData);
 	virtual ~GHGame();
 
 	/// Get Instance
 	static GHGame* currentGame;
-//	static GHGame* getGameInstance(long gameId)
-//	{
-//		if(currentGame == null)
-//		{
-//			Tizen::Web::Json::JsonObject *jsonData;
-//			jsonData->Construct();
-//			currentGame = new GHGame(jsonData);
-//		}
-//		return currentGame;
-//	}
-	//////////
 
 	/// Get Functions
-	Tizen::Base::String* getId();
-	long getDeveloperId();
-	Tizen::Base::String* getTitle();
-	Tizen::Base::String* getDescription();
-	Tizen::Base::String* getImgUrl();
+	Tizen::Base::String getId();
+	Tizen::Base::String getDeveloperId();
+	Tizen::Base::String getTitle();
+	Tizen::Base::String getDescription();
+	Tizen::Base::String getImgUrl();
 
 	int getLeaderboardCount();
 	int getAcheievementCount();

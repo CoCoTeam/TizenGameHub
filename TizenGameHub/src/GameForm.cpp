@@ -123,11 +123,12 @@ GameForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 			AppLog("[GameForm] Argument Received %s", gameId);
 			mGame = getGameInstance( *gameId );
 
-			pLabelGameName->SetText( *(mGame->getTitle()) );
-			pLabelGameDesc->SetText( *(mGame->getDescription()) );
+			pLabelGameName->SetText( mGame->getTitle() );
+			pLabelGameDesc->SetText( mGame->getDescription() );
 		}
-		pArgs->RemoveAll(true);
+//		pArgs->RemoveAll(true);
 		delete pArgs;
+		AppLog("[GameForm] Argument Received" );
 	}
 }
 
@@ -144,19 +145,19 @@ GHGame* GameForm::getGameInstance(Tizen::Base::String id)
 	GHGame* game;
 	if(id == "111") {
 		AppLog("111");
-		game = new GHGame("111", 100, "FunnyGame", "This Game is really fun.", "default", 1, 1, 1, false, false);
+		game = new GHGame("111", "100", "FunnyGame", "This Game is really fun.", "default", 1, 1, 1, false, false);
 	}
 	else if(id == "222") {
 		AppLog("222");
-		game = new GHGame("222", 101, "MultiGame", "This Game provides Turn-Based Multiplay.", "default", 2, 2, 2, false, true);
+		game = new GHGame("222", "101", "MultiGame", "This Game provides Turn-Based Multiplay.", "default", 2, 2, 2, false, true);
 	}
 	else if(id == "333") {
 		AppLog("333");
-		game = new GHGame("333", 100, "CloudGame", "This Game provides Cloud Save.", "default", 1, 3, 2, true, false);
+		game = new GHGame("333", "100", "CloudGame", "This Game provides Cloud Save.", "default", 1, 3, 2, true, false);
 	}
 	else {
 		AppLog("null");
-		game = new GHGame("111", 100, "FunnyGame", "This Game is really fun.", "default", 1, 1, 1, false, false);
+		game = new GHGame("111", "100", "FunnyGame", "This Game is really fun.", "default", 1, 1, 1, false, false);
 	}
 
 	return game;

@@ -200,7 +200,7 @@ void PlayerForm::getCurrentPlayerData(String playerId)
 }
 void PlayerForm::setPlayerData()
 {
-	pLabelUserName->SetText( *(mPlayer->getName()) );
+	pLabelUserName->SetText( (mPlayer->getName()) );
 	String *totalScoreStr = new String();
 	totalScoreStr->Append(mPlayer->getTotalScore());
 	pLabelUserScore->SetText( *totalScoreStr );
@@ -216,9 +216,9 @@ void PlayerForm::getGames(String playerId)
 {
 	pGameList = new ArrayList();
 
-	pGameList->Add( (Object*)new GHGame("111", 100, "FunnyGame", "This Game is really fun.", "default", 1, 1, 1, false, false) );
-	pGameList->Add( (Object*)new GHGame("222", 101, "MultiGame", "This Game provides Turn-Based Multiplay.", "default", 2, 2, 2, false, true) );
-	pGameList->Add( (Object*)new GHGame("333", 100, "CloudGame", "This Game provides Cloud Save.", "default", 1, 3, 2, true, false) );
+	pGameList->Add( (Object*)new GHGame("111", "100", "FunnyGame", "This Game is really fun.", "default", 1, 1, 1, false, false) );
+	pGameList->Add( (Object*)new GHGame("222", "101", "MultiGame", "This Game provides Turn-Based Multiplay.", "default", 2, 2, 2, false, true) );
+	pGameList->Add( (Object*)new GHGame("333", "100", "CloudGame", "This Game provides Cloud Save.", "default", 1, 3, 2, true, false) );
 }
 void PlayerForm::setGameList()
 {

@@ -31,8 +31,8 @@ void GHGameListItemEventListener::OnListViewItemStateChanged
 (Tizen::Ui::Controls::ListView &listView, int index, int elementId, Tizen::Ui::Controls::ListItemStatus status)
 {
 	if (status == Tizen::Ui::Controls::LIST_ITEM_STATUS_SELECTED) {
-		Tizen::Base::String* gameId = ((GHGame*)(list.GetAt(index)))->getId();
-		AppLog("[GHGameListItemEventListener] Game Id : %s", gameId);
+		Tizen::Base::String gameId = ((GHGame*)(list.GetAt(index)))->getId();
+//		AppLog("[GHGameListItemEventListener] Game Id : %s", gameId);
 
 		Tizen::Base::Collection::ArrayList* pList = new (std::nothrow)Tizen::Base::Collection::ArrayList;
 		AppAssert(pList);
