@@ -26,7 +26,7 @@ GHAchievementController::~GHAchievementController() {
 
 
 // Achievement 목록을 가져온다.
-void GHAchievementController::loadAchievements(GHAchievementListener* listener) {
+void GHAchievementController::loadAchievements(GHAchievementLoadedListener* listener) {
 
 	this->currentListener = listener;
 
@@ -50,7 +50,7 @@ void GHAchievementController::revealAchievement(String ac_id) {
 
 	httpPost.RequestHttpPutTran(this, url, __pMap);
 }
-void GHAchievementController::revealAchievement(String ac_id, GHAchievementListener* listener) {
+void GHAchievementController::revealAchievement(String ac_id, GHAchievementUpdatedListener* listener) {
 	this->currentListener = listener;
 	this->revealAchievement(ac_id);
 }
@@ -69,7 +69,7 @@ void GHAchievementController::completeAchievement(String ac_id) {
 
 	httpPost.RequestHttpPutTran(this, url, __pMap);
 }
-void GHAchievementController::completeAchievement(String ac_id, GHAchievementListener* listener) {
+void GHAchievementController::completeAchievement(String ac_id, GHAchievementUpdatedListener* listener) {
 	this->currentListener = listener;
 	this->completeAchievement(ac_id);
 }
@@ -89,7 +89,7 @@ void GHAchievementController::increaseAchievement(String ac_id) {
 
 	httpPost.RequestHttpPutTran(this, url, __pMap);
 }
-void GHAchievementController::increaseAchievement(String ac_id, GHAchievementListener* listener) {
+void GHAchievementController::increaseAchievement(String ac_id, GHAchievementUpdatedListener* listener) {
 	this->currentListener = listener;
 	this->increaseAchievement(ac_id);
 }
@@ -98,6 +98,69 @@ void GHAchievementController::increaseAchievement(String ac_id, GHAchievementLis
 
 // 모든 통신의 콜백에서 호출하는 함수
 void GHAchievementController::OnTransactionReadyToRead(String apiCode, String statusCode, IJsonValue* data){
+
+	AppLogDebug("[DEBUG] apiCode : %S", apiCode.GetPointer() );
+	AppLogDebug("[DEBUG] statusCode : %S", statusCode.GetPointer() );
+
+
+
+	if(apiCode.Equals(ACHIEVEMENT_LOAD)) {	// ACHIEVEMENT LOAD
+		GHAchievement *acArr;
+
+		// 정상적으로 결과를 반환했을 때
+		if(statusCode == "1") {
+			JsonArray* 	pJsonArray 	= static_cast<JsonArray*>(data);
+			int 		arrNum 		= pJsonArray->GetCount();
+			acArr = new GHAchievement[arrNum];
+
+			// KEY NAME
+			String* pkeyId 			= new String(L"ac_id");
+			String* pkeyTitle 		= new String(L"title");
+			String* pkeyDesc 		= new String(L"description");
+			String* pkeyImgUrl 		= new String(L"img_url");
+			String* pkeyPrize 		= new String(L"prize");
+			String* pkeyGoalPoint 	= new String(L"goal_point");
+			String* pkeyIsComplete 	= new String(L"is_complete");
+			String* pkeyIsHidden 	= new String(L"is_hidden");
+			String* pkeyCurPoint 	= new String(L"cur_point");
+
+			//AppLogDebug("[DEBUG] arrNum : %d", arrNum );
+
+			for(int i=0; i<arrNum; i++) {
+				JsonObject *pJsonOject 	= getJsonObjectByIndex(pJsonArray, i);
+
+				// 데이터 파싱
+				String  sId 			= getStringByKey(pJsonOject, pkeyId);
+				String  sTitle 			= getStringByKey(pJsonOject, pkeyTitle);
+				String  sDesc 			= getStringByKey(pJsonOject, pkeyDesc);
+				String  sImgUrl 		= getStringByKey(pJsonOject, pkeyImgUrl);
+				int iPrize 				= getIntByKey(pJsonOject, pkeyPrize);
+				int iHidden 			= getIntByKey(pJsonOject, pkeyIsHidden);
+				int iComplete 			= getIntByKey(pJsonOject, pkeyIsComplete);
+				int iGoalPoint 			= getIntByKey(pJsonOject, pkeyGoalPoint);
+				int iCurPoint 			= getIntByKey(pJsonOject, pkeyCurPoint);
+
+				// 배열에 추가
+				acArr[i] = GHAchievement(sId, sTitle, sDesc, sImgUrl, iPrize, iHidden, iComplete, iGoalPoint, iCurPoint);
+
+			}
+
+			// KEY NAME DELETE
+			delete pkeyId; 			delete pkeyTitle;		delete pkeyDesc;	 delete pkeyImgUrl;		delete pkeyPrize;
+			delete pkeyGoalPoint;	delete pkeyIsComplete;	delete pkeyIsHidden; delete pkeyCurPoint;
+
+		}else { // 에러가 발생했을 때
+			acArr = null;
+		}
+
+		if(this->currentListener != null) this->currentListener->doAchievementFinished(acArr);
+
+	} else { // ACHIEVEMENT_REVEAL, ACHIEVEMENT_COMPLETE, ACHIEVEMENT_SET
+		int stateCode;
+		Integer::Parse(statusCode, stateCode);
+
+		if(this->currentListener != null) this->currentListener->doAchievementFinished(stateCode);
+	}
 
 
 	// reveal, complete, increase TEST /////////////////////////////////////////////////////////
@@ -117,29 +180,29 @@ void GHAchievementController::OnTransactionReadyToRead(String apiCode, String st
 //	IJsonValue* pDataValue = null;
 //	data->GetValue(pStrDataKey, pDataValue);
 
-	JsonArray* jsonArray = static_cast<JsonArray*>(data);
-
-	IJsonValue* pValue = null;
-	jsonArray->GetAt(0, pValue);
-	JsonObject* pJsonObj = static_cast<JsonObject*>(pValue);
-
-	// Key에 대한 값을 뽑는다.
-	String* pStrFNKey      = new String(L"img_url");
-	IJsonValue* pObjValue = null;
-	pJsonObj->GetValue(pStrFNKey, pObjValue);
-
-	String* pStrFNKey2      = new String(L"ac_id");
-	IJsonValue* pObjValue2 = null;
-	pJsonObj->GetValue(pStrFNKey2, pObjValue2);
-
-	// 형변환 한다.
-	JsonString* pJsonStr = static_cast<JsonString*>(pObjValue);
-	JsonNumber* pJsonNum = static_cast<JsonNumber*>(pObjValue2);
-
-	// JsonString*을 String으로 변환한다.
-	//String zString(pJsonStr->GetPointer());
-
-	AppLogDebug("value : %S", pJsonStr->GetPointer());
-	AppLogDebug("value : %d", pJsonNum->ToInt());
+//	JsonArray* jsonArray = static_cast<JsonArray*>(data);
+//
+//	IJsonValue* pValue = null;
+//	jsonArray->GetAt(0, pValue);
+//	JsonObject* pJsonObj = static_cast<JsonObject*>(pValue);
+//
+//	// Key에 대한 값을 뽑는다.
+//	String* pStrFNKey      = new String(L"img_url");
+//	IJsonValue* pObjValue = null;
+//	pJsonObj->GetValue(pStrFNKey, pObjValue);
+//
+//	String* pStrFNKey2      = new String(L"ac_id");
+//	IJsonValue* pObjValue2 = null;
+//	pJsonObj->GetValue(pStrFNKey2, pObjValue2);
+//
+//	// 형변환 한다.
+//	JsonString* pJsonStr = static_cast<JsonString*>(pObjValue);
+//	JsonNumber* pJsonNum = static_cast<JsonNumber*>(pObjValue2);
+//
+//	// JsonString*을 String으로 변환한다.
+//	//String zString(pJsonStr->GetPointer());
+//
+//	AppLogDebug("value : %S", pJsonStr->GetPointer());
+//	AppLogDebug("value : %d", pJsonNum->ToInt());
 //	///////////////////////////////////////////////////////////////////
 }

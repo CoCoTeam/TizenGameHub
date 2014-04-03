@@ -45,7 +45,7 @@ private:
 	static const int IDA_BUTTON_JOIN = 101;
 	static const int IDA_BUTTON_CANCEL = 102;
 
-	// GHControlle
+	// GHController
 	virtual void OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data);
 
 	result doJoin();
