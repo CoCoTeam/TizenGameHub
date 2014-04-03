@@ -65,6 +65,11 @@ LoginForm::OnInitializing(void)
 	pTextEmail = static_cast< EditField* >(GetControl(IDC_LOGIN_EDITTEXT_EMAIL));
 	pTextPw = static_cast< EditField* >(GetControl(IDC_LOGIN_EDITTEXT_PW));
 
+	//For test(Default Id/Pw)-------------------------------
+	pTextEmail->SetText(L"kichul");
+	pTextPw->SetText(L"kichulbabo");
+	//------------------------------------------------------
+
 	//Button Test----------------------------
 	Button* pButtonTest = static_cast< Button* >(GetControl(IDC_LOGIN_BUTTON_TEST));
 	if (pButtonTest != null)
