@@ -35,7 +35,7 @@ result AchievementForm::OnInitializing(void)
 	SetFormBackEventListener(this);
 
 	// Get a button via resource ID
-//	loadAchievements(this);
+	loadAchievements(this);
 
 	return r;
 }
@@ -62,7 +62,6 @@ void AchievementForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 void AchievementForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 										  const Tizen::Ui::Scenes::SceneId& currentSceneId, Tizen::Base::Collection::IList* pArgs)
 {
-
 	// TODO: Activate your scene here.
 	if (pArgs != null)
 	{
@@ -87,9 +86,10 @@ void AchievementForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& curre
 
 }
 
-
-//void AchievementForm::doAchievementFinished(GHAchievement* achievementArray)
-//{
-//
-//}
+//GHAchievementLoadedListener
+void AchievementForm::doAchievementFinished(GHAchievement* achievementArray)
+{
+	ac_list = achievementArray;
+	AppLogDebug("[AchievementForm] achievementArray Received. (arraySize : %d)", 3 );
+}
 

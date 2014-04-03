@@ -20,38 +20,29 @@ img_url		프로필 이미지 url
 getGameInstance();
  */
 class GHPlayer{
-protected:
-	STRING* id;			// 사용자 고유 ID
-	STRING* email;		// 사용자 이메일
-	STRING* name;		// 사용자 이름
-	STRING* imgUrl;		// 사용자 프로필이미지 URL
+private:
+	// variable
+	Tizen::Base::String id;			// 사용자 고유 ID
+	Tizen::Base::String email;		// 사용자 이메일
+	Tizen::Base::String name;		// 사용자 이름
+	Tizen::Base::String imgUrl;		// 사용자 프로필이미지 URL
 
 	long totalScore;	// 사용자별 Achievement 총합 점수
 
 public:
 	GHPlayer();
-	GHPlayer(STRING _id, STRING _email, STRING _name, STRING _imgUrl);
+	GHPlayer(Tizen::Base::String _id, Tizen::Base::String _email, Tizen::Base::String _name, Tizen::Base::String _imgUrl);
 //	GHPlayer(Tizen::Web::Json::JsonObject *jsonData);
 	~GHPlayer();
 
-	/// Get Instance
-//	static GHPlayer* getPlayerInstance(long playerId)
-//	{
-//		Tizen::Web::Json::JsonObject *jsonData;
-//		jsonData->Construct();
-//		return new GHPlayer(jsonData);
-//	}
-	//////////
-
-	/// Get Functions
-	STRING* getId();
-	STRING* getEmail();
-	STRING* getName();
-	STRING* getImgUrl();
+	// GET Function ------------------------------------------------
+	Tizen::Base::String getId();
+	Tizen::Base::String getEmail();
+	Tizen::Base::String getName();
+	Tizen::Base::String getImgUrl();
 
 	long getTotalScore();
-	//////////
-
+	//----------------------------------------------------------------
 
 };
 

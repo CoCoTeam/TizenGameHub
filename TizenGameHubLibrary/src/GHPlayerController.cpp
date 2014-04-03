@@ -58,3 +58,8 @@ void GHPlayerController::getPlayerData(Tizen::Base::String playerId)
  * return : status code ( 0: 실패, 1: 성공) // {statusCode : 0}
  */
 
+
+void GHPlayerController::OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data)
+{
+
+}
