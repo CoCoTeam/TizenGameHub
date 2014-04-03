@@ -131,10 +131,11 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 }
 
 // API TEST
-void LoginForm::doAchievementFinished(GHAchievement* achievementArray) {
+void LoginForm::doAchievementFinished(ArrayList* achievementList) {
 
 	// TEST
-	AppLogDebug("[DEBUG] acArr ID : %S", achievementArray[0].getId().GetPointer() );
+	GHAchievement * test = static_cast<GHAchievement*>(achievementList->GetAt(0));
+	AppLogDebug("[DEBUG] acArr ID : %S", test->getId().GetPointer() );
 }
 void LoginForm::doAchievementFinished(int statusCode) {
 	// TEST

@@ -44,7 +44,7 @@ private:
 	static const int IDA_BUTTON_TEST = 103;
 
 	// API TEST
-	virtual void doAchievementFinished(GHAchievement* achievementArray);
+	virtual void doAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList);
 	virtual void doAchievementFinished(int statusCode);
 
 	result doLogin();
