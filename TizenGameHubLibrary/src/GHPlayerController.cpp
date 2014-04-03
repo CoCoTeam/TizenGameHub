@@ -29,7 +29,17 @@ GHPlayerController::~GHPlayerController() {
 void GHPlayerController::playerLogin(Tizen::Base::String email, Tizen::Base::String pwd)
 {
 
+	GHhttpClient* httpPost = new GHhttpClient();
+
+	Tizen::Base::Collection::HashMap* __pMap = new (std::nothrow) Tizen::Base::Collection::HashMap();
+	__pMap->Construct();
+	__pMap->Add(new String("email"), new String(email));
+	__pMap->Add(new String("pwd"), new String(pwd));
+
+	//post 함수 호출
+	httpPost->RequestHttpPostTran(this, L"/players/login", __pMap);
 }
+
 //String playerLogin(Tizen::Base::String email, Tizen::Base::String pwd, GHPlayerListener* listener);
 
 // 사용자 정보 가져오기
