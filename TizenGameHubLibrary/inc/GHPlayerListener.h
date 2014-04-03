@@ -14,8 +14,8 @@ public:
 	virtual ~GHPlayerListener();
 
 	virtual void doPlayerFinished(int statusCode) = 0;
-	virtual void doPlayerFinished(GHPlayer* playerArray) = 0;
+	//virtual void doPlayerFinished(GHPlayer* playerArray) = 0;
 };
-};
+
 
 #endif /* GHPLAYERLISTENER_H_ */

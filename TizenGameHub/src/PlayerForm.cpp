@@ -200,7 +200,7 @@ void PlayerForm::getCurrentPlayerData(String playerId)
 }
 void PlayerForm::setPlayerData()
 {
-	pLabelUserName->SetText( *(mPlayer->getName()) );
+	pLabelUserName->SetText( (mPlayer->getName()) );
 	String *totalScoreStr = new String();
 	totalScoreStr->Append(mPlayer->getTotalScore());
 	pLabelUserScore->SetText( *totalScoreStr );

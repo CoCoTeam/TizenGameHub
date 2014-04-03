@@ -16,9 +16,9 @@
 #include <GHPlayerLoadedListener.h>
 #include <GHPlayerUpdatedListener.h>
 
-
-
-
+const Tizen::Base::String PLAYER_LOGIN = "02";
+const Tizen::Base::String PLAYER_PLAYERDATA = "04";
+const Tizen::Base::String PLAYER_GAMEJOIN = "05";
 
 class GHPlayerController
 	: public GHController
@@ -44,7 +44,7 @@ public:
 private:
 	virtual void OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data);
 	Tizen::Base::Collection::HashMap* __pMap;
-	GHAchievementListener* currentListener;
+	GHPlayerLoadedListener* currentListener;
 };
 
 #endif /* GHPLAYERCONTROLLER_H_ */
