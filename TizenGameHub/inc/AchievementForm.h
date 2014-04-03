@@ -26,7 +26,7 @@ public:
 	virtual ~AchievementForm();
 	bool Initialize(void);
 
-	GHAchievement* ac_list;
+	Tizen::Base::Collection::ArrayList* ac_list;
 
 private:
 	virtual result OnInitializing(void);
@@ -42,7 +42,7 @@ private:
 	virtual void OnFormBackRequested(Tizen::Ui::Controls::Form& source);
 
 	//GHAchievementLoadedListener
-	virtual void doAchievementFinished(GHAchievement* achievementArray);
+	virtual void doAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList);
 };
 
 #endif /* ACHIEVEMENTFORM_H_ */

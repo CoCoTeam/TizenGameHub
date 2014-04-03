@@ -17,9 +17,6 @@
 #include <GHPlayerUpdatedListener.h>
 
 
-
-
-
 class GHPlayerController
 	: public GHController
 {
@@ -44,7 +41,7 @@ public:
 private:
 	virtual void OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data);
 	Tizen::Base::Collection::HashMap* __pMap;
-	GHAchievementListener* currentListener;
+	GHPlayerListener* currentListener;
 };
 
 #endif /* GHPLAYERCONTROLLER_H_ */

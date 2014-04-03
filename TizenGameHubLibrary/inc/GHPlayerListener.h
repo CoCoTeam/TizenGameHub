@@ -8,6 +8,8 @@
 #ifndef GHPLAYERLISTENER_H_
 #define GHPLAYERLISTENER_H_
 
+#include <GHPlayer.h>
+
 class GHPlayerListener {
 public:
 	GHPlayerListener();
@@ -15,7 +17,6 @@ public:
 
 	virtual void doPlayerFinished(int statusCode) = 0;
 	virtual void doPlayerFinished(GHPlayer* playerArray) = 0;
-};
 };
 
 #endif /* GHPLAYERLISTENER_H_ */
