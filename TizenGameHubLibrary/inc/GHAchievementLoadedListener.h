@@ -12,7 +12,7 @@
 #include <GHAchievementListener.h>
 
 class GHAchievementLoadedListener
-	: public GHAchievementListener
+	:  public virtual GHAchievementListener
 {
 public:
 	GHAchievementLoadedListener();

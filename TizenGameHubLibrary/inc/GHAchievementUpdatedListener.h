@@ -12,7 +12,7 @@
 #include <GHAchievementListener.h>
 
 class GHAchievementUpdatedListener
-	: public GHAchievementListener
+	:  public virtual GHAchievementListener
 {
 public:
 	GHAchievementUpdatedListener();

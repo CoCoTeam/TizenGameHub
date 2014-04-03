@@ -12,13 +12,15 @@
 #include <GHController.h>
 #include <GHAchievement.h>
 #include <GHAchievementListener.h>
+#include <GHAchievementLoadedListener.h>
+#include <GHAchievementUpdatedListener.h>
 #include <GHhttpClient.h>
 
-const int ERROR					= 0;
-const int ACHIEVEMENT_LOAD		= 11;
-const int ACHIEVEMENT_REVEAL 	= 12;
-const int ACHIEVEMENT_COMPLETE 	= 13;
-const int ACHIEVEMENT_SET 		= 14;
+//const String ERROR					= "0";
+const Tizen::Base::String ACHIEVEMENT_LOAD		= "11";
+const Tizen::Base::String ACHIEVEMENT_REVEAL 	= "12";
+const Tizen::Base::String ACHIEVEMENT_COMPLETE 	= "13";
+const Tizen::Base::String ACHIEVEMENT_SET 		= "14";
 
 class GHAchievementController
 	: public GHController{
@@ -27,19 +29,20 @@ public:
 	virtual ~GHAchievementController();
 
 	// achievement 목록을 가져온다.
-	void loadAchievements(GHAchievementListener * listener);								// load listener
+	void loadAchievements(GHAchievementLoadedListener * listener);							// load listener
 
 	// hidden -> reveal 상태로 바꾼다.
-	void revealAchievement(Tizen::Base::String ad_id);
-	void revealAchievement(Tizen::Base::String ad_id, GHAchievementListener* listener); 	// update listener
+	void revealAchievement(Tizen::Base::String ac_id);
+	void revealAchievement(Tizen::Base::String ac_id, GHAchievementUpdatedListener* listener); 	// update listener
 
 	// normal achievement update
-	void completeAchievement(Tizen::Base::String ad_id);
-	void completeAchievement(Tizen::Base::String ad_id, GHAchievementListener* listener); 	// update listener
+	void completeAchievement(Tizen::Base::String ac_id);
+	void completeAchievement(Tizen::Base::String ac_id, GHAchievementUpdatedListener* listener); 	// update listener
 
 	// incremental achievement update
-	void increaseAchievement(Tizen::Base::String ad_id);
-	void increaseAchievement(Tizen::Base::String ad_id, GHAchievementListener* listener); 	// update listener
+	void increaseAchievement(Tizen::Base::String ac_id);
+	void increaseAchievement(Tizen::Base::String ac_id, GHAchievementUpdatedListener* listener); 	// update listener
+
 
 
 private:

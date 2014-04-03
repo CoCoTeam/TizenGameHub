@@ -11,11 +11,7 @@
 #include <GHTizen.h>
 
 class GHAchievement {
-public:
-	GHAchievement();
-	virtual ~GHAchievement();
-
-	//----------------------------------------------------------------
+private:
 	// variable
 	Tizen::Base::String	id;			// achievement 고유키
 	Tizen::Base::String title;		// achievement 제목
@@ -29,9 +25,13 @@ public:
 	int 	goalPoint;	// 목표 점수
 	int		curPoint;	// 현재 점수
 
-	//----------------------------------------------------------------
-	// GET Function
-	int 	getId();
+public:
+	GHAchievement();
+	GHAchievement(Tizen::Base::String _id, Tizen::Base::String _title, Tizen::Base::String _description, Tizen::Base::String _imgUrl, int _prize, int _isHidden, int _isComplete, int _goalPoint, int _curPoint);
+	virtual ~GHAchievement();
+
+	// GET Function ------------------------------------------------
+	Tizen::Base::String getId();
 	Tizen::Base::String getTitle();
 	Tizen::Base::String getDescription();
 	Tizen::Base::String getImgUrl();
@@ -43,7 +43,6 @@ public:
 	int 	getGoalPoint();
 	int 	getCurPoint();
 	int 	getPrize();
-
 	//----------------------------------------------------------------
 
 };

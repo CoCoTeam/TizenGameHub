@@ -116,9 +116,9 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 	// API TEST
 	case IDA_BUTTON_TEST:
 		//---------------------------------------------------------
-		GHAchievementController* controller = new GHAchievementController();
-		controller->loadAchievements(this);
-		//controller->revealAchievement("4");
+		//GHAchievementController* controller = new GHAchievementController();
+		//controller->loadAchievements(this);
+		//controller->revealAchievement("4", this);
 		//controller->completeAchievement("4");
 		//controller->increaseAchievement("4");
 		break;
@@ -128,8 +128,13 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 // API TEST
 void LoginForm::doAchievementFinished(GHAchievement* achievementArray) {
 
+	// TEST
+	AppLogDebug("[DEBUG] acArr ID : %S", achievementArray[0].getId().GetPointer() );
 }
-
+void LoginForm::doAchievementFinished(int statusCode) {
+	// TEST
+	AppLogDebug("[DEBUG] update listener statusCode : %d", statusCode );
+}
 
 void LoginForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 {
@@ -217,6 +222,9 @@ void LoginForm::OnTransactionReadyToRead(String apiCode, String statusCode, IJso
 //
 //	//형변환
 //	String zString(pJsonStr->GetPointer());
+
+
+	AppLogDebug("SATUS : %S",statusCode.GetPointer());
 
 
 	MessageBox msgBox;
