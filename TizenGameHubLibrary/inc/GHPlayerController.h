@@ -48,3 +48,10 @@ private:
 };
 
 #endif /* GHPLAYERCONTROLLER_H_ */
+
+/*
+ * GHPlayerController.h
+ *
+ *  Created on: Apr 2, 2014
+ *      Author: Administrator
+ */

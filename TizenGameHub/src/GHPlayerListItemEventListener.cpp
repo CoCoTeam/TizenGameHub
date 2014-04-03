@@ -55,4 +55,5 @@ void GHPlayerListItemEventListener::setItemList(Tizen::Base::Collection::ArrayLi
 	{
 		list.Add( (Tizen::Base::Object*)(_list->GetAt(i)) );
 	}
+
 }

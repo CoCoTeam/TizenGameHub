@@ -8,6 +8,8 @@
 #ifndef GHATTACKHELPER_H_
 #define GHATTACKHELPER_H_
 
+#include "GHTizen.h"
+
 class GHAttackhelper {
 private:
 	Tizen::Base::String	id;			// attack helper 고유키
