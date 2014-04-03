@@ -12,6 +12,13 @@
 #include <GHhttpClient.h>
 #include <GHController.h>
 #include <GHPlayer.h>
+#include <GHPlayerListener.h>
+#include <GHPlayerLoadedListener.h>
+#include <GHPlayerUpdatedListener.h>
+
+
+
+
 
 class GHPlayerController
 	: public GHController
@@ -35,9 +42,9 @@ public:
 
 
 private:
-//	virtual void OnTransactionReadyToRead(Tizen::Web::Json::IJsonValue* data);
+	virtual void OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data);
 	Tizen::Base::Collection::HashMap* __pMap;
-//	GHLeaderboardListener* currentListener;
+	GHAchievementListener* currentListener;
 };
 
 #endif /* GHPLAYERCONTROLLER_H_ */

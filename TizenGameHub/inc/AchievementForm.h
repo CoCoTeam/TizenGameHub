@@ -18,15 +18,15 @@ class AchievementForm
 	, public Tizen::Ui::IActionEventListener
 	, public Tizen::Ui::Controls::IFormBackEventListener
 	, public Tizen::Ui::Scenes::ISceneEventListener
-//	, public GHAchievementController
-//	, public GHAchievementLoadedListener
+	, public GHAchievementController
+	, public GHAchievementLoadedListener
 {
 public:
 	AchievementForm();
 	virtual ~AchievementForm();
 	bool Initialize(void);
 
-//	GHAchievement* ac_list;
+	GHAchievement* ac_list;
 
 private:
 	virtual result OnInitializing(void);
@@ -41,8 +41,8 @@ private:
 									const Tizen::Ui::Scenes::SceneId& nextSceneId);
 	virtual void OnFormBackRequested(Tizen::Ui::Controls::Form& source);
 
-//	//GHAchievementLoadedListener
-//	virtual void doAchievementFinished(GHAchievement* achievementArray);
+	//GHAchievementLoadedListener
+	virtual void doAchievementFinished(GHAchievement* achievementArray);
 };
 
 #endif /* ACHIEVEMENTFORM_H_ */
