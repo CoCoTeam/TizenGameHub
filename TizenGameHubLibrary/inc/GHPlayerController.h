@@ -39,6 +39,8 @@ public:
 
 
 	// 특정 게임에 사용자 등록하기(게임가입)
+	void PlayerGameJoin(Tizen::Base::String playerId, Tizen::Base::String gameId);
+
 
 
 private:

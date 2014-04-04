@@ -74,22 +74,29 @@ void GHPlayerController::getPlayerData(Tizen::Base::String playerId)
  * data : player_id, game_id
  * return : status code ( 0: 실패, 1: 성공) // {statusCode : 0}
  */
+void PlayerGameJoin(Tizen::Base::String playerId, Tizen::Base::String gameId)
+{
+	String url(L"/players/gamejoin");
 
+	Tizen::Base::Collection::HashMap* __pMap = new (std::nothrow) Tizen::Base::Collection::HashMap();
+	__pMap->Construct();
+	__pMap->Add(new String("player_id"), new String(playerId));
+	__pMap->Add(new String("game_id"), new String(gameId));
+
+	//post 함수 호출
+	httpPost.RequestHttpPostTran(this, url, __pMap);
+}
 
 void GHPlayerController::OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data)
 {
 	AppLogDebug("[DEBUG] apiCode : %S", apiCode.GetPointer() );
 	AppLogDebug("[DEBUG] statusCode : %S", statusCode.GetPointer());
 
-	if(apiCode.Equals(PLAYER_PLAYERDATA)) {	// ACHIEVEMENT LOAD
-			//GHAchievement *acArr;
-
+	if(apiCode.Equals(PLAYER_PLAYERDATA)) {	// PLAYER_PLAYERDATA
 			GHPlayer *player;
 
 			// 정상적으로 결과를 반환했을 때
 			if(statusCode == "1") {
-
-
 
 				JsonObject *pJsonOject 	= static_cast<JsonObject*>(data);
 
@@ -112,8 +119,6 @@ void GHPlayerController::OnTransactionReadyToRead(Tizen::Base::String apiCode, T
 
 				delete pkeyEmail;		delete pkeyName;	 delete pkeyImgUrl;
 
-
-
 			}
 			else { // 에러가 발생했을 때
 				player = null;
@@ -121,17 +126,8 @@ void GHPlayerController::OnTransactionReadyToRead(Tizen::Base::String apiCode, T
 
 			if(this->currentListener != null) this->currentListener->doPlayerFinished(player);
 	}
-/*	else if(apiCode.Equals(PLAYER_LOGIN))
-	{
-		AppLogDebug("[DEBUG] statusCode : %S", statusCode.GetPointer());
-
-		if(this->currentListener != null) this->currentListener->doAchievementFinished(statusCode);
-	}
-	else if(apiCode.Equals(PLAYER_GAMEJOIN))*/
 	else //PLAYER_LOGIN ,PLAYER_GAMEJOIN
 	{
-		//int stateCode;
-		//Integer::Parse(statusCode, stateCode);
 		if(this->currentListener != null) this->currentListener->doPlayerFinished(statusCode);
 	}
 }
