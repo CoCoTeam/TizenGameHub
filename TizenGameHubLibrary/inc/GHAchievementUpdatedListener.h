@@ -9,7 +9,6 @@
 #define GHACHIEVEMENTUPDATEDLISTENER_H_
 
 #include <GHAchievement.h>
-#include <GHAchievementListener.h>
 
 class GHAchievementUpdatedListener
 	:  public virtual GHAchievementListener
@@ -18,9 +17,7 @@ public:
 	GHAchievementUpdatedListener();
 	virtual ~GHAchievementUpdatedListener();
 	virtual void doAchievementFinished(int statusCode) = 0;
-
 private:
-	void doAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList);
 };
 
 #endif /* GHACHIEVEMENTUPDATEDLISTENER_H_ */

@@ -126,7 +126,7 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 
 		GHPlayerController* controller = new GHPlayerController();
 		//controller->playerLogin("S","W");
-		controller->getPlayerData("pkeyS");
+		//controller->getPlayerData("pkeyS");
 
 		//GHAchievementController* controller = new GHAchievementController();
 	 	//controller->loadAchievements(this);
