@@ -74,7 +74,7 @@ void GHPlayerController::getPlayerData(Tizen::Base::String playerId)
  * data : player_id, game_id
  * return : status code ( 0: 실패, 1: 성공) // {statusCode : 0}
  */
-void PlayerGameJoin(Tizen::Base::String playerId, Tizen::Base::String gameId)
+void GHPlayerController::PlayerGameJoin(Tizen::Base::String playerId, Tizen::Base::String gameId)
 {
 	String url(L"/players/gamejoin");
 
