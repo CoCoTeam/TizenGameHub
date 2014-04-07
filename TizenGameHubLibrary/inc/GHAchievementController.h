@@ -11,6 +11,7 @@
 #include <GHTizen.h>
 #include <GHController.h>
 #include <GHAchievement.h>
+#include <GHAchievementListener.h>
 #include <GHAchievementLoadedListener.h>
 #include <GHAchievementUpdatedListener.h>
 #include <GHhttpClient.h>
