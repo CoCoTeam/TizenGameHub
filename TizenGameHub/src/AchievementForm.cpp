@@ -87,9 +87,9 @@ void AchievementForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& curre
 }
 
 //GHAchievementLoadedListener
-void AchievementForm::doAchievementFinished(GHAchievement* achievementArray)
+void AchievementForm::doAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList)
 {
-	ac_list = achievementArray;
-	AppLogDebug("[AchievementForm] achievementArray Received. (arraySize : %d)", 3 );
+	ac_list = achievementList;
+	AppLogDebug("[AchievementForm] achievementArray Received. (arraySize : %d)", ac_list->GetCount() );
 }
 

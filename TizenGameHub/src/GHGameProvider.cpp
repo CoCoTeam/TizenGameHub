@@ -26,9 +26,9 @@ Tizen::Ui::Controls::ListItemBase* GHGameProvider::CreateItem(int index, int ite
 	Tizen::Ui::Controls::SimpleItem* pItem = new Tizen::Ui::Controls::SimpleItem();
 	AppAssert(pItem);
 
-	Tizen::Base::String* text = static_cast<Tizen::Base::String*>( ((GHGame*)(list.GetAt(index)))->getTitle() );
+	Tizen::Base::String text =  ((GHGame*)(list.GetAt(index)))->getTitle();
 	pItem->Construct(Tizen::Graphics::Dimension(itemWidth, 80), Tizen::Ui::Controls::LIST_ANNEX_STYLE_NORMAL);
-	pItem->SetElement(*text);
+	pItem->SetElement(text);
 
 	return pItem;
 }

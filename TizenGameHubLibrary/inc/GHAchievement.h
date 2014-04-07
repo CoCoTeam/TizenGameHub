@@ -10,7 +10,8 @@
 
 #include <GHTizen.h>
 
-class GHAchievement {
+class GHAchievement
+: public Tizen::Base::Object {
 private:
 	// variable
 	Tizen::Base::String	id;			// achievement 고유키

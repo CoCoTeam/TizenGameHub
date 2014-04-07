@@ -20,7 +20,7 @@ public:
 	virtual void doPlayerFinished(GHPlayer* playerArray) = 0;
 
 private:
-	void doPlayerFinished(int statusCode);
+	void doPlayerFinished(Tizen::Base::String statusCode);
 };
 
 #endif /* GHPLAYERLOADEDLISTENER_H_ */

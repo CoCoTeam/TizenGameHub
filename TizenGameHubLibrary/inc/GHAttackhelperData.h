@@ -8,7 +8,11 @@
 #ifndef GHATTACKHELPERDATA_H_
 #define GHATTACKHELPERDATA_H_
 
+<<<<<<< HEAD
 #include <GHTizen.h>
+=======
+#include "GHTizen.h"
+>>>>>>> 568974fb17e3bc540255dc31e7c15699dff0afb1
 
 class GHAttackhelperData {
 private:
