@@ -8,6 +8,8 @@
 #ifndef GHATTACKHELPERDATA_H_
 #define GHATTACKHELPERDATA_H_
 
+#include <GHTizen.h>
+
 class GHAttackhelperData {
 private:
 	int dataIndex;					// attack helper data 식별 index
