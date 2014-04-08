@@ -40,7 +40,6 @@ void GHController::OnTransactionReadyToRead(HttpSession& httpSession, HttpTransa
 			// 응답받은 데이터를 버퍼에 가져온다.
 			ByteBuffer* pBuffer = pHttpResponse->ReadBodyN();
 
-
 			// 받아온 buffer를  JsonValue로 파싱한다.
 			IJsonValue* pValue = JsonParser::ParseN(*pBuffer);
 

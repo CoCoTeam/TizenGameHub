@@ -7,6 +7,7 @@
 
 #include "GHAttackhelperData.h"
 
+using namespace Tizen::Base;
 GHAttackhelperData::GHAttackhelperData() {
 	// TODO Auto-generated constructor stub
 
@@ -30,3 +31,27 @@ GHAttackhelperData::GHAttackhelperData(int _dataIndex, Tizen::Base::String _send
 
 
 
+int GHAttackhelperData::getDataIndex()
+{
+	return this->dataIndex;
+}
+String GHAttackhelperData::getSenderId()
+{
+	return this->senderId;
+}
+String GHAttackhelperData::getId()
+{
+	return this->id;
+}
+String GHAttackhelperData::getItemName()
+{
+	return this->itemName;
+}
+int GHAttackhelperData::getDenyEnable()
+{
+	return this->denyEnable;
+}
+int GHAttackhelperData::getQuantity()
+{
+	return this->quantity;
+}

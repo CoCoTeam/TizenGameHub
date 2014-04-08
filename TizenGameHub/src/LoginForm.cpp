@@ -136,6 +136,10 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 
 		GHAttackhelperController* controller = new GHAttackhelperController();
 		controller->loadAttackhelpers(this);
+		//controller->sendAttackhelperData("pkeykichulee", "1", 3, this);
+		// controller->respondAttackhelperData(5, this); //del 점검필요
+		//controller->loadAttackhelperDatas(this);
+
 		break;
 	}
 }
@@ -150,11 +154,9 @@ void LoginForm::loadAchievementFinished(ArrayList* achievementList) {
 void LoginForm::loadAttackhelperFinished(ArrayList* achievementList) {
 
 	// TEST
-	GHAchievement * test = static_cast<GHAchievement*>(achievementList->GetAt(0));
-	AppLogDebug("[DEBUG] ahArr ID : %S", test->getId().GetPointer() );
+	GHAttackhelper * test = static_cast<GHAttackhelper*>(achievementList->GetAt(0));
+	AppLogDebug("[DEBUG] ahArr ID : %S", test->getItemName().GetPointer() );
 }
-
-
 
 void LoginForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 {

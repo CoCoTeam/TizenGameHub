@@ -107,7 +107,6 @@ void GHAttackhelperController::OnTransactionReadyToRead(String apiCode, String s
 
 				// 리스트에 추가
 				ahArr->Add(new GHAttackhelper(sId, sItenName, iDenyEnable));
-
 			}
 
 		}else {
