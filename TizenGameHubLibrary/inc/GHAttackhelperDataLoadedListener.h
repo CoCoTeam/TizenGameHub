@@ -11,7 +11,7 @@
 #include "GHAttackhelperListener.h"
 
 class GHAttackhelperDataLoadedListener
-	: GHAttackhelperListener{
+	: public virtual GHAttackhelperListener{
 public:
 	GHAttackhelperDataLoadedListener();
 	virtual ~GHAttackhelperDataLoadedListener();
