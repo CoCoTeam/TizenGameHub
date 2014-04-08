@@ -8,15 +8,17 @@
 #ifndef GHACHIEVEMENTLISTENER_H_
 #define GHACHIEVEMENTLISTENER_H_
 
-#include <GHAchievement.h>
+#include "GHAchievement.h"
 
 class GHAchievementListener {
 public:
 	GHAchievementListener();
 	virtual ~GHAchievementListener();
 
-	virtual void doAchievementFinished(int statusCode) = 0;
-	virtual void doAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList) = 0;
+	virtual void loadAchievementFinished(Tizen::Base::Collection::ArrayList* attackhelperList) = 0;
+	virtual void setAchievementFinished(int statusCode) = 0;
+	virtual void revealAchievementFinished(int statusCode) = 0;
+	virtual void completeAchievementFinished(int statusCode) = 0;
 };
 
 #endif /* GHACHIEVEMENTLISTENER_H_ */

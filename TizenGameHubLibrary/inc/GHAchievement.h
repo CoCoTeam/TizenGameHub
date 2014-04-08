@@ -8,7 +8,7 @@
 #ifndef GHACHIEVEMENT_H_
 #define GHACHIEVEMENT_H_
 
-#include <GHTizen.h>
+#include "GHTizen.h"
 
 class GHAchievement
 : public Tizen::Base::Object {

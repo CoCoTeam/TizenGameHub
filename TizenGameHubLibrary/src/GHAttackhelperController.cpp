@@ -24,3 +24,29 @@ GHAttackhelperController::~GHAttackhelperController() {
 void GHAttackhelperController::OnTransactionReadyToRead(String apiCode, String statusCode, IJsonValue* data){
 
 }
+
+// attack helper 목록을 가져온다.
+void GHAttackhelperController::loadAttackhelpers(GHAttackhelperLoadedListener * listener){
+
+}
+
+// attack helper data 목록을 가져온다.
+void GHAttackhelperController::loadAttackhelperDatas(GHAttackhelperDataLoadedListener* listener){
+
+}
+
+// normal achievement update
+void GHAttackhelperController::sendAttackhelperData(Tizen::Base::String receiver_id, Tizen::Base::String ah_id, int quantity){
+
+}
+void GHAttackhelperController::sendAttackhelperData(Tizen::Base::String receiver_id, Tizen::Base::String ah_id, int quantity, GHAttackhelperDataSendedListener* listener){
+
+}
+
+// incremental achievement update
+void GHAttackhelperController::respondAttackhelperData(int data_idx){
+
+}
+void GHAttackhelperController::respondAttackhelperData(int data_idx, GHAttackhelperDataRespondedListener* listener){
+
+}

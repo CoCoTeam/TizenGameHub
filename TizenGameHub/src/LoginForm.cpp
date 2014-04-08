@@ -128,8 +128,8 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		//controller->playerLogin("S","W");
 		//controller->getPlayerData("pkeyS");
 
-		//GHAchievementController* controller = new GHAchievementController();
-	 	//controller->loadAchievements(this);
+		GHAchievementController* controller = new GHAchievementController();
+	 	controller->loadAchievements(this);
 		//controller->revealAchievement("4", this);
 		//controller->completeAchievement("4");
 		//controller->increaseAchievement("4");
@@ -138,15 +138,11 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 }
 
 // API TEST
-void LoginForm::doAchievementFinished(ArrayList* achievementList) {
+void LoginForm::loadAchievementFinished(ArrayList* achievementList) {
 
 	// TEST
 	GHAchievement * test = static_cast<GHAchievement*>(achievementList->GetAt(0));
 	AppLogDebug("[DEBUG] acArr ID : %S", test->getId().GetPointer() );
-}
-void LoginForm::doAchievementFinished(int statusCode) {
-	// TEST
-	AppLogDebug("[DEBUG] update listener statusCode : %d", statusCode );
 }
 
 void LoginForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)

@@ -15,8 +15,10 @@ public:
 	GHAttackhelperListener();
 	virtual ~GHAttackhelperListener();
 
-	virtual void doAttackhelperFinished(int statusCode) = 0;
-	virtual void doAttackhelperFinished(Tizen::Base::Collection::ArrayList* attackhelperList) = 0;
+	virtual void loadAttackhelperFinished(Tizen::Base::Collection::ArrayList* achievementList) = 0;
+	virtual void loadAttackhelperDataFinished(Tizen::Base::Collection::ArrayList* achievementList) = 0;
+	virtual void sendAttackhelperDataFinished(int statusCode) = 0;
+	virtual void respondAttackhelperDataFinished(int statusCode) = 0;
 };
 
 #endif /* GHATTACKHELPERLISTENER_H_ */

@@ -42,7 +42,7 @@ private:
 	virtual void OnFormBackRequested(Tizen::Ui::Controls::Form& source);
 
 	//GHAchievementLoadedListener
-	virtual void doAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList);
+	virtual void loadAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList);
 };
 
 #endif /* ACHIEVEMENTFORM_H_ */
