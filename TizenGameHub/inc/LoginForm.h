@@ -12,7 +12,6 @@
 #include <GHhttpClient.h>
 #include <GHAchievementController.h>
 #include <GHAchievementLoadedListener.h>
-#include <GHAchievementUpdatedListener.h>
 
 using namespace Tizen::Ui::Controls;
 
@@ -22,7 +21,6 @@ class LoginForm
 	, public Tizen::Ui::Controls::IFormBackEventListener
 	, public GHController
 	, public GHAchievementLoadedListener // TEST API
-	, public GHAchievementUpdatedListener // TEST API
 {
 public:
 	LoginForm();
@@ -44,8 +42,8 @@ private:
 	static const int IDA_BUTTON_TEST = 103;
 
 	// API TEST
-	virtual void doAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList);
-	virtual void doAchievementFinished(int statusCode);
+	virtual void loadAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList);
+//	virtual void doAchievementFinished(int statusCode);
 
 	result doLogin();
 

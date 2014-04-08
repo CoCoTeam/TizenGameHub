@@ -8,13 +8,15 @@
 #ifndef GHACHIEVEMENTCONTROLLER_H_
 #define GHACHIEVEMENTCONTROLLER_H_
 
-#include <GHTizen.h>
-#include <GHController.h>
-#include <GHAchievement.h>
-#include <GHAchievementListener.h>
-#include <GHAchievementLoadedListener.h>
-#include <GHAchievementUpdatedListener.h>
-#include <GHhttpClient.h>
+#include "GHTizen.h"
+#include "GHController.h"
+#include "GHAchievement.h"
+#include "GHAchievementListener.h"
+#include "GHAchievementLoadedListener.h"
+#include "GHAchievementRevealedListener.h"
+#include "GHAchievementCompletedListener.h"
+#include "GHAchievementSettedListener.h"
+#include "GHhttpClient.h"
 
 //const String ERROR					= "0";
 const Tizen::Base::String ACHIEVEMENT_LOAD		= "11";
@@ -33,15 +35,15 @@ public:
 
 	// hidden -> reveal 상태로 바꾼다.
 	void revealAchievement(Tizen::Base::String ac_id);
-	void revealAchievement(Tizen::Base::String ac_id, GHAchievementUpdatedListener* listener); 	// update listener
+	void revealAchievement(Tizen::Base::String ac_id, GHAchievementRevealedListener* listener); 	// update listener
 
 	// normal achievement update
 	void completeAchievement(Tizen::Base::String ac_id);
-	void completeAchievement(Tizen::Base::String ac_id, GHAchievementUpdatedListener* listener); 	// update listener
+	void completeAchievement(Tizen::Base::String ac_id, GHAchievementCompletedListener* listener); 	// update listener
 
 	// incremental achievement update
-	void increaseAchievement(Tizen::Base::String ac_id);
-	void increaseAchievement(Tizen::Base::String ac_id, GHAchievementUpdatedListener* listener); 	// update listener
+	void setAchievement(Tizen::Base::String ac_id);
+	void setAchievement(Tizen::Base::String ac_id, GHAchievementSettedListener* listener); 	// update listener
 
 
 

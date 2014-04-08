@@ -50,7 +50,7 @@ void GHAchievementController::revealAchievement(String ac_id) {
 
 	httpPost.RequestHttpPutTran(this, url, __pMap);
 }
-void GHAchievementController::revealAchievement(String ac_id, GHAchievementUpdatedListener* listener) {
+void GHAchievementController::revealAchievement(String ac_id, GHAchievementRevealedListener* listener) {
 	this->currentListener = listener;
 
 	this->revealAchievement(ac_id);
@@ -71,14 +71,14 @@ void GHAchievementController::completeAchievement(String ac_id) {
 
 	httpPost.RequestHttpPutTran(this, url, __pMap);
 }
-void GHAchievementController::completeAchievement(String ac_id, GHAchievementUpdatedListener* listener) {
+void GHAchievementController::completeAchievement(String ac_id, GHAchievementCompletedListener* listener) {
 	this->currentListener = listener;
 
 	this->completeAchievement(ac_id);
 }
 
 // incremental achievement update
-void GHAchievementController::increaseAchievement(String ac_id) {
+void GHAchievementController::setAchievement(String ac_id) {
 	this->currentListener = null;
 
 	String game_id("key_aa");
@@ -95,9 +95,9 @@ void GHAchievementController::increaseAchievement(String ac_id) {
 
 	httpPost.RequestHttpPutTran(this, url, __pMap);
 }
-void GHAchievementController::increaseAchievement(String ac_id, GHAchievementUpdatedListener* listener) {
+void GHAchievementController::setAchievement(String ac_id, GHAchievementSettedListener* listener) {
 	this->currentListener = listener;
-	this->increaseAchievement(ac_id);
+	this->setAchievement(ac_id);
 }
 
 
@@ -158,13 +158,28 @@ void GHAchievementController::OnTransactionReadyToRead(String apiCode, String st
 			acArr = null;
 		}
 
-		if(this->currentListener != null) this->currentListener->doAchievementFinished(acArr);
+		if(this->currentListener != null) this->currentListener->loadAchievementFinished(acArr);
 
-	} else { // ACHIEVEMENT_REVEAL, ACHIEVEMENT_COMPLETE, ACHIEVEMENT_SET
+	} else if(apiCode.Equals(ACHIEVEMENT_REVEAL)) { // ACHIEVEMENT_REVEAL
 		int stateCode;
 		Integer::Parse(statusCode, stateCode);
 
-		if(this->currentListener != null) this->currentListener->doAchievementFinished(stateCode);
+		if(this->currentListener != null) this->currentListener->revealAchievementFinished(stateCode);
+
+	} else if(apiCode.Equals(ACHIEVEMENT_COMPLETE)) { // ACHIEVEMENT_COMPLETE
+		int stateCode;
+		Integer::Parse(statusCode, stateCode);
+
+		if(this->currentListener != null) this->currentListener->completeAchievementFinished(stateCode);
+
+	} else if(apiCode.Equals(ACHIEVEMENT_SET)) { // ACHIEVEMENT_SET
+		int stateCode;
+		Integer::Parse(statusCode, stateCode);
+
+		if(this->currentListener != null) this->currentListener->setAchievementFinished(stateCode);
+
 	}
+
+
 
 }

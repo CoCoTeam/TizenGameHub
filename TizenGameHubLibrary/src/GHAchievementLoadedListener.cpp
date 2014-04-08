@@ -15,5 +15,3 @@ GHAchievementLoadedListener::GHAchievementLoadedListener() {
 GHAchievementLoadedListener::~GHAchievementLoadedListener() {
 	// TODO Auto-generated destructor stub
 }
-
-void GHAchievementLoadedListener::doAchievementFinished(int statusCode){};
