@@ -9,7 +9,7 @@
 #include "AppResourceId.h"
 #include "TizenGameHubFrame.h"
 #include "PrefClass.h"
-#include "GHPlayerController.h"
+#include "GHPlayer/GHPlayerController.h"
 
 using namespace Tizen::App;
 using namespace Tizen::Ui::Scenes;

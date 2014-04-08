@@ -9,10 +9,10 @@
 #define GHLEADERBOARDCONTROLLER_H_
 
 #include <GHTizen.h>
-#include <GHLeaderboard.h>
-#include <GHLeaderboardListener.h>
-#include <GHhttpClient.h>
-#include <GHController.h>
+#include "GHLeaderboard.h"
+#include "GHLeaderboard/GHLeaderboardListener.h"
+#include "GHhttpClient.h"
+#include "GHController.h"
 
 class GHLeaderboardController
 	: public GHController {
@@ -26,8 +26,8 @@ public:
 //	private void loadLeaderboards(GHLeaderboardListener * listener, STRING* playerId);
 
 	// leaderboard의 랭킹 목록을 가져온다.
-	void loadLeaderboardRank(STRING* leaderboardId);
-	void loadLeaderboardRank(STRING* leaderboardId, GHLeaderboardListener * listener);
+	void loadLeaderboardRank(Tizen::Base::String leaderboardId);
+	void loadLeaderboardRank(Tizen::Base::String leaderboardId, GHLeaderboardListener * listener);
 	//!! View 관점에서 로드할 때 필요한 요소를 parameter로 집어 넣어줄 수 있다.
 //	void loadLeaderboardRank(STRING* leaderboardId, bool isOrderAsc = true);
 //	void loadLeaderboardRank(STRING* leaderboardId, bool isOrderAsc = true, int startPoint = 0, int maxSize = 10);
@@ -35,8 +35,8 @@ public:
 
 
 	// 해당 leaderboard에 점수를 업데이트한다.
-	void updateLeaderboardScore(STRING* leaderboardId, long score);		//(static Player)
-	void updateLeaderboardScore(STRING* leaderboardId, long score, GHLeaderboardListener * listener);
+	void updateLeaderboardScore(Tizen::Base::String leaderboardId, long score);		//(static Player)
+	void updateLeaderboardScore(Tizen::Base::String leaderboardId, long score, GHLeaderboardListener * listener);
 
 	// IHttpTransactionEventListener (부모에서 구현함)
 //	virtual void OnTransactionReadyToRead(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction, int availableBodyLen);

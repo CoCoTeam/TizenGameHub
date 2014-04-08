@@ -5,7 +5,7 @@
  *      Author: Administrator
  */
 
-#include "GHLeaderboardController.h"
+#include "GHLeaderboard/GHLeaderboardController.h"
 
 using namespace Tizen::Web::Json;
 using namespace Tizen::Net::Http;
@@ -31,7 +31,7 @@ void GHLeaderboardController::loadLeaderboards(GHLeaderboardListener * listener)
 }
 
 // leaderboard의 랭킹 목록을 가져온다.
-void GHLeaderboardController::loadLeaderboardRank(STRING* leaderboardId)
+void GHLeaderboardController::loadLeaderboardRank(Tizen::Base::String leaderboardId)
 {
 
 	//GET 함수 호출
@@ -43,7 +43,7 @@ void GHLeaderboardController::loadLeaderboardRank(STRING* leaderboardId)
 	httpPost.RequestHttpGetTran(this, url);
 
 }
-void GHLeaderboardController::loadLeaderboardRank(STRING* leaderboardId, GHLeaderboardListener * listener)
+void GHLeaderboardController::loadLeaderboardRank(Tizen::Base::String leaderboardId, GHLeaderboardListener * listener)
 {
 	this->currentListener = listener;
 	loadLeaderboardRank(leaderboardId);
@@ -51,11 +51,11 @@ void GHLeaderboardController::loadLeaderboardRank(STRING* leaderboardId, GHLeade
 
 
 // 해당 leaderboard에 점수를 업데이트한다.
-void GHLeaderboardController::updateLeaderboardScore(STRING* leaderboardId, long score)
+void GHLeaderboardController::updateLeaderboardScore(Tizen::Base::String leaderboardId, long score)
 {
 
 	String* game_id = new String("key_aa");
-	String* lb_id = new String(*leaderboardId);
+	String* lb_id = new String(leaderboardId);
 	Long* pScore = new Long(score);
 
 	__pMap = new (std::nothrow) Tizen::Base::Collection::HashMap();
@@ -68,7 +68,7 @@ void GHLeaderboardController::updateLeaderboardScore(STRING* leaderboardId, long
 	String url(L"/f_leaderboards/update");
 	httpPost.RequestHttpPutTran(this, url, __pMap);
 }
-void GHLeaderboardController::updateLeaderboardScore(STRING* leaderboardId, long score, GHLeaderboardListener * listener)
+void GHLeaderboardController::updateLeaderboardScore(Tizen::Base::String leaderboardId, long score, GHLeaderboardListener * listener)
 {
 	this->currentListener = listener;
 	updateLeaderboardScore(leaderboardId, score);

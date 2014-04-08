@@ -5,7 +5,7 @@
  *      Author: Administrator
  */
 
-#include "GHLeaderboardListener.h"
+#include "GHLeaderboard/GHLeaderboardListener.h"
 
 GHLeaderboardListener::GHLeaderboardListener() {
 	// TODO Auto-generated constructor stub
