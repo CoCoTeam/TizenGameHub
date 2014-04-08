@@ -11,6 +11,7 @@
 #include "GHTizen.h"
 #include "GHController.h"
 #include "GHAttackhelper.h"
+#include "GHAttackhelperData.h"
 #include "GHAttackhelperListener.h"
 #include "GHAttackhelperLoadedListener.h"
 #include "GHAttackhelperDataLoadedListener.h"
@@ -18,15 +19,17 @@
 #include "GHAttackhelperDataRespondedListener.h"
 #include "GHhttpClient.h"
 
+const Tizen::Base::String ATTACKHELPER_LOAD			= "31";
+const Tizen::Base::String ATTACKHELPER_DATA_LOAD 	= "32";
+const Tizen::Base::String ATTACKHELPER_DATA_SEND 	= "33";
+const Tizen::Base::String ATTACKHELPER_DATA_RESPOND = "34";
+
+
 class GHAttackhelperController
 	: public GHController{
 public:
 	GHAttackhelperController();
 	virtual ~GHAttackhelperController();
-
-private:
-	virtual void OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data);
-	Tizen::Base::Collection::HashMap* __pMap;
 
 	// attack helper 목록을 가져온다.
 	void loadAttackhelpers(GHAttackhelperLoadedListener * listener);							// load listener
@@ -41,6 +44,11 @@ private:
 	// incremental achievement update
 	void respondAttackhelperData(int data_idx);
 	void respondAttackhelperData(int data_idx, GHAttackhelperDataRespondedListener* listener); 	// update listener
+
+private:
+	virtual void OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data);
+	Tizen::Base::Collection::HashMap* __pMap;
+	GHAttackhelperListener* currentListener;
 };
 
 #endif /* GHATTACKHELPERCONTROLLER_H_ */

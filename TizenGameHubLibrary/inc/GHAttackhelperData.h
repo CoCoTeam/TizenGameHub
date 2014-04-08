@@ -12,7 +12,8 @@
 #include "GHTizen.h"
 
 
-class GHAttackhelperData {
+class GHAttackhelperData
+: public Tizen::Base::Object {
 private:
 	int dataIndex;					// attack helper data 식별 index
 
@@ -26,6 +27,7 @@ private:
 public:
 	GHAttackhelperData();
 	virtual ~GHAttackhelperData();
+	GHAttackhelperData(int _dataIndex, Tizen::Base::String _senderId, Tizen::Base::String _id, Tizen::Base::String _itemName, int _denyEnable, int _quantity);
 };
 
 #endif /* GHATTACKHELPERDATA_H_ */

@@ -10,7 +10,8 @@
 
 #include "GHTizen.h"
 
-class GHAttackhelper {
+class GHAttackhelper
+: public Tizen::Base::Object {
 private:
 	Tizen::Base::String	id;			// attack helper 고유키
 	Tizen::Base::String itemName;	// attack helper item 이름
@@ -18,6 +19,8 @@ private:
 
 public:
 	GHAttackhelper();
+	GHAttackhelper(Tizen::Base::String _id, Tizen::Base::String _itemName, int _denyEnable);
+
 	virtual ~GHAttackhelper();
 
 	// GET Function ------------------------------------------------

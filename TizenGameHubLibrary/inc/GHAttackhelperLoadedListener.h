@@ -12,7 +12,7 @@
 #include "GHAttackhelperListener.h"
 
 class GHAttackhelperLoadedListener
-	: GHAttackhelperListener{
+	: public virtual GHAttackhelperListener{
 public:
 	GHAttackhelperLoadedListener();
 	virtual ~GHAttackhelperLoadedListener();
