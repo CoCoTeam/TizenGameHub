@@ -52,7 +52,7 @@ void GHAttackhelperController::sendAttackhelperData(String receiver_id, String a
 	__pMap->Add(new String("sender_id"), new String(player_id));
 	__pMap->Add(new String("receiver_id"), new String(receiver_id));
 	__pMap->Add(new String("ah_id"), new String(ah_id));
-	__pMap->Add(new String("quantity"), new String(quantity));
+	__pMap->Add(new String("quantity"), new String(Integer::ToString(quantity)));
 
 	httpPost.RequestHttpPostTran(this, url, __pMap);
 }
@@ -68,9 +68,9 @@ void GHAttackhelperController::respondAttackhelperData(int data_idx){
 	String url(L"/f_attackhelpers/" + game_id );
 	__pMap = new (std::nothrow) Tizen::Base::Collection::HashMap();
 	__pMap->Construct();
-	__pMap->Add(new String("data_idx"), new String(data_idx));
+	__pMap->Add(new String("data_idx"), new String(Integer::ToString(data_idx)));
 
-	//httpPost.RequestHttpDelTran(this, url, __pMap);
+	httpPost.RequestHttpPutTran(this, url, __pMap);
 }
 void GHAttackhelperController::respondAttackhelperData(int data_idx, GHAttackhelperDataRespondedListener* listener){
 	this->currentListener = listener;
