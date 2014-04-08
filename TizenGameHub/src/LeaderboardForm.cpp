@@ -14,7 +14,6 @@ using namespace Tizen::Ui::Scenes;
 
 LeaderboardForm::LeaderboardForm() {
 	// TODO Auto-generated constructor stub
-
 }
 
 LeaderboardForm::~LeaderboardForm() {
