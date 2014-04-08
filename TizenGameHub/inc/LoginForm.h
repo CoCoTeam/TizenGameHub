@@ -13,8 +13,8 @@
 #include <GHAchievementController.h>
 #include <GHAchievementLoadedListener.h>
 #include <GHAttackhelperController.h>
-//#include <GHAttackhelperLoadedListener.h>
-#include <GHAttackhelperDataLoadedListener.h>
+#include <GHAttackhelperLoadedListener.h>
+
 using namespace Tizen::Ui::Controls;
 
 class LoginForm
@@ -24,7 +24,6 @@ class LoginForm
 	, public GHController
 	, public GHAchievementLoadedListener // TEST API
 	, public GHAttackhelperLoadedListener // TEST API
-
 {
 public:
 	LoginForm();
