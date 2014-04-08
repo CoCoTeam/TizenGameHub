@@ -49,7 +49,7 @@ private:
 
 	result doLogin();
 
-	// GHControlle
+	// GHController
 	virtual void OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data);
 
 };

@@ -5,7 +5,7 @@
  *      Author: Administrator
  */
 
-#include "GHPlayerLoadedListener.h"
+#include "GHPlayer/GHPlayerLoadedListener.h"
 
 using namespace Tizen::Base;
 
@@ -16,8 +16,4 @@ GHPlayerLoadedListener::GHPlayerLoadedListener() {
 
 GHPlayerLoadedListener::~GHPlayerLoadedListener() {
 	// TODO Auto-generated destructor stub
-}
-
-void GHPlayerLoadedListener::doPlayerFinished(String statusCode){
-
 }

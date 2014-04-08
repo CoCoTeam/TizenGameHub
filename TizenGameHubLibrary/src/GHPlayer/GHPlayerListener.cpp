@@ -5,7 +5,7 @@
  *      Author: Administrator
  */
 
-#include "GHPlayerListener.h"
+#include "GHPlayer/GHPlayerListener.h"
 
 GHPlayerListener::GHPlayerListener() {
 	// TODO Auto-generated constructor stub

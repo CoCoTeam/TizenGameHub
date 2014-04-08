@@ -286,7 +286,7 @@ CATCH:
 result
 GHhttpClient::RequestHttpGetTran(IHttpTransactionEventListener* listener, String url)
 {
-	AppLog("------------------>Request<-------------------------");
+	AppLog("------------------>Request<------------------------- ");
 
 	// Construct an HTTP session
 	result r = E_SUCCESS;
@@ -313,7 +313,6 @@ GHhttpClient::RequestHttpGetTran(IHttpTransactionEventListener* listener, String
 		TryCatch(r == E_SUCCESS, , "Failed to set the redirection automatically.");
 	}
 	//----------------------------------------------------------------------
-
 	// Open a new transaction
 	pHttpTransaction = __pHttpSession->OpenTransactionN();
 	r = GetLastResult();

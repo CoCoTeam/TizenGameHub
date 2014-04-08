@@ -141,11 +141,11 @@ PlayerForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 			isLocalPlayer = static_cast<Tizen::Base::Boolean*>(pArgs->GetAt(1));
 			isFriend = static_cast<Tizen::Base::Boolean*>(pArgs->GetAt(2));
 
-			//!! 임시 더미 데이터
+			// 임시 더미 데이터
 			getCurrentPlayerData( *mPlayerId );
+
 			getGames( *mPlayerId );
 
-			setPlayerData();
 			setGameList();
 
 			if( isLocalPlayer ) {
@@ -187,19 +187,21 @@ PlayerForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
 //
 void PlayerForm::getCurrentPlayerData(String playerId)
 {
-	if(playerId == "1")
-		mPlayer = new GHPlayer("1", "aaa@aaa.com", "전경호", "default");
-	else if(playerId == "2")
-		mPlayer = new GHPlayer("2", "bbb@aaa.com", "김기철", "default");
-	else if(playerId == "3")
-		mPlayer = new GHPlayer("3", "ccc@aaa.com", "노동완", "default");
-	else if(playerId == "1001")
-		mPlayer = new GHPlayer("1001", "aaa@aaa.com", "홍길동", "profile_user_333");
-	else
-		mPlayer = new GHPlayer("1", "aaa@aaa.com", "전경호", "default");
+	AppLogDebug("playerId : %S", playerId.GetPointer());
+	getPlayerData(playerId, this);
+}
+void PlayerForm::loadPlayerDataFinished(GHPlayer* player)
+{
+//	if(mPlayer.eqnull)
+//	{
+		mPlayer = player;
+		setPlayerData();
+//	}
 }
 void PlayerForm::setPlayerData()
 {
+	AppLogDebug("---------->setPlayerData()<----------");
+
 	pLabelUserName->SetText( (mPlayer->getName()) );
 	String *totalScoreStr = new String();
 	totalScoreStr->Append(mPlayer->getTotalScore());
@@ -210,16 +212,23 @@ void PlayerForm::setPlayerData()
 
 	pButtonUserFriend->SetActionId(IDA_BUTTON_USER);
 	pButtonUserFriend->AddActionEventListener(*this);
+	Draw();
+
+	AppLogDebug("---------->setPlayerData End<----------");
 }
 
 void PlayerForm::getGames(String playerId)
 {
 	pGameList = new ArrayList();
 
+//	getPlayerGameList(playerId);
+
 	pGameList->Add( (Object*)new GHGame("111", "100", "FunnyGame", "This Game is really fun.", "default", 1, 1, 1, false, false) );
 	pGameList->Add( (Object*)new GHGame("222", "101", "MultiGame", "This Game provides Turn-Based Multiplay.", "default", 2, 2, 2, false, true) );
 	pGameList->Add( (Object*)new GHGame("333", "100", "CloudGame", "This Game provides Cloud Save.", "default", 1, 3, 2, true, false) );
 }
+
+
 void PlayerForm::setGameList()
 {
 	pGameProvider = new GHGameProvider();

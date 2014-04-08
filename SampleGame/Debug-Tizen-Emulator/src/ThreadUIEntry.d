@@ -1,5 +1,5 @@
 src/ThreadUIEntry.d: ../src/ThreadUIEntry.cpp \
-  C:\Users\KICHUL\Documents\Tizen\workspace\TizenGameHub\SampleGame\inc\ThreadUI.h \
+  C:\Users\Administrator\Documents\TizenWorkspace\TizenGameHub\SampleGame\inc\ThreadUI.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include/osp\FApp.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include/osp\FAppTypes.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include/osp\FBaseString.h \
@@ -474,9 +474,9 @@ src/ThreadUIEntry.d: ../src/ThreadUIEntry.cpp \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include/osp\FUiVerticalBoxLayout.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include/osp\FUiTouchEffect.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include/osp\FUiTouchEffectTypes.h \
-  C:\Users\KICHUL\Documents\Tizen\workspace\TizenGameHub\SampleGame\inc\SceneRegister.h
+  C:\Users\Administrator\Documents\TizenWorkspace\TizenGameHub\SampleGame\inc\SceneRegister.h
 
-C:\Users\KICHUL\Documents\Tizen\workspace\TizenGameHub\SampleGame\inc\ThreadUI.h:
+C:\Users\Administrator\Documents\TizenWorkspace\TizenGameHub\SampleGame\inc\ThreadUI.h:
 
 C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include/osp\FApp.h:
 
@@ -1426,4 +1426,4 @@ C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include
 
 C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include/osp\FUiTouchEffectTypes.h:
 
-C:\Users\KICHUL\Documents\Tizen\workspace\TizenGameHub\SampleGame\inc\SceneRegister.h:
+C:\Users\Administrator\Documents\TizenWorkspace\TizenGameHub\SampleGame\inc\SceneRegister.h:

@@ -8,13 +8,18 @@
 #ifndef PLAYERFORM_H_
 #define PLAYERFORM_H_
 
-#include <GHTizen.h>
+#include "GHTizen.h"
 #include "GHGame.h"
+//리스트
 #include "GHPlayer.h"
 #include "GHGameProvider.h"
 #include "GHPlayerProvider.h"
 #include "GHGameListItemEventListener.h"
 #include "GHPlayerListItemEventListener.h"
+//통신
+#include "GHhttpClient.h"
+#include "GHPlayer/GHPlayerController.h"
+#include "GHPlayer/GHPlayerLoadedListener.h"
 
 using namespace Tizen::Base;
 using namespace Tizen::Ui::Controls;
@@ -25,6 +30,8 @@ class PlayerForm
 	, public Tizen::Ui::IActionEventListener
 	, public Tizen::Ui::Controls::IFormBackEventListener
 	, public Tizen::Ui::Scenes::ISceneEventListener
+	, public GHPlayerController
+	, public GHPlayerLoadedListener
 {
 public:
 	PlayerForm();
@@ -61,6 +68,8 @@ private:
 								   const Tizen::Ui::Scenes::SceneId& currentSceneId, Tizen::Base::Collection::IList* pArgs);
 	virtual void OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
 									const Tizen::Ui::Scenes::SceneId& nextSceneId);
+	//GHPlayerLoadedListener
+	virtual void loadPlayerDataFinished(GHPlayer* player);
 
 	//
 	void getCurrentPlayerData(String playerId);	// 서버로부터 플레이어의 정보를 받아온다.

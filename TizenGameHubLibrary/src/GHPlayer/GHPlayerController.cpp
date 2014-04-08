@@ -5,7 +5,7 @@
  *      Author: Administrator
  */
 
-#include "GHPlayerController.h"
+#include "GHPlayer/GHPlayerController.h"
 
 using namespace Tizen::Base;
 using namespace Tizen::Base::Collection;
@@ -22,13 +22,6 @@ GHPlayerController::~GHPlayerController() {
 }
 
 // 사용자 로그인
-/*
- * Method : 사용자 로그인
- * Type : POST
- * url : /players/login
- * data : email, pwd
- * return : status code ( 0: 실패, key: 성공) // {statusCode : 0}
- */
 void GHPlayerController::playerLogin(Tizen::Base::String email, Tizen::Base::String pwd)
 {
 	String url(L"/players/login");
@@ -41,39 +34,29 @@ void GHPlayerController::playerLogin(Tizen::Base::String email, Tizen::Base::Str
 	//post 함수 호출
 	httpPost.RequestHttpPostTran(this, url, __pMap);
 }
-
-//String playerLogin(Tizen::Base::String email, Tizen::Base::String pwd, GHPlayerListener* listener);
+void GHPlayerController::playerLogin(Tizen::Base::String email, Tizen::Base::String pwd, GHPlayerListener* listener)
+{
+	this->currentListener = listener;
+	this->playerLogin(email, pwd);
+}
 
 // 사용자 정보 가져오기
-/*
- * Method : 사용자 정보 가져오기
- * Type : GET
- * url : /players/{player_id}
- * data : player_id /
- * return : { statusCode : 1, data:{ email:"", name:"", img_url:"" } }
- */
 void GHPlayerController::getPlayerData(Tizen::Base::String playerId)
 {
 	//GET 함수 호출
-	//String game_id("key_aa");
-	//String player_id("pkeyS");
-
 	String url(L"/players/" + playerId);
 	httpPost.RequestHttpGetTran(this, url);
 }
-//GHPlayer getPlayerData(Tizen::Base::String playerId, GHPlayerListener* listener);
+void GHPlayerController::getPlayerData(Tizen::Base::String playerId, GHPlayerListener* listener)
+{
+	this->currentListener = listener;
+	this->getPlayerData(playerId);
+}
 
 // 사용자 로그아웃
 
 
 // 특정 게임에 사용자 등록하기(게임가입)
-/*
- * Method : 특정 게임에 사용자 등록 (게임가입)
- * Type : POST
- * url : /players/gamejoin
- * data : player_id, game_id
- * return : status code ( 0: 실패, 1: 성공) // {statusCode : 0}
- */
 void GHPlayerController::PlayerGameJoin(Tizen::Base::String playerId, Tizen::Base::String gameId)
 {
 	String url(L"/players/gamejoin");
@@ -86,6 +69,32 @@ void GHPlayerController::PlayerGameJoin(Tizen::Base::String playerId, Tizen::Bas
 	//post 함수 호출
 	httpPost.RequestHttpPostTran(this, url, __pMap);
 }
+
+//사용자가 플레이하는 게임 리스트 가져오기
+void GHPlayerController::getPlayerGameList(Tizen::Base::String playerId)
+{
+	getPlayerGameList(playerId, 0, 5);
+}
+void GHPlayerController::getPlayerGameList(Tizen::Base::String playerId, int start_pos, int max_length)
+{
+	Integer tmpInteger;
+	String start_pos_str = tmpInteger.ToString(start_pos);
+	String max_length_str = tmpInteger.ToString(max_length);
+	String url(L"/players/" + playerId + "/games?start_pos=" + start_pos_str +"&max_length="+ max_length_str);
+//	AppLogDebug("URL : %S", (new String(url))->GetPointer() );
+
+	httpPost.RequestHttpGetTran(this, url);
+}
+void GHPlayerController::getPlayerGameList(Tizen::Base::String playerId, GHPlayerListener* listener)
+{
+	this->getPlayerGameList(playerId, 0, 5, listener);
+}
+void GHPlayerController::getPlayerGameList(Tizen::Base::String playerId, int start_pos, int max_length, GHPlayerListener* listener)
+{
+	this->currentListener = listener;
+	this->getPlayerGameList(playerId, start_pos, max_length);
+}
+
 
 void GHPlayerController::OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data)
 {
@@ -124,10 +133,14 @@ void GHPlayerController::OnTransactionReadyToRead(Tizen::Base::String apiCode, T
 				player = null;
 			}
 
-			if(this->currentListener != null) this->currentListener->doPlayerFinished(player);
+			if(this->currentListener != null) this->currentListener->loadPlayerDataFinished(player);
+	}
+	else if(apiCode.Equals(PLAYER_GAMELIST))
+	{
+
 	}
 	else //PLAYER_LOGIN ,PLAYER_GAMEJOIN
 	{
-		if(this->currentListener != null) this->currentListener->doPlayerFinished(statusCode);
+//		if(this->currentListener != null) this->currentListener->doPlayerFinished(statusCode);
 	}
 }
