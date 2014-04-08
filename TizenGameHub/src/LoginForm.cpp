@@ -124,7 +124,7 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 	case IDA_BUTTON_TEST:
 		//---------------------------------------------------------
 
-		GHPlayerController* controller = new GHPlayerController();
+		//GHPlayerController* controller = new GHPlayerController();
 		//controller->playerLogin("S","W");
 		//controller->getPlayerData("pkeyS");
 
