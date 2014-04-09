@@ -81,13 +81,11 @@ PlayerForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 	{
 	case IDA_BUTTON_USER:
 		if( isLocalPlayer ) {	// (나 자신이면) 정보 수정 페이지로 이동
-//			ArrayList* pList = new (std::nothrow)ArrayList;
-//			AppAssert(pList);
-//			pList->Construct();
-//			pList->Add( new Tizen::Base::Boolean(false) );	// isJoin -> isEdit
-//			pSceneManager->GoForward(ForwardSceneTransition(SCENE_JOIN, SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_IN), pList);
-
-			getGames( mPlayer->getId() );
+			ArrayList* pList = new (std::nothrow)ArrayList;
+			AppAssert(pList);
+			pList->Construct();
+			pList->Add( new Tizen::Base::Boolean(false) );	// isJoin -> isEdit
+			pSceneManager->GoForward(ForwardSceneTransition(SCENE_JOIN, SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_IN), pList);
 		}
 		else {		// (나 자신이 아니면)
 			if( isFriend ) {	//!! (친구이면) 친구 해제
@@ -193,13 +191,13 @@ void PlayerForm::getCurrentPlayerData(String playerId)
 }
 void PlayerForm::loadPlayerDataFinished(GHPlayer* player)
 {
-//	if(player != null)
-//	{
+	if(player != null)
+	{
 		mPlayer = player;
 		setPlayerData();
 
 		getGames( mPlayer->getId() );
-//	}
+	}
 }
 void PlayerForm::setPlayerData()
 {

@@ -37,12 +37,14 @@ class GHController
 	Tizen::Web::Json::JsonObject*	getJsonObjectByKey(Tizen::Web::Json::JsonObject* pJsonObj, const Tizen::Base::String* key);
 	Tizen::Base::String			  	getStringByKey(Tizen::Web::Json::JsonObject* pJsonObj, const Tizen::Base::String* key);
 	int							  	getIntByKey(Tizen::Web::Json::JsonObject* pJsonObj, const Tizen::Base::String* key);
+	bool							getBoolByKey(Tizen::Web::Json::JsonObject* pJsonObj, const Tizen::Base::String* key);
 
 	// JSON FUNCTION - JSON Array
 	Tizen::Web::Json::JsonArray*	getJsonArrayByIndex(Tizen::Web::Json::JsonArray* pJsonArr, const int index);
 	Tizen::Web::Json::JsonObject*	getJsonObjectByIndex(Tizen::Web::Json::JsonArray* pJsonArr, const int index);
 	Tizen::Base::String	  	   		getStringByIndex(Tizen::Web::Json::JsonArray* pJsonArr, const int index);
 	int					   			getIntByIndex(Tizen::Web::Json::JsonArray* pJsonArr, const int index);
+	bool							getBoolByIndex(Tizen::Web::Json::JsonArray* pJsonArr, const int index);
 
 };
 

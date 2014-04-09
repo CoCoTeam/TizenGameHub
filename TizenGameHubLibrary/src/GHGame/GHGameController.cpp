@@ -68,8 +68,8 @@ void GHGameController::OnTransactionReadyToRead(Tizen::Base::String apiCode, Tiz
 				int  iLbCount		= getIntByKey(pJsonOject, pkeyLbCount);
 				int  iAcCount 		= getIntByKey(pJsonOject, pkeyAcCount);
 				int  iAhCount 		= getIntByKey(pJsonOject, pkeyAhCount);
-				bool isCloudSave	= ( getIntByKey(pJsonOject, pkeyIsCloudsave) == 1 ? true : false );
-				bool iMultiEnable	= ( getIntByKey(pJsonOject, pkeyMultiEnable) == 1 ? true : false );
+				bool isCloudSave	= getBoolByKey(pJsonOject, pkeyIsCloudsave);
+				bool iMultiEnable	= getBoolByKey(pJsonOject, pkeyMultiEnable);
 
 
 				AppLogDebug("--------------------------------------------------");
