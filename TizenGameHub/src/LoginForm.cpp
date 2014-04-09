@@ -229,42 +229,14 @@ result LoginForm::doLogin()
 	}
 	else
 	{
-		GHhttpClient* httpPost = new GHhttpClient();
-
-		Tizen::Base::Collection::HashMap* __pMap = new (std::nothrow) Tizen::Base::Collection::HashMap();
-		__pMap->Construct();
-		__pMap->Add(new String("email"), new String(strEmail));
-		__pMap->Add(new String("pwd"), new String(strPw));
-
-		//post 함수 호출
-		httpPost->RequestHttpPostTran(this, L"/players/login", __pMap);
+		playerLogin(strEmail, strPw, this);
 	}
 	return r;
 }
 
-void LoginForm::OnTransactionReadyToRead(String apiCode, String statusCode, IJsonValue* data){
-
-//	JsonObject* pJsonObj = static_cast<JsonObject*>(data);
-//
-//	// reveal TEST /////////////////////////////////////////////////////////
-//	//JsonArray* pJsonArray = static_cast<JsonArray*>(data);
-//	String* pStrFNKey      = new String(L"statusCode");
-//	IJsonValue* pObjValue = null;
-//	pJsonObj->GetValue(pStrFNKey, pObjValue);
-//	JsonString* pJsonStr = static_cast<JsonString*>(pObjValue);
-//	AppLogDebug("value : %S", pJsonStr->GetPointer());
-//
-//	//JsonNumber* pJsonStr = static_cast<JsonNumber*>(pObjValue);
-//	//AppLogDebug("value : %d", pJsonStr->ToInt());
-//	///////////////////////////////////////////////////////////////////
-//
-//
-//	//형변환
-//	String zString(pJsonStr->GetPointer());
-
-
-	AppLogDebug("SATUS : %S",statusCode.GetPointer());
-
+void LoginForm::loginPlayerFinished(Tizen::Base::String statusCode)
+{
+	AppLogDebug("STAUS : %S",statusCode.GetPointer());
 
 	MessageBox msgBox;
 	int modalResult;
@@ -293,80 +265,4 @@ void LoginForm::OnTransactionReadyToRead(String apiCode, String statusCode, IJso
 		msgBox.Construct(L"Login", L"LOGIN fail", MSGBOX_STYLE_OK);
 		msgBox.ShowAndWait(modalResult);
 	}
-
-	/*if(pJsonStr->GetPointer() != null )
-	{
-			isLogin = true;
-			AppLog("success!!");
-	}
-	else
-	{
-			isLogin = false;
-			AppLog("fail!!");
-	}*/
 }
-
-
-
-// HTTP 통신 Listener -------------------------------------------------------------------------------------------------------
-/*
-// Request 후 Response 를 받았을 때 처리
-void LoginForm::OnTransactionReadyToRead(HttpSession& httpSession, HttpTransaction& httpTransaction, int availableBodyLen)
-{
-
-	// 현재는 response data를 받아서 화면에 뿌리도록 함.
-
-	AppLog("OnTransactionReadyToRead");
-
-	HttpResponse* pHttpResponse = httpTransaction.GetResponse();
-	if (pHttpResponse->GetHttpStatusCode() == HTTP_STATUS_OK)
-	{
-		HttpHeader* pHttpHeader = pHttpResponse->GetHeader();
-		if (pHttpHeader != null)
-		{
-
-			String* tempHeaderString = pHttpHeader->GetRawHeaderN();
-
-			// 응답받은 데이터를 버퍼에 가져온다.
-			ByteBuffer* pBuffer = pHttpResponse->ReadBodyN();
-
-			AppLogDebug("[HTTP] response body size : %d " , availableBodyLen );
-
-			// 버퍼의 데이터를 string으로 추출.
-			byte* tempBody = new byte[availableBodyLen+1];
-			pBuffer->GetArray(tempBody, 0, availableBodyLen);
-			tempBody[availableBodyLen] = '\0';
-
-			AppLogDebug("[HTTP] response data : %s", (char *)tempBody);
-
-			if(tempBody !=  )
-			{
-				isLogin = true;
-
-				AppLog("success!!");
-			}
-			else
-			{
-				isLogin = false;
-
-				AppLog("fail!!");
-			}
-
-
-			//////////////////////////////////////////////////////////////////
-			// 실제로는 리턴값을 상황에 따라 가공해서 넘겨준다.//////////////////////
-//			if(tmpeBody->header == "updateLeaderboardScore") {
-//				currentListener->doLeaderboardScoreUpdateFineshed();
-//			}
-//			else if(tmpeBody->header == "loadLeaderboardRank") {
-//				currentListener->fdfdf();
-//			}
-			//////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////
-
-			delete tempHeaderString;
-			delete pBuffer;
-		}
-	}
-}*/
-

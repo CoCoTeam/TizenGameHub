@@ -24,7 +24,9 @@ isTurnbasedMultiEnable	multiplay 가능 여부
 /*
 getGameInstance
  */
-class GHGame {
+class GHGame
+	: public Tizen::Base::Object
+{
 private:
 	Tizen::Base::String id;			// 게임 고유 ID
 	Tizen::Base::String developerId;					// 게임 개발자 고유 ID
@@ -43,7 +45,6 @@ public:
 	GHGame();
 	GHGame(Tizen::Base::String _id, Tizen::Base::String _developerId, Tizen::Base::String _title, Tizen::Base::String _description, Tizen::Base::String _imgUrl,
 		int _leaderboardCount, int _achievementCount, int _attackhelperCount, bool _isCloudsaveEnable, bool _isTurnbasedMultiEnable);
-//	GHGame(Tizen::Web::Json::JsonObject *jsonData);
 	virtual ~GHGame();
 
 	/// Get Instance

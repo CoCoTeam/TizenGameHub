@@ -68,12 +68,9 @@ void LeaderboardForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previo
 	{
 		if (pArgs->GetCount())
 		{
-//			Tizen::Base::String *gameId = static_cast<Tizen::Base::String*>(pArgs->GetAt(0));
-//			AppLog("[GameForm] Argument Received %s", gameId);
-//			mGame = getGameInstance( *gameId );
-//
-//			pLabelGameName->SetText( *(mGame->getTitle()) );
-//			pLabelGameDesc->SetText( *(mGame->getDescription()) );
+			Tizen::Base::String *gameId = static_cast<Tizen::Base::String*>(pArgs->GetAt(0));
+			AppLog("[LeaderboardForm] Argument Received %s", gameId);
+			loadLeaderboards(this);
 		}
 		pArgs->RemoveAll(true);
 		delete pArgs;
@@ -85,4 +82,10 @@ void LeaderboardForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& curre
 {
 	// TODO: Deactivate your scene here.
 
+}
+
+void LeaderboardForm::loadLeaderboardFinished(Tizen::Base::Collection::ArrayList* leaderboardList)
+{
+	lb_list = leaderboardList;
+	AppLogDebug("[LeaderboardForm] leaderboardList Received. (listSize : %d)", lb_list->GetCount() );
 }

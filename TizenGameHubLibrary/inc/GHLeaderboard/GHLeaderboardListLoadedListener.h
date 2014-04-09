@@ -17,12 +17,7 @@ class GHLeaderboardListLoadedListener
 public:
 	GHLeaderboardListLoadedListener();
 	virtual ~GHLeaderboardListLoadedListener();
-
-	virtual void loadLeaderboardRankFinished(){};
-
-private:
-	virtual void loadLeaderboardFinished(Tizen::Base::Collection::ArrayList* leaderboardList) = 0;
-	virtual void updateLeaderboardScoreFinished()=0;
+	virtual void loadLeaderboardRankFinished()=0;
 };
 
 #endif /* GHLEADERBOARDLISTLOADEDLISTENER_H_ */

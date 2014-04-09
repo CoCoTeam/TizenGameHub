@@ -8,8 +8,11 @@
 #ifndef LOGINFORM_H_
 #define LOGINFORM_H_
 
-#include <GHTizen.h>
-#include <GHhttpClient.h>
+#include "GHTizen.h"
+#include "GHhttpClient.h"
+#include "GHPlayer/GHPlayerController.h"
+#include "GHPlayer/GHPlayerLoggedinListener.h"
+
 #include <GHAchievementController.h>
 #include <GHAchievementLoadedListener.h>
 #include <GHAttackhelperController.h>
@@ -25,7 +28,8 @@ class LoginForm
 	: public Tizen::Ui::Controls::Form
 	, public Tizen::Ui::IActionEventListener
 	, public Tizen::Ui::Controls::IFormBackEventListener
-	, public GHController
+	, public GHPlayerController
+	, public GHPlayerLoggedinListener
 	, public GHAchievementLoadedListener // TEST API
 	, public GHAttackhelperLoadedListener // TEST API
 	, public GHAttackhelperDataRespondedListener // TEST API
@@ -46,6 +50,8 @@ private:
 	virtual void OnActionPerformed(const Tizen::Ui::Control& source, int actionId);
 	//IFormBackEventListener
 	virtual void OnFormBackRequested(Tizen::Ui::Controls::Form& source);
+	//GHPlayerLoggedinListener
+	virtual void loginPlayerFinished(Tizen::Base::String statusCode);
 
 	static const int IDA_BUTTON_LOGIN = 101;
 	static const int IDA_BUTTON_JOIN = 102;
@@ -59,9 +65,6 @@ private:
 	virtual void loadCloudsaveFinished(Tizen::Base::String data);
 
 	result doLogin();
-
-	// GHController
-	virtual void OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data);
 
 };
 

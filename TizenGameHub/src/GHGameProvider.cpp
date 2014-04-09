@@ -41,6 +41,6 @@ void GHGameProvider::setItemList(Tizen::Base::Collection::ArrayList* _list)
 {
 	for(int i=0 ; i<_list->GetCount() ; i++)
 	{
-		list.Add( (Tizen::Base::Object*)(_list->GetAt(i)) );
+		list.Add( _list->GetAt(i) );
 	}
 }

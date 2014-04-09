@@ -9,6 +9,7 @@
 #include "AppResourceId.h"
 #include "TizenGameHubFrame.h"
 
+using namespace Tizen::Base;
 using namespace Tizen::Ui::Scenes;
 using namespace Tizen::Ui::Controls;
 
@@ -84,6 +85,11 @@ GameForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 	SceneManager* pSceneManager = SceneManager::GetInstance();
 	AppAssert(pSceneManager);
 
+	ArrayList* pList = new (std::nothrow)ArrayList;
+	AppAssert(pList);
+	pList->Construct();
+	pList->Add( new String(mGame->getId()) );
+
 	switch(actionId)
 	{
 	case ID_FOOTER_FIRST_TAB:
@@ -93,10 +99,10 @@ GameForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		changePanel(1);
 		break;
 	case ID_BUTTON_LEADERBOARD:
-		pSceneManager->GoForward(ForwardSceneTransition(SCENE_LEADERBOARD, SCENE_TRANSITION_ANIMATION_TYPE_LEFT));//, pList);
+		pSceneManager->GoForward(ForwardSceneTransition(SCENE_LEADERBOARD, SCENE_TRANSITION_ANIMATION_TYPE_LEFT), pList);
 		break;
 	case ID_BUTTON_ACHIEVEMENT:
-		pSceneManager->GoForward(ForwardSceneTransition(SCENE_ACHIEVEMENT, SCENE_TRANSITION_ANIMATION_TYPE_LEFT));//, pList);
+		pSceneManager->GoForward(ForwardSceneTransition(SCENE_ACHIEVEMENT, SCENE_TRANSITION_ANIMATION_TYPE_LEFT), pList);
 		break;
 	}
 }
@@ -119,12 +125,9 @@ GameForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 	{
 		if (pArgs->GetCount())
 		{
-			Tizen::Base::String *gameId = static_cast<Tizen::Base::String*>(pArgs->GetAt(0));
-			AppLog("[GameForm] Argument Received %s", gameId);
-			mGame = getGameInstance( *gameId );
-
-			pLabelGameName->SetText( mGame->getTitle() );
-			pLabelGameDesc->SetText( mGame->getDescription() );
+			String *gameId = static_cast<String*>(pArgs->GetAt(0));
+			AppLog("[GameForm] Argument Received (%S)", gameId->GetPointer());
+			getGameInstance( *gameId );
 		}
 //		pArgs->RemoveAll(true);
 		delete pArgs;
@@ -140,28 +143,26 @@ GameForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
 
 }
 
-GHGame* GameForm::getGameInstance(Tizen::Base::String id)
+void GameForm::getGameInstance(Tizen::Base::String id)
 {
-	GHGame* game;
-	if(id == "111") {
-		AppLog("111");
-		game = new GHGame("111", "100", "FunnyGame", "This Game is really fun.", "default", 1, 1, 1, false, false);
-	}
-	else if(id == "222") {
-		AppLog("222");
-		game = new GHGame("222", "101", "MultiGame", "This Game provides Turn-Based Multiplay.", "default", 2, 2, 2, false, true);
-	}
-	else if(id == "333") {
-		AppLog("333");
-		game = new GHGame("333", "100", "CloudGame", "This Game provides Cloud Save.", "default", 1, 3, 2, true, false);
-	}
-	else {
-		AppLog("null");
-		game = new GHGame("111", "100", "FunnyGame", "This Game is really fun.", "default", 1, 1, 1, false, false);
-	}
+	AppLogDebug("gameId : %S", id.GetPointer());
+	getGameData(id, this);
 
-	return game;
+//	mGame = new GHGame("111", "100", "FunnyGame", "This Game is really fun.", "default", 1, 1, 1, false, false);
+//	setGameData();
 }
+void GameForm::loadPlayerDataFinished(GHGame* game)
+{
+	mGame = game;
+	setGameData();
+}
+void GameForm::setGameData()
+{
+	pLabelGameName->SetText( mGame->getTitle() );
+	pLabelGameDesc->SetText( mGame->getDescription() );
+	Draw();
+}
+
 void GameForm::setPlayerList()
 {
 	pFriendList = new ArrayList();
