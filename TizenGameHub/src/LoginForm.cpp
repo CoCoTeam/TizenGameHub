@@ -134,15 +134,29 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		//controller->completeAchievement("4");
 		//controller->increaseAchievement("4");
 
-		GHAttackhelperController* controller = new GHAttackhelperController();
-		controller->loadAttackhelpers(this);
+		//GHAttackhelperController* controller = new GHAttackhelperController();
+		//controller->loadAttackhelpers(this);
 		//controller->sendAttackhelperData("pkeykichulee", "1", 3, this);
 		//controller->respondAttackhelperData(5, this); //del 점검필요
 		//controller->loadAttackhelperDatas(this);
 
+		GHCloudsaveController* controller = new GHCloudsaveController();
+		//controller->loadCloudSlotData(1, this);
+		controller->saveCloudSlotData("hahaha kichul zzang", 2, this);
+
 		break;
 	}
 }
+
+// API TEST
+void LoginForm::saveCloudsaveFinished(int statusCode){
+	AppLogDebug("[DEBUG] saveCloud statusCode : %d", statusCode );
+}
+
+void LoginForm::loadCloudsaveFinished(String data){
+	AppLogDebug("[DEBUG] loadCloud data : %S", data.GetPointer() );
+}
+
 
 // API TEST
 void LoginForm::loadAchievementFinished(ArrayList* achievementList) {

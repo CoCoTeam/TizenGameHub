@@ -8,7 +8,7 @@
 #ifndef GHATTACKHELPERLISTENER_H_
 #define GHATTACKHELPERLISTENER_H_
 
-#include "GHAttackhelper.h"
+#include "GHTizen.h"
 
 class GHAttackhelperListener {
 public:
