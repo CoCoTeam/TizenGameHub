@@ -32,7 +32,7 @@ public:
 	virtual ~GHAttackhelperController();
 
 	// attack helper 목록을 가져온다.
-	void loadAttackhelpers(GHAttackhelperLoadedListener * listener);							// load listener
+	void loadAttackhelpers(GHAttackhelperLoadedListener* listener);							// load listener
 
 	// attack helper data 목록을 가져온다.
 	void loadAttackhelperDatas(GHAttackhelperDataLoadedListener* listener); 	// update listener

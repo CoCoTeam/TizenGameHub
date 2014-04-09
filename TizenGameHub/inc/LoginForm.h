@@ -18,6 +18,10 @@
 #include <GHAttackhelperController.h>
 #include <GHAttackhelperLoadedListener.h>
 #include <GHAttackhelperDataRespondedListener.h>
+#include <GHCloudsaveController.h>
+#include <GHCloudsaveSaveListener.h>
+#include <GHCloudsaveLoadListener.h>
+
 using namespace Tizen::Ui::Controls;
 
 class LoginForm
@@ -29,6 +33,8 @@ class LoginForm
 	, public GHAchievementLoadedListener // TEST API
 	, public GHAttackhelperLoadedListener // TEST API
 	, public GHAttackhelperDataRespondedListener // TEST API
+	, public GHCloudsaveSaveListener	// TEST API
+	, public GHCloudsaveLoadListener	// TEST API
 {
 public:
 	LoginForm();
@@ -55,6 +61,9 @@ private:
 	virtual void loadAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList);
 	virtual void loadAttackhelperFinished(Tizen::Base::Collection::ArrayList* achievementList);
 	virtual void respondAttackhelperDataFinished(int statusCode);
+	virtual void saveCloudsaveFinished(int statusCode);
+	virtual void loadCloudsaveFinished(Tizen::Base::String data);
+
 	result doLogin();
 
 };
