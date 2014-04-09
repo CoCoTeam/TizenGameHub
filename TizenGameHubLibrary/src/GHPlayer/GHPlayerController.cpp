@@ -6,6 +6,7 @@
  */
 
 #include "GHPlayer/GHPlayerController.h"
+#include "GHGame.h"
 
 using namespace Tizen::Base;
 using namespace Tizen::Base::Collection;
@@ -101,7 +102,17 @@ void GHPlayerController::OnTransactionReadyToRead(Tizen::Base::String apiCode, T
 	AppLogDebug("[DEBUG] apiCode : %S", apiCode.GetPointer() );
 	AppLogDebug("[DEBUG] statusCode : %S", statusCode.GetPointer());
 
-	if(apiCode.Equals(PLAYER_PLAYERDATA)) {	// PLAYER_PLAYERDATA
+	if(apiCode.Equals(PLAYER_LOGIN)) {
+		// 정상적으로 결과를 반환했을 때
+		if(statusCode != "0") {
+			if(this->currentListener != null) this->currentListener->loginPlayerFinished(statusCode);
+		}
+		else { // 에러가 발생했을 때
+		}
+
+
+	}
+	else if(apiCode.Equals(PLAYER_PLAYERDATA)) {	// PLAYER_PLAYERDATA
 			GHPlayer *player;
 
 			// 정상적으로 결과를 반환했을 때
@@ -111,22 +122,23 @@ void GHPlayerController::OnTransactionReadyToRead(Tizen::Base::String apiCode, T
 
 				AppLogDebug("---------------------------2-----------------------");
 
-				String* pkeyEmail 		= new String(L"email");
-				String* pkeyName 		= new String(L"name");
-				String* pkeyImgUrl 		= new String(L"img_url");
+				String* pkeyId		= new String(L"player_id");
+				String* pkeyEmail 	= new String(L"email");
+				String* pkeyName 	= new String(L"name");
+				String* pkeyImgUrl 	= new String(L"img_url");
 
-				String  sEmail 			= getStringByKey(pJsonOject, pkeyEmail);
-				String  sName			= getStringByKey(pJsonOject, pkeyName);
-				String  sImgUrl 		= getStringByKey(pJsonOject, pkeyImgUrl);
+				String  sId 		= getStringByKey(pJsonOject, pkeyId);
+				String  sEmail 		= getStringByKey(pJsonOject, pkeyEmail);
+				String  sName		= getStringByKey(pJsonOject, pkeyName);
+				String  sImgUrl 	= getStringByKey(pJsonOject, pkeyImgUrl);
 
 				AppLogDebug("--------------------------------------------------");
 
-				player = new GHPlayer("pkeyS", sEmail, sName, sImgUrl);
+				player = new GHPlayer(sId, sEmail, sName, sImgUrl);
 
 				// KEY NAME DELETE
-				//delete pkeyId;
-
-				delete pkeyEmail;		delete pkeyName;	 delete pkeyImgUrl;
+				delete pkeyId;			delete pkeyEmail;
+				delete pkeyName;	 delete pkeyImgUrl;
 
 			}
 			else { // 에러가 발생했을 때
@@ -137,6 +149,42 @@ void GHPlayerController::OnTransactionReadyToRead(Tizen::Base::String apiCode, T
 	}
 	else if(apiCode.Equals(PLAYER_GAMELIST))
 	{
+		ArrayList *gameList;
+
+		// 정상적으로 결과를 반환했을 때
+		if(statusCode == "1") {
+			JsonArray* 	pJsonArray 	= static_cast<JsonArray*>(data);
+			int 		arrNum 		= pJsonArray->GetCount();
+			gameList = new ArrayList();
+
+			// KEY NAME
+			String* pKeyGameId 		= new String(L"game_id");
+			String* pKeyGameTitle	= new String(L"title");
+			String* pkeyGameImgUrl	= new String(L"img_url");
+
+			AppLogDebug("[DEBUG] arrNum : %d", arrNum );
+
+			for(int i=0; i<arrNum; i++) {
+				JsonObject *pJsonOject 	= getJsonObjectByIndex(pJsonArray, i);
+
+				// 데이터 파싱
+				String  sGameId			= getStringByKey(pJsonOject, pKeyGameId);
+				String  sGameTitle		= getStringByKey(pJsonOject, pKeyGameTitle);
+				String  sGameImgUrl 	= getStringByKey(pJsonOject, pkeyGameImgUrl);
+
+				// 리스트에 추가
+				gameList->Add( new GHGame(sGameId, "", sGameTitle, "", sGameImgUrl, 0, 0, 0, false, false) );
+			}
+
+			// KEY NAME DELETE
+			delete pKeyGameId;		delete pKeyGameTitle;	 delete pkeyGameImgUrl;
+		}
+		else { // 에러가 발생했을 때
+			gameList = null;
+		}
+
+		if(this->currentListener != null) this->currentListener->loadPlayerGamesFinished(gameList);
+
 
 	}
 	else //PLAYER_LOGIN ,PLAYER_GAMEJOIN

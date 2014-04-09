@@ -10,7 +10,9 @@
 
 #include <GHTizen.h>
 
-class GHLeaderboard {
+class GHLeaderboard
+	: public Tizen::Base::Object
+{
 private:
 
 	//----------------------------------------------------------------

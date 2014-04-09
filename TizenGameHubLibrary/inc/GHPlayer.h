@@ -8,7 +8,7 @@
 #ifndef GHPLAYER_H_
 #define GHPLAYER_H_
 
-#include <GHTizen.h>
+#include "GHTizen.h"
 /*
 player_id	사용자 고유키
 email		사용자 계정 id (email)
@@ -19,7 +19,9 @@ img_url		프로필 이미지 url
 /*
 getGameInstance();
  */
-class GHPlayer{
+class GHPlayer
+	: public Tizen::Base::Object
+{
 private:
 	// variable
 	Tizen::Base::String id;			// 사용자 고유 ID

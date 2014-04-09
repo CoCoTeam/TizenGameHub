@@ -20,6 +20,7 @@
 #include "GHhttpClient.h"
 #include "GHPlayer/GHPlayerController.h"
 #include "GHPlayer/GHPlayerLoadedListener.h"
+#include "GHPlayer/GHPlayerGamesLoadedListener.h"
 
 using namespace Tizen::Base;
 using namespace Tizen::Ui::Controls;
@@ -32,6 +33,7 @@ class PlayerForm
 	, public Tizen::Ui::Scenes::ISceneEventListener
 	, public GHPlayerController
 	, public GHPlayerLoadedListener
+	, public GHPlayerGamesLoadedListener
 {
 public:
 	PlayerForm();
@@ -70,6 +72,8 @@ private:
 									const Tizen::Ui::Scenes::SceneId& nextSceneId);
 	//GHPlayerLoadedListener
 	virtual void loadPlayerDataFinished(GHPlayer* player);
+	//GHPlayerGamesLoadedListener
+	virtual void loadPlayerGamesFinished(Tizen::Base::Collection::ArrayList* gameList);
 
 	//
 	void getCurrentPlayerData(String playerId);	// 서버로부터 플레이어의 정보를 받아온다.

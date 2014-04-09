@@ -13,6 +13,10 @@
 #include "GHPlayer.h"
 #include "GHPlayerProvider.h"
 #include "GHPlayerListItemEventListener.h"
+//통신
+#include "GHhttpClient.h"
+#include "GHGame/GHGameController.h"
+#include "GHGame/GHGameLoadedListener.h"
 
 using namespace Tizen::Ui::Controls;
 using namespace Tizen::Base::Collection;
@@ -22,6 +26,8 @@ class GameForm
 	, public Tizen::Ui::IActionEventListener
 	, public Tizen::Ui::Controls::IFormBackEventListener
 	, public Tizen::Ui::Scenes::ISceneEventListener
+	, public GHGameController
+	, public GHGameLoadedListener
 {
 public:
 	GameForm();
@@ -56,8 +62,11 @@ private:
 								   const Tizen::Ui::Scenes::SceneId& currentSceneId, Tizen::Base::Collection::IList* pArgs);
 	virtual void OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
 									const Tizen::Ui::Scenes::SceneId& nextSceneId);
+	//GHGameLoadedListener
+	void loadPlayerDataFinished(GHGame* game);
 
-	GHGame* getGameInstance(Tizen::Base::String id);
+	void getGameInstance(Tizen::Base::String id);
+	void setGameData();
 	void setPlayerList();
 
 	void changePanel(int selected);
