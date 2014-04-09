@@ -15,10 +15,10 @@ public:
 	GHAchievementListener();
 	virtual ~GHAchievementListener();
 
-	virtual void loadAchievementFinished(Tizen::Base::Collection::ArrayList* attackhelperList) = 0;
-	virtual void setAchievementFinished(int statusCode) = 0;
-	virtual void revealAchievementFinished(int statusCode) = 0;
-	virtual void completeAchievementFinished(int statusCode) = 0;
+	virtual void loadAchievementFinished(Tizen::Base::Collection::ArrayList* attackhelperList) {};
+	virtual void setAchievementFinished(int statusCode) {};
+	virtual void revealAchievementFinished(int statusCode) {};
+	virtual void completeAchievementFinished(int statusCode) {};
 };
 
 #endif /* GHACHIEVEMENTLISTENER_H_ */

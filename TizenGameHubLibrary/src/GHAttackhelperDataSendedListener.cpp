@@ -15,4 +15,3 @@ GHAttackhelperDataSendedListener::GHAttackhelperDataSendedListener() {
 GHAttackhelperDataSendedListener::~GHAttackhelperDataSendedListener() {
 	// TODO Auto-generated destructor stub
 }
-

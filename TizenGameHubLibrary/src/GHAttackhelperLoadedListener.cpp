@@ -16,4 +16,3 @@ GHAttackhelperLoadedListener::~GHAttackhelperLoadedListener() {
 	// TODO Auto-generated destructor stub
 }
 
-//void GHAttackhelperLoadedListener::doAttackhelperFinished(int statusCode){};

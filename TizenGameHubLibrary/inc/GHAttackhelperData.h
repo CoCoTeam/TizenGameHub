@@ -28,6 +28,17 @@ public:
 	GHAttackhelperData();
 	virtual ~GHAttackhelperData();
 	GHAttackhelperData(int _dataIndex, Tizen::Base::String _senderId, Tizen::Base::String _id, Tizen::Base::String _itemName, int _denyEnable, int _quantity);
+
+
+	// GET FUNCTION
+	int getDataIndex();
+	Tizen::Base::String getSenderId();
+	Tizen::Base::String getId();
+	Tizen::Base::String getItemName();
+	int getDenyEnable();
+	int getQuantity();
+
+
 };
 
 #endif /* GHATTACKHELPERDATA_H_ */

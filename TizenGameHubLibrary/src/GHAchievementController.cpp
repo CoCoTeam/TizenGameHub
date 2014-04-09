@@ -91,7 +91,7 @@ void GHAchievementController::setAchievement(String ac_id) {
 	__pMap->Add(new String("game_id"), new String(game_id));
 	__pMap->Add(new String("player_id"), new String(player_id));
 	__pMap->Add(new String("ac_id"), new String(ac_id));
-	__pMap->Add(new String("point"), new Long(10));
+	__pMap->Add(new String("point"), new String(Integer::ToString(10)));
 
 	httpPost.RequestHttpPutTran(this, url, __pMap);
 }

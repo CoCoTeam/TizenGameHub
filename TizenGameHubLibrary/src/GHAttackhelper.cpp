@@ -7,6 +7,8 @@
 
 #include "GHAttackhelper.h"
 
+using namespace Tizen::Base;
+
 GHAttackhelper::GHAttackhelper() {
 	// TODO Auto-generated constructor stub
 
@@ -24,4 +26,17 @@ GHAttackhelper::GHAttackhelper(Tizen::Base::String _id, Tizen::Base::String _ite
 
 }
 
+// GET Function ------------------------------------------------
+String GHAttackhelper::getId()
+{
+	return this->id;
+}
+String GHAttackhelper::getItemName()
+{
+	return this->itemName;
+}
+int	GHAttackhelper::getDenyEnable()
+{
+	return this->denyEnable;
+}
 

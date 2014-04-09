@@ -16,3 +16,5 @@ GHAttackhelperDataLoadedListener::~GHAttackhelperDataLoadedListener() {
 	// TODO Auto-generated destructor stub
 }
 
+
+

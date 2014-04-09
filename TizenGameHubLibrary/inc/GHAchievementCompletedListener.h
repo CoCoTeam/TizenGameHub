@@ -18,10 +18,7 @@ public:
 
 	virtual void completeAchievementFinished(int statusCode) = 0;
 
-private:
-	virtual void loadAchievementFinished(Tizen::Base::Collection::ArrayList* attackhelperList){};
-	virtual void setAchievementFinished(int statusCode){};
-	virtual void revealAchievementFinished(int statusCode){};
+
 };
 
 #endif /* GHACHIEVEMENTCOMPLETEDLISTENER_H_ */
