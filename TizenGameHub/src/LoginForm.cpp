@@ -141,13 +141,13 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		//controller->respondAttackhelperData(5, this); //del 점검필요
 		//controller->loadAttackhelperDatas(this);
 
-		GHLeaderboardController* controller = new GHLeaderboardController();
+		//GHLeaderboardController* controller = new GHLeaderboardController();
 		//controller->loadLeaderboardRank("1",this);	// 데이터 옴
-		controller->updateLeaderboardScore("key_aa","key_aa_0",50,this);   // What is
+		//controller->updateLeaderboardScore("key_aa","key_aa_0",50,this);   // What is
 		//controller->loadLeaderboards(this); 	// 데이터 안옴 ㅠㅠ 왜 ??
 
-		//GHCloudsaveController* controller = new GHCloudsaveController();
-		//controller->loadCloudSlotData(1, this);
+		GHCloudsaveController* controller = new GHCloudsaveController();
+		controller->loadCloudSlotData(1, this);
 		//controller->saveCloudSlotData("hahaha kichul zzang", 2, this);
 
 		break;

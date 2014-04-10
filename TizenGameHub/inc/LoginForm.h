@@ -13,11 +13,11 @@
 #include "GHPlayer/GHPlayerController.h"
 #include "GHPlayer/GHPlayerLoggedinListener.h"
 
-#include <GHAchievementController.h>
-#include <GHAchievementLoadedListener.h>
-#include <GHAttackhelperController.h>
-#include <GHAttackhelperLoadedListener.h>
-#include <GHAttackhelperDataRespondedListener.h>
+#include "GHAchievement/GHAchievementController.h"
+#include "GHAchievement/GHAchievementLoadedListener.h"
+#include "GHAttackhelper/GHAttackhelperController.h"
+#include "GHAttackhelper/GHAttackhelperLoadedListener.h"
+#include "GHAttackhelper/GHAttackhelperDataRespondedListener.h"
 
 
 #include <GHLeaderboard/GHLeaderboardController.h>
@@ -25,9 +25,9 @@
 #include <GHLeaderboard/GHLeaderboardListLoadedListener.h>
 #include <GHLeaderboard/GHLeaderboardScoreUpdatedListener.h>
 
-#include <GHCloudsaveController.h>
-#include <GHCloudsaveSaveListener.h>
-#include <GHCloudsaveLoadListener.h>
+#include "GHCloudsave/GHCloudsaveController.h"
+#include "GHCloudsave/GHCloudsaveSaveListener.h"
+#include "GHCloudsave/GHCloudsaveLoadListener.h"
 
 
 using namespace Tizen::Ui::Controls;

@@ -5,7 +5,7 @@
  *      Author: KICHUL
  */
 
-#include "GHAttackhelperListener.h"
+#include "GHAttackhelper/GHAttackhelperListener.h"
 
 GHAttackhelperListener::GHAttackhelperListener() {
 	// TODO Auto-generated constructor stub

@@ -9,7 +9,7 @@
 #define JOINFORM_H_
 
 #include <GHTizen.h>
-#include <GHAchievementController.h>
+#include "GHAchievement/GHAchievementController.h"
 
 
 class JoinForm
