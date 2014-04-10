@@ -32,7 +32,9 @@ private:
 public:
 	GHPlayer();
 	GHPlayer(Tizen::Base::String _id, Tizen::Base::String _email, Tizen::Base::String _name, Tizen::Base::String _imgUrl);
-//	GHPlayer(Tizen::Web::Json::JsonObject *jsonData);
+	GHPlayer(Tizen::Base::String _id, Tizen::Base::String _name, Tizen::Base::String _imgUrl);
+
+	//	GHPlayer(Tizen::Web::Json::JsonObject *jsonData);
 	~GHPlayer();
 
 	// GET Function ------------------------------------------------

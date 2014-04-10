@@ -15,6 +15,12 @@
 #include <GHAttackhelperController.h>
 #include <GHAttackhelperLoadedListener.h>
 #include <GHAttackhelperDataRespondedListener.h>
+
+#include <GHLeaderboard/GHLeaderboardController.h>
+#include <GHLeaderboard/GHLeaderboardDataLoadedListener.h>
+#include <GHLeaderboard/GHLeaderboardListLoadedListener.h>
+#include <GHLeaderboard/GHLeaderboardScoreUpdatedListener.h>
+
 using namespace Tizen::Ui::Controls;
 
 class LoginForm
@@ -25,6 +31,9 @@ class LoginForm
 	, public GHAchievementLoadedListener // TEST API
 	, public GHAttackhelperLoadedListener // TEST API
 	, public GHAttackhelperDataRespondedListener // TEST API
+	, public GHLeaderboardDataLoadedListener //Test API
+	, public GHLeaderboardListLoadedListener
+	, public GHLeaderboardScoreUpdatedListener
 {
 public:
 	LoginForm();
@@ -53,6 +62,11 @@ private:
 
 	// GHController
 	virtual void OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data);
+
+	// GHLeaderboard
+	virtual void loadLeaderboardFinished(Tizen::Base::Collection::ArrayList* leaderboardList);
+	virtual void loadLeaderboardRankFinished(Tizen::Base::Collection::ArrayList* leaderboardList);
+	virtual void updateLeaderboardScoreFinished(int statusCode);
 
 };
 

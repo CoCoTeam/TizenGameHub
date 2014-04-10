@@ -8,7 +8,7 @@
 #ifndef GHLEADERBOARDLISTLOADEDLISTENER_H_
 #define GHLEADERBOARDLISTLOADEDLISTENER_H_
 
-#include "GHLeaderboard.h"
+/*#include "GHLeaderboard.h"*/
 #include "GHLeaderboard/GHLeaderboardListener.h"
 
 class GHLeaderboardListLoadedListener
@@ -17,12 +17,7 @@ class GHLeaderboardListLoadedListener
 public:
 	GHLeaderboardListLoadedListener();
 	virtual ~GHLeaderboardListLoadedListener();
-
-	virtual void loadLeaderboardRankFinished(){};
-
-private:
-	virtual void loadLeaderboardFinished(Tizen::Base::Collection::ArrayList* leaderboardList) = 0;
-	virtual void updateLeaderboardScoreFinished()=0;
+	virtual void loadLeaderboardRankFinished(Tizen::Base::Collection::ArrayList* Ranklist)=0;
 };
 
 #endif /* GHLEADERBOARDLISTLOADEDLISTENER_H_ */

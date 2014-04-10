@@ -15,6 +15,7 @@
 #include "GHPlayerListener.h"
 #include "GHPlayerLoadedListener.h"
 
+
 const Tizen::Base::String PLAYER_LOGIN = "02";
 const Tizen::Base::String PLAYER_PLAYERDATA = "04";
 const Tizen::Base::String PLAYER_GAMEJOIN = "05";
