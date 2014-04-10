@@ -8,11 +8,11 @@
 #ifndef GHLEADERBOARD_H_
 #define GHLEADERBOARD_H_
 
-#include <GHTizen.h>
+#include "GHTizen.h"
 
 class GHLeaderboard
-	: public Tizen::Base::Object
-{
+: public Tizen::Base::Object {
+
 private:
 
 	//----------------------------------------------------------------
@@ -25,8 +25,15 @@ private:
 	bool isAscendingOrder;		// 정렬 순서 ()
 	bool isTimeFormat;			// 데이터 타입 시간 ()
 
+	Tizen::Base::Collection::ArrayList* learderboardRankList;
+
 public:
 	GHLeaderboard();
+
+	GHLeaderboard(Tizen::Base::String _id, Tizen::Base::String _title, Tizen::Base::String _imgUrl, Tizen::Base::String _unit, bool _isAscendingOrder, bool _isTimeFormat);
+	GHLeaderboard(Tizen::Base::String _id, Tizen::Base::String _title, Tizen::Base::String _imgUrl);
+	GHLeaderboard(Tizen::Base::String _id, Tizen::Base::String _unit, bool _isAscendingOrder, bool _isTimeFormat, Tizen::Base::Collection::ArrayList* learderboardRankList);
+
 	virtual ~GHLeaderboard();
 
 	//----------------------------------------------------------------

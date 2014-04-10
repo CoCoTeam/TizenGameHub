@@ -11,6 +11,7 @@
 #include "PrefClass.h"
 #include "GHPlayer/GHPlayerController.h"
 
+
 using namespace Tizen::App;
 using namespace Tizen::Ui::Scenes;
 using namespace Tizen::Ui::Controls;
@@ -140,9 +141,15 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		//controller->respondAttackhelperData(5, this); //del 점검필요
 		//controller->loadAttackhelperDatas(this);
 
+
+		//GHLeaderboardController* controller = new GHLeaderboardController();
+		//controller->loadLeaderboardRank("1",this);	// 데이터 옴
+		//controller->updateLeaderboardScore("key_aa","key_aa_0",50,this);   // What is
+		//controller->loadLeaderboards(this); 	// 데이터 안옴 ㅠㅠ 왜 ??
+
 		GHCloudsaveController* controller = new GHCloudsaveController();
-		//controller->loadCloudSlotData(1, this);
-		controller->saveCloudSlotData("hahaha kichul zzang", 2, this);
+		controller->loadCloudSlotData(1, this);
+		//controller->saveCloudSlotData("hahaha kichul zzang", 2, this);
 
 		break;
 	}
@@ -175,6 +182,26 @@ void LoginForm::respondAttackhelperDataFinished(int statusCode)
 {
 	AppLogDebug("[DEBUG] statusCode : %d", statusCode );
 }
+
+//Leaderboard Test
+void LoginForm::loadLeaderboardFinished(ArrayList* leaderboardList)
+{
+	//TEST
+	GHLeaderboard * test = static_cast<GHLeaderboard*>(leaderboardList->GetAt(0));
+	AppLogDebug("[DEBUG] Leaderboard ID : %d, %S", leaderboardList->GetCount(), test->getId().GetPointer() );
+}
+void LoginForm::loadLeaderboardRankFinished(ArrayList* leaderboardList)
+{
+	//AppLogDebug("[DEBUG]----------------------------------------------------------------->");
+	GHLeaderboard * test = static_cast<GHLeaderboard*>(leaderboardList->GetAt(0));
+	//GHLeaderboard * test = static_cast<GHLeaderboard*>(leaderboardList->GetAt(0));
+	AppLogDebug("[DEBUG] Leaderboard ID : %d, %S", leaderboardList->GetCount(), test->getId().GetPointer() );
+}
+void LoginForm::updateLeaderboardScoreFinished(int statusCode)
+{
+	AppLogDebug("[DEBUG] statusCode : %d", statusCode );
+}
+
 void LoginForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 {
 	UiApp* pApp = UiApp::GetInstance();

@@ -13,14 +13,22 @@
 #include "GHPlayer/GHPlayerController.h"
 #include "GHPlayer/GHPlayerLoggedinListener.h"
 
-#include <GHAchievementController.h>
-#include <GHAchievementLoadedListener.h>
-#include <GHAttackhelperController.h>
-#include <GHAttackhelperLoadedListener.h>
-#include <GHAttackhelperDataRespondedListener.h>
-#include <GHCloudsaveController.h>
-#include <GHCloudsaveSaveListener.h>
-#include <GHCloudsaveLoadListener.h>
+#include "GHAchievement/GHAchievementController.h"
+#include "GHAchievement/GHAchievementLoadedListener.h"
+#include "GHAttackhelper/GHAttackhelperController.h"
+#include "GHAttackhelper/GHAttackhelperLoadedListener.h"
+#include "GHAttackhelper/GHAttackhelperDataRespondedListener.h"
+
+
+#include <GHLeaderboard/GHLeaderboardController.h>
+#include <GHLeaderboard/GHLeaderboardDataLoadedListener.h>
+#include <GHLeaderboard/GHLeaderboardListLoadedListener.h>
+#include <GHLeaderboard/GHLeaderboardScoreUpdatedListener.h>
+
+#include "GHCloudsave/GHCloudsaveController.h"
+#include "GHCloudsave/GHCloudsaveSaveListener.h"
+#include "GHCloudsave/GHCloudsaveLoadListener.h"
+
 
 using namespace Tizen::Ui::Controls;
 
@@ -33,8 +41,14 @@ class LoginForm
 	, public GHAchievementLoadedListener // TEST API
 	, public GHAttackhelperLoadedListener // TEST API
 	, public GHAttackhelperDataRespondedListener // TEST API
+
+	, public GHLeaderboardDataLoadedListener //Test API
+	, public GHLeaderboardListLoadedListener
+	, public GHLeaderboardScoreUpdatedListener
+
 	, public GHCloudsaveSaveListener	// TEST API
 	, public GHCloudsaveLoadListener	// TEST API
+
 {
 public:
 	LoginForm();
@@ -65,6 +79,11 @@ private:
 	virtual void loadCloudsaveFinished(Tizen::Base::String data);
 
 	result doLogin();
+
+	// GHLeaderboard
+	virtual void loadLeaderboardFinished(Tizen::Base::Collection::ArrayList* leaderboardList);
+	virtual void loadLeaderboardRankFinished(Tizen::Base::Collection::ArrayList* leaderboardList);
+	virtual void updateLeaderboardScoreFinished(int statusCode);
 
 };
 

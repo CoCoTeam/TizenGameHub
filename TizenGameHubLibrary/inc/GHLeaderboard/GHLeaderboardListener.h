@@ -16,8 +16,8 @@ public:
 	virtual ~GHLeaderboardListener();
 
 	virtual void loadLeaderboardFinished(Tizen::Base::Collection::ArrayList* leaderboardList){};
-	virtual void loadLeaderboardRankFinished(){};
-	virtual void updateLeaderboardScoreFinished(){};
+	virtual void loadLeaderboardRankFinished(Tizen::Base::Collection::ArrayList* Ranklist){};
+	virtual void updateLeaderboardScoreFinished(int statusCode){};
 
 };
 

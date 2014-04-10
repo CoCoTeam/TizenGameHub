@@ -30,7 +30,6 @@ ListPanel::ListPanel(Tizen::Base::String _id, Tizen::Base::String _title, Tizen:
 	Label *pLabelTitle = static_cast< Label* >(GetControl(IDC_LISTPANEL_LABEL_TITLE));
 //	Gallery *pImg = static_cast< Gallery* >(GetControl(IDC_LISTPANEL_IMG));
 
-	AppLogDebug("aaaaa %S", getTitle().GetPointer());
 	pLabelTitle->SetText(_title);
 //	pImg->Set
 }

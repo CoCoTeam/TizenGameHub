@@ -10,8 +10,8 @@
 
 #include <GHTizen.h>
 #include "GHAchievement.h"
-#include "GHAchievementController.h"
-#include "GHAchievementLoadedListener.h"
+#include "GHAchievement/GHAchievementController.h"
+#include "GHAchievement/GHAchievementLoadedListener.h"
 
 class AchievementForm
 	: public Tizen::Ui::Controls::Form

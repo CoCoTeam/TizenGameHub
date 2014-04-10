@@ -8,7 +8,7 @@
 #ifndef GHLEADERBOARDSCOREUPDATEDLISTENER_H_
 #define GHLEADERBOARDSCOREUPDATEDLISTENER_H_
 
-#include "GHLeaderboard.h"
+/*#include "GHLeaderboard.h"*/
 #include "GHLeaderboard/GHLeaderboardListener.h"
 
 class GHLeaderboardScoreUpdatedListener
@@ -17,7 +17,9 @@ class GHLeaderboardScoreUpdatedListener
 public:
 	GHLeaderboardScoreUpdatedListener();
 	virtual ~GHLeaderboardScoreUpdatedListener();
-	virtual void updateLeaderboardScoreFinished()=0;
+
+	virtual void updateLeaderboardScoreFinished(int statusCode)=0;
+
 };
 
 #endif /* GHLEADERBOARDSCOREUPDATEDLISTENER_H_ */

@@ -5,7 +5,7 @@
  *      Author: KICHUL
  */
 
-#include "GHAttackhelperDataLoadedListener.h"
+#include "GHAttackhelper/GHAttackhelperDataLoadedListener.h"
 
 GHAttackhelperDataLoadedListener::GHAttackhelperDataLoadedListener() {
 	// TODO Auto-generated constructor stub

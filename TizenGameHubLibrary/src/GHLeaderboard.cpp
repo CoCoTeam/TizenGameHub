@@ -7,8 +7,29 @@
 
 #include "GHLeaderboard.h"
 
+using namespace Tizen::Base;
+
 GHLeaderboard::GHLeaderboard() {
 	// TODO Auto-generated constructor stub
+
+}
+
+GHLeaderboard::GHLeaderboard(Tizen::Base::String _id, Tizen::Base::String _unit, bool _isAscendingOrder, bool _isTimeFormat, Tizen::Base::Collection::ArrayList* _learderboardRankList)
+	:id(_id), unit(_unit), isAscendingOrder(_isAscendingOrder), isTimeFormat(_isTimeFormat)
+{
+	learderboardRankList = _learderboardRankList;
+
+	AppLogDebug("[GHLeaderboard] %d, %S", _learderboardRankList->GetCount() , _id.GetPointer());
+}
+GHLeaderboard::GHLeaderboard(String _id, String _title, String _imgUrl, String _unit, bool _isAscendingOrder, bool _isTimeFormat)
+	:id(_id), title(_title), imgUrl(_imgUrl), unit(_unit), isAscendingOrder(_isAscendingOrder), isTimeFormat(_isTimeFormat)
+{
+	AppLogDebug("[GHLeaderboard] %S", id.GetPointer());
+}
+GHLeaderboard::GHLeaderboard(String _id, String _title, String _imgUrl)
+	:id(_id), title(_title), imgUrl(_imgUrl)
+{
+	GHLeaderboard(_id, _title, _imgUrl, "", 0, 0 );
 
 }
 
