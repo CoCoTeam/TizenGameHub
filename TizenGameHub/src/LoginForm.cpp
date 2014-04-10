@@ -141,6 +141,7 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		//controller->respondAttackhelperData(5, this); //del 점검필요
 		//controller->loadAttackhelperDatas(this);
 
+
 		//GHLeaderboardController* controller = new GHLeaderboardController();
 		//controller->loadLeaderboardRank("1",this);	// 데이터 옴
 		//controller->updateLeaderboardScore("key_aa","key_aa_0",50,this);   // What is
@@ -191,7 +192,7 @@ void LoginForm::loadLeaderboardFinished(ArrayList* leaderboardList)
 }
 void LoginForm::loadLeaderboardRankFinished(ArrayList* leaderboardList)
 {
-	AppLogDebug("[DEBUG]----------------------------------------------------------------->");
+	//AppLogDebug("[DEBUG]----------------------------------------------------------------->");
 	GHLeaderboard * test = static_cast<GHLeaderboard*>(leaderboardList->GetAt(0));
 	//GHLeaderboard * test = static_cast<GHLeaderboard*>(leaderboardList->GetAt(0));
 	AppLogDebug("[DEBUG] Leaderboard ID : %d, %S", leaderboardList->GetCount(), test->getId().GetPointer() );
