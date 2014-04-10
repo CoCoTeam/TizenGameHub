@@ -34,15 +34,17 @@ private:
 	//IActionEventListener
 	virtual void OnActionPerformed(const Tizen::Ui::Control& source, int actionId);
 	//IFormBackEventListener
+	virtual void OnFormBackRequested(Tizen::Ui::Controls::Form& source);
 	//ISceneEventListener
 	virtual void OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 								   const Tizen::Ui::Scenes::SceneId& currentSceneId, Tizen::Base::Collection::IList* pArgs);
 	virtual void OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
 									const Tizen::Ui::Scenes::SceneId& nextSceneId);
-	virtual void OnFormBackRequested(Tizen::Ui::Controls::Form& source);
 
 	//GHAchievementLoadedListener
 	virtual void loadAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList);
+
+	void setAchievementList();
 };
 
 #endif /* ACHIEVEMENTFORM_H_ */

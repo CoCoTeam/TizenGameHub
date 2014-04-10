@@ -16,10 +16,10 @@ GHLeaderboard::~GHLeaderboard() {
 	// TODO Auto-generated destructor stub
 }
 
-STRING* GHLeaderboard::getId()				{return id;}
-STRING* GHLeaderboard::getTitle()		{return title;}
-STRING* GHLeaderboard::getImgUrl()		{return imgUrl;}
-STRING* GHLeaderboard::getUnit()		{return unit;}
+Tizen::Base::String GHLeaderboard::getId()				{return id;}
+Tizen::Base::String GHLeaderboard::getTitle()			{return title;}
+Tizen::Base::String GHLeaderboard::getImgUrl()			{return imgUrl;}
+Tizen::Base::String GHLeaderboard::getUnit()			{return unit;}
 bool GHLeaderboard::getIsAscendingOrder()	{return isAscendingOrder;}
 bool GHLeaderboard::getIsTimeFormat()		{return isTimeFormat;}
 

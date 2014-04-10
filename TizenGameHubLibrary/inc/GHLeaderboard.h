@@ -17,10 +17,10 @@ private:
 
 	//----------------------------------------------------------------
 	// variables
-	STRING* id;					// leaderboard 고유키
-	STRING* title;				// leaderboard 제목
-	STRING* imgUrl;				// leaderboard 대표 이미지
-	STRING* unit;				// leaderboard 표시 단위
+	Tizen::Base::String id;					// leaderboard 고유키
+	Tizen::Base::String title;				// leaderboard 제목
+	Tizen::Base::String imgUrl;				// leaderboard 대표 이미지
+	Tizen::Base::String unit;				// leaderboard 표시 단위
 
 	bool isAscendingOrder;		// 정렬 순서 ()
 	bool isTimeFormat;			// 데이터 타입 시간 ()
@@ -31,10 +31,10 @@ public:
 
 	//----------------------------------------------------------------
 	// GET Functions
-	STRING* getId();
-	STRING* getTitle();
-	STRING* getImgUrl();
-	STRING* getUnit();
+	Tizen::Base::String getId();
+	Tizen::Base::String getTitle();
+	Tizen::Base::String getImgUrl();
+	Tizen::Base::String getUnit();
 
 	bool getIsAscendingOrder();
 	bool getIsTimeFormat();
