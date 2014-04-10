@@ -300,7 +300,7 @@ GHhttpClient::RequestHttpGetTran(IHttpTransactionEventListener* listener, String
 	{
 		__pHttpSession = new (std::nothrow) HttpSession();
 
-		r = __pHttpSession->Construct(NET_HTTP_SESSION_MODE_NORMAL, null, hostAddr, null);
+		r = __pHttpSession->Construct(NET_HTTP_SESSION_MODE_PIPELINING , null, hostAddr, null);
 		if (IsFailed(r))
 		{
 			delete __pHttpSession;
@@ -381,7 +381,7 @@ GHhttpClient::RequestHttpPostTran(IHttpTransactionEventListener* listener, Strin
 	{
 		__pHttpSession = new (std::nothrow) HttpSession();
 
-		r = __pHttpSession->Construct(NET_HTTP_SESSION_MODE_NORMAL, null, hostAddr, null);
+		r = __pHttpSession->Construct(NET_HTTP_SESSION_MODE_PIPELINING , null, hostAddr, null);
 		if (IsFailed(r))
 		{
 			delete __pHttpSession;
@@ -482,7 +482,7 @@ GHhttpClient::RequestHttpPutTran(IHttpTransactionEventListener* listener, String
 	{
 		__pHttpSession = new (std::nothrow) HttpSession();
 
-		r = __pHttpSession->Construct(NET_HTTP_SESSION_MODE_NORMAL, null, hostAddr, null);
+		r = __pHttpSession->Construct(NET_HTTP_SESSION_MODE_PIPELINING , null, hostAddr, null);
 		if (IsFailed(r))
 		{
 			delete __pHttpSession;
@@ -568,7 +568,7 @@ GHhttpClient::RequestHttpDelTran(IHttpTransactionEventListener* listener, String
 	{
 		__pHttpSession = new (std::nothrow) HttpSession();
 
-		r = __pHttpSession->Construct(NET_HTTP_SESSION_MODE_NORMAL, null, hostAddr, null);
+		r = __pHttpSession->Construct(NET_HTTP_SESSION_MODE_PIPELINING , null, hostAddr, null);
 		if (IsFailed(r))
 		{
 			delete __pHttpSession;

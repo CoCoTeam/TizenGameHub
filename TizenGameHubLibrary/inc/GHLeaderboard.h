@@ -12,6 +12,7 @@
 
 class GHLeaderboard
 : public Tizen::Base::Object {
+
 private:
 
 	//----------------------------------------------------------------

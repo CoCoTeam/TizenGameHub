@@ -149,6 +149,9 @@ void GHAttackhelperController::OnTransactionReadyToRead(String apiCode, String s
 
 			}
 
+			delete pkeyDataIdx; delete pkeySenderId; delete pkeyId; delete pkeyItemName;
+			delete pkeyDenyEnbale; delete pkeyQuantity;
+
 		}else {
 			ahdArr = null;
 		}

@@ -53,6 +53,9 @@ PlayerForm::OnInitializing(void)
 	pPanelFriend = static_cast< Panel* >(pPanelScroll->GetControl(IDC_USER_PANEL_FRIEND));
 	pPanelFriend->SetShowState(false);
 
+	pListViewGame = static_cast< ListView* >(pPanelGame->GetControl(IDC_USER_LISTVIEW_GAME));
+	pListViewFriend = static_cast< ListView* >(pPanelFriend->GetControl(IDC_USER_LISTVIEW_FRIEND));
+
 	setFooterMenu();
 
 	return r;
@@ -141,12 +144,8 @@ PlayerForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 			isLocalPlayer = static_cast<Tizen::Base::Boolean*>(pArgs->GetAt(1));
 			isFriend = static_cast<Tizen::Base::Boolean*>(pArgs->GetAt(2));
 
-			// 임시 더미 데이터
+			// 사용자 데이터 수신
 			getCurrentPlayerData( *mPlayerId );
-
-			getGames( *mPlayerId );
-
-			setGameList();
 
 			if( isLocalPlayer ) {
 				//!! Footer 정보 변경
@@ -160,8 +159,8 @@ PlayerForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 				setPlayerList();
 			}
 			else {
-
 				//!! Footer 정보 변경
+//				setFooterMenu();
 
 				// 버튼 정보 변경
 				if( isFriend ) {
@@ -192,11 +191,13 @@ void PlayerForm::getCurrentPlayerData(String playerId)
 }
 void PlayerForm::loadPlayerDataFinished(GHPlayer* player)
 {
-//	if(mPlayer.eqnull)
-//	{
+	if(player != null)
+	{
 		mPlayer = player;
 		setPlayerData();
-//	}
+
+		getGames( mPlayer->getId() );
+	}
 }
 void PlayerForm::setPlayerData()
 {
@@ -206,39 +207,36 @@ void PlayerForm::setPlayerData()
 	String *totalScoreStr = new String();
 	totalScoreStr->Append(mPlayer->getTotalScore());
 	pLabelUserScore->SetText( *totalScoreStr );
-	//!! 프로필 이미지 세팅, 버튼 속성 세팅
+	//!! 프로필 이미지 세팅
 	//	pGalleryUserProfile->Set
-	//	pButtonUserFriend->Set
 
 	pButtonUserFriend->SetActionId(IDA_BUTTON_USER);
 	pButtonUserFriend->AddActionEventListener(*this);
-	Draw();
 
 	AppLogDebug("---------->setPlayerData End<----------");
+	Draw();
 }
 
 void PlayerForm::getGames(String playerId)
 {
 	pGameList = new ArrayList();
-
-//	getPlayerGameList(playerId);
-
-	pGameList->Add( (Object*)new GHGame("111", "100", "FunnyGame", "This Game is really fun.", "default", 1, 1, 1, false, false) );
-	pGameList->Add( (Object*)new GHGame("222", "101", "MultiGame", "This Game provides Turn-Based Multiplay.", "default", 2, 2, 2, false, true) );
-	pGameList->Add( (Object*)new GHGame("333", "100", "CloudGame", "This Game provides Cloud Save.", "default", 1, 3, 2, true, false) );
+	getPlayerGameList(playerId);
 }
-
-
+void PlayerForm::loadPlayerGamesFinished(Tizen::Base::Collection::ArrayList* gameList)
+{
+	pGameList = gameList;
+	setGameList();
+}
 void PlayerForm::setGameList()
 {
 	pGameProvider = new GHGameProvider();
 	pGameProvider->setItemList(pGameList);
+	pListViewGame->SetItemProvider( *pGameProvider );
+
 	pGameListItemEventListener = new GHGameListItemEventListener();
 	pGameListItemEventListener->setItemList(pGameList);
-
-	pListViewGame = static_cast< ListView* >(pPanelGame->GetControl(IDC_USER_LISTVIEW_GAME));
-	pListViewGame->SetItemProvider( *pGameProvider );
 	pListViewGame->AddListViewItemEventListener( *pGameListItemEventListener );
+	Draw();
 }
 
 
@@ -257,7 +255,6 @@ void PlayerForm::setPlayerList()
 	pFriendListItemEventListener = new GHPlayerListItemEventListener();
 	pFriendListItemEventListener->setItemList(pFriendList);
 
-	pListViewFriend = static_cast< ListView* >(pPanelFriend->GetControl(IDC_USER_LISTVIEW_FRIEND));
 	pListViewFriend->SetItemProvider( *pFriendProvider );
 	pListViewFriend->AddListViewItemEventListener( *pFriendListItemEventListener );
 }

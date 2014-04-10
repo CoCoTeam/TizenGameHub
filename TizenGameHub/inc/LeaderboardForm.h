@@ -9,17 +9,24 @@
 #define LEADERBOARDFORM_H_
 
 #include <GHTizen.h>
+#include "GHLeaderboard.h"
+#include "GHLeaderboard/GHLeaderboardController.h"
+#include "GHLeaderboard/GHLeaderboardDataLoadedListener.h"
 
 class LeaderboardForm
 	: public Tizen::Ui::Controls::Form
 	, public Tizen::Ui::IActionEventListener
 	, public Tizen::Ui::Controls::IFormBackEventListener
 	, public Tizen::Ui::Scenes::ISceneEventListener
+	, public GHLeaderboardController
+	, public GHLeaderboardDataLoadedListener
 {
 public:
 	LeaderboardForm();
 	virtual ~LeaderboardForm();
 	bool Initialize(void);
+
+	Tizen::Base::Collection::ArrayList* lb_list;
 
 private:
 	virtual result OnInitializing(void);
@@ -33,6 +40,8 @@ private:
 								   const Tizen::Ui::Scenes::SceneId& currentSceneId, Tizen::Base::Collection::IList* pArgs);
 	virtual void OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
 									const Tizen::Ui::Scenes::SceneId& nextSceneId);
+	//GHLeaderboardDataLoadedListener
+	virtual void loadLeaderboardFinished(Tizen::Base::Collection::ArrayList* leaderboardList);
 };
 
 #endif /* LEADERBOARDFORM_H_ */

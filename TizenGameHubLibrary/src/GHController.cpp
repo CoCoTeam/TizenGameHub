@@ -163,6 +163,20 @@ int	GHController::getIntByKey(JsonObject* pJsonObj, const String *key)
 	return ret;
 
 }
+bool GHController::getBoolByKey(Tizen::Web::Json::JsonObject* pJsonObj, const Tizen::Base::String* key)
+{
+
+	IJsonValue * pObjValue = null;
+	pJsonObj->GetValue(key, pObjValue);
+
+	JsonNumber * pJsonNum = static_cast<JsonNumber*>(pObjValue);
+	bool ret = ( pJsonNum->ToInt() == 1 ? true : false);
+
+	if(pObjValue!= null) delete pObjValue;
+
+	return ret;
+
+}
 
 JsonArray* GHController::getJsonArrayByIndex(JsonArray* pJsonArr, const int index)
 {
@@ -208,6 +222,18 @@ int GHController::getIntByIndex(JsonArray* pJsonArr, const int index)
 
 	JsonNumber * pJsonNum = static_cast<JsonNumber*>(pObjValue);
 	int ret = pJsonNum->ToInt();
+
+	if(pObjValue != null) delete pObjValue;
+	return ret;
+
+}
+bool GHController::getBoolByIndex(JsonArray* pJsonArr, const int index)
+{
+	IJsonValue* pObjValue = null;
+	pJsonArr->GetAt(index, pObjValue);
+
+	JsonNumber * pJsonNum = static_cast<JsonNumber*>(pObjValue);
+	bool ret = ( pJsonNum->ToInt() == 1 ? true : false);
 
 	if(pObjValue != null) delete pObjValue;
 	return ret;

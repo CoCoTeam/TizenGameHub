@@ -12,8 +12,8 @@
 #include "GHhttpClient.h"
 #include "GHController.h"
 #include "GHPlayer.h"
-#include "GHPlayerListener.h"
-#include "GHPlayerLoadedListener.h"
+#include "GHPlayer/GHPlayerListener.h"
+#include "GHPlayer/GHPlayerLoadedListener.h"
 
 
 const Tizen::Base::String PLAYER_LOGIN = "02";
