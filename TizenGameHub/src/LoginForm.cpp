@@ -194,7 +194,7 @@ void LoginForm::loadLeaderboardRankFinished(ArrayList* leaderboardList)
 	//AppLogDebug("[DEBUG]----------------------------------------------------------------->");
 	GHLeaderboard * test = static_cast<GHLeaderboard*>(leaderboardList->GetAt(0));
 	//GHLeaderboard * test = static_cast<GHLeaderboard*>(leaderboardList->GetAt(0));
-	AppLogDebug("[DEBUG] Leaderboard ID : %d, %S", leaderboardList->GetCount(), test->getId().GetPointer() );
+	AppLogDebug("[DEBUG] Leaderboard ID : %d, %S", leaderboardList->GetCount(), test->getId());
 }
 void LoginForm::updateLeaderboardScoreFinished(int statusCode)
 {
