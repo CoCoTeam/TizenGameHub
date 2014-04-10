@@ -5,7 +5,7 @@
  *      Author: JOHEEYEON
  */
 
-#include "GHAchievementController.h"
+#include "GHAchievement/GHAchievementController.h"
 
 using namespace Tizen::Base::Collection;
 using namespace Tizen::Net::Http;

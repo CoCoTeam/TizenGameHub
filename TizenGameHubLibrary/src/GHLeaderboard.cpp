@@ -37,10 +37,10 @@ GHLeaderboard::~GHLeaderboard() {
 	// TODO Auto-generated destructor stub
 }
 
-String GHLeaderboard::getId()			{ AppLogDebug("[DEBUG] Leaderboard ID : %S", id.GetPointer()); return id;}
-String GHLeaderboard::getTitle()		{return title;}
-String GHLeaderboard::getImgUrl()		{return imgUrl;}
-String GHLeaderboard::getUnit()		{return unit;}
+Tizen::Base::String GHLeaderboard::getId()				{return id;}
+Tizen::Base::String GHLeaderboard::getTitle()			{return title;}
+Tizen::Base::String GHLeaderboard::getImgUrl()			{return imgUrl;}
+Tizen::Base::String GHLeaderboard::getUnit()			{return unit;}
 bool GHLeaderboard::getIsAscendingOrder()	{return isAscendingOrder;}
 bool GHLeaderboard::getIsTimeFormat()		{return isTimeFormat;}
 

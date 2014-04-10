@@ -8,6 +8,7 @@
 #include "AchievementForm.h"
 #include "AppResourceId.h"
 #include "TizenGameHubFrame.h"
+#include "ListPanel.h"
 
 using namespace Tizen::Ui::Controls;
 using namespace Tizen::Ui::Scenes;
@@ -35,7 +36,6 @@ result AchievementForm::OnInitializing(void)
 	SetFormBackEventListener(this);
 
 	// Get a button via resource ID
-	loadAchievements(this);
 
 	return r;
 }
@@ -70,7 +70,6 @@ void AchievementForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previo
 			Tizen::Base::String *gameId = static_cast<Tizen::Base::String*>(pArgs->GetAt(0));
 			AppLog("[AchievementForm] Argument Received %S", gameId->GetPointer());
 			loadAchievements(this);
-
 		}
 		pArgs->RemoveAll(true);
 		delete pArgs;
@@ -83,11 +82,41 @@ void AchievementForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& curre
 	// TODO: Deactivate your scene here.
 
 }
-
-//GHAchievementLoadedListener
 void AchievementForm::loadAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList)
 {
 	ac_list = achievementList;
 	AppLogDebug("[AchievementForm] achievementArray Received. (arraySize : %d)", ac_list->GetCount() );
+	setAchievementList();
 }
+void AchievementForm::setAchievementList()
+{
+	int initX = 10, initY = 10;
+	int posX = 350, posY = 450;
+	for(int i=0 ; i<ac_list->GetCount()*5 ; i++)
+	{
+		GHAchievement *achievement = (GHAchievement*)(ac_list->GetAt(0));
+		Panel* pPanelAchievement = new ListPanel(achievement->getId(), achievement->getTitle(), achievement->getImgUrl());
+		pPanelAchievement->SetPosition(initX + posX*(i%2), initY + posY*(i/2));
+		AddControl(pPanelAchievement);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

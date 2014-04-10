@@ -5,7 +5,7 @@
  *      Author: KICHUL
  */
 
-#include "GHAchievementRevealedListener.h"
+#include "GHAchievement/GHAchievementRevealedListener.h"
 
 GHAchievementRevealedListener::GHAchievementRevealedListener() {
 	// TODO Auto-generated constructor stub

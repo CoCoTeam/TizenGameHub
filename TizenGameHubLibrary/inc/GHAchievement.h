@@ -39,7 +39,7 @@ public:
 
 	int 	getIsHidden();
 	int 	getIsComplete();
-	int 	getType();
+//	int 	getType();
 
 	int 	getGoalPoint();
 	int 	getCurPoint();

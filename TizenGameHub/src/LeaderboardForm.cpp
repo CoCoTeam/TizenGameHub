@@ -8,6 +8,7 @@
 #include "LeaderboardForm.h"
 #include "AppResourceId.h"
 #include "TizenGameHubFrame.h"
+#include "ListPanel.h"
 
 using namespace Tizen::Ui::Controls;
 using namespace Tizen::Ui::Scenes;
@@ -88,4 +89,32 @@ void LeaderboardForm::loadLeaderboardFinished(Tizen::Base::Collection::ArrayList
 {
 	lb_list = leaderboardList;
 	AppLogDebug("[LeaderboardForm] leaderboardList Received. (listSize : %d)", lb_list->GetCount() );
+	setLeaderboardList();
 }
+void LeaderboardForm::setLeaderboardList()
+{
+	int initX = 10, initY = 10;
+	int posX = 350, posY = 450;
+	for(int i=0 ; i<lb_list->GetCount() ; i++)
+	{
+		GHLeaderboard *leaderboard = (GHLeaderboard*)(lb_list->GetAt(0));
+		Panel* pPanelLeaderboard= new ListPanel(leaderboard->getId(), leaderboard->getTitle(), leaderboard->getImgUrl());
+		pPanelLeaderboard->SetPosition(initX + posX*(i%2), initY + posY*(i/2));
+		AddControl(pPanelLeaderboard);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

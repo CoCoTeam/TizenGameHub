@@ -66,5 +66,9 @@ extern const wchar_t* IDC_ACHIEVEMENT_SCROLLPANEL;
 /* IDL_FORM_LEADERBOARD */
 extern const wchar_t* IDL_FORM_LEADERBOARD;
 extern const wchar_t* IDC_LEADERBOARD_SCROLLPANEL;
+/* IDL_PANEL_LISTPANEL */
+extern const wchar_t* IDL_PANEL_LISTPANEL;
+extern const wchar_t* IDC_LISTPANEL_IMG;
+extern const wchar_t* IDC_LISTPANEL_LABEL_TITLE;
 
 #endif // _APP_RESOURCE_ID_H_

@@ -5,7 +5,7 @@
  *      Author: KICHUL
  */
 
-#include "GHAttackhelperController.h"
+#include "GHAttackhelper/GHAttackhelperController.h"
 
 using namespace Tizen::Web::Json;
 using namespace Tizen::Net::Http;
