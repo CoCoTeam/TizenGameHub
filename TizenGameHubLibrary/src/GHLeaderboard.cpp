@@ -24,12 +24,13 @@ GHLeaderboard::GHLeaderboard(Tizen::Base::String _id, Tizen::Base::String _unit,
 GHLeaderboard::GHLeaderboard(String _id, String _title, String _imgUrl, String _unit, bool _isAscendingOrder, bool _isTimeFormat)
 	:id(_id), title(_title), imgUrl(_imgUrl), unit(_unit), isAscendingOrder(_isAscendingOrder), isTimeFormat(_isTimeFormat)
 {
-
 	AppLogDebug("[GHLeaderboard] %S", id.GetPointer());
 }
 GHLeaderboard::GHLeaderboard(String _id, String _title, String _imgUrl)
+	:id(_id), title(_title), imgUrl(_imgUrl)
 {
 	GHLeaderboard(_id, _title, _imgUrl, "", 0, 0 );
+
 }
 
 GHLeaderboard::~GHLeaderboard() {

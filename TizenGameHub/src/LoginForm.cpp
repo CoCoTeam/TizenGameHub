@@ -142,9 +142,9 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		//controller->loadAttackhelperDatas(this);
 
 		GHLeaderboardController* controller = new GHLeaderboardController();
-		//controller->loadLeaderboardRank("1",this);	// 데이터 옴
-		controller->updateLeaderboardScore("key_aa","key_aa_0",50,this);   // What is
-		//controller->loadLeaderboards(this); 	// 데이터 안옴 ㅠㅠ 왜 ??
+		controller->loadLeaderboardRank("1",this);
+		//controller->updateLeaderboardScore("key_aa","key_aa_0",50,this);
+		//controller->loadLeaderboards(this);
 
 		//GHCloudsaveController* controller = new GHCloudsaveController();
 		//controller->loadCloudSlotData(1, this);
@@ -191,7 +191,7 @@ void LoginForm::loadLeaderboardFinished(ArrayList* leaderboardList)
 }
 void LoginForm::loadLeaderboardRankFinished(ArrayList* leaderboardList)
 {
-	AppLogDebug("[DEBUG]----------------------------------------------------------------->");
+	//AppLogDebug("[DEBUG]----------------------------------------------------------------->");
 	GHLeaderboard * test = static_cast<GHLeaderboard*>(leaderboardList->GetAt(0));
 	//GHLeaderboard * test = static_cast<GHLeaderboard*>(leaderboardList->GetAt(0));
 	AppLogDebug("[DEBUG] Leaderboard ID : %d, %S", leaderboardList->GetCount(), test->getId().GetPointer() );
