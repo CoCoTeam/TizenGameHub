@@ -17,6 +17,7 @@ class GHLeaderboardDataLoadedListener
 public:
 	GHLeaderboardDataLoadedListener();
 	virtual ~GHLeaderboardDataLoadedListener();
+
 	virtual void loadLeaderboardFinished(Tizen::Base::Collection::ArrayList* leaderboardList)=0;
 };
 
