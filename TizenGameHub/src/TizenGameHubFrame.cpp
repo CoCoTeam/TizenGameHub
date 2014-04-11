@@ -23,6 +23,7 @@ const wchar_t* SCENE_GAME = L"GameScene";
 const wchar_t* SCENE_PLAYER = L"PlayerScene";
 const wchar_t* SCENE_ACHIEVEMENT= L"AchievementScene";
 const wchar_t* SCENE_LEADERBOARD = L"LeaderboardScene";
+const wchar_t* SCENE_LEADERBOARDRANK = L"LeaderboardSceneRank";
 
 
 result
@@ -42,6 +43,7 @@ TizenGameHubFrame::OnInitializing(void)
 	pSceneManager->RegisterScene(SCENE_PLAYER, IDL_FORM_PLAYER, L"");
 	pSceneManager->RegisterScene(SCENE_ACHIEVEMENT, IDL_FORM_ACHIEVEMENT, L"");
 	pSceneManager->RegisterScene(SCENE_LEADERBOARD, IDL_FORM_LEADERBOARD, L"");
+	pSceneManager->RegisterScene(SCENE_LEADERBOARDRANK, IDL_FORM_LEADERBOARDRANK, L"");
 
 	// Go to the scene.
 //	result r = pSceneManager->GoForward(SceneTransitionId(IDSCNT_MAIN_SCENE));

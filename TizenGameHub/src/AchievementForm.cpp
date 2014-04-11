@@ -36,6 +36,7 @@ result AchievementForm::OnInitializing(void)
 	SetFormBackEventListener(this);
 
 	// Get a button via resource ID
+	pAchievement_scrollpanel = static_cast<ScrollPanel*>(GetControl(IDC_ACHIEVEMENT_SCROLLPANEL));
 
 	return r;
 }
@@ -82,6 +83,7 @@ void AchievementForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& curre
 	// TODO: Deactivate your scene here.
 
 }
+
 void AchievementForm::loadAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList)
 {
 	ac_list = achievementList;
@@ -90,33 +92,30 @@ void AchievementForm::loadAchievementFinished(Tizen::Base::Collection::ArrayList
 }
 void AchievementForm::setAchievementList()
 {
-	int initX = 10, initY = 10;
-	int posX = 350, posY = 450;
+	int initX = 20, initY = 10;
+	int posX = 330, posY = 430;
+
+	int completeCount = 0;
 	for(int i=0 ; i<ac_list->GetCount()*5 ; i++)
 	{
 		GHAchievement *achievement = (GHAchievement*)(ac_list->GetAt(0));
-		Panel* pPanelAchievement = new ListPanel(achievement->getId(), achievement->getTitle(), achievement->getImgUrl());
+		Panel* pPanelAchievement = new ListPanel(*achievement);
 		pPanelAchievement->SetPosition(initX + posX*(i%2), initY + posY*(i/2));
-		AddControl(pPanelAchievement);
+		pAchievement_scrollpanel->AddControl(pPanelAchievement);
+
+		if(achievement->getIsComplete() == true) {
+			completeCount++;
+		}
 	}
+
+	Tizen::Base::String titleStr = Tizen::Base::String("업적 ");
+	titleStr.Append(ac_list->GetCount());
+	titleStr.Append("개 중 ");
+	titleStr.Append(completeCount);
+	titleStr.Append("개 달성");
+//	AppLogDebug("[AchievementForm] %S", titleStr.GetPointer());
+
+	Label* pLabelTitle = static_cast<Label*>(GetControl(IDC_ACHIEVEMENT_LABEL_TITLE));
+	pLabelTitle->SetText(titleStr);
+	Draw();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

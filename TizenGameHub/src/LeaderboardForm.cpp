@@ -37,6 +37,7 @@ result LeaderboardForm::OnInitializing(void)
 	SetFormBackEventListener(this);
 
 	// Get a button via resource ID
+	pLeaderboard_scrollpanel = static_cast<ScrollPanel*>(GetControl(IDC_LEADERBOARD_SCROLLPANEL));
 
 	return r;
 }
@@ -93,14 +94,14 @@ void LeaderboardForm::loadLeaderboardFinished(Tizen::Base::Collection::ArrayList
 }
 void LeaderboardForm::setLeaderboardList()
 {
-	int initX = 10, initY = 10;
-	int posX = 350, posY = 450;
+	int initX = 20, initY = 10;
+	int posX = 330, posY = 430;
 	for(int i=0 ; i<lb_list->GetCount() ; i++)
 	{
 		GHLeaderboard *leaderboard = (GHLeaderboard*)(lb_list->GetAt(0));
 		Panel* pPanelLeaderboard= new ListPanel(leaderboard->getId(), leaderboard->getTitle(), leaderboard->getImgUrl());
 		pPanelLeaderboard->SetPosition(initX + posX*(i%2), initY + posY*(i/2));
-		AddControl(pPanelLeaderboard);
+		pLeaderboard_scrollpanel->AddControl(pPanelLeaderboard);
 	}
 }
 

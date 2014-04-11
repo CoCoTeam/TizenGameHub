@@ -20,6 +20,7 @@ class AchievementForm
 	, public Tizen::Ui::Scenes::ISceneEventListener
 	, public GHAchievementController
 	, public GHAchievementLoadedListener
+//	, public Tizen::Ui::Controls::IScrollEventListener
 {
 public:
 	AchievementForm();
@@ -40,11 +41,15 @@ private:
 								   const Tizen::Ui::Scenes::SceneId& currentSceneId, Tizen::Base::Collection::IList* pArgs);
 	virtual void OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
 									const Tizen::Ui::Scenes::SceneId& nextSceneId);
-
+	//IScrollEventListener
+//	virtual void OnScrollEndReached (Tizen::Ui::Control &source, Tizen::Ui::Controls::ScrollEndEvent type){};
 	//GHAchievementLoadedListener
 	virtual void loadAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList);
 
 	void setAchievementList();
+
+	Tizen::Ui::Controls::ScrollPanel* pAchievement_scrollpanel;
+
 };
 
 #endif /* ACHIEVEMENTFORM_H_ */

@@ -8,6 +8,7 @@
 #include "GameForm.h"
 #include "AchievementForm.h"
 #include "LeaderboardForm.h"
+#include "LeaderboardRankForm.h"
 
 using namespace Tizen::Ui::Scenes;
 
@@ -77,6 +78,14 @@ TizenGameHubFormFactory::CreateFormN(const Tizen::Base::String& formId, const Ti
 	else if(formId == IDL_FORM_LEADERBOARD)
 	{
 		LeaderboardForm *pForm = new (std::nothrow) LeaderboardForm();
+		TryReturn(pForm != null, null, "The memory is insufficient.");
+		pSceneManager->AddSceneEventListener(sceneId, *pForm);
+		pForm->Initialize();
+		pNewForm = pForm;
+	}
+	else if(formId == IDL_FORM_LEADERBOARDRANK)
+	{
+		LeaderboardRankForm *pForm = new (std::nothrow) LeaderboardRankForm();
 		TryReturn(pForm != null, null, "The memory is insufficient.");
 		pSceneManager->AddSceneEventListener(sceneId, *pForm);
 		pForm->Initialize();
