@@ -36,11 +36,11 @@ GHLeaderboard::GHLeaderboard(String _id, String _title, String _imgUrl)
 GHLeaderboard::~GHLeaderboard() {
 	// TODO Auto-generated destructor stub
 }
-
-Tizen::Base::String GHLeaderboard::getId()				{return id;}
-Tizen::Base::String GHLeaderboard::getTitle()			{return title;}
-Tizen::Base::String GHLeaderboard::getImgUrl()			{return imgUrl;}
-Tizen::Base::String GHLeaderboard::getUnit()			{return unit;}
+Tizen::Base::Collection::ArrayList* GHLeaderboard::getRankList() 	{return learderboardRankList;}
+Tizen::Base::String GHLeaderboard::getId()			{return id;}
+Tizen::Base::String GHLeaderboard::getTitle()		{return title;}
+Tizen::Base::String GHLeaderboard::getImgUrl()		{return imgUrl;}
+Tizen::Base::String GHLeaderboard::getUnit()		{return unit;}
 bool GHLeaderboard::getIsAscendingOrder()	{return isAscendingOrder;}
 bool GHLeaderboard::getIsTimeFormat()		{return isTimeFormat;}
 

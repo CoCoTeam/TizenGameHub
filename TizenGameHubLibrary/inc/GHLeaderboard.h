@@ -38,6 +38,7 @@ public:
 
 	//----------------------------------------------------------------
 	// GET Functions
+	Tizen::Base::Collection::ArrayList* getRankList();
 	Tizen::Base::String getId();
 	Tizen::Base::String getTitle();
 	Tizen::Base::String getImgUrl();

@@ -6,18 +6,23 @@
 <ScenePanel Bversion="2.0.0.201311071819" Dversion="20120315">
     <LogicalCoordinate>720</LogicalCoordinate>
     <Panel id="IDL_PANEL_LISTPANEL">
-        <property backgroundColor="" backgroundColorOpacity="0" compositeEnabled="true" groupStyle="GROUP_STYLE_NONE"/>
-        <layout height="400.0" mode="Portrait" type="NONE" width="300.0" x="0.0" y="0.0"/>
+        <property backgroundColor="#C0C0C0" backgroundColorOpacity="100" compositeEnabled="true" groupStyle="GROUP_STYLE_NONE"/>
+        <layout height="400.0" mode="Portrait" type="NONE" width="269.0" x="0.0" y="0.0"/>
         <layout height="300.0" mode="Landscape" type="NONE" width="93.0" x="0.0" y="0.0"/>
     </Panel>
     <Gallery id="IDC_LISTPANEL_IMG" parent="IDL_PANEL_LISTPANEL">
         <property accessibilityHint="" backgroundColor="" bitmapPathOfEmptyGallery="" slideShowAnimation="GALLERY_ANIMATION_PAGE" slideShowAnimationDuration="3000" slideShowViewDuration="10" textOfEmptyGallery="" zoomingEnabled="true"/>
-        <layout height="250.0" mode="Portrait" width="250.0" x="25.0" y="29.0"/>
+        <layout height="250.0" mode="Portrait" width="250.0" x="9.0" y="12.0"/>
         <layout height="230.0" mode="Landscape" width="93.0" x="21.0" y="29.0"/>
     </Gallery>
     <Label id="IDC_LISTPANEL_LABEL_TITLE" parent="IDL_PANEL_LISTPANEL">
         <property accessibilityHint="" backgroundBitmapPath="" backgroundColor="" backgroundColorOpacity="0" horizontalAlign="ALIGN_LEFT" leftMargin="16" text="TItle" textColor="" textSize="32.0" textStyle="LABEL_TEXT_STYLE_NORMAL" topMargin="0" verticalAlign="ALIGN_MIDDLE"/>
-        <layout height="46.0" mode="Portrait" width="248.0" x="23.0" y="296.0"/>
+        <layout height="46.0" mode="Portrait" width="250.0" x="9.0" y="274.0"/>
         <layout height="46.0" mode="Landscape" width="93.0" x="23.0" y="296.0"/>
+    </Label>
+    <Label id="IDC_LISTPANEL_LABEL_DESC" parent="IDL_PANEL_LISTPANEL">
+        <property accessibilityHint="" backgroundBitmapPath="" backgroundColor="" backgroundColorOpacity="0" horizontalAlign="ALIGN_LEFT" leftMargin="16" text="" textColor="#804040" textSize="23.0" textStyle="LABEL_TEXT_STYLE_NORMAL" topMargin="0" verticalAlign="ALIGN_TOP"/>
+        <layout height="81.0" mode="Portrait" width="250.0" x="9.0" y="319.0"/>
+        <layout height="46.0" mode="Landscape" width="93.0" x="10.0" y="264.0"/>
     </Label>
 </ScenePanel>

@@ -164,11 +164,11 @@ void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String st
 
 						JsonObject *pArrayJsonOject 	= getJsonObjectByIndex(pJsonArray, i);
 
-						String* pkeyP_id		= new String(L"p_id");
-						String* pkeyP_name		= new String(L"p_name");
-						String* pkeyP_url 		= new String(L"p_imgurl");
-						String* pkeyRank		= new String(L"rank");
-						String* pkeyScore 		= new String(L"score");
+						String* pkeyP_id	= new String(L"p_id");
+						String* pkeyP_name	= new String(L"p_name");
+						String* pkeyP_url 	= new String(L"p_imgurl");
+						String* pkeyRank	= new String(L"rank");
+						String* pkeyScore 	= new String(L"score");
 
 						String sP_id		= getStringByKey(pArrayJsonOject, pkeyP_id);
 						String sP_name		= getStringByKey(pArrayJsonOject, pkeyP_name);
@@ -187,8 +187,8 @@ void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String st
 
 				//lb_id, unit, lb_order, is_time
 				//leaderboard = new GHLeaderboard(slb_Id, "", "", sUnit, ilb_order, iIs_time, leArr);
-
-				leArr->Add(new GHLeaderboard(slb_Id, sUnit, ilb_order, iIs_time, leRankArr));
+				leaderboard = new GHLeaderboard(slb_Id, sUnit, ilb_order, iIs_time, leRankArr);
+				leArr->Add(leaderboard);
 
 				// KEY NAME DELETE
 				delete pkeylb_Id; 			delete pkeyUnit;		delete pkeylb_order;	 delete pkeyIs_time;		delete pKeyValues;

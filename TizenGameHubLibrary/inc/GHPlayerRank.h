@@ -10,7 +10,9 @@
 
 #include "GHPlayer.h"
 
-class GHPlayerRank : public GHPlayer {
+class GHPlayerRank
+	: public GHPlayer
+{
 public:
 	GHPlayerRank();
 	virtual ~GHPlayerRank();

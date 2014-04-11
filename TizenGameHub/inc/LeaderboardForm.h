@@ -45,6 +45,8 @@ private:
 	virtual void loadLeaderboardFinished(Tizen::Base::Collection::ArrayList* leaderboardList);
 
 	void setLeaderboardList();
+
+	Tizen::Ui::Controls::ScrollPanel* pLeaderboard_scrollpanel;
 };
 
 #endif /* LEADERBOARDFORM_H_ */
