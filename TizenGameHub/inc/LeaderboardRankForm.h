@@ -42,7 +42,8 @@ private:
 	//GHLeaderboardListLoadedListener
 	virtual void loadLeaderboardRankFinished(Tizen::Base::Collection::ArrayList* Ranklist);
 
-	GHLeaderboard leaderboard;
+	GHLeaderboard* leaderboard;
+	Tizen::Base::Collection::ArrayList* rank_list;
 
 
 };

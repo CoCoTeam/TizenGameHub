@@ -71,7 +71,7 @@ void LeaderboardForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previo
 		if (pArgs->GetCount())
 		{
 			Tizen::Base::String *gameId = static_cast<Tizen::Base::String*>(pArgs->GetAt(0));
-			AppLog("[LeaderboardForm] Argument Received %s", gameId);
+			AppLog("[LeaderboardForm] Argument Received %S", gameId->GetPointer());
 			loadLeaderboards(this);
 		}
 		pArgs->RemoveAll(true);
