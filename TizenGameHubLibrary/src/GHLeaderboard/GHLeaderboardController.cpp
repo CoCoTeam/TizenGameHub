@@ -131,7 +131,7 @@ void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String st
 		}
 
 		// object 형안에  array형이 있을때
-		//{apiCode:22, statusCode:1, data: {lb_id, unit, lb_order, is_time, values:[{p_id, p_name, p_url, rank, score}, {}...]}
+		//{apiCode:22, statusCode:1, data: {lb_id, unit, lb_order, is_time, values:[{p_id, p_name, p_url, rank, score}, {p_id, p_name, p_url, rank, score}...]}
 
 		else if(apiCode.Equals(LEADERBOARD_RANK)){
 			GHLeaderboard *leaderboard;
@@ -178,8 +178,15 @@ void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String st
 
 						// 리스트에 추가
 						//acArr->Add(new GHPlayerRank(sP_id, sP_name, sP_url, iRank, iScore));
+
 						GHPlayerRank* PlayerRank = new GHPlayerRank(sP_id, sP_name, sP_url, iRank, iScore);
-						leRankArr->Add((Object*)PlayerRank);
+						//leRankArr->Add((Object*)PlayerRank);
+
+						leRankArr->Add(PlayerRank);
+
+						//AppLogDebug("[DEBUG] sP_id : %S", PlayerRank->getId().GetPointer() );
+
+
 
 						delete pkeyP_id;	delete pkeyP_name;		delete pkeyP_url; 	delete pkeyRank;	delete pkeyScore;
 						delete PlayerRank;

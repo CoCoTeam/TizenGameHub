@@ -142,13 +142,13 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		//controller->loadAttackhelperDatas(this);
 
 
-		//GHLeaderboardController* controller = new GHLeaderboardController();
-		//controller->loadLeaderboardRank("1",this);	// 데이터 옴
-		//controller->updateLeaderboardScore("key_aa","key_aa_0",50,this);   // What is
-		//controller->loadLeaderboards(this); 	// 데이터 안옴 ㅠㅠ 왜 ??
+		GHLeaderboardController* controller = new GHLeaderboardController();
+		controller->loadLeaderboardRank("1",this);	//
+		//controller->updateLeaderboardScore("key_aa","key_aa_0",50,this);   //
+		//controller->loadLeaderboards(this); 	//
 
-		GHCloudsaveController* controller = new GHCloudsaveController();
-		controller->loadCloudSlotData(1, this);
+		//GHCloudsaveController* controller = new GHCloudsaveController();
+		//controller->loadCloudSlotData(1, this);
 		//controller->saveCloudSlotData("hahaha kichul zzang", 2, this);
 
 		break;
@@ -194,8 +194,16 @@ void LoginForm::loadLeaderboardRankFinished(ArrayList* leaderboardList)
 {
 	//AppLogDebug("[DEBUG]----------------------------------------------------------------->");
 	GHLeaderboard * test = static_cast<GHLeaderboard*>(leaderboardList->GetAt(0));
+
+	GHPlayerRank* test2 = static_cast<GHPlayerRank*>(test->getRankList()->GetAt(0));
+
+	//GHPlayerRank* test2 = test->getRankList()->GetAt(0);
 	//GHLeaderboard * test = static_cast<GHLeaderboard*>(leaderboardList->GetAt(0));
-	AppLogDebug("[DEBUG] Leaderboard ID : %d, %S", leaderboardList->GetCount(), test->getId());
+
+	AppLogDebug("[DEBUG] Leaderboard ID : %d, %S", leaderboardList->GetCount(), test->getId().GetPointer());
+	//GHPlayer * test3 = static_cast<GHPlayer*>(test2);
+	AppLogDebug("[DEBUG] test : %d , %S ", test->getRankList()->GetCount(),  test2->getId().GetPointer()); // 왜 데이터가 안올까  ㅠ___ㅠ;;;
+
 }
 void LoginForm::updateLeaderboardScoreFinished(int statusCode)
 {

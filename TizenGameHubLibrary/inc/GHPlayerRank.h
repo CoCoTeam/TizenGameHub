@@ -23,5 +23,10 @@ public:
 	// {lb_id, unit, lb_order, is_time, values:[{p_id, p_name, p_url, rank, score}, {}...]}
 
 	GHPlayerRank(Tizen::Base::String _id, Tizen::Base::String _name, Tizen::Base::String _imgUrl, int _rank, int _score);
+
+	int getScore();
+	int getRank();
+
+
 };
 #endif /* GHPLAYERRANK_H_ */
