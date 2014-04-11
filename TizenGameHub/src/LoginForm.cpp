@@ -194,7 +194,6 @@ void LoginForm::loadLeaderboardRankFinished(ArrayList* leaderboardList)
 {
 	//AppLogDebug("[DEBUG]----------------------------------------------------------------->");
 	GHLeaderboard * test = static_cast<GHLeaderboard*>(leaderboardList->GetAt(0));
-
 	GHPlayerRank* test2 = static_cast<GHPlayerRank*>(test->getRankList()->GetAt(0));
 
 	//GHPlayerRank* test2 = test->getRankList()->GetAt(0);

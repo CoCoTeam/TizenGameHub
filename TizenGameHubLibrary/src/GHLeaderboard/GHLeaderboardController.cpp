@@ -183,10 +183,7 @@ void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String st
 						//leRankArr->Add((Object*)PlayerRank);
 
 						leRankArr->Add(PlayerRank);
-
 						//AppLogDebug("[DEBUG] sP_id : %S", PlayerRank->getId().GetPointer() );
-
-
 
 						delete pkeyP_id;	delete pkeyP_name;		delete pkeyP_url; 	delete pkeyRank;	delete pkeyScore;
 						delete PlayerRank;
