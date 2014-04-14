@@ -189,6 +189,12 @@ void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String st
 						GHPlayerRank* PlayerRank = new GHPlayerRank(sP_id, sP_name, sP_url, iRank, iScore);
 
 						PlayerRank->setId(sP_id);
+						PlayerRank->setName(sP_name);
+						PlayerRank->setImgUrl(sP_url);
+						PlayerRank->setRank(iRank);
+						PlayerRank->setScore(iScore);
+
+
 						//leRankArr->Add((Object*)PlayerRank);
 
 

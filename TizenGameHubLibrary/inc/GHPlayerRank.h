@@ -25,5 +25,9 @@ public:
 	//String getid();
 	int getScore();
 	int getRank();
+
+	void GHPlayerRank::setScore(int _score);
+	void GHPlayerRank::setRank(int _rank);
+
 };
 #endif /* GHPLAYERRANK_H_ */

@@ -55,3 +55,6 @@ int GHPlayerRank::getRank()
 {
 	return this->rank;
 }
+
+void GHPlayerRank::setScore(int _score)		{	this->score = _score;}
+void GHPlayerRank::setRank(int _rank)	{	this->rank = _rank; }
