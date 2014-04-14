@@ -40,8 +40,13 @@ private:
 								   const Tizen::Ui::Scenes::SceneId& currentSceneId, Tizen::Base::Collection::IList* pArgs);
 	virtual void OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
 									const Tizen::Ui::Scenes::SceneId& nextSceneId);
+
 	//GHLeaderboardDataLoadedListener
 	virtual void loadLeaderboardFinished(Tizen::Base::Collection::ArrayList* leaderboardList);
+
+	void setLeaderboardList();
+
+	Tizen::Ui::Controls::ScrollPanel* pLeaderboard_scrollpanel;
 };
 
 #endif /* LEADERBOARDFORM_H_ */

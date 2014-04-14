@@ -135,7 +135,7 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		//controller->completeAchievement("4");
 		//controller->increaseAchievement("4");
 
-		GHAttackhelperController* controller = new GHAttackhelperController();
+		//GHAttackhelperController* controller = new GHAttackhelperController();
 		//controller->loadAttackhelpers(this);
 		//controller->sendAttackhelperData("pkeykichulee", "1", 3, this);
 		//controller->respondAttackhelperData(5, this); //del 점검필요
@@ -143,9 +143,9 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 
 
 		//GHLeaderboardController* controller = new GHLeaderboardController();
-		//controller->loadLeaderboardRank("1",this);	// 데이터 옴
-		//controller->updateLeaderboardScore("key_aa","key_aa_0",50,this);   // What is
-		//controller->loadLeaderboards(this); 	// 데이터 안옴 ㅠㅠ 왜 ??
+		//controller->loadLeaderboardRank("1",this);	//
+		//controller->updateLeaderboardScore("key_aa","key_aa_0",50,this);   //
+		//controller->loadLeaderboards(this); 	//
 
 		//GHCloudsaveController* controller = new GHCloudsaveController();
 		//controller->loadCloudSlotData(1, this);
@@ -190,12 +190,19 @@ void LoginForm::loadLeaderboardFinished(ArrayList* leaderboardList)
 	GHLeaderboard * test = static_cast<GHLeaderboard*>(leaderboardList->GetAt(0));
 	AppLogDebug("[DEBUG] Leaderboard ID : %d, %S", leaderboardList->GetCount(), test->getId().GetPointer() );
 }
-void LoginForm::loadLeaderboardRankFinished(ArrayList* leaderboardList)
+void LoginForm::loadLeaderboardRankFinished(GHLeaderboard* _leaderboard)
 {
 	//AppLogDebug("[DEBUG]----------------------------------------------------------------->");
-	GHLeaderboard * test = static_cast<GHLeaderboard*>(leaderboardList->GetAt(0));
+	GHLeaderboard * test = _leaderboard;
+	GHPlayerRank* test2 = static_cast<GHPlayerRank*>(test->getRankList()->GetAt(0));
+
+	//GHPlayerRank* test2 = test->getRankList()->GetAt(0);
 	//GHLeaderboard * test = static_cast<GHLeaderboard*>(leaderboardList->GetAt(0));
-	AppLogDebug("[DEBUG] Leaderboard ID : %d, %S", leaderboardList->GetCount(), test->getId().GetPointer() );
+
+	AppLogDebug("[DEBUG] Leaderboard ID : %S", test->getId().GetPointer());
+	//GHPlayer * test3 = static_cast<GHPlayer*>(test2);
+	AppLogDebug("[DEBUG] test : %d , %S ", test->getRankList()->GetCount(),  test2->getId().GetPointer()); // 왜 데이터가 안올까  ㅠ___ㅠ;;;
+
 }
 void LoginForm::updateLeaderboardScoreFinished(int statusCode)
 {

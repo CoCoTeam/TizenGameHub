@@ -8,6 +8,11 @@
 #ifndef GHGAMEPROVIDER_H_
 #define GHGAMEPROVIDER_H_
 
+#include <FUi.h>
+#include <FSystem.h>
+#include <FUix.h>
+#include <FMedia.h>
+#include <FGraphics.h>
 #include "GHGame.h"
 
 class GHGameProvider

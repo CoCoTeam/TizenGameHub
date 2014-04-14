@@ -57,8 +57,6 @@ JoinForm::OnInitializing(void)
 	pTextName = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_NAME));
 
 
-
-
 	return r;
 }
 
@@ -150,7 +148,7 @@ JoinForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 			AppLog("[JoinForm] Argument Received");
 			isPlayerJoin = static_cast<Tizen::Base::Boolean*>(pArgs->GetAt(0));
 
-			if( isPlayerJoin )	// (수정 시퀀스면) 프로필 편집 Panel 추가
+			if( !isPlayerJoin )	// (수정 시퀀스면) 프로필 편집 Panel 추가
 			{
 				pButtonJoin->SetText( "Edit" );
 			}

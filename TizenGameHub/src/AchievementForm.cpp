@@ -8,6 +8,7 @@
 #include "AchievementForm.h"
 #include "AppResourceId.h"
 #include "TizenGameHubFrame.h"
+#include "ListPanel.h"
 
 using namespace Tizen::Ui::Controls;
 using namespace Tizen::Ui::Scenes;
@@ -35,7 +36,7 @@ result AchievementForm::OnInitializing(void)
 	SetFormBackEventListener(this);
 
 	// Get a button via resource ID
-	loadAchievements(this);
+	pAchievement_scrollpanel = static_cast<ScrollPanel*>(GetControl(IDC_ACHIEVEMENT_SCROLLPANEL));
 
 	return r;
 }
@@ -70,7 +71,6 @@ void AchievementForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previo
 			Tizen::Base::String *gameId = static_cast<Tizen::Base::String*>(pArgs->GetAt(0));
 			AppLog("[AchievementForm] Argument Received %S", gameId->GetPointer());
 			loadAchievements(this);
-
 		}
 		pArgs->RemoveAll(true);
 		delete pArgs;
@@ -84,10 +84,38 @@ void AchievementForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& curre
 
 }
 
-//GHAchievementLoadedListener
 void AchievementForm::loadAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList)
 {
 	ac_list = achievementList;
 	AppLogDebug("[AchievementForm] achievementArray Received. (arraySize : %d)", ac_list->GetCount() );
+	setAchievementList();
 }
+void AchievementForm::setAchievementList()
+{
+	int initX = 20, initY = 10;
+	int posX = 330, posY = 430;
 
+	int completeCount = 0;
+	for(int i=0 ; i<ac_list->GetCount()*5 ; i++)
+	{
+		GHAchievement *achievement = (GHAchievement*)(ac_list->GetAt(0));
+		Panel* pPanelAchievement = new ListPanel(*achievement);
+		pPanelAchievement->SetPosition(initX + posX*(i%2), initY + posY*(i/2));
+		pAchievement_scrollpanel->AddControl(pPanelAchievement);
+
+		if(achievement->getIsComplete() == true) {
+			completeCount++;
+		}
+	}
+
+	Tizen::Base::String titleStr = Tizen::Base::String("업적 ");
+	titleStr.Append(ac_list->GetCount());
+	titleStr.Append("개 중 ");
+	titleStr.Append(completeCount);
+	titleStr.Append("개 달성");
+//	AppLogDebug("[AchievementForm] %S", titleStr.GetPointer());
+
+	Label* pLabelTitle = static_cast<Label*>(GetControl(IDC_ACHIEVEMENT_LABEL_TITLE));
+	pLabelTitle->SetText(titleStr);
+	Draw();
+}

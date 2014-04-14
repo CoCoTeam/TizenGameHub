@@ -8,6 +8,7 @@
 #include "LeaderboardForm.h"
 #include "AppResourceId.h"
 #include "TizenGameHubFrame.h"
+#include "ListPanel.h"
 
 using namespace Tizen::Ui::Controls;
 using namespace Tizen::Ui::Scenes;
@@ -36,6 +37,7 @@ result LeaderboardForm::OnInitializing(void)
 	SetFormBackEventListener(this);
 
 	// Get a button via resource ID
+	pLeaderboard_scrollpanel = static_cast<ScrollPanel*>(GetControl(IDC_LEADERBOARD_SCROLLPANEL));
 
 	return r;
 }
@@ -69,7 +71,7 @@ void LeaderboardForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previo
 		if (pArgs->GetCount())
 		{
 			Tizen::Base::String *gameId = static_cast<Tizen::Base::String*>(pArgs->GetAt(0));
-			AppLog("[LeaderboardForm] Argument Received %s", gameId);
+			AppLog("[LeaderboardForm] Argument Received %S", gameId->GetPointer());
 			loadLeaderboards(this);
 		}
 		pArgs->RemoveAll(true);
@@ -88,4 +90,32 @@ void LeaderboardForm::loadLeaderboardFinished(Tizen::Base::Collection::ArrayList
 {
 	lb_list = leaderboardList;
 	AppLogDebug("[LeaderboardForm] leaderboardList Received. (listSize : %d)", lb_list->GetCount() );
+	setLeaderboardList();
 }
+void LeaderboardForm::setLeaderboardList()
+{
+	int initX = 20, initY = 10;
+	int posX = 330, posY = 430;
+	for(int i=0 ; i<lb_list->GetCount() ; i++)
+	{
+		GHLeaderboard *leaderboard = (GHLeaderboard*)(lb_list->GetAt(0));
+		Panel* pPanelLeaderboard= new ListPanel(leaderboard->getId(), leaderboard->getTitle(), leaderboard->getImgUrl());
+		pPanelLeaderboard->SetPosition(initX + posX*(i%2), initY + posY*(i/2));
+		pLeaderboard_scrollpanel->AddControl(pPanelLeaderboard);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

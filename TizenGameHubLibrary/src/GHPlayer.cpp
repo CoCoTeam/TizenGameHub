@@ -31,7 +31,7 @@ GHPlayer::GHPlayer(Tizen::Base::String _id, Tizen::Base::String _name, Tizen::Ba
 
 Tizen::Base::String GHPlayer::getId()		{	return id;}
 Tizen::Base::String GHPlayer::getEmail()	{	return email;}
-Tizen::Base::String GHPlayer::getName()		{	return name;}
+Tizen::Base::String GHPlayer::getName()		{AppLogDebug("[GHPlayer] /%S/", name.GetPointer());	return name;}
 Tizen::Base::String GHPlayer::getImgUrl()	{	return imgUrl;}
 long GHPlayer::getTotalScore()
 {

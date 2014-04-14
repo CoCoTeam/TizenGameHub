@@ -82,7 +82,7 @@ private:
 
 	// GHLeaderboard
 	virtual void loadLeaderboardFinished(Tizen::Base::Collection::ArrayList* leaderboardList);
-	virtual void loadLeaderboardRankFinished(Tizen::Base::Collection::ArrayList* leaderboardList);
+	virtual void loadLeaderboardRankFinished(GHLeaderboard* leaderboardList);
 	virtual void updateLeaderboardScoreFinished(int statusCode);
 
 };

@@ -204,9 +204,9 @@ void PlayerForm::setPlayerData()
 	AppLogDebug("---------->setPlayerData()<----------");
 
 	pLabelUserName->SetText( (mPlayer->getName()) );
-	String *totalScoreStr = new String();
-	totalScoreStr->Append(mPlayer->getTotalScore());
-	pLabelUserScore->SetText( *totalScoreStr );
+	String totalScoreStr;
+	totalScoreStr.Append(mPlayer->getTotalScore());
+	pLabelUserScore->SetText( totalScoreStr );
 	//!! 프로필 이미지 세팅
 	//	pGalleryUserProfile->Set
 

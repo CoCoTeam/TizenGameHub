@@ -36,9 +36,13 @@ GHAchievement::~GHAchievement() {
 }
 
 //// GET FUNCTION
-String GHAchievement::getId()
-{
-	return this->id;
-}
+String 	GHAchievement::getId()			{ return this->id; }
+String 	GHAchievement::getTitle()		{ return this->title; }
+String 	GHAchievement::getDescription()	{ return this->description; }
+String 	GHAchievement::getImgUrl()		{ return this->imgUrl; }
 
-
+int 	GHAchievement::getIsHidden()	{ return this->isHidden; }
+int 	GHAchievement::getIsComplete()	{ return this->isComplete; }
+int 	GHAchievement::getGoalPoint()	{ return this->goalPoint; }
+int 	GHAchievement::getCurPoint()	{ return this->curPoint; }
+int 	GHAchievement::getPrize()		{ return this->prize; }
