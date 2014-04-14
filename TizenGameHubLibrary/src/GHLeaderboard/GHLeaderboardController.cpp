@@ -47,13 +47,14 @@ void GHLeaderboardController::loadLeaderboardRank(Tizen::Base::String leaderboar
 
 	httpPost.RequestHttpGetTran(this, url);
 
+	//AppLogDebug("================ [DEBUG] ====================");
+
 }
 void GHLeaderboardController::loadLeaderboardRank(Tizen::Base::String leaderboardId, GHLeaderboardListLoadedListener * listener)
 {
 	this->currentListener = listener;
 	this->loadLeaderboardRank(leaderboardId);
 }
-
 
 // 해당 leaderboard에 점수를 업데이트한다.
 void GHLeaderboardController::updateLeaderboardScore(Tizen::Base::String GameId, Tizen::Base::String leaderboardId, long score)
@@ -94,6 +95,8 @@ void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String st
 				GHLeaderboard *leaderboard;
 				ArrayList* leArr;
 
+				AppLogDebug("================ [DEBUG] ====================");
+
 				// 정상적으로 결과를 반환했을 때
 				if(statusCode == "1") {
 
@@ -116,6 +119,7 @@ void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String st
 							// 리스트에 추가
 							//leaderboard = new GHLeaderboard(sLb_id, sTitle, sImgUrl);
 							//leArr->Add((Object*)leaderboard);
+
 							leArr->Add(new GHLeaderboard(sLb_id, sTitle, sImgUrl));
 
 							AppLogDebug("[DEBUG] id : %S", sLb_id.GetPointer() );
@@ -197,10 +201,7 @@ void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String st
 				}
 
 				//lb_id, unit, lb_order, is_time
-				//leaderboard = new GHLeaderboard(slb_Id, "", "", sUnit, ilb_order, iIs_time, leArr);
 				leaderboard = new GHLeaderboard(slb_Id, sUnit, ilb_order, iIs_time, leRankArr);
-
-
 				//leArr->Add(leaderboard);
 
 				// KEY NAME DELETE
@@ -208,8 +209,13 @@ void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String st
 			}
 			else { // 에러가 발생했을 때
 				leaderboard = null;
+
+				AppLogDebug("================ [DEBUG] 1====================");
 			}
+
 			if(this->currentListener != null) this->currentListener->loadLeaderboardRankFinished(leaderboard);//leaderboard, leArr);
+
+			AppLogDebug("================ [DEBUG] 2====================");
 		}
 		else if(apiCode.Equals(LEADERBOARD_SCORE))
 		{

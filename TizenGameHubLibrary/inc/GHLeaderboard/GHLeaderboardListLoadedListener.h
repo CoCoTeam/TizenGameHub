@@ -18,7 +18,7 @@ public:
 	GHLeaderboardListLoadedListener();
 	virtual ~GHLeaderboardListLoadedListener();
 
-	virtual void loadLeaderboardRankFinished(GHLeaderboard* Ranklist)=0;
+	virtual void loadLeaderboardRankFinished(GHLeaderboard* _leaderboard)=0;
 
 };
 

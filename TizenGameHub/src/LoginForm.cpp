@@ -145,6 +145,7 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		GHLeaderboardController* controller = new GHLeaderboardController();
 		controller->loadLeaderboardRank("key_aa_0");
 
+
 		//controller->loadLeaderboardRank("key_aa_0",this);
 
 		//controller->updateLeaderboardScore("key_aa","key_aa_0",50,this);
