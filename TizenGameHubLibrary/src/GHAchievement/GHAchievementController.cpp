@@ -6,6 +6,7 @@
  */
 
 #include "GHAchievement/GHAchievementController.h"
+#include "GHSharedAuthData.h"
 
 using namespace Tizen::Base::Collection;
 using namespace Tizen::Net::Http;
@@ -31,16 +32,16 @@ void GHAchievementController::loadAchievements(GHAchievementLoadedListener* list
 	this->currentListener = listener;
 
 	//GET 함수 호출
-	String game_id("key_aa");
-	String player_id("pkeykichul");
+	String game_id(GHSharedAuthData::getSharedInstance().getGameId());
+	String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
 	String url(L"/f_achievements/" + game_id + "/" + player_id);
 	httpPost.RequestHttpGetTran(this, url);
 }
 
 // hidden -> reveal 상태로 바꾼다.
 void GHAchievementController::revealAchievement(String ac_id) {
-	String game_id("key_aa");
-	String player_id("pkeykichul");
+	String game_id(GHSharedAuthData::getSharedInstance().getGameId());
+	String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
 	String url(L"/f_achievements/reveal");
 	__pMap = new (std::nothrow) Tizen::Base::Collection::HashMap();
 	__pMap->Construct();
@@ -60,8 +61,8 @@ void GHAchievementController::revealAchievement(String ac_id, GHAchievementRevea
 void GHAchievementController::completeAchievement(String ac_id) {
 	this->currentListener = null;
 
-	String game_id("key_aa");
-	String player_id("pkeykichul");
+	String game_id(GHSharedAuthData::getSharedInstance().getGameId());
+	String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
 	String url(L"/f_achievements/complete");
 	__pMap = new (std::nothrow) Tizen::Base::Collection::HashMap();
 	__pMap->Construct();
@@ -81,8 +82,8 @@ void GHAchievementController::completeAchievement(String ac_id, GHAchievementCom
 void GHAchievementController::setAchievement(String ac_id) {
 	this->currentListener = null;
 
-	String game_id("key_aa");
-	String player_id("pkeykichul");
+	String game_id(GHSharedAuthData::getSharedInstance().getGameId());
+	String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
 
 
 	String url(L"/f_achievements/set");

@@ -2,6 +2,7 @@
 #include "TizenGameHubFormFactory.h"
 #include "TizenGameHubPanelFactory.h"
 #include "AppResourceId.h"
+#include "GHSharedAuthData.h"
 
 using namespace Tizen::Base;
 using namespace Tizen::Ui;
@@ -28,6 +29,12 @@ const wchar_t* SCENE_LEADERBOARD = L"LeaderboardScene";
 result
 TizenGameHubFrame::OnInitializing(void)
 {
+	//set sharedInstance
+	GHSharedAuthData & sharedInstance = GHSharedAuthData::getSharedInstance();
+	sharedInstance.setGameId("key_aa");
+	sharedInstance.setPlayerId("pkeykichul");
+	sharedInstance.setLeaderboardId("key_aa_0");
+
 	// Prepare Scene management.
 	SceneManager* pSceneManager = SceneManager::GetInstance();
 	static TizenGameHubFormFactory formFactory;
