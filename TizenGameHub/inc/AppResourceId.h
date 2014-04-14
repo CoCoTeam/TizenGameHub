@@ -74,4 +74,5 @@ extern const wchar_t* IDC_LISTPANEL_LABEL_TITLE;
 extern const wchar_t* IDC_LISTPANEL_LABEL_DESC;
 /* IDL_FORM_LEADERBOARDRANK */
 extern const wchar_t* IDL_FORM_LEADERBOARDRANK;
+extern const wchar_t* IDC_LEADERBOARDRANK_LIST_RANK;
 #endif // _APP_RESOURCE_ID_H_

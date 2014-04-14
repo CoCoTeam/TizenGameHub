@@ -14,4 +14,9 @@
         <property accessibilityHint="" backgroundBitmapPath="" color="" colorOpacity="100" descriptionText="" descriptionTextColor="" disabledButtonColor="" disabledButtonColorOpacity="100" disabledButtonTextColor="" disabledItemColor="" disabledItemColorOpacity="100" disabledItemTextColor="" headerStyle="HEADER_STYLE_TITLE" highlightedButtonColor="" highlightedButtonColorOpacity="100" highlightedButtonTextColor="" highlightedItemColor="" highlightedItemColorOpacity="100" highlightedItemTextColor="" normalButtonColor="" normalButtonColorOpacity="100" normalButtonTextColor="" normalItemColor="" normalItemColorOpacity="100" normalItemTextColor="" pressedButtonColor="" pressedButtonColorOpacity="100" pressedButtonTextColor="" pressedItemColor="" pressedItemColorOpacity="100" pressedItemTextColor="" selectedItemColor="" selectedItemColorOpacity="100" selectedItemTextColor="" showBackButton="false" titleIconPath="" titleText="Tizen Game Hub" titleTextColor=""/>
         <itemSet/>
     </Header>
+    <ListView id="IDC_LEADERBOARDRANK_LIST_RANK" parent="IDL_FORM_LEADERBOARDRANK">
+        <property backgroundBitmapPath="" backgroundColor="" backgroundColorOpacity="0" bitmapPathOfEmptyList="" colorOfEmptyListText="" itemDivider="true" itemDividerColor="" listScrollStyle="SCROLL_STYLE_FADE_OUT" scrollInputMode="SCROLL_INPUT_MODE_ALLOW_ANY_DIRECTION" sweepEnabled="false" textOfEmptyList=""/>
+        <layout height="977.0" mode="Portrait" width="703.0" x="8.0" y="11.0"/>
+        <layout height="720.0" mode="Landscape" width="703.0" x="8.0" y="0.0"/>
+    </ListView>
 </Scene>

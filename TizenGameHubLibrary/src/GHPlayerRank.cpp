@@ -15,12 +15,13 @@ GHPlayerRank::GHPlayerRank() {
 }
 
 GHPlayerRank::GHPlayerRank(String _id, String _name, String _imgUrl, int _rank, int _score)
-// : id(_id), name(_name), imgUrl(imgUrl)
+// : id(_id), name(_name), imgUrl(_imgUrl)
 {
-	//AppLogDebug("[DEBUG] _id : %S", _id.GetPointer() );
-
-	GHPlayer(_id,_name,_imgUrl);
-
+//	this->id = _id;
+//	this->name = _name;
+	setId(_id);
+	setName(_name);
+	this->imgUrl = _imgUrl;
 	this->score = _score;
 	this->rank  = _rank;
 }

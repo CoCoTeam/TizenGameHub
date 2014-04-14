@@ -37,6 +37,7 @@ result LeaderboardRankForm::OnInitializing(void)
 	SetFormBackEventListener(this);
 
 	// Get a button via resource ID
+	pListViewRank = static_cast<ListView*>(GetControl(IDC_LEADERBOARDRANK_LIST_RANK));
 
 	return r;
 }
@@ -90,5 +91,11 @@ void LeaderboardRankForm::loadLeaderboardRankFinished(GHLeaderboard* _leaderboar
 	leaderboard = _leaderboard;
 	rank_list = leaderboard->getRankList();
 	AppLogDebug("[LeaderboardRankForm] leaderboardRankList Received. (listSize : %d)", rank_list->GetCount() );
+
+	for(int i=0 ; i<rank_list->GetCount() ; i++) {
+		GHPlayerRank *rank = (GHPlayerRank*)(rank_list->GetAt(i));
+		AppLogDebug("[LeaderboardRankForm] rank:%d, score:%d, ", rank->getRank(), rank->getScore());//, rank->getName());
+	}
+
 }
 

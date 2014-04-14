@@ -22,7 +22,7 @@ getGameInstance();
 class GHPlayer
 	: public Tizen::Base::Object
 {
-private:
+protected:
 	// variable
 	Tizen::Base::String id;			// 사용자 고유 ID
 	Tizen::Base::String email;		// 사용자 이메일
@@ -47,6 +47,8 @@ public:
 
 	long getTotalScore();
 	//----------------------------------------------------------------
+	void setId(Tizen::Base::String _id){id = _id;}
+	void setName(Tizen::Base::String _name){name = _name;}
 
 };
 

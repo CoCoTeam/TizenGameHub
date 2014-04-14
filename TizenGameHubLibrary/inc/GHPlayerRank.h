@@ -13,20 +13,16 @@
 class GHPlayerRank
 	: public GHPlayer
 {
-public:
-	GHPlayerRank();
-	virtual ~GHPlayerRank();
-
+private:
 	int score; // 개인당 score
 	int rank;  // 개인 순위
 
-	// {lb_id, unit, lb_order, is_time, values:[{p_id, p_name, p_url, rank, score}, {}...]}
-
+public:
+	GHPlayerRank();
+	virtual ~GHPlayerRank();
 	GHPlayerRank(Tizen::Base::String _id, Tizen::Base::String _name, Tizen::Base::String _imgUrl, int _rank, int _score);
 
 	int getScore();
 	int getRank();
-
-
 };
 #endif /* GHPLAYERRANK_H_ */
