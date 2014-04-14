@@ -135,7 +135,7 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		//controller->completeAchievement("4");
 		//controller->increaseAchievement("4");
 
-		//GHAttackhelperController* controller = new GHAttackhelperController();
+		///GHAttackhelperController* controller = new GHAttackhelperController();
 		//controller->loadAttackhelpers(this);
 		//controller->sendAttackhelperData("pkeykichulee", "1", 3, this);
 		//controller->respondAttackhelperData(5, this); //del 점검필요
@@ -143,9 +143,14 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 
 
 		GHLeaderboardController* controller = new GHLeaderboardController();
-		controller->loadLeaderboardRank("1",this);	//
-		//controller->updateLeaderboardScore("key_aa","key_aa_0",50,this);   //
-		//controller->loadLeaderboards(this); 	//
+		controller->loadLeaderboardRank("key_aa_0");
+
+		//controller->loadLeaderboardRank("key_aa_0",this);
+
+		//controller->updateLeaderboardScore("key_aa","key_aa_0",50,this);
+		//controller->updateLeaderboardScore("key_aa","key_aa_0",50);
+
+		//controller->loadLeaderboards(this);
 
 		//GHCloudsaveController* controller = new GHCloudsaveController();
 		//controller->loadCloudSlotData(1, this);

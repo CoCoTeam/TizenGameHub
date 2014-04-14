@@ -45,12 +45,12 @@ public:
 	Tizen::Base::String getName();
 	Tizen::Base::String getImgUrl();
 
-/*
+
 	void setId(Tizen::Base::String _id);
 	void setEmail(Tizen::Base::String _email);
 	void setName(Tizen::Base::String _name);
 	void setImgUrl(Tizen::Base::String _imgUrl);
-*/
+
 
 
 	long getTotalScore();

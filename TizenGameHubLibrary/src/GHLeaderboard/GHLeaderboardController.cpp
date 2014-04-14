@@ -35,10 +35,13 @@ void GHLeaderboardController::loadLeaderboards(GHLeaderboardDataLoadedListener *
 // leaderboard의 랭킹 목록을 가져온다.
 void GHLeaderboardController::loadLeaderboardRank(Tizen::Base::String leaderboardId)
 {
-
 	//GET 함수 호출
-	String game_id(GHSharedAuthData::getSharedInstance().getGameId());
-	String lb_id(GHSharedAuthData::getSharedInstance().getLeaderboardId());
+	///String game_id(GHSharedAuthData::getSharedInstance().getGameId());
+	//String lb_id(GHSharedAuthData::getSharedInstance().getLeaderboardId());
+
+	String game_id(L"key_aa");
+	String lb_id(L"key_aa_0");
+
 	String external = "?order=true&start_pos=0&max_length=10";
 	String url(L"/f_leaderboards/rank/" + game_id +"/"+ lb_id);
 
@@ -48,14 +51,13 @@ void GHLeaderboardController::loadLeaderboardRank(Tizen::Base::String leaderboar
 void GHLeaderboardController::loadLeaderboardRank(Tizen::Base::String leaderboardId, GHLeaderboardListLoadedListener * listener)
 {
 	this->currentListener = listener;
-	loadLeaderboardRank(leaderboardId);
+	this->loadLeaderboardRank(leaderboardId);
 }
 
 
 // 해당 leaderboard에 점수를 업데이트한다.
 void GHLeaderboardController::updateLeaderboardScore(Tizen::Base::String GameId, Tizen::Base::String leaderboardId, long score)
 {
-
 	String* game_id = new String(GameId);
 	String* lb_id = new String(leaderboardId);
 	Long* pScore = new Long(score);
@@ -68,7 +70,6 @@ void GHLeaderboardController::updateLeaderboardScore(Tizen::Base::String GameId,
 	__pMap->Add(new String("score"), pScore);
 	__pMap->Add(new String("player_id"), player_id);
 
-
 	//Put 함수 호출
 	String url(L"/f_leaderboards/update");
 	httpPost.RequestHttpPutTran(this, url, __pMap);
@@ -76,10 +77,8 @@ void GHLeaderboardController::updateLeaderboardScore(Tizen::Base::String GameId,
 void GHLeaderboardController::updateLeaderboardScore(Tizen::Base::String GameId, Tizen::Base::String leaderboardId, long score, GHLeaderboardScoreUpdatedListener * listener)
 {
 	this->currentListener = listener;
-	updateLeaderboardScore(GameId, leaderboardId, score);
+	this->updateLeaderboardScore(GameId, leaderboardId, score);
 }
-
-
 
 // HTTP 통신 Listener -------------------------------------------------------------------------------------------------------
 void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String statusCode, IJsonValue* data){
@@ -87,6 +86,8 @@ void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String st
 
 		AppLogDebug("[DEBUG] apiCode : %S", apiCode.GetPointer() );
 		AppLogDebug("[DEBUG] statusCode : %S", statusCode.GetPointer());
+
+		//AppLogDebug("================ [DEBUG] ====================");
 
 		//{apiCode:21, statusCode:1, data:[{lb_id, title, img_url}, {}...]}
 		if(apiCode.Equals(LEADERBOARD_LEADERBOARDS)) {	// LEADERBOARD_LEADERBOARDS
@@ -137,6 +138,8 @@ void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String st
 			ArrayList* leRankArr;
 			//ArrayList* leArr;
 
+			AppLogDebug("[DEBUG] ----------------------------------" );
+
 			// 정상적으로 결과를 반환했을 때
 			if(statusCode == "1") {
 
@@ -182,7 +185,6 @@ void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String st
 						GHPlayerRank* PlayerRank = new GHPlayerRank(sP_id, sP_name, sP_url, iRank, iScore);
 
 						PlayerRank->setId(sP_id);
-
 						//leRankArr->Add((Object*)PlayerRank);
 
 
@@ -197,6 +199,8 @@ void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String st
 				//lb_id, unit, lb_order, is_time
 				//leaderboard = new GHLeaderboard(slb_Id, "", "", sUnit, ilb_order, iIs_time, leArr);
 				leaderboard = new GHLeaderboard(slb_Id, sUnit, ilb_order, iIs_time, leRankArr);
+
+
 				//leArr->Add(leaderboard);
 
 				// KEY NAME DELETE
@@ -209,9 +213,16 @@ void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String st
 		}
 		else if(apiCode.Equals(LEADERBOARD_SCORE))
 		{
+			//AppLogDebug("================ [DEBUG] 1====================");
+
 			int stateCode;
 			Integer::Parse(statusCode, stateCode);
 
+			AppLogDebug("[DEBUG] : %d", stateCode);
+			//AppLogDebug("================ [DEBUG] 2====================");
+
 			if(this->currentListener != null) this->currentListener->updateLeaderboardScoreFinished(stateCode);
+
+			//AppLogDebug("================ [DEBUG] 3====================");
 		}
 }
