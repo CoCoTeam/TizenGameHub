@@ -164,7 +164,6 @@ void LoginForm::loadCloudsaveFinished(String data){
 	AppLogDebug("[DEBUG] loadCloud data : %S", data.GetPointer() );
 }
 
-
 // API TEST
 void LoginForm::loadAchievementFinished(ArrayList* achievementList) {
 

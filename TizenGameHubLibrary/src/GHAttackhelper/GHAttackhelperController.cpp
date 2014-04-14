@@ -6,6 +6,7 @@
  */
 
 #include "GHAttackhelper/GHAttackhelperController.h"
+#include "GHSharedAuthData.h"
 
 using namespace Tizen::Web::Json;
 using namespace Tizen::Net::Http;
@@ -26,8 +27,8 @@ void GHAttackhelperController::loadAttackhelpers(GHAttackhelperLoadedListener * 
 	this->currentListener = listener;
 
 	//GET 함수 호출
-	String game_id("key_aa");
-	String player_id("pkeykichul");
+	String game_id(GHSharedAuthData::getSharedInstance().getGameId());
+	String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
 	String url(L"/f_attackhelpers/" + game_id );
 	httpPost.RequestHttpGetTran(this, url);
 }
@@ -36,16 +37,16 @@ void GHAttackhelperController::loadAttackhelpers(GHAttackhelperLoadedListener * 
 void GHAttackhelperController::loadAttackhelperDatas(GHAttackhelperDataLoadedListener* listener){
 
 	//GET 함수 호출
-	String game_id("key_aa");
-	String player_id("pkeykichul");
+	String game_id(GHSharedAuthData::getSharedInstance().getGameId());
+	String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
 	String url(L"/f_attackhelpers/" + game_id + "/" + player_id);
 	httpPost.RequestHttpGetTran(this, url);
 }
 
 // normal achievement update
 void GHAttackhelperController::sendAttackhelperData(String receiver_id, String ah_id, int quantity){
-	String game_id("key_aa");
-	String player_id("pkeykichul");
+	String game_id(GHSharedAuthData::getSharedInstance().getGameId());
+	String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
 	String url(L"/f_attackhelpers/" + game_id );
 	__pMap = new (std::nothrow) Tizen::Base::Collection::HashMap();
 	__pMap->Construct();
@@ -63,8 +64,8 @@ void GHAttackhelperController::sendAttackhelperData(String receiver_id, String a
 
 // incremental achievement update
 void GHAttackhelperController::respondAttackhelperData(int data_idx){
-	String game_id("key_aa");
-	String player_id("pkeykichul");
+	String game_id(GHSharedAuthData::getSharedInstance().getGameId());
+	String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
 	String url(L"/f_attackhelpers/" + game_id );
 	__pMap = new (std::nothrow) Tizen::Base::Collection::HashMap();
 	__pMap->Construct();

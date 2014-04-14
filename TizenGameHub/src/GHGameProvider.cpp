@@ -7,6 +7,11 @@
 
 #include "GHGameProvider.h"
 
+using namespace Tizen::Base;
+using namespace Tizen::Ui::Controls;
+using namespace Tizen::Graphics;
+using namespace Tizen::Media;
+
 GHGameProvider::GHGameProvider() {
 	// TODO Auto-generated constructor stub
 }
@@ -22,14 +27,27 @@ int GHGameProvider::GetItemCount(void)
 }
 Tizen::Ui::Controls::ListItemBase* GHGameProvider::CreateItem(int index, int itemWidth)
 {
+	int width = 0;
+	int height = 0;
 
-	Tizen::Ui::Controls::SimpleItem* pItem = new Tizen::Ui::Controls::SimpleItem();
+	SimpleItem* pItem = new SimpleItem();
 	AppAssert(pItem);
+	pItem->Construct(Tizen::Graphics::Dimension(itemWidth, 80), LIST_ANNEX_STYLE_NORMAL);
 
-	Tizen::Base::String text =  ((GHGame*)(list.GetAt(index)))->getTitle();
-	pItem->Construct(Tizen::Graphics::Dimension(itemWidth, 80), Tizen::Ui::Controls::LIST_ANNEX_STYLE_NORMAL);
-	pItem->SetElement(text);
+	String text = ((GHGame*)(list.GetAt(index)))->getTitle();
 
+	ByteBuffer *pBuffer = null;
+	Bitmap *pBitmap = null;
+	Image *pImage = new (std::nothrow) Image();
+	pImage->Construct();
+
+	pBuffer = pImage->DecodeToBufferN(Tizen::App::App::GetInstance()->GetAppRootPath()+L"res/icon.png", BITMAP_PIXEL_FORMAT_RGB565,width,height);
+//	SAFE_DELETE(pImage);
+
+	pBitmap = new (std::nothrow) Bitmap();
+	pBitmap->Construct(*pBuffer, Dimension(width, height),BITMAP_PIXEL_FORMAT_RGB565 );
+
+	pItem->SetElement(text, pBitmap);
 	return pItem;
 }
 bool GHGameProvider::DeleteItem

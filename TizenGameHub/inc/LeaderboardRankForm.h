@@ -44,6 +44,7 @@ private:
 
 	GHLeaderboard* leaderboard;
 	Tizen::Base::Collection::ArrayList* rank_list;
+	Tizen::Ui::Controls::ListView *pListViewRank;
 
 
 };

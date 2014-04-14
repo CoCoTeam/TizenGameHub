@@ -6,6 +6,7 @@
  */
 
 #include "GHCloudsave/GHCloudsaveController.h"
+#include "GHSharedAuthData.h"
 
 using namespace Tizen::Web::Json;
 using namespace Tizen::Net::Http;
@@ -14,7 +15,6 @@ using namespace Tizen::Base::Collection;
 
 GHCloudsaveController::GHCloudsaveController() {
 	// TODO Auto-generated constructor stub
-
 }
 
 GHCloudsaveController::~GHCloudsaveController() {
@@ -23,8 +23,8 @@ GHCloudsaveController::~GHCloudsaveController() {
 
 void GHCloudsaveController::saveCloudSlotData(Tizen::Base::String data, int slot_idx){
 	//GET 함수 호출
-	String game_id("key_aa");
-	String player_id("pkeykichul");
+	String game_id(GHSharedAuthData::getSharedInstance().getGameId());
+	String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
 	String url(L"/f_cloudsave/" + game_id + "/" + player_id);
 	__pMap = new (std::nothrow) Tizen::Base::Collection::HashMap();
 	__pMap->Construct();
@@ -41,8 +41,8 @@ void GHCloudsaveController::saveCloudSlotData(Tizen::Base::String data, int slot
 void GHCloudsaveController::loadCloudSlotData(int slot_idx, GHCloudsaveLoadListener* listener){
 	this->currentListener = listener;
 	//GET 함수 호출
-	String game_id("key_aa");
-	String player_id("pkeykichul");
+	String game_id(GHSharedAuthData::getSharedInstance().getGameId());
+	String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
 	String slot_index(Integer::ToString(slot_idx));
 	String url(L"/f_cloudsave/" + game_id + "/" + player_id + "/" + slot_index);
 	httpPost.RequestHttpGetTran(this, url);

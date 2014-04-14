@@ -6,7 +6,7 @@
  */
 
 #include "GHLeaderboard/GHLeaderboardController.h"
-
+#include "GHSharedAuthData.h"
 
 using namespace Tizen::Base::Collection;
 using namespace Tizen::Web::Json;
@@ -27,7 +27,7 @@ void GHLeaderboardController::loadLeaderboards(GHLeaderboardDataLoadedListener *
 	this->currentListener = listener;
 
 	//GET 함수 호출
-	String game_id("key_aa");
+	String game_id(GHSharedAuthData::getSharedInstance().getGameId());
 	String url(L"/f_leaderboards/" + game_id);
 	httpPost.RequestHttpGetTran(this, url);
 }
@@ -37,8 +37,8 @@ void GHLeaderboardController::loadLeaderboardRank(Tizen::Base::String leaderboar
 {
 
 	//GET 함수 호출
-	String game_id("key_aa");
-	String lb_id("key_aa_0");
+	String game_id(GHSharedAuthData::getSharedInstance().getGameId());
+	String lb_id(GHSharedAuthData::getSharedInstance().getLeaderboardId());
 	String external = "?order=true&start_pos=0&max_length=10";
 	String url(L"/f_leaderboards/rank/" + game_id +"/"+ lb_id);
 
@@ -59,7 +59,7 @@ void GHLeaderboardController::updateLeaderboardScore(Tizen::Base::String GameId,
 	String* game_id = new String(GameId);
 	String* lb_id = new String(leaderboardId);
 	Long* pScore = new Long(score);
-	String* player_id = new String("pkeykichul");
+	String* player_id = new String(GHSharedAuthData::getSharedInstance().getPlayerId());
 
 	__pMap = new (std::nothrow) Tizen::Base::Collection::HashMap();
 	__pMap->Construct();
@@ -144,6 +144,7 @@ void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String st
 				leRankArr = new ArrayList();
 				//leArr = new ArrayList();
 
+
 				String* pkeylb_Id 		= new String(L"lb_id");
 				String* pkeyUnit		= new String(L"unit");
 				String* pkeylb_order	= new String(L"lb_order");
@@ -187,10 +188,7 @@ void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String st
 
 						leRankArr->Add(PlayerRank);
 
-
-
 						AppLogDebug("[DEBUG] sP_id : %S", PlayerRank->getId().GetPointer() );
-
 
 						delete pkeyP_id;	delete pkeyP_name;		delete pkeyP_url; 	delete pkeyRank;	delete pkeyScore;
 						//delete PlayerRank;

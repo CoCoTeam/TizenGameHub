@@ -119,8 +119,6 @@ JoinForm::doJoin()
 		Tizen::Base::Collection::HashMap* __pMap = new (std::nothrow) Tizen::Base::Collection::HashMap();
 		__pMap->Construct();
 
-		__pMap->Add(new String("player_id"), new String())
-
 		__pMap->Add(new String("email"), new String(strEmail));
 		__pMap->Add(new String("pwd"), new String(strPw));
 		__pMap->Add(new String("name"), new String(strName));
