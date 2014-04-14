@@ -118,6 +118,9 @@ JoinForm::doJoin()
 
 		Tizen::Base::Collection::HashMap* __pMap = new (std::nothrow) Tizen::Base::Collection::HashMap();
 		__pMap->Construct();
+
+		__pMap->Add(new String("player_id"), new String())
+
 		__pMap->Add(new String("email"), new String(strEmail));
 		__pMap->Add(new String("pwd"), new String(strPw));
 		__pMap->Add(new String("name"), new String(strName));
@@ -196,17 +199,17 @@ void JoinForm::OnTransactionReadyToRead(String apiCode, String statusCode,IJsonV
 	AppAssert(pSceneManager);
 
 
-	if(statusCode !=  "0")	// (로그인 성공 시) 로그인, 개인페이지로 이동
+	if(statusCode ==  "0")	// 로그인 실패
 	{
 		AppLog("fail");
 		msgBox.Construct(L"Join", L"Join fail", MSGBOX_STYLE_OK);
 		msgBox.ShowAndWait(modalResult);
 	}
-	else if(statusCode == "2")
+/*	else if(statusCode == "2")
 	{
 		msgBox.Construct(L"Join", L"Join 중복", MSGBOX_STYLE_OK);
 		msgBox.ShowAndWait(modalResult);
-	}
+	}*/
 	else	// (가입 성공 시)
 	{
 		AppLog("success");
