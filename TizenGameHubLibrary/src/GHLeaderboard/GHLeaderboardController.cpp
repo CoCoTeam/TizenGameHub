@@ -89,7 +89,7 @@ void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String st
 		AppLogDebug("[DEBUG] statusCode : %S", statusCode.GetPointer());
 
 		//{apiCode:21, statusCode:1, data:[{lb_id, title, img_url}, {}...]}
-		if(apiCode.Equals(LEADERBOARD_LEADERBOARDS)) {	// PLAYER_PLAYERDATA
+		if(apiCode.Equals(LEADERBOARD_LEADERBOARDS)) {	// LEADERBOARD_LEADERBOARDS
 				GHLeaderboard *leaderboard;
 				ArrayList* leArr;
 
@@ -132,7 +132,6 @@ void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String st
 
 		// object 형안에  array형이 있을때
 		//{apiCode:22, statusCode:1, data: {lb_id, unit, lb_order, is_time, values:[{p_id, p_name, p_url, rank, score}, {p_id, p_name, p_url, rank, score}...]}
-
 		else if(apiCode.Equals(LEADERBOARD_RANK)){
 			GHLeaderboard *leaderboard;
 			ArrayList* leRankArr;
@@ -200,7 +199,7 @@ void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String st
 			else { // 에러가 발생했을 때
 				leaderboard = null;
 			}
-			if(this->currentListener != null) this->currentListener->loadLeaderboardRankFinished(leArr);//leaderboard, leArr);
+			if(this->currentListener != null) this->currentListener->loadLeaderboardRankFinished(leaderboard);//leaderboard, leArr);
 		}
 		else if(apiCode.Equals(LEADERBOARD_SCORE))
 		{

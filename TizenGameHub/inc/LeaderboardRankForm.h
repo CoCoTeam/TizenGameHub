@@ -40,7 +40,7 @@ private:
 	virtual void OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
 									const Tizen::Ui::Scenes::SceneId& nextSceneId);
 	//GHLeaderboardListLoadedListener
-	virtual void loadLeaderboardRankFinished(Tizen::Base::Collection::ArrayList* Ranklist);
+	virtual void loadLeaderboardRankFinished(GHLeaderboard* _leaderboard);
 
 	GHLeaderboard* leaderboard;
 	Tizen::Base::Collection::ArrayList* rank_list;

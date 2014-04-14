@@ -85,9 +85,9 @@ void LeaderboardRankForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& c
 
 }
 
-void LeaderboardRankForm::loadLeaderboardRankFinished(Tizen::Base::Collection::ArrayList* Ranklist)
+void LeaderboardRankForm::loadLeaderboardRankFinished(GHLeaderboard* _leaderboard)
 {
-	leaderboard = static_cast<GHLeaderboard*>(Ranklist->GetAt(0));
+	leaderboard = _leaderboard;
 	rank_list = leaderboard->getRankList();
 	AppLogDebug("[LeaderboardRankForm] leaderboardRankList Received. (listSize : %d)", rank_list->GetCount() );
 }
