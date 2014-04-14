@@ -135,14 +135,14 @@ void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String st
 		else if(apiCode.Equals(LEADERBOARD_RANK)){
 			GHLeaderboard *leaderboard;
 			ArrayList* leRankArr;
-			ArrayList* leArr;
+			//ArrayList* leArr;
 
 			// 정상적으로 결과를 반환했을 때
 			if(statusCode == "1") {
 
 				JsonObject *pJsonOject 	= static_cast<JsonObject*>(data);
 				leRankArr = new ArrayList();
-				leArr = new ArrayList();
+				//leArr = new ArrayList();
 
 				String* pkeylb_Id 		= new String(L"lb_id");
 				String* pkeyUnit		= new String(L"unit");
@@ -179,19 +179,27 @@ void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String st
 						//acArr->Add(new GHPlayerRank(sP_id, sP_name, sP_url, iRank, iScore));
 
 						GHPlayerRank* PlayerRank = new GHPlayerRank(sP_id, sP_name, sP_url, iRank, iScore);
+
+						PlayerRank->setId(sP_id);
+
 						//leRankArr->Add((Object*)PlayerRank);
 
+
 						leRankArr->Add(PlayerRank);
-						//AppLogDebug("[DEBUG] sP_id : %S", PlayerRank->getId().GetPointer() );
+
+
+
+						AppLogDebug("[DEBUG] sP_id : %S", PlayerRank->getId().GetPointer() );
+
 
 						delete pkeyP_id;	delete pkeyP_name;		delete pkeyP_url; 	delete pkeyRank;	delete pkeyScore;
-						delete PlayerRank;
+						//delete PlayerRank;
 				}
 
 				//lb_id, unit, lb_order, is_time
 				//leaderboard = new GHLeaderboard(slb_Id, "", "", sUnit, ilb_order, iIs_time, leArr);
 				leaderboard = new GHLeaderboard(slb_Id, sUnit, ilb_order, iIs_time, leRankArr);
-				leArr->Add(leaderboard);
+				//leArr->Add(leaderboard);
 
 				// KEY NAME DELETE
 				delete pkeylb_Id; 			delete pkeyUnit;		delete pkeylb_order;	 delete pkeyIs_time;		delete pKeyValues;

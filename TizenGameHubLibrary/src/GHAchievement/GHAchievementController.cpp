@@ -101,7 +101,6 @@ void GHAchievementController::setAchievement(String ac_id, GHAchievementSettedLi
 }
 
 
-
 // 모든 통신의 콜백에서 호출하는 함수
 void GHAchievementController::OnTransactionReadyToRead(String apiCode, String statusCode, IJsonValue* data){
 

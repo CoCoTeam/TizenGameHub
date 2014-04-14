@@ -15,7 +15,7 @@ GHPlayerRank::GHPlayerRank() {
 }
 
 GHPlayerRank::GHPlayerRank(String _id, String _name, String _imgUrl, int _rank, int _score)
-// : id(_id), name(_name), imgUrl(imgUrl)
+
 {
 	//AppLogDebug("[DEBUG] _id : %S", _id.GetPointer() );
 
@@ -27,8 +27,24 @@ GHPlayerRank::GHPlayerRank(String _id, String _name, String _imgUrl, int _rank, 
 
 GHPlayerRank::~GHPlayerRank() {
 	// TODO Auto-generated destructor stub
+
+
 }
 
+/*String GHPlayerRank::getid()
+{
+	return this->id;
+}*/
+
+/*int setScore()
+{
+	return this->score;
+}
+
+int setRank()
+{
+	return this->rank;
+}*/
 
 int GHPlayerRank::getScore()
 {

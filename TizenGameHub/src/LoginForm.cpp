@@ -201,7 +201,9 @@ void LoginForm::loadLeaderboardRankFinished(GHLeaderboard* _leaderboard)
 
 	AppLogDebug("[DEBUG] Leaderboard ID : %S", test->getId().GetPointer());
 	//GHPlayer * test3 = static_cast<GHPlayer*>(test2);
-	AppLogDebug("[DEBUG] test : %d , %S ", test->getRankList()->GetCount(),  test2->getId().GetPointer()); // 왜 데이터가 안올까  ㅠ___ㅠ;;;
+	//AppLogDebug("[DEBUG] test :  %S ", test2->getName().GetPointer() ); // 왜 데이터가 안올까  ㅠ___ㅠ;;;
+
+	AppLogDebug("[DEBUG] P_id : %S", test2->getId().GetPointer() );
 
 }
 void LoginForm::updateLeaderboardScoreFinished(int statusCode)
