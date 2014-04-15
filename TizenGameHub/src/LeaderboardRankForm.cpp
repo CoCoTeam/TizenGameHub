@@ -70,7 +70,7 @@ void LeaderboardRankForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& pr
 		if (pArgs->GetCount())
 		{
 			Tizen::Base::String *leaderboardId = static_cast<Tizen::Base::String*>(pArgs->GetAt(0));
-			AppLog("[LeaderboardRankForm] Argument Received (%S)", leaderboardId->GetPointer());
+//			AppLogDebug("[LeaderboardRankForm] Argument Received (%S)", leaderboardId->GetPointer());
 			loadLeaderboardRank(*leaderboardId, this);
 		}
 		pArgs->RemoveAll(true);
@@ -90,11 +90,6 @@ void LeaderboardRankForm::loadLeaderboardRankFinished(GHLeaderboard* _leaderboar
 	leaderboard = _leaderboard;
 	rank_list = leaderboard->getRankList();
 	AppLogDebug("[LeaderboardRankForm] leaderboardRankList Received. (listSize : %d)", rank_list->GetCount() );
-
-	for(int i=0 ; i<rank_list->GetCount() ; i++) {
-		GHPlayerRank *rank = (GHPlayerRank*)(rank_list->GetAt(i));
-		AppLogDebug("[LeaderboardRankForm] rank:%d, score:%d, %S", rank->getRank(), rank->getScore(), rank->getName().GetPointer());
-	}
 
 	pRankProvider = new LeaderboardRankProvider();
 	pRankProvider->setItemList(rank_list);
