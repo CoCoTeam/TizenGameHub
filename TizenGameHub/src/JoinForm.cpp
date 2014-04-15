@@ -8,6 +8,7 @@
 #include "JoinForm.h"
 #include "AppResourceId.h"
 #include "TizenGameHubFrame.h"
+#include "GHSharedAuthData.h"
 
 using namespace Tizen::Ui::Controls;
 using namespace Tizen::Ui::Scenes;
@@ -55,8 +56,6 @@ JoinForm::OnInitializing(void)
 	pTextPw = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_PW));
 	pTextPwconfirm = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_PWCONFIRM));
 	pTextName = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_NAME));
-
-
 
 
 	return r;
@@ -114,17 +113,37 @@ JoinForm::doJoin()
 	}
 	else
 	{
-		GHhttpClient* httpPost = new GHhttpClient();
+		if(isPlayerJoin) {
 
-		Tizen::Base::Collection::HashMap* __pMap = new (std::nothrow) Tizen::Base::Collection::HashMap();
-		__pMap->Construct();
+			GHhttpClient* httpPost = new GHhttpClient();
 
-		__pMap->Add(new String("email"), new String(strEmail));
-		__pMap->Add(new String("pwd"), new String(strPw));
-		__pMap->Add(new String("name"), new String(strName));
+			Tizen::Base::Collection::HashMap* __pMap = new (std::nothrow) Tizen::Base::Collection::HashMap();
+			__pMap->Construct();
 
-		//post 함수 호출
-		httpPost->RequestHttpPostTran(this, L"/players", __pMap);
+			__pMap->Add(new String("email"), new String(strEmail));
+			__pMap->Add(new String("pwd"), new String(strPw));
+			__pMap->Add(new String("name"), new String(strName));
+
+			//post 함수 호출
+			httpPost->RequestHttpPostTran(this, L"/players", __pMap);
+		}
+		else {
+
+			GHhttpClient* httpPost = new GHhttpClient();
+
+			String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
+
+			//String *player_id = new String(GHSharedAuthData::getSharedInstance().getPlayerId());
+			String url(L"/players" + player_id );
+
+			Tizen::Base::Collection::HashMap* __pMap  = new (std::nothrow) Tizen::Base::Collection::HashMap();
+			__pMap->Construct();
+
+			__pMap->Add(new String("pwd"), new String(strPw));
+			__pMap->Add(new String("name"), new String(strName));
+
+			httpPost->RequestHttpPutTran(this, url, __pMap);
+		}
 	}
 	return r;
 }
@@ -151,7 +170,7 @@ JoinForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 			AppLog("[JoinForm] Argument Received");
 			isPlayerJoin = static_cast<Tizen::Base::Boolean*>(pArgs->GetAt(0));
 
-			if( isPlayerJoin )	// (수정 시퀀스면) 프로필 편집 Panel 추가
+			if( !isPlayerJoin )	// (수정 시퀀스면) 프로필 편집 Panel 추가
 			{
 				pButtonJoin->SetText( "Edit" );
 			}
