@@ -11,8 +11,10 @@
 #include <GHTizen.h>
 #include "GHAchievement/GHAchievementController.h"
 
+/*
 #include "GHPlayer/GHPlayerController.h"
 #include "GHPlayer/GHPlayerLoggedinListener.h"
+*/
 
 class JoinForm
 	: public Tizen::Ui::Controls::Form
@@ -20,10 +22,6 @@ class JoinForm
 	, public Tizen::Ui::Controls::IFormBackEventListener
 	, public Tizen::Ui::Scenes::ISceneEventListener
 	, public GHController
-
-	//player login
-	, public GHPlayerController
-	, public GHPlayerLoggedinListener
 {
 public:
 	JoinForm();
@@ -56,8 +54,6 @@ private:
 
 	result doJoin();
 
-	//GHPlayerLoggedinListener
-	virtual void loginPlayerFinished(Tizen::Base::String statusCode);
 
 };
 

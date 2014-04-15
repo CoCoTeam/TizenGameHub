@@ -8,6 +8,7 @@
 #include "JoinForm.h"
 #include "AppResourceId.h"
 #include "TizenGameHubFrame.h"
+#include "GHSharedAuthData.h"
 
 using namespace Tizen::Ui::Controls;
 using namespace Tizen::Ui::Scenes;
@@ -114,10 +115,7 @@ JoinForm::doJoin()
 	{
 		if(isPlayerJoin) {
 
-			GHPlayerController* controller = new GHPlayerController();
-			controller->playerLogin(strEmail,strPw);
-
-		/*	GHhttpClient* httpPost = new GHhttpClient();
+			GHhttpClient* httpPost = new GHhttpClient();
 
 			Tizen::Base::Collection::HashMap* __pMap = new (std::nothrow) Tizen::Base::Collection::HashMap();
 			__pMap->Construct();
@@ -127,27 +125,24 @@ JoinForm::doJoin()
 			__pMap->Add(new String("name"), new String(strName));
 
 			//post 함수 호출
-			httpPost->RequestHttpPostTran(this, L"/players", __pMap);*/
+			httpPost->RequestHttpPostTran(this, L"/players", __pMap);
 		}
 		else {
 
-/*			//player_id / pwd, name, img_url
+			GHhttpClient* httpPost = new GHhttpClient();
 
-			String* game_id = new String(GHSharedAuthData::getSharedInstance().getGameId());
-			String* lb_id = new String(leaderboardId);
-			Long* pScore = new Long(score);
-			String* player_id = new String(GHSharedAuthData::getSharedInstance().getPlayerId());
+			String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
 
-			//Put 함수 호출
-			String url(L"/players/{player_id}");
-			__pMap = new (std::nothrow) Tizen::Base::Collection::HashMap();
+			//String *player_id = new String(GHSharedAuthData::getSharedInstance().getPlayerId());
+			String url(L"/players" + player_id );
+
+			Tizen::Base::Collection::HashMap* __pMap  = new (std::nothrow) Tizen::Base::Collection::HashMap();
 			__pMap->Construct();
-			__pMap->Add(new String("game_id"), game_id);
-			__pMap->Add(new String("lb_id"), lb_id);
-			__pMap->Add(new String("score"), pScore);
-			__pMap->Add(new String("player_id"), player_id);
 
-			httpPost.RequestHttpPutTran(this, url, __pMap);*/
+			__pMap->Add(new String("pwd"), new String(strPw));
+			__pMap->Add(new String("name"), new String(strName));
+
+			httpPost->RequestHttpPutTran(this, url, __pMap);
 		}
 	}
 	return r;
