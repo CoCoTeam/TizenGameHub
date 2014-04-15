@@ -57,8 +57,6 @@ JoinForm::OnInitializing(void)
 	pTextName = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_NAME));
 
 
-
-
 	return r;
 }
 
@@ -114,17 +112,43 @@ JoinForm::doJoin()
 	}
 	else
 	{
-		GHhttpClient* httpPost = new GHhttpClient();
+		if(isPlayerJoin) {
 
-		Tizen::Base::Collection::HashMap* __pMap = new (std::nothrow) Tizen::Base::Collection::HashMap();
-		__pMap->Construct();
+			GHPlayerController* controller = new GHPlayerController();
+			controller->playerLogin(strEmail,strPw);
 
-		__pMap->Add(new String("email"), new String(strEmail));
-		__pMap->Add(new String("pwd"), new String(strPw));
-		__pMap->Add(new String("name"), new String(strName));
+		/*	GHhttpClient* httpPost = new GHhttpClient();
 
-		//post 함수 호출
-		httpPost->RequestHttpPostTran(this, L"/players", __pMap);
+			Tizen::Base::Collection::HashMap* __pMap = new (std::nothrow) Tizen::Base::Collection::HashMap();
+			__pMap->Construct();
+
+			__pMap->Add(new String("email"), new String(strEmail));
+			__pMap->Add(new String("pwd"), new String(strPw));
+			__pMap->Add(new String("name"), new String(strName));
+
+			//post 함수 호출
+			httpPost->RequestHttpPostTran(this, L"/players", __pMap);*/
+		}
+		else {
+
+/*			//player_id / pwd, name, img_url
+
+			String* game_id = new String(GHSharedAuthData::getSharedInstance().getGameId());
+			String* lb_id = new String(leaderboardId);
+			Long* pScore = new Long(score);
+			String* player_id = new String(GHSharedAuthData::getSharedInstance().getPlayerId());
+
+			//Put 함수 호출
+			String url(L"/players/{player_id}");
+			__pMap = new (std::nothrow) Tizen::Base::Collection::HashMap();
+			__pMap->Construct();
+			__pMap->Add(new String("game_id"), game_id);
+			__pMap->Add(new String("lb_id"), lb_id);
+			__pMap->Add(new String("score"), pScore);
+			__pMap->Add(new String("player_id"), player_id);
+
+			httpPost.RequestHttpPutTran(this, url, __pMap);*/
+		}
 	}
 	return r;
 }
@@ -151,7 +175,7 @@ JoinForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 			AppLog("[JoinForm] Argument Received");
 			isPlayerJoin = static_cast<Tizen::Base::Boolean*>(pArgs->GetAt(0));
 
-			if( isPlayerJoin )	// (수정 시퀀스면) 프로필 편집 Panel 추가
+			if( !isPlayerJoin )	// (수정 시퀀스면) 프로필 편집 Panel 추가
 			{
 				pButtonJoin->SetText( "Edit" );
 			}
