@@ -112,7 +112,7 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 	switch(actionId)
 	{
 	case IDA_BUTTON_JOIN:
-		pList->Add( new Tizen::Base::Boolean(true) );	// isJoin
+		pList->Add( new Tizen::Base::Integer(1) );	// isJoin
 		pSceneManager->GoForward(ForwardSceneTransition(SCENE_JOIN, SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_IN), pList);
 		break;
 	case IDA_BUTTON_LOGIN:
