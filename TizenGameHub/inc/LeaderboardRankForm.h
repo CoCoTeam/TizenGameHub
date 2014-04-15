@@ -13,6 +13,7 @@
 //#include "GHLeaderboard/GHLeaderboard"
 #include "GHLeaderboard/GHLeaderboardController.h"
 #include "GHLeaderboard/GHLeaderboardListLoadedListener.h"
+#include "LeaderboardRankProvider.h"
 
 class LeaderboardRankForm
 	: public Tizen::Ui::Controls::Form
@@ -44,7 +45,8 @@ private:
 
 	GHLeaderboard* leaderboard;
 	Tizen::Base::Collection::ArrayList* rank_list;
-	Tizen::Ui::Controls::ListView *pListViewRank;
+	Tizen::Ui::Controls::ListView *pRankListView;
+	LeaderboardRankProvider *pRankProvider;
 
 
 };

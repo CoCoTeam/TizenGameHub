@@ -44,8 +44,8 @@ public:
 
 
 	// 해당 leaderboard에 점수를 업데이트한다.
-	void updateLeaderboardScore(Tizen::Base::String GameId, Tizen::Base::String leaderboardId, long score);		//(static Player)
-	void updateLeaderboardScore(Tizen::Base::String GameId, Tizen::Base::String leaderboardId, long score, GHLeaderboardScoreUpdatedListener * listener);
+	void updateLeaderboardScore(Tizen::Base::String leaderboardId, long score);		//(static Player)
+	void updateLeaderboardScore(Tizen::Base::String leaderboardId, long score, GHLeaderboardScoreUpdatedListener * listener);
 
 	// IHttpTransactionEventListener (부모에서 구현함)
 //	virtual void OnTransactionReadyToRead(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction, int availableBodyLen);

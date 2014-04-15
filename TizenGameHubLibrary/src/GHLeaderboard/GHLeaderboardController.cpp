@@ -35,20 +35,13 @@ void GHLeaderboardController::loadLeaderboards(GHLeaderboardDataLoadedListener *
 // leaderboard의 랭킹 목록을 가져온다.
 void GHLeaderboardController::loadLeaderboardRank(Tizen::Base::String leaderboardId)
 {
+	leaderboardId = "key_aa_0";
 	//GET 함수 호출
-	///String game_id(GHSharedAuthData::getSharedInstance().getGameId());
-	//String lb_id(GHSharedAuthData::getSharedInstance().getLeaderboardId());
-
-	String game_id(L"key_aa");
-	String lb_id(L"key_aa_0");
-
+	String game_id(GHSharedAuthData::getSharedInstance().getGameId());
 	String external = "?order=true&start_pos=0&max_length=10";
-	String url(L"/f_leaderboards/rank/" + game_id +"/"+ lb_id);
+	String url(L"/f_leaderboards/rank/" + game_id +"/"+ leaderboardId);
 
 	httpPost.RequestHttpGetTran(this, url);
-
-	//AppLogDebug("================ [DEBUG] ====================");
-
 }
 void GHLeaderboardController::loadLeaderboardRank(Tizen::Base::String leaderboardId, GHLeaderboardListLoadedListener * listener)
 {
@@ -57,9 +50,9 @@ void GHLeaderboardController::loadLeaderboardRank(Tizen::Base::String leaderboar
 }
 
 // 해당 leaderboard에 점수를 업데이트한다.
-void GHLeaderboardController::updateLeaderboardScore(Tizen::Base::String GameId, Tizen::Base::String leaderboardId, long score)
+void GHLeaderboardController::updateLeaderboardScore(Tizen::Base::String leaderboardId, long score)
 {
-	String* game_id = new String(GameId);
+	String* game_id = new String(GHSharedAuthData::getSharedInstance().getGameId());
 	String* lb_id = new String(leaderboardId);
 	Long* pScore = new Long(score);
 	String* player_id = new String(GHSharedAuthData::getSharedInstance().getPlayerId());
@@ -75,10 +68,10 @@ void GHLeaderboardController::updateLeaderboardScore(Tizen::Base::String GameId,
 	String url(L"/f_leaderboards/update");
 	httpPost.RequestHttpPutTran(this, url, __pMap);
 }
-void GHLeaderboardController::updateLeaderboardScore(Tizen::Base::String GameId, Tizen::Base::String leaderboardId, long score, GHLeaderboardScoreUpdatedListener * listener)
+void GHLeaderboardController::updateLeaderboardScore(Tizen::Base::String leaderboardId, long score, GHLeaderboardScoreUpdatedListener * listener)
 {
 	this->currentListener = listener;
-	this->updateLeaderboardScore(GameId, leaderboardId, score);
+	this->updateLeaderboardScore(leaderboardId, score);
 }
 
 // HTTP 통신 Listener -------------------------------------------------------------------------------------------------------

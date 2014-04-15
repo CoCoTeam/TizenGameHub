@@ -34,7 +34,7 @@ TizenGameHubFrame::OnInitializing(void)
 	GHSharedAuthData & sharedInstance = GHSharedAuthData::getSharedInstance();
 	sharedInstance.setGameId("key_aa");
 	sharedInstance.setPlayerId("pkeykichul");
-	sharedInstance.setLeaderboardId("key_aa_0");
+//	sharedInstance.setLeaderboardId("key_aa_0");
 
 	// Prepare Scene management.
 	SceneManager* pSceneManager = SceneManager::GetInstance();

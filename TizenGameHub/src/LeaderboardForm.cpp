@@ -64,7 +64,6 @@ void LeaderboardForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 void LeaderboardForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 										  const Tizen::Ui::Scenes::SceneId& currentSceneId, Tizen::Base::Collection::IList* pArgs)
 {
-
 	// TODO: Activate your scene here.
 	if (pArgs != null)
 	{
