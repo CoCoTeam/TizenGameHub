@@ -142,8 +142,8 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		//controller->loadAttackhelperDatas(this);
 
 
-		GHLeaderboardController* controller = new GHLeaderboardController();
-		controller->loadLeaderboardRank("key_aa_0");    // 확인 필요
+		//GHLeaderboardController* controller = new GHLeaderboardController();
+		//controller->loadLeaderboardRank("key_aa_0");    // 확인 필요
 
 		//controller->loadLeaderboardRank("key_aa_0",this);
 
@@ -155,6 +155,9 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		//GHCloudsaveController* controller = new GHCloudsaveController();
 		//controller->loadCloudSlotData(1, this);
 		//controller->saveCloudSlotData("hahaha kichul zzang", 2, this);
+
+		GHSocket* socket = new GHSocket();
+		socket->ConnectSocketServer("54.238.195.222", 8081);
 
 		break;
 	}

@@ -29,6 +29,7 @@
 #include "GHCloudsave/GHCloudsaveSaveListener.h"
 #include "GHCloudsave/GHCloudsaveLoadListener.h"
 
+#include "GHSocket.h"
 
 using namespace Tizen::Ui::Controls;
 
