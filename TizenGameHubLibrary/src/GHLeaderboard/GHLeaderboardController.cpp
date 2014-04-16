@@ -33,34 +33,37 @@ void GHLeaderboardController::loadLeaderboards(GHLeaderboardDataLoadedListener *
 }
 
 // leaderboard의 랭킹 목록을 가져온다.
-void GHLeaderboardController::loadLeaderboardRank(Tizen::Base::String leaderboardId)
+void GHLeaderboardController::loadLeaderboardRank(Tizen::Base::String leaderboardId, int startPosition, int loadSize)
 {
-
+	this->currentListener = null;
 	//GET 함수 호출
 	String game_id(GHSharedAuthData::getSharedInstance().getGameId());
-	String lb_id(GHSharedAuthData::getSharedInstance().getLeaderboardId());
-	String external = "?order=true&start_pos=0&max_length=10";
-	String url(L"/f_leaderboards/rank/" + game_id +"/"+ lb_id);
+	Tizen::Base::String sOffset, sSize;
+	sOffset.Append(startPosition);
+	sSize.Append(loadSize);
+	String external = "?order=true&start_pos="+sOffset+"&max_length="+sSize;
+	String url(L"/f_leaderboards/rank/" + game_id +"/"+ leaderboardId );//+ external);
 
 	httpPost.RequestHttpGetTran(this, url);
-
 }
-void GHLeaderboardController::loadLeaderboardRank(Tizen::Base::String leaderboardId, GHLeaderboardListLoadedListener * listener)
+void GHLeaderboardController::loadLeaderboardRank(Tizen::Base::String leaderboardId, GHLeaderboardListLoadedListener * listener, int startPosition, int loadSize)
 {
+	this->loadLeaderboardRank(leaderboardId, startPosition, loadSize);
 	this->currentListener = listener;
-	loadLeaderboardRank(leaderboardId);
 }
-
 
 // 해당 leaderboard에 점수를 업데이트한다.
-void GHLeaderboardController::updateLeaderboardScore(Tizen::Base::String GameId, Tizen::Base::String leaderboardId, long score)
+void GHLeaderboardController::updateLeaderboardScore(Tizen::Base::String leaderboardId, long score)
 {
+	this->currentListener = null;
 
-	String* game_id = new String(GameId);
+	String* game_id = new String(GHSharedAuthData::getSharedInstance().getGameId());
 	String* lb_id = new String(leaderboardId);
 	Long* pScore = new Long(score);
 	String* player_id = new String(GHSharedAuthData::getSharedInstance().getPlayerId());
 
+	//Put 함수 호출
+	String url(L"/f_leaderboards/update");
 	__pMap = new (std::nothrow) Tizen::Base::Collection::HashMap();
 	__pMap->Construct();
 	__pMap->Add(new String("game_id"), game_id);
@@ -68,18 +71,13 @@ void GHLeaderboardController::updateLeaderboardScore(Tizen::Base::String GameId,
 	__pMap->Add(new String("score"), pScore);
 	__pMap->Add(new String("player_id"), player_id);
 
-
-	//Put 함수 호출
-	String url(L"/f_leaderboards/update");
 	httpPost.RequestHttpPutTran(this, url, __pMap);
 }
-void GHLeaderboardController::updateLeaderboardScore(Tizen::Base::String GameId, Tizen::Base::String leaderboardId, long score, GHLeaderboardScoreUpdatedListener * listener)
+void GHLeaderboardController::updateLeaderboardScore(Tizen::Base::String leaderboardId, long score, GHLeaderboardScoreUpdatedListener * listener)
 {
+	this->updateLeaderboardScore(leaderboardId, score);
 	this->currentListener = listener;
-	updateLeaderboardScore(GameId, leaderboardId, score);
 }
-
-
 
 // HTTP 통신 Listener -------------------------------------------------------------------------------------------------------
 void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String statusCode, IJsonValue* data){
@@ -88,9 +86,11 @@ void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String st
 		AppLogDebug("[DEBUG] apiCode : %S", apiCode.GetPointer() );
 		AppLogDebug("[DEBUG] statusCode : %S", statusCode.GetPointer());
 
+		//AppLogDebug("================ [DEBUG] ====================");
+
 		//{apiCode:21, statusCode:1, data:[{lb_id, title, img_url}, {}...]}
 		if(apiCode.Equals(LEADERBOARD_LEADERBOARDS)) {	// LEADERBOARD_LEADERBOARDS
-				GHLeaderboard *leaderboard;
+				//GHLeaderboard *leaderboard;
 				ArrayList* leArr;
 
 				// 정상적으로 결과를 반환했을 때
@@ -113,18 +113,15 @@ void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String st
 							String  sImgUrl 		= getStringByKey(pJsonOject, pkeyImgUrl);
 
 							// 리스트에 추가
-							//leaderboard = new GHLeaderboard(sLb_id, sTitle, sImgUrl);
-							//leArr->Add((Object*)leaderboard);
 							leArr->Add(new GHLeaderboard(sLb_id, sTitle, sImgUrl));
 
-							AppLogDebug("[DEBUG] id : %S", sLb_id.GetPointer() );
 					}
 
 					delete pkeyLb_id;		delete pkeyTitle;	 delete pkeyImgUrl;
 				}
 				else
 				{ // 에러가 발생했을 때
-					leaderboard = null;
+					leArr = null;
 				}
 
 				if(this->currentListener != null) this->currentListener->loadLeaderboardFinished(leArr);
@@ -155,17 +152,17 @@ void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String st
 				JsonArray* pJsonArray = getJsonArrayByKey(pJsonOject, pKeyValues);
 
 				int 		arrNum 		= pJsonArray->GetCount();
-				AppLogDebug("[DEBUG] arrNum : %d", arrNum );
+//				AppLogDebug("[DEBUG] arrNum : %d", arrNum );
+
+				String* pkeyP_id	= new String(L"p_id");
+				String* pkeyP_name	= new String(L"p_name");
+				String* pkeyP_url 	= new String(L"p_imgurl");
+				String* pkeyRank	= new String(L"rank");
+				String* pkeyScore 	= new String(L"score");
 
 				for(int i=0; i<arrNum; i++) {
 
 						JsonObject *pArrayJsonOject 	= getJsonObjectByIndex(pJsonArray, i);
-
-						String* pkeyP_id	= new String(L"p_id");
-						String* pkeyP_name	= new String(L"p_name");
-						String* pkeyP_url 	= new String(L"p_imgurl");
-						String* pkeyRank	= new String(L"rank");
-						String* pkeyScore 	= new String(L"score");
 
 						String sP_id		= getStringByKey(pArrayJsonOject, pkeyP_id);
 						String sP_name		= getStringByKey(pArrayJsonOject, pkeyP_name);
@@ -174,35 +171,40 @@ void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String st
 						int iScore			= getIntByKey(pArrayJsonOject, pkeyScore);
 
 						// 리스트에 추가
-						//acArr->Add(new GHPlayerRank(sP_id, sP_name, sP_url, iRank, iScore));
-
 						GHPlayerRank* PlayerRank = new GHPlayerRank(sP_id, sP_name, sP_url, iRank, iScore);
-						//leRankArr->Add((Object*)PlayerRank);
+
+						PlayerRank->setId(sP_id);
+						PlayerRank->setName(sP_name);
+						PlayerRank->setImgUrl(sP_url);
+						PlayerRank->setRank(iRank);
+						PlayerRank->setScore(iScore);
 
 						leRankArr->Add(PlayerRank);
-//						AppLogDebug("[DEBUG] sP_id : %S / %S", PlayerRank->getId().GetPointer(), PlayerRank->getName().GetPointer() );
 
-						delete pkeyP_id;	delete pkeyP_name;		delete pkeyP_url; 	delete pkeyRank;	delete pkeyScore;
-						delete PlayerRank;
+						//delete PlayerRank;
 				}
-
 				//lb_id, unit, lb_order, is_time
-				//leaderboard = new GHLeaderboard(slb_Id, "", "", sUnit, ilb_order, iIs_time, leArr);
 				leaderboard = new GHLeaderboard(slb_Id, sUnit, ilb_order, iIs_time, leRankArr);
 
 				// KEY NAME DELETE
+				delete pkeyP_id;	delete pkeyP_name;		delete pkeyP_url; 	delete pkeyRank;	delete pkeyScore;
 				delete pkeylb_Id; 			delete pkeyUnit;		delete pkeylb_order;	 delete pkeyIs_time;		delete pKeyValues;
 			}
 			else { // 에러가 발생했을 때
-				leaderboard = null;
+				leRankArr = null;
 			}
-			if(this->currentListener != null) this->currentListener->loadLeaderboardRankFinished(leaderboard);//leaderboard, leArr);
+
+			if(this->currentListener != null) this->currentListener->loadLeaderboardRankFinished(leaderboard);
+
 		}
 		else if(apiCode.Equals(LEADERBOARD_SCORE))
 		{
 			int stateCode;
 			Integer::Parse(statusCode, stateCode);
 
+			//AppLogDebug("[DEBUG] : %d", stateCode);
+
 			if(this->currentListener != null) this->currentListener->updateLeaderboardScoreFinished(stateCode);
+
 		}
 }

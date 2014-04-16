@@ -22,7 +22,12 @@ public:
 	virtual ~GHPlayerRank();
 	GHPlayerRank(Tizen::Base::String _id, Tizen::Base::String _name, Tizen::Base::String _imgUrl, int _rank, int _score);
 
+	//String getid();
 	int getScore();
 	int getRank();
+
+	void GHPlayerRank::setScore(int _score);
+	void GHPlayerRank::setRank(int _rank);
+
 };
 #endif /* GHPLAYERRANK_H_ */

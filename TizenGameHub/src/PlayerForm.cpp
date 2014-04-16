@@ -84,7 +84,7 @@ PlayerForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 			ArrayList* pList = new (std::nothrow)ArrayList;
 			AppAssert(pList);
 			pList->Construct();
-			pList->Add( new Tizen::Base::Boolean(false) );	// isJoin -> isEdit
+			pList->Add( new Tizen::Base::Integer(0) );	// isJoin -> isEdit
 			pSceneManager->GoForward(ForwardSceneTransition(SCENE_JOIN, SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_IN), pList);
 		}
 		else {		// (나 자신이 아니면)

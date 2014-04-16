@@ -15,21 +15,36 @@ GHPlayerRank::GHPlayerRank() {
 }
 
 GHPlayerRank::GHPlayerRank(String _id, String _name, String _imgUrl, int _rank, int _score)
-// : id(_id), name(_name), imgUrl(_imgUrl)
 {
 //	this->id = _id;
 //	this->name = _name;
-	setId(_id);
-	setName(_name);
-	this->imgUrl = _imgUrl;
+
+	GHPlayer(id, name, imgUrl);
+	//this->imgUrl = _imgUrl;
 	this->score = _score;
 	this->rank  = _rank;
 }
 
 GHPlayerRank::~GHPlayerRank() {
 	// TODO Auto-generated destructor stub
+
+
 }
 
+/*String GHPlayerRank::getid()
+{
+	return this->id;
+}*/
+
+/*int setScore()
+{
+	return this->score;
+}
+
+int setRank()
+{
+	return this->rank;
+}*/
 
 int GHPlayerRank::getScore()
 {
@@ -40,3 +55,6 @@ int GHPlayerRank::getRank()
 {
 	return this->rank;
 }
+
+void GHPlayerRank::setScore(int _score)		{	this->score = _score;}
+void GHPlayerRank::setRank(int _rank)	{	this->rank = _rank; }

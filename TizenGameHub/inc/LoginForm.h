@@ -20,10 +20,10 @@
 #include "GHAttackhelper/GHAttackhelperDataRespondedListener.h"
 
 
-#include <GHLeaderboard/GHLeaderboardController.h>
-#include <GHLeaderboard/GHLeaderboardDataLoadedListener.h>
-#include <GHLeaderboard/GHLeaderboardListLoadedListener.h>
-#include <GHLeaderboard/GHLeaderboardScoreUpdatedListener.h>
+#include "GHLeaderboard/GHLeaderboardController.h"
+#include "GHLeaderboard/GHLeaderboardDataLoadedListener.h"
+#include "GHLeaderboard/GHLeaderboardListLoadedListener.h"
+#include "GHLeaderboard/GHLeaderboardScoreUpdatedListener.h"
 
 #include "GHCloudsave/GHCloudsaveController.h"
 #include "GHCloudsave/GHCloudsaveSaveListener.h"
@@ -82,7 +82,7 @@ private:
 
 	// GHLeaderboard
 	virtual void loadLeaderboardFinished(Tizen::Base::Collection::ArrayList* leaderboardList);
-	virtual void loadLeaderboardRankFinished(GHLeaderboard* leaderboardList);
+	virtual void loadLeaderboardRankFinished(GHLeaderboard* _leaderboard);
 	virtual void updateLeaderboardScoreFinished(int statusCode);
 
 };

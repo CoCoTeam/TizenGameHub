@@ -31,7 +31,7 @@ public:
 private:
 	Tizen::Base::String game_id;
 	Tizen::Base::String player_id;
-	Tizen::Base::String lb_id;
+//	Tizen::Base::String lb_id;
 
 public:
 	void setGameId(Tizen::Base::String gameId){
@@ -39,9 +39,6 @@ public:
 	}
 
 	void setPlayerId(Tizen::Base::String playerId){
-		this->player_id = playerId;
-	}
-	void setLeaderboardId(Tizen::Base::String playerId){
 		this->player_id = playerId;
 	}
 
@@ -53,9 +50,12 @@ public:
 		return this->player_id;
 	}
 
-	Tizen::Base::String getLeaderboardId(){
-		return this->lb_id;
-	}
+//	void setLeaderboardId(Tizen::Base::String leaderboardId){
+//		this->lb_id = leaderboardId;
+//	}
+//	Tizen::Base::String getLeaderboardId(){
+//		return this->lb_id;
+//	}
 };
 
 #endif /* GHSHAREDAUTHDATA_H_ */

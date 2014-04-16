@@ -74,7 +74,6 @@ void GHAchievementController::completeAchievement(String ac_id) {
 }
 void GHAchievementController::completeAchievement(String ac_id, GHAchievementCompletedListener* listener) {
 	this->currentListener = listener;
-
 	this->completeAchievement(ac_id);
 }
 
@@ -100,7 +99,6 @@ void GHAchievementController::setAchievement(String ac_id, GHAchievementSettedLi
 	this->currentListener = listener;
 	this->setAchievement(ac_id);
 }
-
 
 
 // 모든 통신의 콜백에서 호출하는 함수
@@ -130,7 +128,7 @@ void GHAchievementController::OnTransactionReadyToRead(String apiCode, String st
 			String* pkeyIsHidden 	= new String(L"is_hidden");
 			String* pkeyCurPoint 	= new String(L"cur_point");
 
-			//AppLogDebug("[DEBUG] arrNum : %d", arrNum );
+//			AppLogDebug("[DEBUG] arrNum : %d", arrNum );
 
 			for(int i=0; i<arrNum; i++) {
 				JsonObject *pJsonOject 	= getJsonObjectByIndex(pJsonArray, i);

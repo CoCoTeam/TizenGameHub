@@ -11,6 +11,10 @@
 #include <GHTizen.h>
 #include "GHAchievement/GHAchievementController.h"
 
+/*
+#include "GHPlayer/GHPlayerController.h"
+#include "GHPlayer/GHPlayerLoggedinListener.h"
+*/
 
 class JoinForm
 	: public Tizen::Ui::Controls::Form

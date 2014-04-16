@@ -12,7 +12,7 @@
 #include "GHLeaderboard/GHLeaderboardListener.h"
 
 class GHLeaderboardScoreUpdatedListener
-	: public GHLeaderboardListener
+	: public virtual GHLeaderboardListener
 {
 public:
 	GHLeaderboardScoreUpdatedListener();

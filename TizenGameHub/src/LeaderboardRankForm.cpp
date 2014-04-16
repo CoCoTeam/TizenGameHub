@@ -37,7 +37,7 @@ result LeaderboardRankForm::OnInitializing(void)
 	SetFormBackEventListener(this);
 
 	// Get a button via resource ID
-	pListViewRank = static_cast<ListView*>(GetControl(IDC_LEADERBOARDRANK_LIST_RANK));
+	pRankListView = static_cast<ListView*>(GetControl(IDC_LEADERBOARDRANK_LIST_RANK));
 
 	return r;
 }
@@ -64,14 +64,13 @@ void LeaderboardRankForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 void LeaderboardRankForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 										  const Tizen::Ui::Scenes::SceneId& currentSceneId, Tizen::Base::Collection::IList* pArgs)
 {
-
 	// TODO: Activate your scene here.
 	if (pArgs != null)
 	{
 		if (pArgs->GetCount())
 		{
 			Tizen::Base::String *leaderboardId = static_cast<Tizen::Base::String*>(pArgs->GetAt(0));
-			AppLog("[LeaderboardRankForm] Argument Received %S", leaderboardId->GetPointer());
+//			AppLogDebug("[LeaderboardRankForm] Argument Received (%S)", leaderboardId->GetPointer());
 			loadLeaderboardRank(*leaderboardId, this);
 		}
 		pArgs->RemoveAll(true);
@@ -92,10 +91,9 @@ void LeaderboardRankForm::loadLeaderboardRankFinished(GHLeaderboard* _leaderboar
 	rank_list = leaderboard->getRankList();
 	AppLogDebug("[LeaderboardRankForm] leaderboardRankList Received. (listSize : %d)", rank_list->GetCount() );
 
-	for(int i=0 ; i<rank_list->GetCount() ; i++) {
-		GHPlayerRank *rank = (GHPlayerRank*)(rank_list->GetAt(i));
-		AppLogDebug("[LeaderboardRankForm] rank:%d, score:%d, ", rank->getRank(), rank->getScore());//, rank->getName());
-	}
-
+	pRankProvider = new LeaderboardRankProvider();
+	pRankProvider->setItemList(rank_list);
+	pRankListView->SetItemProvider( *pRankProvider );
+	Draw();
 }
 

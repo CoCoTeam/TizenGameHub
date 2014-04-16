@@ -8,6 +8,7 @@
 #include "JoinForm.h"
 #include "AppResourceId.h"
 #include "TizenGameHubFrame.h"
+#include "GHSharedAuthData.h"
 
 using namespace Tizen::Ui::Controls;
 using namespace Tizen::Ui::Scenes;
@@ -112,16 +113,41 @@ JoinForm::doJoin()
 	}
 	else
 	{
-		GHhttpClient* httpPost = new GHhttpClient();
+		if( isPlayerJoin->ToBool() ) {
 
-		Tizen::Base::Collection::HashMap* __pMap = new (std::nothrow) Tizen::Base::Collection::HashMap();
-		__pMap->Construct();
-		__pMap->Add(new String("email"), new String(strEmail));
-		__pMap->Add(new String("pwd"), new String(strPw));
-		__pMap->Add(new String("name"), new String(strName));
+			//AppLog("-----------Enter1--------------");
 
-		//post 함수 호출
-		httpPost->RequestHttpPostTran(this, L"/players", __pMap);
+			GHhttpClient* httpPost = new GHhttpClient();
+
+			Tizen::Base::Collection::HashMap* __pMap = new (std::nothrow) Tizen::Base::Collection::HashMap();
+			__pMap->Construct();
+
+			__pMap->Add(new String("email"), new String(strEmail));
+			__pMap->Add(new String("pwd"), new String(strPw));
+			__pMap->Add(new String("name"), new String(strName));
+
+			//post 함수 호출
+			httpPost->RequestHttpPostTran(this, L"/players", __pMap);
+		}
+		else {
+
+			//AppLog("-----------Enter2--------------");
+
+
+			GHhttpClient* httpPost = new GHhttpClient();
+
+			String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
+
+			String url(L"/players" + player_id );
+
+			Tizen::Base::Collection::HashMap* __pMap  = new (std::nothrow) Tizen::Base::Collection::HashMap();
+			__pMap->Construct();
+
+			__pMap->Add(new String("pwd"), new String(strPw));
+			__pMap->Add(new String("name"), new String(strName));
+
+			httpPost->RequestHttpPutTran(this, url, __pMap);
+		}
 	}
 	return r;
 }
@@ -146,11 +172,17 @@ JoinForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 		if (pArgs->GetCount())
 		{
 			AppLog("[JoinForm] Argument Received");
-			isPlayerJoin = static_cast<Tizen::Base::Boolean*>(pArgs->GetAt(0));
+			Tizen::Base::Integer *tmpInt = static_cast<Tizen::Base::Integer*>(pArgs->GetAt(0));
+			if((*tmpInt).ToInt() == 1)
+				isPlayerJoin = new Tizen::Base::Boolean(true);
+			else
+				isPlayerJoin = new Tizen::Base::Boolean(false);
 
-			if( !isPlayerJoin )	// (수정 시퀀스면) 프로필 편집 Panel 추가
+			if( !(isPlayerJoin->ToBool()) )	// (수정 시퀀스면) 프로필 편집 Panel 추가
 			{
 				pButtonJoin->SetText( "Edit" );
+				pTextEmail->SetText("kichul");
+				pTextEmail->SetEnabled(false);
 			}
 
 		}
@@ -194,17 +226,17 @@ void JoinForm::OnTransactionReadyToRead(String apiCode, String statusCode,IJsonV
 	AppAssert(pSceneManager);
 
 
-	if(statusCode !=  "0")	// (로그인 성공 시) 로그인, 개인페이지로 이동
+	if(statusCode ==  "0")	// 로그인 실패
 	{
 		AppLog("fail");
 		msgBox.Construct(L"Join", L"Join fail", MSGBOX_STYLE_OK);
 		msgBox.ShowAndWait(modalResult);
 	}
-	else if(statusCode == "2")
+/*	else if(statusCode == "2")
 	{
 		msgBox.Construct(L"Join", L"Join 중복", MSGBOX_STYLE_OK);
 		msgBox.ShowAndWait(modalResult);
-	}
+	}*/
 	else	// (가입 성공 시)
 	{
 		AppLog("success");

@@ -12,13 +12,13 @@
 #include "GHLeaderboard/GHLeaderboardListener.h"
 
 class GHLeaderboardListLoadedListener
-	: public GHLeaderboardListener
+	: public virtual GHLeaderboardListener
 {
 public:
 	GHLeaderboardListLoadedListener();
 	virtual ~GHLeaderboardListLoadedListener();
 
-	virtual void loadLeaderboardRankFinished(GHLeaderboard* Ranklist)=0;
+	virtual void loadLeaderboardRankFinished(GHLeaderboard* _leaderboard)=0;
 
 };
 
