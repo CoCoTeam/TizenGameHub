@@ -26,19 +26,15 @@ public:
     virtual void OnSocketReadyToReceive(Tizen::Net::Sockets::Socket& socket);
     virtual void OnSocketReadyToSend(Tizen::Net::Sockets::Socket& socket1);
 
-    result ConnectSocketServer(Tizen::Base::String ipAddress, int port); // createSocket(), socketClient()
-
-private:
+protected:
     result CreateSocket(void);
     result SocketClient(void);
 
-protected:
     result SendData(Tizen::Base::String data);
     result ReceiveData(void);
 
     void OnClose(void);
 
-private:
     Tizen::Net::Ip4Address* __pClientIp;
     int __port;
     bool __isServer;
