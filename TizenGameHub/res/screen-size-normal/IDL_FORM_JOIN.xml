@@ -69,4 +69,9 @@
         <layout height="235.0" mode="Portrait" width="235.0" x="241.0" y="77.0"/>
         <layout height="261.0" mode="Landscape" width="277.0" x="189.0" y="105.0"/>
     </Gallery>
+    <Button id="IDC_JOIN_GALLERY_EDIT" parent="IDL_FORM_JOIN">
+        <property DisabledBitmapX="0.0" DisabledBitmapY="0.0" NormalBitmapX="0.0" NormalBitmapY="0.0" PressedBitmapX="0.0" PressedBitmapY="0.0" accessibilityHint="" disableTextColor="" disabledBGBitmapPath="" disabledBitmapPath="" disabledColor="" disabledColorOpacity="100" highlightedBGBitmapPath="" highlightedBitmapPath="" highlightedBitmapX="0.0" highlightedBitmapY="0.0" highlightedColor="" highlightedColorOpacity="100" highlightedTextColor="" horizontalAlign="ALIGN_CENTER" normalBGBitmapPath="" normalBitmapPath="" normalColor="" normalColorOpacity="100" normalTextColor="" pressedBGBitmapPath="" pressedBitmapPath="" pressedColor="" pressedColorOpacity="100" pressedTextColor="" text="Edit" textSize="32.0" verticalAlign="ALIGN_MIDDLE"/>
+        <layout height="74.0" mode="Portrait" width="136.0" x="509.0" y="238.0"/>
+        <layout height="74.0" mode="Landscape" width="136.0" x="566.0" y="307.0"/>
+    </Button>
 </Scene>
