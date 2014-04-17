@@ -11,6 +11,7 @@
     <Apps>
         <ApiVersion>2.2</ApiVersion>
         <Privileges>
+            <Privilege>http://tizen.org/privilege/socket</Privilege>
             <Privilege>http://tizen.org/privilege/http</Privilege>
         </Privileges>
         <UiApp LaunchingHistoryVisible="True" Main="True" MenuIconVisible="True" Name="TizenGameHub">

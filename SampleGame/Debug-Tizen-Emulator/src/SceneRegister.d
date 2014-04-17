@@ -1,7 +1,7 @@
 src/SceneRegister.d: ../src/SceneRegister.cpp \
-  C:\Users\hursujung\Downloads\threadui\inc\SceneRegister.h \
-  C:\Users\hursujung\Downloads\threadui\inc\AppResourceId.h \
-  C:\Users\hursujung\Downloads\threadui\inc\FormFactory.h \
+  C:\Users\KICHUL\Documents\Tizen\workspace\TizenGameHub\SampleGame\inc\SceneRegister.h \
+  C:\Users\KICHUL\Documents\Tizen\workspace\TizenGameHub\SampleGame\inc\AppResourceId.h \
+  C:\Users\KICHUL\Documents\Tizen\workspace\TizenGameHub\SampleGame\inc\FormFactory.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include/osp\FUi.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include/osp\FUiAccessibilityContainer.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include/osp\FOspConfig.h \
@@ -419,11 +419,11 @@ src/SceneRegister.d: ../src/SceneRegister.cpp \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include/osp\FUiTouchEffect.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include/osp\FUiTouchEffectTypes.h
 
-C:\Users\hursujung\Downloads\threadui\inc\SceneRegister.h:
+C:\Users\KICHUL\Documents\Tizen\workspace\TizenGameHub\SampleGame\inc\SceneRegister.h:
 
-C:\Users\hursujung\Downloads\threadui\inc\AppResourceId.h:
+C:\Users\KICHUL\Documents\Tizen\workspace\TizenGameHub\SampleGame\inc\AppResourceId.h:
 
-C:\Users\hursujung\Downloads\threadui\inc\FormFactory.h:
+C:\Users\KICHUL\Documents\Tizen\workspace\TizenGameHub\SampleGame\inc\FormFactory.h:
 
 C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include/osp\FUi.h:
 
