@@ -6,7 +6,7 @@
 <Scene Bversion="2.0.0.201311071819" Dversion="20120315">
     <LogicalCoordinate>480</LogicalCoordinate>
     <Form id="GameMain">
-        <property backgroundColor="" backgroundColorOpacity="100" notificationTrayOpenEnabled="false" orientation="Automatic" softKey0NormalIcon="" softKey0PressedIcon="" softKey0Text="" softKey1NormalIcon="" softKey1PressedIcon="" softKey1Text="" title="Hello Tizen!" titleAlign="ALIGN_LEFT" titleIcon="" translucentFooter="false" translucentHeader="false" translucentIndicator="false"/>
+        <property backgroundColor="" backgroundColorOpacity="100" notificationTrayOpenEnabled="false" orientation="Automatic" softKey0NormalIcon="" softKey0PressedIcon="" softKey0Text="" softKey1NormalIcon="" softKey1PressedIcon="" softKey1Text="" title="Game" titleAlign="ALIGN_LEFT" titleIcon="" translucentFooter="false" translucentHeader="false" translucentIndicator="false"/>
         <layout mode="Portrait" style="FORM_STYLE_PORTRAIT_INDICATOR|FORM_STYLE_TITLE" type="NONE"/>
         <layout mode="Landscape" style="FORM_STYLE_PORTRAIT_INDICATOR|FORM_STYLE_TITLE" type="NONE"/>
     </Form>
@@ -61,12 +61,12 @@
         <layout height="49.0" mode="Landscape" width="90.0" x="151.0" y="190.0"/>
     </Button>
     <Label id="IDC_LABEL1" parent="GameMain">
-        <property accessibilityHint="" backgroundBitmapPath="" backgroundColor="" backgroundColorOpacity="0" horizontalAlign="ALIGN_CENTER" leftMargin="11" text="Label1" textColor="" textSize="30.0" textStyle="LABEL_TEXT_STYLE_NORMAL" topMargin="0" verticalAlign="ALIGN_MIDDLE"/>
+        <property accessibilityHint="" backgroundBitmapPath="" backgroundColor="" backgroundColorOpacity="0" horizontalAlign="ALIGN_CENTER" leftMargin="11" text="Score" textColor="" textSize="30.0" textStyle="LABEL_TEXT_STYLE_NORMAL" topMargin="0" verticalAlign="ALIGN_MIDDLE"/>
         <layout height="74.0" mode="Portrait" width="480.0" x="0.0" y="6.0"/>
         <layout height="74.0" mode="Landscape" width="480.0" x="0.0" y="334.0"/>
     </Label>
     <Label id="IDC_LABEL2" parent="GameMain">
-        <property accessibilityHint="" backgroundBitmapPath="" backgroundColor="" backgroundColorOpacity="0" horizontalAlign="ALIGN_CENTER" leftMargin="11" text="Label2" textColor="" textSize="35.0" textStyle="LABEL_TEXT_STYLE_NORMAL" topMargin="0" verticalAlign="ALIGN_MIDDLE"/>
+        <property accessibilityHint="" backgroundBitmapPath="" backgroundColor="" backgroundColorOpacity="0" horizontalAlign="ALIGN_CENTER" leftMargin="11" text="Time" textColor="" textSize="35.0" textStyle="LABEL_TEXT_STYLE_NORMAL" topMargin="0" verticalAlign="ALIGN_MIDDLE"/>
         <layout height="78.0" mode="Portrait" width="480.0" x="0.0" y="394.0"/>
         <layout height="74.0" mode="Landscape" width="480.0" x="10.0" y="344.0"/>
     </Label>

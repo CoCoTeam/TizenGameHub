@@ -27,6 +27,8 @@ public:
 	result RequestHttpPostTran(Tizen::Net::Http::IHttpTransactionEventListener* listener, Tizen::Base::String url, Tizen::Base::Collection::IMap *map);
 	result RequestHttpPutTran(Tizen::Net::Http::IHttpTransactionEventListener* listener, Tizen::Base::String url, Tizen::Base::Collection::IMap *map);
 	result RequestHttpDelTran(Tizen::Net::Http::IHttpTransactionEventListener* listener, Tizen::Base::String url);
+	result RequestImageUpload();	// [file], filename(formatting -> pkeykichul_20140417153111.png)
+	result RequestImageDownload();	// url+[filename] ->download    ==> device 폴더를 만들고 거기에 저장	"pkeykichul_20140417153111.png"
 
 private:
 	Tizen::Net::Http::HttpSession* __pHttpSession;
