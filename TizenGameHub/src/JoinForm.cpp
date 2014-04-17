@@ -115,7 +115,9 @@ JoinForm::doJoin()
 	}
 	else
 	{
-		if(isPlayerJoin) {
+		if( isPlayerJoin->ToBool() ) {
+
+			//AppLog("-----------Enter1--------------");
 
 			GHhttpClient* httpPost = new GHhttpClient();
 
@@ -131,11 +133,13 @@ JoinForm::doJoin()
 		}
 		else {
 
+			//AppLog("-----------Enter2--------------");
+
+
 			GHhttpClient* httpPost = new GHhttpClient();
 
 			String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
 
-			//String *player_id = new String(GHSharedAuthData::getSharedInstance().getPlayerId());
 			String url(L"/players" + player_id );
 
 			Tizen::Base::Collection::HashMap* __pMap  = new (std::nothrow) Tizen::Base::Collection::HashMap();
@@ -170,11 +174,18 @@ JoinForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 		if (pArgs->GetCount())
 		{
 			AppLog("[JoinForm] Argument Received");
-			isPlayerJoin = static_cast<Tizen::Base::Boolean*>(pArgs->GetAt(0));
+			Tizen::Base::Integer *tmpInt = static_cast<Tizen::Base::Integer*>(pArgs->GetAt(0));
+			if((*tmpInt).ToInt() == 1)
+				isPlayerJoin = new Tizen::Base::Boolean(true);
+			else
+				isPlayerJoin = new Tizen::Base::Boolean(false);
 
-			if( !isPlayerJoin )	// (수정 시퀀스면) 프로필 편집 Panel 추가
+			if( !(isPlayerJoin->ToBool()) )	// (수정 시퀀스면) 프로필 편집 Panel 추가
 			{
 				pButtonJoin->SetText( "Edit" );
+				pTextEmail->SetText("kichul");
+				pTextEmail->SetEnabled(false);
+
 				pGalleryProfile->SetShowState(true);
 				//!! pGalleryProfile->Set이미지
 			}

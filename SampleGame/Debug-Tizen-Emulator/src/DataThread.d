@@ -1,5 +1,5 @@
 src/DataThread.d: ../src/DataThread.cpp \
-  C:\Users\hursujung\Downloads\threadui\inc\DataThread.h \
+  C:\Users\KICHUL\Documents\Tizen\workspace\TizenGameHub\SampleGame\inc\DataThread.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include/osp\FBase.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include/osp\FBaseTypes.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include/osp\FBaseLog.h \
@@ -416,9 +416,9 @@ src/DataThread.d: ../src/DataThread.cpp \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include/osp\FUiVerticalBoxLayout.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include/osp\FUiTouchEffect.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include/osp\FUiTouchEffectTypes.h \
-  C:\Users\hursujung\Downloads\threadui\inc/Struct.h
+  C:\Users\KICHUL\Documents\Tizen\workspace\TizenGameHub\SampleGame\inc/Struct.h
 
-C:\Users\hursujung\Downloads\threadui\inc\DataThread.h:
+C:\Users\KICHUL\Documents\Tizen\workspace\TizenGameHub\SampleGame\inc\DataThread.h:
 
 C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include/osp\FBase.h:
 
@@ -1252,4 +1252,4 @@ C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include
 
 C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/include/osp\FUiTouchEffectTypes.h:
 
-C:\Users\hursujung\Downloads\threadui\inc/Struct.h:
+C:\Users\KICHUL\Documents\Tizen\workspace\TizenGameHub\SampleGame\inc/Struct.h:
