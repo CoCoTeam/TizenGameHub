@@ -26,6 +26,7 @@ extern const wchar_t* IDC_JOIN_TEXT_EMAILTITLE;
 extern const wchar_t* IDC_JOIN_TEXT_NAMETITLE;
 extern const wchar_t* IDC_JOIN_TEXT_PWCONFIRMTITLE;
 extern const wchar_t* IDC_JOIN_TEXT_PWTITLE;
+extern const wchar_t* IDC_JOIN_GALLERY_PROFILE;
 /* IDL_FORM_PLAYER */
 extern const wchar_t* IDL_FORM_PLAYER;
 extern const wchar_t* IDC_USER_PANEL_USER;
