@@ -76,6 +76,11 @@ private:
 	virtual void OnUserEventReceivedN(RequestId requestId, Tizen::Base::Collection::IList* pArgs);
 	Tizen::Graphics::Bitmap *__pCroppedBmp;
 	Tizen::Graphics::Rectangle __rcCropDisplay;
+	virtual result OnDraw();
+
+	void saveImage();
+	Tizen::Base::String CreateUniqueFileName( void );
+	void ShowMessageBox(const Tizen::Base::String& title, const Tizen::Base::String& message);
 };
 
 #endif /* JOINFORM_H_ */
