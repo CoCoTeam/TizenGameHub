@@ -35,6 +35,7 @@ class JoinForm
 	, public Tizen::Ui::Controls::IFormBackEventListener
 	, public Tizen::Ui::Scenes::ISceneEventListener
 	, public GHController
+    , public Tizen::Ui::Controls::IGalleryItemProvider
 
 {
 public:
@@ -75,12 +76,17 @@ private:
 	// CROP
 	virtual void OnUserEventReceivedN(RequestId requestId, Tizen::Base::Collection::IList* pArgs);
 	Tizen::Graphics::Bitmap *__pCroppedBmp;
-	Tizen::Graphics::Rectangle __rcCropDisplay;
+	//Tizen::Graphics::Rectangle __rcCropDisplay;
 	virtual result OnDraw();
 
 	void saveImage();
 	Tizen::Base::String CreateUniqueFileName( void );
 	void ShowMessageBox(const Tizen::Base::String& title, const Tizen::Base::String& message);
+
+	 //IGalleryItemProvider
+	 virtual Tizen::Ui::Controls::GalleryItem* CreateItem (int index);
+	 virtual bool DeleteItem (int index, Tizen::Ui::Controls::GalleryItem *pItem);
+	 virtual int GetItemCount(void);
 };
 
 #endif /* JOINFORM_H_ */

@@ -783,4 +783,11 @@ CATCH:
 //		return r;*/
 //}
 
+result GHhttpClient::RequestImageUpload(Tizen::Net::Http::IHttpTransactionEventListener* listener, Tizen::Base::String url)
+{
 
+}
+result GHhttpClient::RequestImageDownload(Tizen::Net::Http::IHttpTransactionEventListener* listener, Tizen::Base::String url)
+{
+
+}
