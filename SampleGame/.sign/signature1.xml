@@ -2,6 +2,10 @@
 <SignedInfo>
 <CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></CanonicalizationMethod>
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
+<Reference URI="bin/ThreadUI.exe">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>s/ZRPwUpKbVXRh+VVzPf76rRbieUqK8wzjCf71bfuHo=</DigestValue>
+</Reference>
 <Reference URI="info/manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>WGMuXmAG9JCbLDqM075eg8eRvek8JMe0AMNSM3O/Rgg=</DigestValue>
@@ -50,6 +54,18 @@
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>dG9r2un5Vbw+pN27TmH/XYq4MuGQesapobng5YoT7bM=</DigestValue>
 </Reference>
+<Reference URI="res/screen-size-normal/GameMain.xml">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>oJUCA/6OSyU3aqwADoQpQ3YD0mggYHD3FgjGWW0JN3Q=</DigestValue>
+</Reference>
+<Reference URI="res/screen-size-normal/GameMain2.xml">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>oJUCA/6OSyU3aqwADoQpQ3YD0mggYHD3FgjGWW0JN3Q=</DigestValue>
+</Reference>
+<Reference URI="res/screen-size-normal/GameSelect.xml">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>AIUuPrAXbn2SdRvete3I9eF51xeVRQGeoFUZW0XCLzE=</DigestValue>
+</Reference>
 <Reference URI="res/screen-size-normal/IDF_POPUP.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>q9pEOW6BolP7tZavG6xCqFSZ69m65b3Dse5dnuVUW3g=</DigestValue>
@@ -62,25 +78,9 @@
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>Nz+SecsjmNuidhKNvmQ5+3nasrw8vI4q/bjPgbfx5fI=</DigestValue>
 </Reference>
-<Reference URI="res/screen-size-normal/GameSelect.xml">
-<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>AIUuPrAXbn2SdRvete3I9eF51xeVRQGeoFUZW0XCLzE=</DigestValue>
-</Reference>
-<Reference URI="res/screen-size-normal/GameMain.xml">
-<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>oJUCA/6OSyU3aqwADoQpQ3YD0mggYHD3FgjGWW0JN3Q=</DigestValue>
-</Reference>
-<Reference URI="res/screen-size-normal/GameMain2.xml">
-<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>oJUCA/6OSyU3aqwADoQpQ3YD0mggYHD3FgjGWW0JN3Q=</DigestValue>
-</Reference>
-<Reference URI="bin/ThreadUI.exe">
-<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>lCaDd9YsFHdLCOBoG5i5uB1nZRfFnJ9S2/w59Sjeqjs=</DigestValue>
-</Reference>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>dShGktloP5HGT3r+mrMmLLIpWxHlGZJVUOGC4IizHnM=</DigestValue>
+<DigestValue>7n3o06bq4Ae035e4oaeCfe8l/9nKmC3e0i46h0TBiWU=</DigestValue>
 </Reference>
 <Reference URI="#prop">
 <Transforms>
@@ -91,9 +91,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-Y2Q63AEbnz2y87QC5s5II39r0FMkch6tqnWNgP4lbCQhqzUhy1Dt5VvEhYc7ZrXu6Iz5Bj5IBnEx
-i9mJRpRhyS4059Up/1qMuv5ZS4YDcAGmRNxl6dmP6Tb5Re0EwPhstWVrojr5pBRoCZORMujfcpJn
-9VDyEO65BHKtcSV9/cQ=
+F5QbYplKyipXcpQyu3OlkjwFYNT7f6EmiIxEkuxyGGw3wsf+5xkX83FIY35BZjgbkUIg3kXvpN4w
+/RPjph2QkgyazhcF0wwhaQ/JOv7tms8EdlFR8JwdmJwfu4ALWi0oFkm7iXplF5ubSQ43jXsgGeiN
+HyZYhsdk6PdbyidCS1I=
 </SignatureValue>
 <KeyInfo>
 <X509Data>

@@ -16,9 +16,23 @@ using namespace Tizen::Web::Json;
 using namespace Tizen::Base;
 using namespace Tizen::Base::Collection;
 
-JoinForm::JoinForm() {
-	// TODO Auto-generated constructor stub
+using namespace Tizen::App;
+using namespace Tizen::Ui;
+using namespace Tizen::Io;
+using namespace Tizen::Graphics;
+using namespace Tizen::Media;
+using namespace Tizen::Base::Collection;
+using namespace Tizen::Base::Utility;
+using namespace Tizen::Content;
+using namespace Tizen::System;
 
+/*
+using namespace Tizen::Graphics;*/
+#define DEFAULT_CROPPED_FILE_PATH (Tizen::App::App::GetInstance()->GetAppDataPath() + L"DefCropped.jpg")
+
+JoinForm::JoinForm() : __pCroppedBmp(null)
+{
+	// TODO Auto-generated constructor stub
 }
 
 JoinForm::~JoinForm() {
@@ -57,6 +71,18 @@ JoinForm::OnInitializing(void)
 	pTextPwconfirm = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_PWCONFIRM));
 	pTextName = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_NAME));
 
+	pGalleryProfile = static_cast< Gallery* >(GetControl(IDC_JOIN_GALLERY_PROFILE));
+	pGalleryProfile->SetShowState(false);
+	//pGalleryProfile->AddTouchEventListener(*this);
+	//pGalleryProfile->Construct(GetBounds());
+	//pGalleryProfile->SetItemProvider(*this);
+	//pGalleryProfile->AddGalleryEventListener(*this);
+
+
+	pButtonGalleryEdit = static_cast< Button* >(GetControl(IDC_JOIN_GALLERY_EDIT));
+	pButtonGalleryEdit->SetActionId(IDA_BUTTON_GALLERY_EDIT);
+	pButtonGalleryEdit->AddActionEventListener(*this);
+
 
 	return r;
 }
@@ -83,6 +109,21 @@ JoinForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		break;
 	case IDA_BUTTON_CANCEL:
 		pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_OUT));
+		break;
+	case IDA_BUTTON_GALLERY_EDIT:
+
+		CropForm *pCropForm = new CropForm();
+		pCropForm->Initialize();
+		Frame *pFrame = Application::GetInstance()->GetAppFrame()->GetFrame();
+		if(pFrame)
+		{
+			pFrame->AddControl(*pCropForm);
+			pCropForm->SendUserEvent(CropForm::REQUEST_ID_DISPLAYIMAGE, null);
+			pFrame->SetCurrentForm(*pCropForm);
+			pCropForm->Draw();
+			pCropForm->Show();
+		}
+
 		break;
 	}
 
@@ -157,7 +198,6 @@ JoinForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 {
 	SceneManager* pSceneManager = SceneManager::GetInstance();
 	AppAssert(pSceneManager);
-
 	pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_OUT));
 }
 
@@ -183,12 +223,22 @@ JoinForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 				pButtonJoin->SetText( "Edit" );
 				pTextEmail->SetText("kichul");
 				pTextEmail->SetEnabled(false);
+
+				pGalleryProfile->SetShowState(true);
+
+
+				//pGalleryProfile->
+
+
+				//pGalleryProfile->
+				//!! pGalleryProfile->Set이미지
 			}
 
 		}
 		pArgs->RemoveAll(true);
 		delete pArgs;
 	}
+
 }
 
 void
@@ -242,4 +292,151 @@ void JoinForm::OnTransactionReadyToRead(String apiCode, String statusCode,IJsonV
 		AppLog("success");
 		pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_OUT));
 	}
+}
+
+
+
+//CROP IMAGE
+void
+JoinForm::OnUserEventReceivedN(RequestId requestId, Tizen::Base::Collection::IList* pArgs)
+{
+	AppLog("Cropping complete");
+	if(requestId == CROPPING_COMPLETE)
+	{
+		if(__pCroppedBmp)
+		{
+			delete __pCroppedBmp;
+			__pCroppedBmp = null;
+		}
+
+		Image img;
+		img.Construct();
+
+		//Load the appropriate Cropped bitmap
+		if(File::IsFileExist(USER_CROPPED_FILE_PATH))
+			__pCroppedBmp = img.DecodeN(USER_CROPPED_FILE_PATH, BITMAP_PIXEL_FORMAT_ARGB8888);
+		else
+			__pCroppedBmp = img.DecodeN(DEFAULT_CROPPED_FILE_PATH, BITMAP_PIXEL_FORMAT_RGB565);
+
+		__rcCropDisplay.width = __pCroppedBmp->GetWidth();
+		__rcCropDisplay.height = __pCroppedBmp->GetHeight();
+
+		saveImage(); //이미지 저장
+		RequestRedraw();
+	}
+}
+
+result
+JoinForm::OnDraw()
+{
+	//AppLogDebug("%S", __pCroppedBmp);
+
+
+	Canvas *pCanvas = GetCanvasN();
+	if(!pCanvas)
+		return GetLastResult();
+
+	if(pCanvas)
+	{
+		pCanvas->Clear();
+		//pCanvas->Copy(pCanvas->GetBounds(), *__pCanvas, __pCanvas->GetBounds());
+		pCanvas->DrawBitmap(__rcCropDisplay, *__pCroppedBmp);
+
+		//pGalleryProfile->SetBitmapOfEmptyGallery(__pCroppedBmp);
+
+	}
+	delete pCanvas;
+
+	//pGalleryProfile->SetBackgroundColor(Color::GetColor(COLOR_ID_RED));
+	//pGalleryProfile->SetShowState(true);
+	//pGalleryProfile->SetBitmapOfEmptyGallery(__pCroppedBmp);
+
+
+	return E_SUCCESS;
+}
+
+void
+JoinForm::saveImage()
+{
+		result r ;
+		String strOK = L"Saved as ";
+		String strError = L"Saving image failed ";
+
+		Image img;
+		img.Construct();
+		r = img.EncodeToFile(*__pCroppedBmp, IMG_FORMAT_JPG, Tizen::App::App::GetInstance()->GetAppDataPath() + L"temp.jpg", true);
+		if(IsFailed(r))
+		{
+			AppLog("__pImage->EncodeToFile %s \n", GetErrorMessage(r));
+			ShowMessageBox(L"Error",strError);
+			return;
+		}
+		ContentManager contentManager;
+		ContentId contentId;
+		r = contentManager.Construct();
+		if(IsFailed(r))
+		{
+			AppLog("contentManager %s \n", GetErrorMessage(r));
+			ShowMessageBox(L"Error", strError);
+			return;
+		}
+		String imagePath = CreateUniqueFileName();
+		contentId = contentManager.CreateContent(Tizen::App::App::GetInstance()->GetAppDataPath() + L"temp.jpg", imagePath, true);
+		if (Tizen::Base::UuId::GetInvalidUuId() == contentId)
+		{
+			AppLog("contentManager.CreateContent %s \n", GetErrorMessage(r));
+			ShowMessageBox(L"Error", strError);
+			return;
+		}
+		else
+		{
+			ImageContentInfo* pImageContentInfo = null;
+			pImageContentInfo = (ImageContentInfo*)contentManager.GetContentInfoN(contentId);
+			pImageContentInfo->SetKeyword(L"Crop application");
+			pImageContentInfo->SetProvider(L"Crop");
+			contentManager.UpdateContent(*pImageContentInfo);
+			strOK.Append(imagePath);
+
+			ShowMessageBox(L"Saved", strOK);
+			return;
+		}
+}
+
+
+String
+JoinForm::CreateUniqueFileName( void )
+{
+	// System Current time is always unique, so the same has been used to create a unique name
+	DateTime currentTime ;
+	SystemTime::GetCurrentTime (WALL_TIME, currentTime);
+	String imagePath = Environment::GetMediaPath() + L"Images/";
+
+	imagePath.Append(currentTime.GetYear());
+	if(currentTime.GetMonth() < 10)
+		imagePath.Append(L"0");
+	imagePath.Append(currentTime.GetMonth());
+	if(currentTime.GetDay() < 10)
+		imagePath.Append(L"0");
+	imagePath.Append(currentTime.GetDay());
+	if(currentTime.GetHour() < 10)
+		imagePath.Append(L"0");
+	imagePath.Append(currentTime.GetHour());
+	if(currentTime.GetMinute() < 10)
+		imagePath.Append(L"0");
+	imagePath.Append(currentTime.GetMinute());
+	if(currentTime.GetSecond() < 10)
+		imagePath.Append(L"0");
+	imagePath.Append(currentTime.GetSecond());
+
+	imagePath.Append(L".jpg");
+	return imagePath;
+}
+
+void
+JoinForm::ShowMessageBox(const String& title, const String& message)
+{
+	MessageBox messageBox;
+	int modalResult = 0;
+	messageBox.Construct(title, message, MSGBOX_STYLE_OK, 3000);
+	messageBox.ShowAndWait(modalResult);
 }

@@ -2,6 +2,7 @@
 #define _APP_RESOURCE_ID_H_
 //
 /* IDL_FORM */
+extern const wchar_t* IDC_JOIN_GALLERY_EDIT;
 extern const wchar_t* IDL_FORM;
 extern const wchar_t* IDSCNT_MAIN_SCENE;
 extern const wchar_t* IDC_BUTTON_OK;
@@ -26,6 +27,7 @@ extern const wchar_t* IDC_JOIN_TEXT_EMAILTITLE;
 extern const wchar_t* IDC_JOIN_TEXT_NAMETITLE;
 extern const wchar_t* IDC_JOIN_TEXT_PWCONFIRMTITLE;
 extern const wchar_t* IDC_JOIN_TEXT_PWTITLE;
+extern const wchar_t* IDC_JOIN_GALLERY_PROFILE;
 /* IDL_FORM_PLAYER */
 extern const wchar_t* IDL_FORM_PLAYER;
 extern const wchar_t* IDC_USER_PANEL_USER;
@@ -75,4 +77,7 @@ extern const wchar_t* IDC_LISTPANEL_LABEL_DESC;
 /* IDL_FORM_LEADERBOARDRANK */
 extern const wchar_t* IDL_FORM_LEADERBOARDRANK;
 extern const wchar_t* IDC_LEADERBOARDRANK_LIST_RANK;
+/* IDL_CROPFORM */
+extern const wchar_t* IDF_CROPFROM;
+/*extern const wchar_t* FOOTERITEM1;*/
 #endif // _APP_RESOURCE_ID_H_

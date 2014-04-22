@@ -9,7 +9,20 @@
 #define JOINFORM_H_
 
 #include <GHTizen.h>
+
+
+#include <FBase.h>
+#include <FUi.h>
+#include <FIo.h>
+#include <FGraphics.h>
+#include <FMedia.h>
+#include <FApp.h>
+#include <FContent.h>
+#include <FSystem.h>
+
+#include "CropForm.h"
 #include "GHAchievement/GHAchievementController.h"
+
 
 /*
 #include "GHPlayer/GHPlayerController.h"
@@ -22,6 +35,7 @@ class JoinForm
 	, public Tizen::Ui::Controls::IFormBackEventListener
 	, public Tizen::Ui::Scenes::ISceneEventListener
 	, public GHController
+
 {
 public:
 	JoinForm();
@@ -31,6 +45,8 @@ public:
 private:
 	Tizen::Ui::Controls::EditField *pTextEmail, *pTextPw, *pTextPwconfirm, *pTextName;
 	Tizen::Ui::Controls::Button* pButtonJoin;
+	Tizen::Ui::Controls::Gallery* pGalleryProfile;
+	Tizen::Ui::Controls::Button* pButtonGalleryEdit;
 
 	Tizen::Base::Boolean *isPlayerJoin;		//가입하는 시퀀스(true:가입, false:수정)
 
@@ -48,6 +64,7 @@ private:
 
 	static const int IDA_BUTTON_JOIN = 101;
 	static const int IDA_BUTTON_CANCEL = 102;
+	static const int IDA_BUTTON_GALLERY_EDIT = 103;
 
 	// GHController
 	virtual void OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data);
@@ -55,6 +72,15 @@ private:
 	result doJoin();
 
 
+	// CROP
+	virtual void OnUserEventReceivedN(RequestId requestId, Tizen::Base::Collection::IList* pArgs);
+	Tizen::Graphics::Bitmap *__pCroppedBmp;
+	Tizen::Graphics::Rectangle __rcCropDisplay;
+	virtual result OnDraw();
+
+	void saveImage();
+	Tizen::Base::String CreateUniqueFileName( void );
+	void ShowMessageBox(const Tizen::Base::String& title, const Tizen::Base::String& message);
 };
 
 #endif /* JOINFORM_H_ */

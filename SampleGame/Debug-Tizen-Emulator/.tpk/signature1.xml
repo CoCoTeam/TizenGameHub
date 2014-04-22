@@ -4,11 +4,11 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>VyFnNp4S4EccLBVkt9jviNUFPCqPf1RZ2Ks7FzYuQjE=</DigestValue>
+<DigestValue>Weyvcubit1UB76ulU1d5KREJzMV9tC7NpcNZh/Xozb4=</DigestValue>
 </Reference>
 <Reference URI="bin/ThreadUI.exe">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>iNnlduIRLip97J4rA06kUsdF/2T74eLcAf/Rm+gxHl0=</DigestValue>
+<DigestValue>DWi77vlWMkmMaAPFiahQTxRt+tFxtBcErQOxgED0QLs=</DigestValue>
 </Reference>
 <Reference URI="info/manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -60,7 +60,15 @@
 </Reference>
 <Reference URI="res/screen-size-normal/GameMain.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>78w6xM1RSFCOyXcHHfmkUbT4Vkfr6OOqEMeJNUKpIm4=</DigestValue>
+<DigestValue>oJUCA/6OSyU3aqwADoQpQ3YD0mggYHD3FgjGWW0JN3Q=</DigestValue>
+</Reference>
+<Reference URI="res/screen-size-normal/GameMain2.xml">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>oJUCA/6OSyU3aqwADoQpQ3YD0mggYHD3FgjGWW0JN3Q=</DigestValue>
+</Reference>
+<Reference URI="res/screen-size-normal/GameSelect.xml">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>AIUuPrAXbn2SdRvete3I9eF51xeVRQGeoFUZW0XCLzE=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/IDF_POPUP.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -83,9 +91,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-DaUJVDSCd8jzq1ONt5yC3UfRtrpCxIZ5lCWKwDesIgJHEWGKJgYpSGV0jsQ7P73PRFO5WbhuiJDh
-ScfToHLvcULDge+1GjuWigK+D1ujRMbHUGaRdOgwH1eYHV2EF5nK0li0yeqvBKPZ7BFB2jU7NF8z
-7JDj0Dgba4VlZnH2XiA=
+Vk/DyAnGl8Grq3MG8geMyVi5t/NVIl9A0a7tQ6g3+z0tx7DZUVli0VAw8kKlwbK0Y7ZqDRJaVkut
+bSMfdzYpKEtHcHDl0LsXrVpgouIUo0nDrL+AeBkfX85szixRfaOCeYHxAiIQT/lue6LSuG1G1Dmt
+uQI50s+GIYix/e1knoE=
 </SignatureValue>
 <KeyInfo>
 <X509Data>
