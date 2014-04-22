@@ -7,9 +7,9 @@
 
 #include "GHSocket.h"
 
+using namespace Tizen::Base;
 using namespace Tizen::Net;
 using namespace Tizen::Net::Sockets;
-using namespace Tizen::Base;
 
 GHSocket::GHSocket() {
 	// TODO Auto-generated constructor stub
@@ -81,27 +81,6 @@ GHSocket::SocketClient(void)
     return res;
 }
 
-result
-GHSocket::ConnectSocketServer(String ipAddress, int port)
-{
-    result res = E_SUCCESS;
-
-    //전달받은 값으로 IP 및 Port를 설정한다.
-    __pClientIp = new (std::nothrow) Ip4Address(ipAddress);
-    __port = port;
-
-    // TCP 혹은 UDP에 따른 설정값으로 Socket을 생성한다. (:TCP)
-    res = CreateSocket();
-    TryReturn(res == E_SUCCESS, res, "Error in creating Socket %d", res);
-
-    __isConstructed = true;
-
-    // Server 혹은 Client에 따른 설정값으로 접속을 대기하거나 서버에 연결한다.
-    res = SocketClient();
-
-    return res;
-}
-
 // 소켓 연결을 받아들었을 때 실행되는 리스너
 void
 GHSocket::OnSocketAccept(Socket& socket)
@@ -162,13 +141,14 @@ GHSocket::OnSocketClosed(Socket& socket, NetSocketClosedReason reason)
     //pSceneManager->GoBackward(BackwardSceneTransition(SCENE_MAIN_MENU));
 }
 
-// 소켓이 연결되었을 때 실행되는 리스너 (클라이언트, 서버??)
+// 소켓이 연결되었을 때 실행되는 리스너 (클라이언트, 서버??)  (CALLBACK: onConnect 호출해야함)
 void
 GHSocket::OnSocketConnected(Socket& socket)
 {
     AppLog("OnSocketConnected");
     //EnableControl(true);
     __isConnected = true;
+
 }
 
 // 소켓이 연결된 후에 메세지를 받을 준비가 되었을 때 실행되는 리스너 (클라이언트 && 서버??)
@@ -239,7 +219,7 @@ GHSocket::SendData(String data)
     return res;
 }
 
-// TCP 프로토콜로 데이터를 받은 경우
+// TCP 프로토콜로 데이터를 받은 경우 (CALLBACK: onStart, onMyturn, onWait, onFinish 호출해야함)
 result
 GHSocket::ReceiveData(void)
 {
