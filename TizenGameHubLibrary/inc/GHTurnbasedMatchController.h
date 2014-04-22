@@ -22,7 +22,10 @@ public:
 	virtual void OnSocketConnected(Tizen::Net::Sockets::Socket& socket);
 
 	// class member function
+	virtual void sendDataToPlayer(Tizen::Base::String data);
 	virtual result connectSocketServer(Tizen::Base::String ipAddress, int port, GHTurnbasedMatchListener* listener);
+
+
 private:
 	GHTurnbasedMatchListener* currentListener;
 };

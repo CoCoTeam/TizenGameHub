@@ -28,6 +28,10 @@ GHTurnbasedMatchController::OnSocketConnected(Socket& socket)
     this->currentListener->onMatchConnect();
 }
 
+void GHTurnbasedMatchController::sendDataToPlayer(Tizen::Base::String data) {
+	this->SendData(data);
+}
+
 result
 GHTurnbasedMatchController::connectSocketServer(String ipAddress, int port, GHTurnbasedMatchListener* listener)
 {

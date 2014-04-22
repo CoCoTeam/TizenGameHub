@@ -219,7 +219,7 @@ GHSocket::SendData(String data)
     return res;
 }
 
-// TCP 프로토콜로 데이터를 받은 경우 (CALLBACK: onMyturn, onWait, onFinish 호출해야함)
+// TCP 프로토콜로 데이터를 받은 경우 (CALLBACK: onStart, onMyturn, onWait, onFinish 호출해야함)
 result
 GHSocket::ReceiveData(void)
 {
