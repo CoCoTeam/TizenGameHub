@@ -71,12 +71,7 @@ JoinForm::OnInitializing(void)
 	pTextPwconfirm = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_PWCONFIRM));
 	pTextName = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_NAME));
 
-	pGalleryProfile = static_cast< Gallery* >(GetControl(IDC_JOIN_GALLERY_PROFILE));
-	pGalleryProfile->SetShowState(false);
-	//pGalleryProfile->AddTouchEventListener(*this);
-	//pGalleryProfile->Construct(GetBounds());
-	pGalleryProfile->SetItemProvider(*this);
-	//pGalleryProfile->AddGalleryEventListener(*this);
+
 
 
 	pButtonGalleryEdit = static_cast< Button* >(GetControl(IDC_JOIN_GALLERY_EDIT));
@@ -220,7 +215,7 @@ JoinForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 				pTextEmail->SetText("kichul");
 				pTextEmail->SetEnabled(false);
 
-				pGalleryProfile->SetShowState(true);
+				//pGalleryProfile->SetShowState(true);
 
 				//!! pGalleryProfile->Set이미지
 			}
@@ -355,36 +350,18 @@ JoinForm::OnUserEventReceivedN(RequestId requestId, Tizen::Base::Collection::ILi
 result
 JoinForm::OnDraw()
 {
+	Tizen::Ui::Controls::Gallery* pGalleryProfile;
 
-	  //이미지 전환 ?!!
-	  GalleryItem* pGallery = new GalleryItem();
-	  pGallery->Construct(*__pCroppedBmp);
+	pGalleryProfile = static_cast< Gallery* >(GetControl(IDC_JOIN_GALLERY_PROFILE));
+	//pGalleryProfile->SetShowState(false);
+	pGalleryProfile->SetItemProvider(*this);
 
-
-	 // pGallery->Construct(*__pCroppedBmp,imagePath);
-
-/*	Canvas *pCanvas = GetCanvasN();
-	if(!pCanvas)
-		return GetLastResult();
-
-	if(pCanvas)
-	{
-		pCanvas->Clear();
-		//pCanvas->Copy(pCanvas->GetBounds(), *__pCanvas, __pCanvas->GetBounds());
-		pCanvas->DrawBitmap(__rcCropDisplay, *__pCroppedBmp);
-
-		//pGalleryProfile->SetBitmapOfEmptyGallery(__pCroppedBmp);
-
-	}
-	delete pCanvas;*/
-
-	//pGalleryProfile->SetBackgroundColor(Color::GetColor(COLOR_ID_RED));
-	//pGalleryProfile->SetShowState(true);
-	//pGalleryProfile->SetBitmapOfEmptyGallery(__pCroppedBmp);
+	//이미지 전환
+	GalleryItem* pGallery = new GalleryItem();
+    pGallery->Construct(*__pCroppedBmp);
 
 	return E_SUCCESS;
 }
-
 
 void
 JoinForm::saveImage()
@@ -413,7 +390,7 @@ JoinForm::saveImage()
 		}
 
 
-		imagePath = CreateUniqueFileName();
+		String imagePath = CreateUniqueFileName();
 		contentId = contentManager.CreateContent(Tizen::App::App::GetInstance()->GetAppDataPath() + L"temp.jpg", imagePath, true);
 
 		if (Tizen::Base::UuId::GetInvalidUuId() == contentId)

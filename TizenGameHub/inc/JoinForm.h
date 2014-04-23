@@ -46,7 +46,7 @@ public:
 private:
 	Tizen::Ui::Controls::EditField *pTextEmail, *pTextPw, *pTextPwconfirm, *pTextName;
 	Tizen::Ui::Controls::Button* pButtonJoin;
-	Tizen::Ui::Controls::Gallery* pGalleryProfile;
+
 	Tizen::Ui::Controls::Button* pButtonGalleryEdit;
 
 	Tizen::Base::Boolean *isPlayerJoin;		//가입하는 시퀀스(true:가입, false:수정)
