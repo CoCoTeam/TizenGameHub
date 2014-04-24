@@ -32,6 +32,7 @@ protected:
 
     result SendData(Tizen::Base::String data);
     result ReceiveData(void);
+    virtual void ReceiveData(int flag, Tizen::Base::String data) = 0;
 
     void OnClose(void);
 

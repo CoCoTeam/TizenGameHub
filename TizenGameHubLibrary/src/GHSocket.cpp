@@ -10,6 +10,7 @@
 using namespace Tizen::Base;
 using namespace Tizen::Net;
 using namespace Tizen::Net::Sockets;
+using namespace Tizen::Web::Json;
 
 GHSocket::GHSocket() {
 	// TODO Auto-generated constructor stub
@@ -225,6 +226,7 @@ GHSocket::ReceiveData(void)
 {
     result res = E_SUCCESS;
     ByteBuffer txBuffer;
+    char* pBuffer = null;
     String data;
     unsigned long buflen = 0;
 
@@ -233,21 +235,42 @@ GHSocket::ReceiveData(void)
 
     // Socket에서 데이터를 받아온다.
     txBuffer.Construct(buflen + 1);
-
     res = __pSocket->Receive(txBuffer);
     TryReturn(res == E_SUCCESS, res, "Receive Failed");
 
-    // 버퍼의 데이터를 string으로 추출.
-	byte* tempBody = new byte[buflen+1];
-	txBuffer.GetArray(tempBody, 0, buflen);
-	tempBody[buflen] = '\0';
+    // buffer의 데이터를 String으로 추출
+	txBuffer.Flip();
+	pBuffer = (char*) (txBuffer.GetPointer());
+	data.SetCapacity(buflen + 2);
+	res = data.Append(pBuffer);
+	TryReturn(res == E_SUCCESS, res, "Append Failed");
 
-	String text = (const char *)tempBody;
-    AppLogDebug("[Socket] response data : %S", text.GetPointer());
-    AppLogDebug("[HTTP] response data : %s", (char *)tempBody);
+	// String 출력
+	AppLogDebug("[Socket] response data : %S", data.GetPointer());
 
-    //받은 데이터를 화면에 표시한다.
-    //res = DisplayText(txBuffer, buflen);
+
+    //버퍼의 데이터를 JsonObject로 변경
+    IJsonValue* pValue = JsonParser::ParseN(txBuffer);
+    JsonObject* pJsonObj = static_cast<JsonObject*>(pValue);
+
+    //키(여기서는 FLAG)에 해당하는 값 가지고 오기
+    String key = "flag";
+    IJsonValue * pObjValue = null;
+    pJsonObj->GetValue(&key, pObjValue);
+    JsonNumber * pJsonNum = static_cast<JsonNumber*>(pObjValue);
+    int retFlag = pJsonNum->ToInt();
+	if(pObjValue!= null) delete pObjValue;
+
+    //키(여기서는 DATA)에 해당하는 값 가지고 오기
+    key = "data";
+    pObjValue = null;
+    pJsonObj->GetValue(&key, pObjValue);
+    JsonString * pJsonStr = static_cast<JsonString*>(pObjValue);
+    String retData(pJsonStr->GetPointer());
+    if(pObjValue!= null) delete pObjValue;
+
+	// 자식 객체에게 FALG value를 넘겨줘서 거기서 리스너 호출하도록 만들어야 한다.
+	this->ReceiveData(retFlag, retData);
 
     // clear txBuffer
     txBuffer.Clear();
