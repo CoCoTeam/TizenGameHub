@@ -87,9 +87,9 @@ private:
 	virtual void loadCloudsaveFinished(Tizen::Base::String data);
 	virtual void onMatchConnect();
 	virtual void onMatchStart();
-	virtual void onMatchMyturn();
+	virtual void onMatchMyturn(Tizen::Base::String data);
 	virtual void onMatchTurnWait();
-	virtual void onMatchFinish();
+	virtual void onMatchFinish(Tizen::Base::String data);
 
 	void doLogin();
 	void login(Tizen::Base::String email, Tizen::Base::String pw);
