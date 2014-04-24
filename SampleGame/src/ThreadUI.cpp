@@ -1,5 +1,6 @@
 #include "ThreadUI.h"
 #include "Form1.h"
+#include "GHSharedAuthData.h"
 
 using namespace Tizen::App;
 using namespace Tizen::Base;
@@ -42,8 +43,11 @@ ThreadUI::OnAppInitializing(AppRegistry& appRegistry)
 	// Uncomment the following statement to listen to the screen on/off events.
 	//PowerManager::SetScreenEventListener(*this);
 
-	// Prepare Scene management.
+	//set sharedInstance
+	GHSharedAuthData & sharedInstance = GHSharedAuthData::getSharedInstance();
+	sharedInstance.setGameId("key_aa");
 
+	// Prepare Scene management.
 	SceneRegister::RegisterAllScenes();
 	SceneManager* pSceneManager = SceneManager::GetInstance();
 	pSceneManager->GoForward(ForwardSceneTransition(SCENE_GAME_SECLECT));

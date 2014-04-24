@@ -5,8 +5,9 @@
  *      Author: Administrator
  */
 
-#include "GHPlayer/GHPlayerController.h"
 #include "GHGame.h"
+#include "GHSharedAuthData.h"
+#include "GHPlayer/GHPlayerController.h"
 
 using namespace Tizen::Base;
 using namespace Tizen::Base::Collection;
@@ -42,9 +43,13 @@ void GHPlayerController::getLoginPopup(GHPlayerListener* listener)
     pTextPwd->SetGuideText(String("Password"));
 	msgBox.AddControl(pTextPwd);
 
+	//!! for debug---
+	pTextEmail->SetText(String("kichul"));
+	pTextPwd->SetText(String("kichulbabo"));
+	//---------------
+
 	msgBox.ShowAndWait(modalResult);
 
-	AppLogDebug("MsgBox -> %d", modalResult);	//1:OK, 2:Cancel
 	switch (modalResult)
 	{
 	case Tizen::Ui::Controls::MSGBOX_RESULT_OK:
@@ -52,7 +57,6 @@ void GHPlayerController::getLoginPopup(GHPlayerListener* listener)
 			// login
 			String email = pTextEmail->GetText();
 			String pwd = pTextPwd->GetText();
-			AppLogDebug("%S, %S", email.GetPointer(), pwd.GetPointer());
 			playerLogin(email, pwd, listener);
 		}
 		break;
@@ -70,8 +74,9 @@ void GHPlayerController::playerLogin(GHPlayerListener* listener)
 
 	if(email != NULL && pwd != NULL) {
 		playerLogin(email, pwd, listener);
-	} else {
-		getLoginPopup();
+	}
+	else {
+		getLoginPopup(listener);
 	}
 }
 // 사용자 로그인
@@ -170,6 +175,8 @@ void GHPlayerController::OnTransactionReadyToRead(Tizen::Base::String apiCode, T
 			appReg.put(appReg.email, playerEmail);
 			appReg.put(appReg.pwd, playerPwd);
 			//------------------------------------------------
+			GHSharedAuthData & sharedInstance = GHSharedAuthData::getSharedInstance();
+			sharedInstance.setPlayerId(statusCode);
 
 			if(this->currentListener != null) this->currentListener->loginPlayerFinished(statusCode);
 		}

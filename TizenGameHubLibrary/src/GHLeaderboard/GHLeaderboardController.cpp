@@ -5,8 +5,9 @@
  *      Author: Administrator
  */
 
-#include "GHLeaderboard/GHLeaderboardController.h"
 #include "GHSharedAuthData.h"
+#include "GHForm/LeaderboardForm.h"
+#include "GHLeaderboard/GHLeaderboardController.h"
 
 using namespace Tizen::Base::Collection;
 using namespace Tizen::Web::Json;
@@ -22,6 +23,22 @@ GHLeaderboardController::~GHLeaderboardController() {
 	// TODO Auto-generated destructor stub
 }
 
+void GHLeaderboardController::loadLeaderboardForm()
+{
+	Tizen::Ui::Controls::Frame *pFrame = Tizen::App::UiApp::GetInstance()->GetAppFrame()->GetFrame();
+	LeaderboardForm* pForm = new (std::nothrow) LeaderboardForm();
+	pForm->Initialize();
+
+	// Add the form to the frame
+	pFrame->AddControl(pForm);
+
+	// Set the current form
+	pFrame->SetCurrentForm(pForm);
+
+	// Draw the form
+	pForm->Invalidate(true);
+
+}
 void GHLeaderboardController::loadLeaderboards(GHLeaderboardDataLoadedListener * listener)
 {
 	this->currentListener = listener;

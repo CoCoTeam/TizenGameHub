@@ -113,7 +113,7 @@ GameForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 	AppLog("[GameForm] OnFormBackRequested");
 	SceneManager* pSceneManager = SceneManager::GetInstance();
 	AppAssert(pSceneManager);
-	pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_LEFT));
+	pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_RIGHT));
 }
 
 void

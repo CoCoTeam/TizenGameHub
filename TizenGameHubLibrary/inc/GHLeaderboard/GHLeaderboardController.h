@@ -29,6 +29,9 @@ public:
 	GHLeaderboardController();
 	virtual ~GHLeaderboardController();
 
+	// leaderboard 페이지를 로드한
+	void loadLeaderboardForm();
+
 	// leaderboard 목록을 가져운다.
 	void loadLeaderboards(GHLeaderboardDataLoadedListener * listener);	//(static Player)
 	//!! Hub App에서 범용적으로 사용하기 위해 Method를 한번 더 감싸준다.

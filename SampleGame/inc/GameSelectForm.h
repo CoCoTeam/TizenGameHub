@@ -47,6 +47,8 @@ public:
 protected:
 	static const int ID_BUTTON_MODE1 = 101;
 	static const int ID_BUTTON_MODE2 = 102;
+	static const int ID_BUTTON_LEADERBOARD = 103;
+	static const int ID_BUTTON_ACHIEVEMENT = 104;
 
 };
 

@@ -9,6 +9,8 @@
 #include "AppResourceId.h"
 #include <FApp.h>
 #include <FGraphics.h>
+#include "GHLeaderboard/GHLeaderboardController.h"
+#include "GHAchievement/GHAchievementController.h"
 
 
 GameSelectForm::GameSelectForm() {
@@ -33,12 +35,12 @@ result
 GameSelectForm::OnInitializing(void)
 {
 	result r = E_SUCCESS;
-
-	// Setup back event listener
 	SetFormBackEventListener(this);
 
 	__pButtonMODE1 = static_cast<Button *>(GetControl(L"IDC_BUTTON_MODE1"));
 	__pButtonMODE2 = static_cast<Button *>(GetControl(L"IDC_BUTTON_MODE2"));
+	Button* __pButtonLeaderboard = static_cast<Button *>(GetControl(L"IDC_BUTTON_LEADERBOARD"));
+	Button* __pButtonAchievement = static_cast<Button *>(GetControl(L"IDC_BUTTON_ACHIEVEMENT"));
 
 	if (__pButtonMODE1 != null)
 	{
@@ -50,10 +52,18 @@ GameSelectForm::OnInitializing(void)
 		__pButtonMODE2->SetActionId(ID_BUTTON_MODE2);
 		__pButtonMODE2->AddActionEventListener(*this);
 	}
+	if (__pButtonLeaderboard != null)
+	{
+		__pButtonLeaderboard->SetActionId(ID_BUTTON_LEADERBOARD);
+		__pButtonLeaderboard->AddActionEventListener(*this);
+	}
+	if (__pButtonAchievement != null)
+	{
+		__pButtonAchievement->SetActionId(ID_BUTTON_ACHIEVEMENT);
+		__pButtonAchievement->AddActionEventListener(*this);
+	}
 
 	playerLogin();
-
-	//SetFormBackEventListener(this);
 
 	return r;
 }
@@ -79,6 +89,18 @@ GameSelectForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId
 			pSceneManager->GoForward(ForwardSceneTransition(SCENE_MAIN_MENU2));
 		}
 		break;
+	case ID_BUTTON_LEADERBOARD:
+		{
+			GHLeaderboardController leaderboardController;
+			leaderboardController.loadLeaderboardForm();
+		}
+		break;
+	case ID_BUTTON_ACHIEVEMENT:
+		{
+			GHAchievementController achievementController;
+			achievementController.loadAchievementForm();
+		}
+		break;
 	}
 }
 
@@ -90,6 +112,7 @@ GameSelectForm::OnTerminating(void)
 	// TODO: Add your termination code here
 	return r;
 }
+
 void GameSelectForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 {
 	UiApp* pApp = UiApp::GetInstance();
