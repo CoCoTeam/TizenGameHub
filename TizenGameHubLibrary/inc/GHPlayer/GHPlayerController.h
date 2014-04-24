@@ -9,6 +9,7 @@
 #define GHPLAYERCONTROLLER_H_
 
 #include "GHTizen.h"
+#include "GHAppRegistry.h"
 #include "GHhttpClient.h"
 #include "GHController.h"
 #include "GHPlayer.h"
@@ -29,12 +30,13 @@ public:
 	virtual ~GHPlayerController();
 
 	// 사용자 로그인
-	void playerLogin(Tizen::Base::String email, Tizen::Base::String pwd);
-	void playerLogin(Tizen::Base::String email, Tizen::Base::String pwd, GHPlayerListener* listener);
+	void getLoginPopup(GHPlayerListener* listener = null);	// 사용자 로그인 팝업 생성
+	void playerLogin(GHPlayerListener* listener = null);
+	void playerLogin(Tizen::Base::String email, Tizen::Base::String pwd, GHPlayerListener* listener = null);
 
 	// 사용자 정보 가져오기
-	void getPlayerData(Tizen::Base::String playerId);
-	void getPlayerData(Tizen::Base::String playerId, GHPlayerListener* listener);
+//	void getPlayerData(Tizen::Base::String playerId);
+	void getPlayerData(Tizen::Base::String playerId, GHPlayerListener* listener = null);
 
 	// 사용자 로그아웃
 
@@ -58,6 +60,10 @@ private:
 	virtual void OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data);
 	Tizen::Base::Collection::HashMap* __pMap;
 	GHPlayerListener* currentListener;
+
+	GHAppRegistry appReg;
+	Tizen::Base::String playerEmail, playerPwd;
+	Tizen::Ui::Controls::ProgressPopup* pProgressPopup;
 };
 
 #endif /* GHPLAYERCONTROLLER_H_ */

@@ -34,6 +34,9 @@ GameSelectForm::OnInitializing(void)
 {
 	result r = E_SUCCESS;
 
+	// Setup back event listener
+	SetFormBackEventListener(this);
+
 	__pButtonMODE1 = static_cast<Button *>(GetControl(L"IDC_BUTTON_MODE1"));
 	__pButtonMODE2 = static_cast<Button *>(GetControl(L"IDC_BUTTON_MODE2"));
 
@@ -48,6 +51,7 @@ GameSelectForm::OnInitializing(void)
 		__pButtonMODE2->AddActionEventListener(*this);
 	}
 
+	playerLogin();
 
 	//SetFormBackEventListener(this);
 
@@ -85,4 +89,10 @@ GameSelectForm::OnTerminating(void)
 
 	// TODO: Add your termination code here
 	return r;
+}
+void GameSelectForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
+{
+	UiApp* pApp = UiApp::GetInstance();
+	AppAssert(pApp);
+	pApp->Terminate();
 }

@@ -3,6 +3,7 @@
 	<name>SampleGame</name>
 	<comment></comment>
 	<projects>
+		<project>TizenGameHubLibrary</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
