@@ -1,8 +1,14 @@
+<<<<<<< HEAD
 author-signature.xml__DEL__7Mk4Oh0PrJBSQ+YdqIe4CMenpNQaJucoEQwRbToiL3I=
 bin/ThreadUI.exe__DEL__90lFj963E7ye1ViprNrU4rdE1Sw6auRIBNyR2IJnRDg=
 info/manifest.xml__DEL__XF95sWrF2DoDsUpj765rDiiE+tb//rEG36IqYVuedlk=
 lib/libTizenGameHubLibrary.so__DEL__R/xZaSPH/WiJezs9Tgw8rdt0GF/fJREqwOV39dGIFFM=
 res/eng-GB.xml__DEL__5AOtfuSjPltshQSHkmXiL+fhYiccaGETodjc8lHFc+o=
+=======
+bin/ThreadUI.exe__DEL__s/ZRPwUpKbVXRh+VVzPf76rRbieUqK8wzjCf71bfuHo=
+info/manifest.xml__DEL__WGMuXmAG9JCbLDqM075eg8eRvek8JMe0AMNSM3O/Rgg=
+res/eng-GB.xml__DEL__yMuebTpeQuv6qFatqneDsZeF4Iv5QMkkKZXOt/Z0doc=
+>>>>>>> b901efa5e2a95bfa1d2b7570b07bf03ef347ccfb
 res/screen-size-normal/720x1280/bird.png__DEL__mNfAT40gjJhGbGEZ8nhQq8DHZBKOX2IkjNCEtIYgeus=
 res/screen-size-normal/720x1280/clown.png__DEL__Zw5LTK0AZT6NzqgxuXLChNgGb6BLfGIF99PSudJsowY=
 res/screen-size-normal/720x1280/frankenstein.png__DEL__+kfpnv5Ys20Rg0JkIIn80HDgO6fHJultiHY2XLG24Qs=
@@ -19,3 +25,4 @@ res/screen-size-normal/GameSelect.xml__DEL__/CNcj2AwuYpbCV4RTGgukDPsH4bhlLa6yVNK
 res/screen-size-normal/IDF_POPUP.xml__DEL__EaLq3L7eBtfGExMH4Qh8qFVkdVAzVc3TlQO6IJ1SR5A=
 res/screen-size-normal/Ranking.xml__DEL__hhXWjxz1pJ1PxT/3w7pXuib4GmdAFxH9mC56Qd0ynxE=
 shared/res/screen-density-xhigh/mainmenu.png__DEL__Nz+SecsjmNuidhKNvmQ5+3nasrw8vI4q/bjPgbfx5fI=
+author-signature.xml__DEL__7n3o06bq4Ae035e4oaeCfe8l/9nKmC3e0i46h0TBiWU=

@@ -33,6 +33,8 @@
 #include "GHCloudsave/GHCloudsaveLoadListener.h"
 
 #include "GHSocket.h"
+#include "GHTurnbasedMatchController.h"
+#include "GHTurnbasedMatchListener.h"
 
 using namespace Tizen::Ui::Controls;
 
@@ -53,6 +55,7 @@ class LoginForm
 	, public GHCloudsaveSaveListener	// TEST API
 	, public GHCloudsaveLoadListener	// TEST API
 
+	, public GHTurnbasedMatchListener // TEST API
 {
 public:
 	LoginForm();
@@ -82,6 +85,11 @@ private:
 	virtual void respondAttackhelperDataFinished(int statusCode);
 	virtual void saveCloudsaveFinished(int statusCode);
 	virtual void loadCloudsaveFinished(Tizen::Base::String data);
+	virtual void onMatchConnect();
+	virtual void onMatchStart();
+	virtual void onMatchMyturn();
+	virtual void onMatchTurnWait();
+	virtual void onMatchFinish();
 
 	void doLogin();
 	void login(Tizen::Base::String email, Tizen::Base::String pw);

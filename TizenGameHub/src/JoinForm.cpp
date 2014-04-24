@@ -30,9 +30,9 @@ using namespace Tizen::System;
 using namespace Tizen::Graphics;*/
 #define DEFAULT_CROPPED_FILE_PATH (Tizen::App::App::GetInstance()->GetAppDataPath() + L"DefCropped.jpg")
 
-JoinForm::JoinForm() {
+JoinForm::JoinForm() : __pCroppedBmp(null)
+{
 	// TODO Auto-generated constructor stub
-
 }
 
 JoinForm::~JoinForm() {
@@ -71,12 +71,7 @@ JoinForm::OnInitializing(void)
 	pTextPwconfirm = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_PWCONFIRM));
 	pTextName = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_NAME));
 
-	pGalleryProfile = static_cast< Gallery* >(GetControl(IDC_JOIN_GALLERY_PROFILE));
-	pGalleryProfile->SetShowState(false);
-	//pGalleryProfile->AddTouchEventListener(*this);
-	//pGalleryProfile->Construct(GetBounds());
-	//pGalleryProfile->SetItemProvider(*this);
-	//pGalleryProfile->AddGalleryEventListener(*this);
+
 
 
 	pButtonGalleryEdit = static_cast< Button* >(GetControl(IDC_JOIN_GALLERY_EDIT));
@@ -156,7 +151,6 @@ JoinForm::doJoin()
 	{
 		if( isPlayerJoin->ToBool() ) {
 
-			//AppLog("-----------Enter1--------------");
 
 			GHhttpClient* httpPost = new GHhttpClient();
 
@@ -171,9 +165,6 @@ JoinForm::doJoin()
 			httpPost->RequestHttpPostTran(this, L"/players", __pMap);
 		}
 		else {
-
-			//AppLog("-----------Enter2--------------");
-
 
 			GHhttpClient* httpPost = new GHhttpClient();
 
@@ -224,11 +215,8 @@ JoinForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 				pTextEmail->SetText("kichul");
 				pTextEmail->SetEnabled(false);
 
-				pGalleryProfile->SetShowState(true);
-				//pGalleryProfile->
+				//pGalleryProfile->SetShowState(true);
 
-
-				//pGalleryProfile->
 				//!! pGalleryProfile->Set이미지
 			}
 
@@ -236,64 +224,42 @@ JoinForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 		pArgs->RemoveAll(true);
 		delete pArgs;
 	}
-	//AppLog("Cropping complete");
-
-/*
-	if(requestId == CropForm::CROPPING_COMPLETE)
-	{
-		AppLog("Cropping complete");
-
-
-
-			if(__pCroppedBmp)
-			{
-				delete __pCroppedBmp;
-				__pCroppedBmp = null;
-			}
-
-			Image img;
-			img.Construct();
-
-			//Load the appropriate Cropped bitmap
-			if(File::IsFileExist(USER_CROPPED_FILE_PATH))
-				__pCroppedBmp = img.DecodeN(USER_CROPPED_FILE_PATH, BITMAP_PIXEL_FORMAT_ARGB8888);
-			else
-				__pCroppedBmp = img.DecodeN(DEFAULT_CROPPED_FILE_PATH, BITMAP_PIXEL_FORMAT_RGB565);
-
-			__rcCropDisplay.width = __pCroppedBmp->GetWidth();
-			__rcCropDisplay.height = __pCroppedBmp->GetHeight();
-			RequestRedraw();
-	}
-*/
 
 }
 
-void
-JoinForm::OnUserEventReceivedN(RequestId requestId, Tizen::Base::Collection::IList* pArgs)
+// IGalleryItemProvider implementation  ( 이걸 해야 Galley 에 추가할 수 있음 ... !! )
+GalleryItem*
+JoinForm::CreateItem(int index)
 {
-	AppLog("Cropping complete");
-	if(requestId == CROPPING_COMPLETE)
-	{
-		/*if(__pCroppedBmp)
-		{
-			delete __pCroppedBmp;
-			__pCroppedBmp = null;
-		}*/
+    // Gets an instance of Bitmap
+   // AppResource* pAppResource = Application::GetInstance()->GetAppResource();
+   // Bitmap* pImageTemp = pAppResource->GetBitmapN(L"Image.jpg");
 
-		Image img;
-		img.Construct();
+    // Creates an instance of GalleryItem and registers the bitmap to the gallery item
+    GalleryItem* pGallery = new GalleryItem();
+    pGallery->Construct(*__pCroppedBmp);
 
-		//Load the appropriate Cropped bitmap
-		if(File::IsFileExist(USER_CROPPED_FILE_PATH))
-			__pCroppedBmp = img.DecodeN(USER_CROPPED_FILE_PATH, BITMAP_PIXEL_FORMAT_ARGB8888);
-		else
-			__pCroppedBmp = img.DecodeN(DEFAULT_CROPPED_FILE_PATH, BITMAP_PIXEL_FORMAT_RGB565);
+    // Deallocates the bitmap
+   // delete pImageTemp;
 
-		__rcCropDisplay.width = __pCroppedBmp->GetWidth();
-		__rcCropDisplay.height = __pCroppedBmp->GetHeight();
-		RequestRedraw();
-	}
+    return pGallery;
 }
+
+bool
+JoinForm::DeleteItem(int index, GalleryItem *pItem)
+{
+    delete pItem;
+    return true;
+}
+
+int
+JoinForm::GetItemCount(void)
+{
+    return 1;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 
 void
@@ -349,68 +315,139 @@ void JoinForm::OnTransactionReadyToRead(String apiCode, String statusCode,IJsonV
 	}
 }
 
-
-
-
-/*
-// IGalleryItemProvider implementation
-
-GalleryItem*
-JoinForm::CreateItem(int index)
-{
-    // Gets an instance of Bitmap
-   AppResource* pAppResource = Application::GetInstance()->GetAppResource();
-   Bitmap* pImageTemp = pAppResource->GetBitmapN(L"Image.jpg");
-
-    // Creates an instance of GalleryItem and registers the bitmap to the gallery item
-   GalleryItem* pGallery = new GalleryItem();
-   pGallery->Construct(*pImageTemp);
-
-    // Deallocates the bitmap
-   delete pImageTemp;
-
-    return pGallery;
-}
-
-bool
-JoinForm::DeleteItem(int index, GalleryItem *pItem)
-{
-    //delete pItem;
-    return true;
-}
-
-
-int
-JoinForm::GetItemCount(void)
-{
-    return 1;
-}
-
-
-// IGalleryEventListener implementation
+//CROP IMAGE
 void
-JoinForm::OnGalleryCurrentItemChanged(Gallery &gallery, int index)
+JoinForm::OnUserEventReceivedN(RequestId requestId, Tizen::Base::Collection::IList* pArgs)
 {
-    // ....
+	AppLog("Cropping complete");
+	if(requestId == CROPPING_COMPLETE)
+	{
+		if(__pCroppedBmp)
+		{
+			delete __pCroppedBmp;
+			__pCroppedBmp = null;
+		}
+
+		Image img;
+		img.Construct();
+
+		//Load the appropriate Cropped bitmap
+		if(File::IsFileExist(USER_CROPPED_FILE_PATH))
+			__pCroppedBmp = img.DecodeN(USER_CROPPED_FILE_PATH, BITMAP_PIXEL_FORMAT_ARGB8888);
+		else
+			__pCroppedBmp = img.DecodeN(DEFAULT_CROPPED_FILE_PATH, BITMAP_PIXEL_FORMAT_RGB565);
+
+		//__rcCropDisplay.width = __pCroppedBmp->GetWidth();
+		//__rcCropDisplay.height = __pCroppedBmp->GetHeight();
+
+
+		RequestRedraw();
+		saveImage();
+	}
 }
 
-void
-JoinForm::OnGalleryItemClicked(Gallery &gallery, int index)
-{
 
-	AppLog("Gallery Clicked");
-    // ....
+result
+JoinForm::OnDraw()
+{
+	Tizen::Ui::Controls::Gallery* pGalleryProfile;
+
+	pGalleryProfile = static_cast< Gallery* >(GetControl(IDC_JOIN_GALLERY_PROFILE));
+	//pGalleryProfile->SetShowState(false);
+	pGalleryProfile->SetItemProvider(*this);
+
+	//이미지 전환
+	GalleryItem* pGallery = new GalleryItem();
+    pGallery->Construct(*__pCroppedBmp);
+
+	return E_SUCCESS;
 }
 
 void
-JoinForm::OnGallerySlideShowStarted(Gallery& gallery)
+JoinForm::saveImage()
 {
-    // ....
+		result r ;
+		String strOK = L"Saved as ";
+		String strError = L"Saving image failed ";
+
+		Image img;
+		img.Construct();
+		r = img.EncodeToFile(*__pCroppedBmp, IMG_FORMAT_JPG, Tizen::App::App::GetInstance()->GetAppDataPath() + L"temp.jpg", true);
+		if(IsFailed(r))
+		{
+			AppLog("__pImage->EncodeToFile %s \n", GetErrorMessage(r));
+			ShowMessageBox(L"Error",strError);
+			return;
+		}
+		ContentManager contentManager;
+		ContentId contentId;
+		r = contentManager.Construct();
+		if(IsFailed(r))
+		{
+			AppLog("contentManager %s \n", GetErrorMessage(r));
+			ShowMessageBox(L"Error", strError);
+			return;
+		}
+
+
+		String imagePath = CreateUniqueFileName();
+		contentId = contentManager.CreateContent(Tizen::App::App::GetInstance()->GetAppDataPath() + L"temp.jpg", imagePath, true);
+
+		if (Tizen::Base::UuId::GetInvalidUuId() == contentId)
+		{
+			AppLog("contentManager.CreateContent %s \n", GetErrorMessage(r));
+			ShowMessageBox(L"Error", strError);
+			return;
+		}
+		else
+		{
+			ImageContentInfo* pImageContentInfo = null;
+			pImageContentInfo = (ImageContentInfo*)contentManager.GetContentInfoN(contentId);
+			pImageContentInfo->SetKeyword(L"Crop application");
+			pImageContentInfo->SetProvider(L"Crop");
+			contentManager.UpdateContent(*pImageContentInfo);
+			strOK.Append(imagePath);
+
+			ShowMessageBox(L"Saved", strOK);
+			return;
+		}
+}
+
+
+String
+JoinForm::CreateUniqueFileName( void )
+{
+	// System Current time is always unique, so the same has been used to create a unique name
+	DateTime currentTime ;
+	SystemTime::GetCurrentTime (WALL_TIME, currentTime);
+	String imagePath = Environment::GetMediaPath() + L"Images/";
+
+	imagePath.Append(currentTime.GetYear());
+	if(currentTime.GetMonth() < 10)
+		imagePath.Append(L"0");
+	imagePath.Append(currentTime.GetMonth());
+	if(currentTime.GetDay() < 10)
+		imagePath.Append(L"0");
+	imagePath.Append(currentTime.GetDay());
+	if(currentTime.GetHour() < 10)
+		imagePath.Append(L"0");
+	imagePath.Append(currentTime.GetHour());
+	if(currentTime.GetMinute() < 10)
+		imagePath.Append(L"0");
+	imagePath.Append(currentTime.GetMinute());
+	if(currentTime.GetSecond() < 10)
+		imagePath.Append(L"0");
+	imagePath.Append(currentTime.GetSecond());
+
+	imagePath.Append(L".jpg");
+	return imagePath;
 }
 
 void
-JoinForm::OnGallerySlideShowStopped(Gallery& gallery)
+JoinForm::ShowMessageBox(const String& title, const String& message)
 {
-    // ....
+	MessageBox messageBox;
+	int modalResult = 0;
+	messageBox.Construct(title, message, MSGBOX_STYLE_OK, 3000);
+	messageBox.ShowAndWait(modalResult);
 }
-*/

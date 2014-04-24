@@ -165,14 +165,33 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		//controller->loadCloudSlotData(1, this);
 		//controller->saveCloudSlotData("hahaha kichul zzang", 2, this);
 
-		GHSocket* socket = new GHSocket();
-		socket->ConnectSocketServer("54.238.195.222", 8081);
+		//GHSocket* socket = new GHSocket();
+		//socket->ConnectSocketServer("54.238.195.222", 8081);
+
+		GHTurnbasedMatchController* controller = new GHTurnbasedMatchController();
+		controller->connectSocketServer("54.238.195.222", 8081, this);
 
 		break;
 	}
 }
 
 // API TEST
+void LoginForm::onMatchConnect(){
+	AppLogDebug("[onMatchConnect]callback success");
+}
+void LoginForm::onMatchStart(){
+	AppLogDebug("[onMatchStart]callback success");
+}
+void LoginForm::onMatchMyturn(){
+	AppLogDebug("[onMatchMyturn]callback success");
+}
+void LoginForm::onMatchTurnWait(){
+	AppLogDebug("[onMatchTurnWait]callback success");
+}
+void LoginForm::onMatchFinish(){
+	AppLogDebug("[onMatchFinish]callback success");
+}
+
 void LoginForm::saveCloudsaveFinished(int statusCode){
 	AppLogDebug("[DEBUG] saveCloud statusCode : %d", statusCode );
 }

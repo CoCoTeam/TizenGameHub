@@ -4,7 +4,11 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="bin/ThreadUI.exe">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<<<<<<< HEAD
 <DigestValue>90lFj963E7ye1ViprNrU4rdE1Sw6auRIBNyR2IJnRDg=</DigestValue>
+=======
+<DigestValue>s/ZRPwUpKbVXRh+VVzPf76rRbieUqK8wzjCf71bfuHo=</DigestValue>
+>>>>>>> b901efa5e2a95bfa1d2b7570b07bf03ef347ccfb
 </Reference>
 <Reference URI="info/manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -91,9 +95,15 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
+<<<<<<< HEAD
 XRwgn6rIXaFIq7TikFmq3gtjR/+9DQACRzMDbyW5WTV0KQa0AMAUU3d45s68r+DE39Ri1DRRJzpT
 rxMEOtJBh5lTan+naocFdZCqN0jaxLBtm+MstUQH32GLIZ7AABUe7eimqq7GXmR3r9xBVowFpLyK
 rrY+cHXs4fbgPCONrPI=
+=======
+T8Lb1B8AqAUkkCSq7eZLoxu6TqZtxRbWwPH7is9HlaZY+oacoFgTiL/hiT7rzGwm3e2v8VjhIoYI
+WyF/J9ZII1RKD81BctBXU9WlsG9ixCeAkJ48NxXtfssz5pwrxG63dtdZnp11hn1pKPNtVYLkWhzk
+OpLUFtjy0qBK1rFFWTI=
+>>>>>>> b901efa5e2a95bfa1d2b7570b07bf03ef347ccfb
 </SignatureValue>
 <KeyInfo>
 <X509Data>
