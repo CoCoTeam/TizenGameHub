@@ -71,12 +71,7 @@ JoinForm::OnInitializing(void)
 	pTextPwconfirm = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_PWCONFIRM));
 	pTextName = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_NAME));
 
-	pGalleryProfile = static_cast< Gallery* >(GetControl(IDC_JOIN_GALLERY_PROFILE));
-	pGalleryProfile->SetShowState(false);
-	//pGalleryProfile->AddTouchEventListener(*this);
-	//pGalleryProfile->Construct(GetBounds());
-	//pGalleryProfile->SetItemProvider(*this);
-	//pGalleryProfile->AddGalleryEventListener(*this);
+
 
 
 	pButtonGalleryEdit = static_cast< Button* >(GetControl(IDC_JOIN_GALLERY_EDIT));
@@ -156,7 +151,6 @@ JoinForm::doJoin()
 	{
 		if( isPlayerJoin->ToBool() ) {
 
-			//AppLog("-----------Enter1--------------");
 
 			GHhttpClient* httpPost = new GHhttpClient();
 
@@ -171,9 +165,6 @@ JoinForm::doJoin()
 			httpPost->RequestHttpPostTran(this, L"/players", __pMap);
 		}
 		else {
-
-			//AppLog("-----------Enter2--------------");
-
 
 			GHhttpClient* httpPost = new GHhttpClient();
 
@@ -224,13 +215,8 @@ JoinForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 				pTextEmail->SetText("kichul");
 				pTextEmail->SetEnabled(false);
 
-				pGalleryProfile->SetShowState(true);
+				//pGalleryProfile->SetShowState(true);
 
-
-				//pGalleryProfile->
-
-
-				//pGalleryProfile->
 				//!! pGalleryProfile->Set이미지
 			}
 
@@ -240,6 +226,41 @@ JoinForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 	}
 
 }
+
+// IGalleryItemProvider implementation  ( 이걸 해야 Galley 에 추가할 수 있음 ... !! )
+GalleryItem*
+JoinForm::CreateItem(int index)
+{
+    // Gets an instance of Bitmap
+   // AppResource* pAppResource = Application::GetInstance()->GetAppResource();
+   // Bitmap* pImageTemp = pAppResource->GetBitmapN(L"Image.jpg");
+
+    // Creates an instance of GalleryItem and registers the bitmap to the gallery item
+    GalleryItem* pGallery = new GalleryItem();
+    pGallery->Construct(*__pCroppedBmp);
+
+    // Deallocates the bitmap
+   // delete pImageTemp;
+
+    return pGallery;
+}
+
+bool
+JoinForm::DeleteItem(int index, GalleryItem *pItem)
+{
+    delete pItem;
+    return true;
+}
+
+int
+JoinForm::GetItemCount(void)
+{
+    return 1;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 void
 JoinForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
@@ -294,8 +315,6 @@ void JoinForm::OnTransactionReadyToRead(String apiCode, String statusCode,IJsonV
 	}
 }
 
-
-
 //CROP IMAGE
 void
 JoinForm::OnUserEventReceivedN(RequestId requestId, Tizen::Base::Collection::IList* pArgs)
@@ -318,39 +337,28 @@ JoinForm::OnUserEventReceivedN(RequestId requestId, Tizen::Base::Collection::ILi
 		else
 			__pCroppedBmp = img.DecodeN(DEFAULT_CROPPED_FILE_PATH, BITMAP_PIXEL_FORMAT_RGB565);
 
-		__rcCropDisplay.width = __pCroppedBmp->GetWidth();
-		__rcCropDisplay.height = __pCroppedBmp->GetHeight();
+		//__rcCropDisplay.width = __pCroppedBmp->GetWidth();
+		//__rcCropDisplay.height = __pCroppedBmp->GetHeight();
 
-		saveImage(); //이미지 저장
+
 		RequestRedraw();
+		saveImage();
 	}
 }
+
 
 result
 JoinForm::OnDraw()
 {
-	//AppLogDebug("%S", __pCroppedBmp);
+	Tizen::Ui::Controls::Gallery* pGalleryProfile;
 
+	pGalleryProfile = static_cast< Gallery* >(GetControl(IDC_JOIN_GALLERY_PROFILE));
+	//pGalleryProfile->SetShowState(false);
+	pGalleryProfile->SetItemProvider(*this);
 
-	Canvas *pCanvas = GetCanvasN();
-	if(!pCanvas)
-		return GetLastResult();
-
-	if(pCanvas)
-	{
-		pCanvas->Clear();
-		//pCanvas->Copy(pCanvas->GetBounds(), *__pCanvas, __pCanvas->GetBounds());
-		pCanvas->DrawBitmap(__rcCropDisplay, *__pCroppedBmp);
-
-		//pGalleryProfile->SetBitmapOfEmptyGallery(__pCroppedBmp);
-
-	}
-	delete pCanvas;
-
-	//pGalleryProfile->SetBackgroundColor(Color::GetColor(COLOR_ID_RED));
-	//pGalleryProfile->SetShowState(true);
-	//pGalleryProfile->SetBitmapOfEmptyGallery(__pCroppedBmp);
-
+	//이미지 전환
+	GalleryItem* pGallery = new GalleryItem();
+    pGallery->Construct(*__pCroppedBmp);
 
 	return E_SUCCESS;
 }
@@ -380,8 +388,11 @@ JoinForm::saveImage()
 			ShowMessageBox(L"Error", strError);
 			return;
 		}
+
+
 		String imagePath = CreateUniqueFileName();
 		contentId = contentManager.CreateContent(Tizen::App::App::GetInstance()->GetAppDataPath() + L"temp.jpg", imagePath, true);
+
 		if (Tizen::Base::UuId::GetInvalidUuId() == contentId)
 		{
 			AppLog("contentManager.CreateContent %s \n", GetErrorMessage(r));

@@ -9,6 +9,9 @@
 #define LOGINFORM_H_
 
 #include "GHTizen.h"
+
+#include "GHAppRegistry.h"
+
 #include "GHhttpClient.h"
 #include "GHPlayer/GHPlayerController.h"
 #include "GHPlayer/GHPlayerLoggedinListener.h"
@@ -61,6 +64,7 @@ public:
 
 private:
 	EditField *pTextEmail, *pTextPw;
+	GHAppRegistry appReg;
 
 	virtual result OnInitializing(void);
 	virtual result OnTerminating(void);
@@ -87,7 +91,8 @@ private:
 	virtual void onMatchTurnWait();
 	virtual void onMatchFinish(Tizen::Base::String data);
 
-	result doLogin();
+	void doLogin();
+	void login(Tizen::Base::String email, Tizen::Base::String pw);
 
 	// GHLeaderboard
 	virtual void loadLeaderboardFinished(Tizen::Base::Collection::ArrayList* leaderboardList);
