@@ -22,14 +22,7 @@
 */
 
 
-namespace ListenerType{
-	enum Type{
-		OnMatchStart = 1,
-		OnMatchTurnMy,
-		OnMatchTurnWait,
-		OnMatchFinish
-	};
-}
+
 
 class GHTurnbasedMatchController
 	: public GHSocket
@@ -43,7 +36,7 @@ public:
 
 	// class member function
 	virtual result connectSocketServer(Tizen::Base::String ipAddress, int port, GHTurnbasedMatchListener* listener);
-	virtual void ReceiveData(int flag, Tizen::Base::String data);
+	virtual void ReceiveData(ListenerType::Type flag, Tizen::Base::String data);
 	virtual void sendDataToPlayer(Tizen::Base::String data);
 
 private:

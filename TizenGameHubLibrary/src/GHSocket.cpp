@@ -270,7 +270,7 @@ GHSocket::ReceiveData(void)
     if(pObjValue!= null) delete pObjValue;
 
 	// 자식 객체에게 FALG value를 넘겨줘서 거기서 리스너 호출하도록 만들어야 한다.
-	this->ReceiveData(retFlag, retData);
+	this->ReceiveData((ListenerType::Type)retFlag, retData);
 
     // clear txBuffer
     txBuffer.Clear();

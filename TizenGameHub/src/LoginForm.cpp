@@ -173,13 +173,13 @@ void LoginForm::onMatchConnect(){
 void LoginForm::onMatchStart(){
 	AppLogDebug("[onMatchStart]callback success");
 }
-void LoginForm::onMatchMyturn(){
+void LoginForm::onMatchMyturn(String data){
 	AppLogDebug("[onMatchMyturn]callback success");
 }
 void LoginForm::onMatchTurnWait(){
 	AppLogDebug("[onMatchTurnWait]callback success");
 }
-void LoginForm::onMatchFinish(){
+void LoginForm::onMatchFinish(String data){
 	AppLogDebug("[onMatchFinish]callback success");
 }
 
