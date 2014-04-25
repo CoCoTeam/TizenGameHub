@@ -42,6 +42,8 @@ public:
 	JoinForm();
 	virtual ~JoinForm();
 	bool Initialize(void);
+	Tizen::Graphics::Bitmap *__pCroppedBmp;
+	Tizen::Graphics::Bitmap* __ptempBitmap;
 
 private:
 	Tizen::Ui::Controls::EditField *pTextEmail, *pTextPw, *pTextPwconfirm, *pTextName;
@@ -75,11 +77,11 @@ private:
 
 	// CROP
 	virtual void OnUserEventReceivedN(RequestId requestId, Tizen::Base::Collection::IList* pArgs);
-	Tizen::Graphics::Bitmap *__pCroppedBmp;
 	//Tizen::Graphics::Rectangle __rcCropDisplay;
 	virtual result OnDraw();
 
 	void saveImage();
+	void storeImageInternal(Tizen::Graphics::Bitmap *bitmap);
 	Tizen::Base::String CreateUniqueFileName( void );
 	void ShowMessageBox(const Tizen::Base::String& title, const Tizen::Base::String& message);
 
@@ -87,6 +89,8 @@ private:
 	 virtual Tizen::Ui::Controls::GalleryItem* CreateItem (int index);
 	 virtual bool DeleteItem (int index, Tizen::Ui::Controls::GalleryItem *pItem);
 	 virtual int GetItemCount(void);
+
+	 Tizen::Graphics::Bitmap* CreateBitmapFromByteBufferN(Tizen::Base::ByteBuffer* pBuffer, const int& width, const int& height);
 };
 
 #endif /* JOINFORM_H_ */
