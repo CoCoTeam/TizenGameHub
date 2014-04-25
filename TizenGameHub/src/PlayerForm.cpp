@@ -20,6 +20,7 @@ PlayerForm::PlayerForm() {
 
 PlayerForm::~PlayerForm() {
 	// TODO Auto-generated destructor stub
+
 }
 
 bool
@@ -119,7 +120,8 @@ PlayerForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 	SceneManager* pSceneManager = SceneManager::GetInstance();
 	AppAssert(pSceneManager);
 
-	//!! (SceneHistory가 있으면) 이전 Scene으로 이동
+	// (SceneHistory가 있으면) 이전 Scene으로 이동
+AppLogDebug("[DEBUG] History : %d", pSceneManager->GetSceneHistoryN()->GetCount());
 	if(pSceneManager->GetSceneHistoryN()->GetCount() != 0) {
 		pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_OUT));
 	}

@@ -4,19 +4,27 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>Weyvcubit1UB76ulU1d5KREJzMV9tC7NpcNZh/Xozb4=</DigestValue>
+<DigestValue>mA+omu47X+lKiFJIpukoGIrpFDFg/9+LVDNK5kEOQYA=</DigestValue>
 </Reference>
 <Reference URI="bin/ThreadUI.exe">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>DWi77vlWMkmMaAPFiahQTxRt+tFxtBcErQOxgED0QLs=</DigestValue>
+<DigestValue>bCVP/TajyjDS5UT1Y2PAMG7McHrFcGrDu7xmJKqCJf8=</DigestValue>
 </Reference>
 <Reference URI="info/manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>WGMuXmAG9JCbLDqM075eg8eRvek8JMe0AMNSM3O/Rgg=</DigestValue>
+<DigestValue>XF95sWrF2DoDsUpj765rDiiE+tb//rEG36IqYVuedlk=</DigestValue>
+</Reference>
+<Reference URI="lib/libTizenGameHubLibrary.so">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>A/rOgiZcsOJulhvbwGRe4TGTPnZW+fM8+v2Kw4sYsj0=</DigestValue>
 </Reference>
 <Reference URI="res/eng-GB.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>yMuebTpeQuv6qFatqneDsZeF4Iv5QMkkKZXOt/Z0doc=</DigestValue>
+<DigestValue>5AOtfuSjPltshQSHkmXiL+fhYiccaGETodjc8lHFc+o=</DigestValue>
+</Reference>
+<Reference URI="res/icon.png">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>75pwPOvB/lv0egg50qBkSmFu7yqLHeu2lrLQwfOtito=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/720x1280/bird.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -60,23 +68,39 @@
 </Reference>
 <Reference URI="res/screen-size-normal/GameMain.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>oJUCA/6OSyU3aqwADoQpQ3YD0mggYHD3FgjGWW0JN3Q=</DigestValue>
+<DigestValue>f/bn7J0DttCpG+QDhn+buSOIzJb+xMqoZUafJBd51sw=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/GameMain2.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>oJUCA/6OSyU3aqwADoQpQ3YD0mggYHD3FgjGWW0JN3Q=</DigestValue>
+<DigestValue>f/bn7J0DttCpG+QDhn+buSOIzJb+xMqoZUafJBd51sw=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/GameSelect.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>AIUuPrAXbn2SdRvete3I9eF51xeVRQGeoFUZW0XCLzE=</DigestValue>
+<DigestValue>buSIj/g7b4CH0OMx7XADdaJRvYwloH2oWDvxsemLWHw=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/IDF_POPUP.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>q9pEOW6BolP7tZavG6xCqFSZ69m65b3Dse5dnuVUW3g=</DigestValue>
+<DigestValue>EaLq3L7eBtfGExMH4Qh8qFVkdVAzVc3TlQO6IJ1SR5A=</DigestValue>
+</Reference>
+<Reference URI="res/screen-size-normal/IDL_FORM_ACHIEVEMENT.xml">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>Ux+Kq3ihdK2uwdKIDuudUHY2DFLNiY3hWdxx4dBb5V8=</DigestValue>
+</Reference>
+<Reference URI="res/screen-size-normal/IDL_FORM_LEADERBOARD.xml">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>Bjq67x2aIt2ZrfiLNXBDIlgIxLUDN03t1811DZZiQw4=</DigestValue>
+</Reference>
+<Reference URI="res/screen-size-normal/IDL_FORM_LEADERBOARDRANK.xml">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>o6rCwPuNhJbPEjZIX8BiZE7UdO8ETe/EySp8n6N3tMI=</DigestValue>
+</Reference>
+<Reference URI="res/screen-size-normal/IDL_PANEL_LISTPANEL.xml">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>XNqX54sHSE/nWGPeYmxBXJW4vDhW+Cdrz7comcPxI4o=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/Ranking.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>IGl1dIqJ+BJQhJtnzM3dq0rQW2yzqcfdcyBlgtBEJxE=</DigestValue>
+<DigestValue>hhXWjxz1pJ1PxT/3w7pXuib4GmdAFxH9mC56Qd0ynxE=</DigestValue>
 </Reference>
 <Reference URI="shared/res/screen-density-xhigh/mainmenu.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -91,9 +115,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-Vk/DyAnGl8Grq3MG8geMyVi5t/NVIl9A0a7tQ6g3+z0tx7DZUVli0VAw8kKlwbK0Y7ZqDRJaVkut
-bSMfdzYpKEtHcHDl0LsXrVpgouIUo0nDrL+AeBkfX85szixRfaOCeYHxAiIQT/lue6LSuG1G1Dmt
-uQI50s+GIYix/e1knoE=
+l3cOKJHQ9deoRKialrcGmUadq1HS0kBby11o6Y0pEK2cVOhzL9yDWEX2lNUyl73P+4gmTrvbsfBi
+kDtfV2DvCrQTyUrsmPnWv35GYE5Q5nXkZZSoZ/s2voftbexxTmAynFk/F2Uw/JaHf6CS/a/i/OBR
+tLUZqonZ40Pv+I62KEA=
 </SignatureValue>
 <KeyInfo>
 <X509Data>

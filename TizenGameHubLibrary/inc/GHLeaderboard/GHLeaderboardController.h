@@ -29,18 +29,19 @@ public:
 	GHLeaderboardController();
 	virtual ~GHLeaderboardController();
 
+	// LeaderboardForm(Page)을 로드한다.
+	void loadLeaderboardForm();
+
 	// leaderboard 목록을 가져운다.
 	void loadLeaderboards(GHLeaderboardDataLoadedListener * listener);	//(static Player)
 	//!! Hub App에서 범용적으로 사용하기 위해 Method를 한번 더 감싸준다.
-//	private void loadLeaderboards(GHLeaderboardListener * listener, STRING* playerId);
+	// void loadLeaderboards(GHLeaderboardListener * listener, STRING* playerId);
 
-	// leaderboard의 랭킹 목록을 가져온다.
-//	void loadLeaderboardRank(Tizen::Base::String leaderboardId);
-//	void loadLeaderboardRank(Tizen::Base::String leaderboardId, GHLeaderboardListLoadedListener * listener);
+	// 각 Leaderboard에 해당하는 랭킹 목록을 가져온다.
 	void loadLeaderboardRank(Tizen::Base::String leaderboardId, int startPosition = 0, int loadSize = 10);
 	void loadLeaderboardRank(Tizen::Base::String leaderboardId, GHLeaderboardListLoadedListener * listener, int startPosition = 0, int loadSize = 10);
 
-	// 해당 leaderboard에 점수를 업데이트한다.
+	// 해당 Leaderboard에 점수를 업데이트한다.
 	void updateLeaderboardScore(Tizen::Base::String leaderboardId, long score);
 	void updateLeaderboardScore(Tizen::Base::String leaderboardId, long score, GHLeaderboardScoreUpdatedListener * listener);
 

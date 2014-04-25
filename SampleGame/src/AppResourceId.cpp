@@ -3,7 +3,9 @@
 const wchar_t* GameMain = L"GameMain";
 const wchar_t* GameMain2 = L"GameMain2";
 const wchar_t* GameSelect = L"GameSelect";
+const wchar_t* IDC_BUTTON_ACHIEVEMENT = L"IDC_BUTTON_ACHIEVEMENT";
 const wchar_t* IDC_BUTTON_LANK = L"IDC_BUTTON_LANK";
+const wchar_t* IDC_BUTTON_LEADERBOARD = L"IDC_BUTTON_LEADERBOARD";
 const wchar_t* IDC_BUTTON_MODE1 = L"IDC_BUTTON_MODE1";
 const wchar_t* IDC_BUTTON_MODE2 = L"IDC_BUTTON_MODE2";
 const wchar_t* IDC_LISTVIEW1 = L"IDC_LISTVIEW1";

@@ -5,8 +5,9 @@
  *      Author: JOHEEYEON
  */
 
-#include "GHAchievement/GHAchievementController.h"
 #include "GHSharedAuthData.h"
+#include "GHAchievement/GHAchievementController.h"
+#include "GHForm/AchievementForm.h"
 
 using namespace Tizen::Base::Collection;
 using namespace Tizen::Net::Http;
@@ -25,7 +26,18 @@ GHAchievementController::~GHAchievementController() {
 	// TODO Auto-generated destructor stub
 }
 
+// AchievementForm(Page)을 로드한다.
+void GHAchievementController::loadAchievementForm()
+{
+	Tizen::Ui::Controls::Frame *pFrame = Tizen::App::UiApp::GetInstance()->GetAppFrame()->GetFrame();
+	AchievementForm* pForm = new (std::nothrow) AchievementForm();
+	pForm->Initialize();
 
+	// Add the form to the frame
+	pFrame->AddControl(pForm);
+	pFrame->SetCurrentForm(pForm);
+	pFrame->Invalidate(true);
+}
 // Achievement 목록을 가져온다.
 void GHAchievementController::loadAchievements(GHAchievementLoadedListener* listener) {
 

@@ -359,6 +359,7 @@ Form1::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 			AppAssert(pSceneManager);
 
 
+
 			//String __getWatch = __pLabel2->GetText();  //__watchText 를 얻어옴
 			//__pWatchTextList->Add(new String(__getWatch.GetPointer()));
 

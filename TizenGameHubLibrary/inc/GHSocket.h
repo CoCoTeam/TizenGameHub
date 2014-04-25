@@ -13,6 +13,15 @@
 #include <FNet.h>
 #include <FNetSockSocketTypes.h>
 
+namespace ListenerType{
+	enum Type{
+		OnMatchStart = 1,
+		OnMatchTurnMy,
+		OnMatchTurnWait,
+		OnMatchFinish
+	};
+}
+
 class GHSocket
 	: public Tizen::Net::Sockets::ISocketEventListener
 {
@@ -32,6 +41,7 @@ protected:
 
     result SendData(Tizen::Base::String data);
     result ReceiveData(void);
+    virtual void ReceiveData(ListenerType::Type flag, Tizen::Base::String data) = 0;
 
     void OnClose(void);
 

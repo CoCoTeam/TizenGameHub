@@ -20,4 +20,14 @@
         <layout height="83.0" mode="Portrait" width="162.0" x="62.0" y="288.0"/>
         <layout height="49.0" mode="Landscape" width="90.0" x="244.0" y="369.0"/>
     </Button>
+    <Button id="IDC_BUTTON_LEADERBOARD" parent="GameSelect">
+        <property DisabledBitmapX="0.0" DisabledBitmapY="0.0" NormalBitmapX="0.0" NormalBitmapY="0.0" PressedBitmapX="0.0" PressedBitmapY="0.0" accessibilityHint="" disableTextColor="" disabledBGBitmapPath="" disabledBitmapPath="" disabledColor="" disabledColorOpacity="100" highlightedBGBitmapPath="" highlightedBitmapPath="" highlightedBitmapX="0.0" highlightedBitmapY="0.0" highlightedColor="" highlightedColorOpacity="100" highlightedTextColor="" horizontalAlign="ALIGN_CENTER" normalBGBitmapPath="" normalBitmapPath="" normalColor="" normalColorOpacity="100" normalTextColor="" pressedBGBitmapPath="" pressedBitmapPath="" pressedColor="" pressedColorOpacity="100" pressedTextColor="" text="Leaderboard" textSize="21.0" verticalAlign="ALIGN_MIDDLE"/>
+        <layout height="73.0" mode="Portrait" width="365.0" x="62.0" y="397.0"/>
+        <layout height="49.0" mode="Landscape" width="90.0" x="254.0" y="369.0"/>
+    </Button>
+    <Button id="IDC_BUTTON_ACHIEVEMENT" parent="GameSelect">
+        <property DisabledBitmapX="0.0" DisabledBitmapY="0.0" NormalBitmapX="0.0" NormalBitmapY="0.0" PressedBitmapX="0.0" PressedBitmapY="0.0" accessibilityHint="" disableTextColor="" disabledBGBitmapPath="" disabledBitmapPath="" disabledColor="" disabledColorOpacity="100" highlightedBGBitmapPath="" highlightedBitmapPath="" highlightedBitmapX="0.0" highlightedBitmapY="0.0" highlightedColor="" highlightedColorOpacity="100" highlightedTextColor="" horizontalAlign="ALIGN_CENTER" normalBGBitmapPath="" normalBitmapPath="" normalColor="" normalColorOpacity="100" normalTextColor="" pressedBGBitmapPath="" pressedBitmapPath="" pressedColor="" pressedColorOpacity="100" pressedTextColor="" text="Achievement" textSize="21.0" verticalAlign="ALIGN_MIDDLE"/>
+        <layout height="73.0" mode="Portrait" width="365.0" x="62.0" y="493.0"/>
+        <layout height="49.0" mode="Landscape" width="90.0" x="264.0" y="369.0"/>
+    </Button>
 </Scene>

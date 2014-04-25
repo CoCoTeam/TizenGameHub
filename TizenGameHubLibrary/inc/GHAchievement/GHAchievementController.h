@@ -30,6 +30,9 @@ public:
 	GHAchievementController();
 	virtual ~GHAchievementController();
 
+	// AchievementForm(Page)을 로드한다.
+	void loadAchievementForm();
+
 	// achievement 목록을 가져온다.
 	void loadAchievements(GHAchievementLoadedListener * listener);							// load listener
 

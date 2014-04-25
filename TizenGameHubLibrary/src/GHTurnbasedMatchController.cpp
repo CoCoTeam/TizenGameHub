@@ -25,9 +25,34 @@ void
 GHTurnbasedMatchController::OnSocketConnected(Socket& socket)
 {
 	GHSocket::OnSocketConnected(socket);
-    this->currentListener->onMatchConnect();
+	currentListener->onMatchConnect();
 }
 
+//데이터 수신시 호출
+void GHTurnbasedMatchController::ReceiveData(ListenerType::Type flag, Tizen::Base::String data){
+
+	switch(flag) {
+	case ListenerType::OnMatchStart:
+		currentListener->onMatchStart();
+		break;
+	case ListenerType::OnMatchTurnMy:
+		currentListener->onMatchMyturn(data);
+		break;
+	case ListenerType::OnMatchTurnWait:
+		currentListener->onMatchTurnWait();
+		break;
+	case ListenerType::OnMatchFinish:
+		currentListener->onMatchFinish(data);
+		break;
+	default:
+		break;
+	}
+
+	AppLogDebug("[Socket] respose flag: %d", flag);
+	AppLogDebug("[Socket] respose data : %S", data.GetPointer());
+}
+
+//개발자에게 사용하라고 공개하는 함수 ///////////////////////////////////////////////////////////////////////////
 void GHTurnbasedMatchController::sendDataToPlayer(Tizen::Base::String data) {
 	this->SendData(data);
 }

@@ -5,8 +5,9 @@
  *      Author: Administrator
  */
 
-#include "GHLeaderboard/GHLeaderboardController.h"
 #include "GHSharedAuthData.h"
+#include "GHForm/LeaderboardForm.h"
+#include "GHLeaderboard/GHLeaderboardController.h"
 
 using namespace Tizen::Base::Collection;
 using namespace Tizen::Web::Json;
@@ -22,6 +23,20 @@ GHLeaderboardController::~GHLeaderboardController() {
 	// TODO Auto-generated destructor stub
 }
 
+// LeaderboardForm(Page)을 로드한다.
+void GHLeaderboardController::loadLeaderboardForm()
+{
+	Tizen::Ui::Controls::Frame *pFrame = Tizen::App::UiApp::GetInstance()->GetAppFrame()->GetFrame();
+	LeaderboardForm* pForm = new (std::nothrow) LeaderboardForm();
+	pForm->Initialize();
+
+	// Add the form to the frame
+	pFrame->AddControl(pForm);
+	pFrame->SetCurrentForm(pForm);
+	pForm->Invalidate(true);
+}
+
+// Leaderboard 목록을 가져온다.
 void GHLeaderboardController::loadLeaderboards(GHLeaderboardDataLoadedListener * listener)
 {
 	this->currentListener = listener;
@@ -32,10 +47,11 @@ void GHLeaderboardController::loadLeaderboards(GHLeaderboardDataLoadedListener *
 	httpPost.RequestHttpGetTran(this, url);
 }
 
-// leaderboard의 랭킹 목록을 가져온다.
+// 각 Leaderboard에 해당하는 랭킹 목록을 가져온다.
 void GHLeaderboardController::loadLeaderboardRank(Tizen::Base::String leaderboardId, int startPosition, int loadSize)
 {
 	this->currentListener = null;
+
 	//GET 함수 호출
 	String game_id(GHSharedAuthData::getSharedInstance().getGameId());
 	Tizen::Base::String sOffset, sSize;
@@ -52,7 +68,7 @@ void GHLeaderboardController::loadLeaderboardRank(Tizen::Base::String leaderboar
 	this->currentListener = listener;
 }
 
-// 해당 leaderboard에 점수를 업데이트한다.
+// 해당 Leaderboard에 점수를 업데이트한다.
 void GHLeaderboardController::updateLeaderboardScore(Tizen::Base::String leaderboardId, long score)
 {
 	this->currentListener = null;

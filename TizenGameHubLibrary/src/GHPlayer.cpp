@@ -30,16 +30,15 @@ GHPlayer::GHPlayer(Tizen::Base::String _id, Tizen::Base::String _name, Tizen::Ba
 	totalScore = this->getTotalScore();
 }
 
-Tizen::Base::String GHPlayer::getId()		{	return id;}
-Tizen::Base::String GHPlayer::getEmail()	{	return email;}
-Tizen::Base::String GHPlayer::getName()		{	return name;}
-Tizen::Base::String GHPlayer::getImgUrl()	{	return imgUrl;}
+Tizen::Base::String GHPlayer::getId()		{return id;}
+Tizen::Base::String GHPlayer::getEmail()	{return email;}
+Tizen::Base::String GHPlayer::getName()		{return name;}
+Tizen::Base::String GHPlayer::getImgUrl()	{return imgUrl;}
 
-
-void GHPlayer::setId(Tizen::Base::String _id)		{	this->id = _id;}
-void GHPlayer::setEmail(Tizen::Base::String _email)	{	this->email = _email; }
-void GHPlayer::setName(Tizen::Base::String _name)		{	this->name= _name; }
-void GHPlayer::setImgUrl(Tizen::Base::String _imgUrl)	{	this->imgUrl=_imgUrl; }
+void GHPlayer::setId(Tizen::Base::String _id)			{this->id = _id;}
+void GHPlayer::setEmail(Tizen::Base::String _email)		{this->email = _email; }
+void GHPlayer::setName(Tizen::Base::String _name)		{this->name= _name; }
+void GHPlayer::setImgUrl(Tizen::Base::String _imgUrl)	{this->imgUrl=_imgUrl; }
 
 
 long GHPlayer::getTotalScore()

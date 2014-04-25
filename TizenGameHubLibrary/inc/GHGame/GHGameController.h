@@ -23,7 +23,7 @@ public:
 
 	// 게임 정보 가져오기
 	void getGameData(Tizen::Base::String gameId);
-	void getGameData(Tizen::Base::String gameId, GHGameListener* listener);
+	void getGameData(Tizen::Base::String gameId, GHGameListener* listener = null);
 
 private:
 	virtual void OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data);

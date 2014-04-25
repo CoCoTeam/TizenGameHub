@@ -8,7 +8,6 @@
 #include "LoginForm.h"
 #include "AppResourceId.h"
 #include "TizenGameHubFrame.h"
-#include "PrefClass.h"
 #include "GHPlayer/GHPlayerController.h"
 
 
@@ -67,9 +66,25 @@ LoginForm::OnInitializing(void)
 	pTextEmail = static_cast< EditField* >(GetControl(IDC_LOGIN_EDITTEXT_EMAIL));
 	pTextPw = static_cast< EditField* >(GetControl(IDC_LOGIN_EDITTEXT_PW));
 
-	//For test(Default Id/Pw)-------------------------------
-	pTextEmail->SetText(L"kichul");
-	pTextPw->SetText(L"kichulbabo");
+	// Get Player Info from AppRegistry ----------------------------
+	String strEmail;
+	String strPw;
+	appReg.get(appReg.email, strEmail);
+	appReg.get(appReg.pwd, strPw);
+
+	if(strEmail != NULL && strPw != NULL)
+	{
+		AppLogDebug("AppRegistry Name value1 [%S]", strEmail.GetPointer());
+
+		pTextEmail->SetText(strEmail);
+		pTextPw->SetText(strPw);
+////		login(strEmail, strPw);
+		doLogin();
+	}
+	else {	//!! for debug
+		pTextEmail->SetText(String("kichul"));
+		pTextPw->SetText(String("kichulbabo"));
+	}
 	//------------------------------------------------------
 
 	//Button Test----------------------------
@@ -98,12 +113,6 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 {
 	SceneManager* pSceneManager = SceneManager::GetInstance();
 	AppAssert(pSceneManager);
-
-	result r = E_SUCCESS;
-	MessageBox msgBox;
-	int modalResult;
-
-	AppLog("[Login Form] OnActionPerformed(%d)", actionId);
 
 	ArrayList* pList = new (std::nothrow)ArrayList;
 	AppAssert(pList);
@@ -173,13 +182,13 @@ void LoginForm::onMatchConnect(){
 void LoginForm::onMatchStart(){
 	AppLogDebug("[onMatchStart]callback success");
 }
-void LoginForm::onMatchMyturn(){
+void LoginForm::onMatchMyturn(String data){
 	AppLogDebug("[onMatchMyturn]callback success");
 }
 void LoginForm::onMatchTurnWait(){
 	AppLogDebug("[onMatchTurnWait]callback success");
 }
-void LoginForm::onMatchFinish(){
+void LoginForm::onMatchFinish(String data){
 	AppLogDebug("[onMatchFinish]callback success");
 }
 
@@ -244,35 +253,15 @@ void LoginForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 	pApp->Terminate();
 }
 
-result LoginForm::doLogin()
+void LoginForm::doLogin()
 {
-	result r = E_SUCCESS;
-
-	//PrefClass pref;
 	String strEmail;
 	String strPw;
 	MessageBox msgBox;
 	int modalResult;
 
-	/*if(pref.email != NULL || pref.pwd != NULL)
-	{
-		pref.get(pref.email, strEmail);
-		pref.get(pref.pwd, strPw);
-
-		AppLog("AppRegistry Name value1 [%ls]", strEmail.GetPointer());
-	}
-	else
-	{*/
 	strEmail = pTextEmail->GetText();
 	strPw = pTextPw->GetText();
-
-		//pref 클래스에 저장( 처음 로그인 후 )
-		/*pref.put(pref.email, pTextEmail->GetText());
-		pref.put(pref.pwd, pTextPw->GetText());
-
-		AppLog("AppRegistry Name value2 [%ls]", strEmail.GetPointer());
-	}*/
-
 
 	if(strEmail == null && strPw == null)
 	{
@@ -291,10 +280,14 @@ result LoginForm::doLogin()
 	}
 	else
 	{
-		playerLogin(strEmail, strPw, this);
+		login(strEmail, strPw);
 	}
-	return r;
 }
+void LoginForm::login(Tizen::Base::String email, Tizen::Base::String pw)
+{
+	playerLogin(email, pw, this);
+}
+
 
 void LoginForm::loginPlayerFinished(Tizen::Base::String statusCode)
 {
@@ -312,8 +305,6 @@ void LoginForm::loginPlayerFinished(Tizen::Base::String statusCode)
 
 	if(statusCode !=  "0")	// (로그인 성공 시) 로그인, 개인페이지로 이동
 	{
-		AppLog("success");
-
 		String playerKey = statusCode;
 		pList->Add( new Tizen::Base::String(playerKey) );	// playerId
 		pList->Add( new Tizen::Base::Boolean(true) );		// isLocalPlayer
@@ -322,8 +313,6 @@ void LoginForm::loginPlayerFinished(Tizen::Base::String statusCode)
 	}
 	else		// (로그인 실패 시) 로그인 실패 팝업
 	{
-		AppLog("fail");
-
 		msgBox.Construct(L"Login", L"LOGIN fail", MSGBOX_STYLE_OK);
 		msgBox.ShowAndWait(modalResult);
 	}

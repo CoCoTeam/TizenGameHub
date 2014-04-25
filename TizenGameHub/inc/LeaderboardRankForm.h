@@ -44,6 +44,7 @@ private:
 	virtual void loadLeaderboardRankFinished(GHLeaderboard* _leaderboard);
 
 	GHLeaderboard* leaderboard;
+	Tizen::Base::String leaderboardId;
 	Tizen::Base::Collection::ArrayList* rank_list;
 	Tizen::Ui::Controls::ListView *pRankListView;
 	LeaderboardRankProvider *pRankProvider;
