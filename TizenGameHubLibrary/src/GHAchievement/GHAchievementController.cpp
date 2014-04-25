@@ -26,7 +26,7 @@ GHAchievementController::~GHAchievementController() {
 	// TODO Auto-generated destructor stub
 }
 
-
+// AchievementForm(Page)을 로드한다.
 void GHAchievementController::loadAchievementForm()
 {
 	Tizen::Ui::Controls::Frame *pFrame = Tizen::App::UiApp::GetInstance()->GetAppFrame()->GetFrame();
@@ -35,13 +35,8 @@ void GHAchievementController::loadAchievementForm()
 
 	// Add the form to the frame
 	pFrame->AddControl(pForm);
-
-	// Set the current form
 	pFrame->SetCurrentForm(pForm);
-
-	// Draw the form
-	pForm->Invalidate(true);
-
+	pFrame->Invalidate(true);
 }
 // Achievement 목록을 가져온다.
 void GHAchievementController::loadAchievements(GHAchievementLoadedListener* listener) {

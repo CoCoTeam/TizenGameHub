@@ -16,13 +16,12 @@ class LeaderboardRankProvider
 public:
 	LeaderboardRankProvider();
 	virtual ~LeaderboardRankProvider();
-
-	int GetItemCount(void);
-	Tizen::Ui::Controls::ListItemBase* CreateItem(int index, int itemWidth);
-	bool DeleteItem(int index, Tizen::Ui::Controls::ListItemBase* pItem, int itemWidth);
 	void setItemList(Tizen::Base::Collection::ArrayList* _list);
 
 private:
+	int GetItemCount(void);
+	Tizen::Ui::Controls::ListItemBase* CreateItem(int index, int itemWidth);
+	bool DeleteItem(int index, Tizen::Ui::Controls::ListItemBase* pItem, int itemWidth);
 	Tizen::Base::Collection::ArrayList list;
 };
 

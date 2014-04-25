@@ -23,16 +23,13 @@ GHGameController::~GHGameController() {
 }
 
 // 게임 정보 가져오기
-void GHGameController::getGameData(Tizen::Base::String gameId)
-{
-	//GET 함수 호출
-	String url(L"/f_games/" + gameId);
-	httpPost.RequestHttpGetTran(this, url);
-}
 void GHGameController::getGameData(Tizen::Base::String gameId, GHGameListener* listener)
 {
 	this->currentListener = listener;
-	getGameData(gameId);
+
+	//GET 함수 호출
+	String url(L"/f_games/" + gameId);
+	httpPost.RequestHttpGetTran(this, url);
 }
 
 void GHGameController::OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data)

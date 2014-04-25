@@ -17,10 +17,6 @@ LeaderboardRankForm::LeaderboardRankForm() {
 	// TODO Auto-generated constructor stub
 
 }
-LeaderboardRankForm::LeaderboardRankForm(Tizen::Base::String leaderboardId) {
-	// TODO Auto-generated constructor stub
-	this.leaderboardId = leaderboardId;
-}
 LeaderboardRankForm::~LeaderboardRankForm() {
 	// TODO Auto-generated destructor stub
 }
@@ -42,9 +38,6 @@ result LeaderboardRankForm::OnInitializing(void)
 
 	// Get a button via resource ID
 	pRankListView = static_cast<ListView*>(GetControl(IDC_LEADERBOARDRANK_LIST_RANK));
-	if(leaderboardId != null) {
-		loadLeaderboardRank(*leaderboardId, this);
-	}
 
 	return r;
 }

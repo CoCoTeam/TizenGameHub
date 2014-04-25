@@ -29,14 +29,12 @@ protected:
 	Tizen::Base::String name;		// 사용자 이름
 	Tizen::Base::String imgUrl;		// 사용자 프로필이미지 URL
 
-	long totalScore;	// 사용자별 Achievement 총합 점수
+	long totalScore;				// 사용자별 Achievement 총합 점수
 
 public:
 	GHPlayer();
 	GHPlayer(Tizen::Base::String _id, Tizen::Base::String _email, Tizen::Base::String _name, Tizen::Base::String _imgUrl);
 	GHPlayer(Tizen::Base::String _id, Tizen::Base::String _name, Tizen::Base::String _imgUrl);
-
-	//	GHPlayer(Tizen::Web::Json::JsonObject *jsonData);
 	~GHPlayer();
 
 	// GET Function ------------------------------------------------
@@ -44,20 +42,14 @@ public:
 	Tizen::Base::String getEmail();
 	Tizen::Base::String getName();
 	Tizen::Base::String getImgUrl();
-
+	//!! getTotalScore() -> HubApp
+	long getTotalScore();
+	//----------------------------------------------------------------
 
 	void setId(Tizen::Base::String _id);
 	void setEmail(Tizen::Base::String _email);
 	void setName(Tizen::Base::String _name);
 	void setImgUrl(Tizen::Base::String _imgUrl);
-
-
-
-	long getTotalScore();
-	//----------------------------------------------------------------
-	//void setId(Tizen::Base::String _id){id = _id;}
-	//void setName(Tizen::Base::String _name){name = _name;}
-
 };
 
 #endif /* GHUSER_H_ */

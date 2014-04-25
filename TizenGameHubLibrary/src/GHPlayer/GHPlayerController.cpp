@@ -120,7 +120,7 @@ void GHPlayerController::getPlayerData(Tizen::Base::String playerId, GHPlayerLis
 
 
 // 특정 게임에 사용자 등록하기(게임가입)
-void GHPlayerController::PlayerGameJoin(Tizen::Base::String playerId, Tizen::Base::String gameId)
+void GHPlayerController::playerJoinToGame(Tizen::Base::String playerId, Tizen::Base::String gameId)
 {
 	String url(L"/players/gamejoin");
 
@@ -134,25 +134,16 @@ void GHPlayerController::PlayerGameJoin(Tizen::Base::String playerId, Tizen::Bas
 }
 
 //사용자가 플레이하는 게임 리스트 가져오기
-void GHPlayerController::getPlayerGameList(Tizen::Base::String playerId)
-{
-	getPlayerGameList(playerId, 0, 5);
-}
 void GHPlayerController::getPlayerGameList(Tizen::Base::String playerId, int start_pos, int max_length)
 {
 	Integer tmpInteger;
 	String start_pos_str = tmpInteger.ToString(start_pos);
 	String max_length_str = tmpInteger.ToString(max_length);
 	String url(L"/players/" + playerId + "/games?start_pos=" + start_pos_str +"&max_length="+ max_length_str);
-//	AppLogDebug("URL : %S", (new String(url))->GetPointer() );
 
 	httpPost.RequestHttpGetTran(this, url);
 }
-void GHPlayerController::getPlayerGameList(Tizen::Base::String playerId, GHPlayerListener* listener)
-{
-	this->getPlayerGameList(playerId, 0, 5, listener);
-}
-void GHPlayerController::getPlayerGameList(Tizen::Base::String playerId, int start_pos, int max_length, GHPlayerListener* listener)
+void GHPlayerController::getPlayerGameList(Tizen::Base::String playerId, GHPlayerListener* listener, int start_pos, int max_length)
 {
 	this->currentListener = listener;
 	this->getPlayerGameList(playerId, start_pos, max_length);

@@ -7,22 +7,17 @@
 
 #include "GHForm/LeaderboardRankForm.h"
 #include "AppResourceId.h"
-//#include "TizenGameHubFrame.h"
 
 using namespace Tizen::Base;
 using namespace Tizen::Ui::Scenes;
 using namespace Tizen::Ui::Controls;
 
 LeaderboardRankForm::LeaderboardRankForm() {
-	// TODO Auto-generated constructor stub
-
 }
 LeaderboardRankForm::LeaderboardRankForm(Tizen::Base::String leaderboardId) {
-	// TODO Auto-generated constructor stub
 	this->leaderboardId = leaderboardId;
 }
 LeaderboardRankForm::~LeaderboardRankForm() {
-	// TODO Auto-generated destructor stub
 }
 bool LeaderboardRankForm::Initialize(void)
 {
@@ -34,8 +29,6 @@ bool LeaderboardRankForm::Initialize(void)
 result LeaderboardRankForm::OnInitializing(void)
 {
 	result r = E_SUCCESS;
-
-	// TODO: Add your initialization code here
 
 	// Setup back event listener
 	SetFormBackEventListener(this);
@@ -52,47 +45,16 @@ result LeaderboardRankForm::OnTerminating(void)
 {
 	result r = E_SUCCESS;
 
-	// TODO: Add your termination code here
-	return r;
-}
-//IActionEventListener
-void LeaderboardRankForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
-{
+	rank_list->RemoveAll();	delete rank_list;
 
+	return r;
 }
 //IFormBackEventListener
 void LeaderboardRankForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 {
-//	SceneManager* pSceneManager = SceneManager::GetInstance();
-//	AppAssert(pSceneManager);
-//
-//	pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_RIGHT));
-	this->Destroy();
+	source.GetParent()->RemoveControl(source);
 }
-void LeaderboardRankForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
-										  const Tizen::Ui::Scenes::SceneId& currentSceneId, Tizen::Base::Collection::IList* pArgs)
-{
-	// TODO: Activate your scene here.
-	if (pArgs != null)
-	{
-		if (pArgs->GetCount())
-		{
-			Tizen::Base::String *leaderboardId = static_cast<Tizen::Base::String*>(pArgs->GetAt(0));
-//			AppLogDebug("[LeaderboardRankForm] Argument Received (%S)", leaderboardId->GetPointer());
-			loadLeaderboardRank(*leaderboardId, this);
-		}
-		pArgs->RemoveAll(true);
-		delete pArgs;
-	}
-}
-
-void LeaderboardRankForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
-										   const Tizen::Ui::Scenes::SceneId& nextSceneId)
-{
-	// TODO: Deactivate your scene here.
-
-}
-
+//GHLeaderboardListLoadedListener
 void LeaderboardRankForm::loadLeaderboardRankFinished(GHLeaderboard* _leaderboard)
 {
 	leaderboard = _leaderboard;

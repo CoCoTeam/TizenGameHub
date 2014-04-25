@@ -8,6 +8,8 @@
 #ifndef GHTURNBASEDMATCHLISTENER_H_
 #define GHTURNBASEDMATCHLISTENER_H_
 
+#include "GHTizen.h"
+
 class GHTurnbasedMatchListener {
 public:
 	GHTurnbasedMatchListener();
