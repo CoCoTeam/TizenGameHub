@@ -203,7 +203,7 @@ GHSocket::SendData(String data)
     // 보내는게 성공하면 내 화면에도 뿌려준다.
     if (res == E_SUCCESS || res == E_WOULD_BLOCK)
     {
-        data.Append(L"\n");
+        //data.Append(L"\n");
         //pEditAreaData->AppendText(data);
         //pEditAreaData->RequestRedraw();
         //pEditFieldtext->SetText(L"");

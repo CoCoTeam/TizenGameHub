@@ -168,8 +168,8 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		//GHSocket* socket = new GHSocket();
 		//socket->ConnectSocketServer("54.238.195.222", 8081);
 
-		GHTurnbasedMatchController* controller = new GHTurnbasedMatchController();
-		controller->connectSocketServer("54.238.195.222", 8081, this);
+		controller = new GHTurnbasedMatchController();
+		controller->connectSocketServer("54.238.195.222", 8082, this);
 
 		break;
 	}
@@ -181,9 +181,12 @@ void LoginForm::onMatchConnect(){
 }
 void LoginForm::onMatchStart(){
 	AppLogDebug("[onMatchStart]callback success");
+	//controller->readyForPlay();
+	//controller->sendDataToPlayer("aa  aa d", 0);
 }
 void LoginForm::onMatchMyturn(String data){
 	AppLogDebug("[onMatchMyturn]callback success");
+	//controller->sendDataToPlayer("data haha", 1);
 }
 void LoginForm::onMatchTurnWait(){
 	AppLogDebug("[onMatchTurnWait]callback success");
