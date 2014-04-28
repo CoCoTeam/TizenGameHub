@@ -342,10 +342,10 @@ JoinForm::OnUserEventReceivedN(RequestId requestId, Tizen::Base::Collection::ILi
 
 
 		RequestRedraw();
-		saveImage();
+		storeImageInternal(__pCroppedBmp);
+		//saveImage();
 	}
 }
-
 
 result
 JoinForm::OnDraw()
@@ -353,66 +353,126 @@ JoinForm::OnDraw()
 	Tizen::Ui::Controls::Gallery* pGalleryProfile;
 
 	pGalleryProfile = static_cast< Gallery* >(GetControl(IDC_JOIN_GALLERY_PROFILE));
+
+	//pGalleryProfile->
 	//pGalleryProfile->SetShowState(false);
 	pGalleryProfile->SetItemProvider(*this);
 
 	//이미지 전환
 	GalleryItem* pGallery = new GalleryItem();
-    pGallery->Construct(*__pCroppedBmp);
+    pGallery->Construct(*__ptempBitmap);
 
 	return E_SUCCESS;
 }
 
-void
-JoinForm::saveImage()
+Bitmap*
+JoinForm::CreateBitmapFromByteBufferN(ByteBuffer* pBuffer, const int& width, const int& height)
 {
-		result r ;
-		String strOK = L"Saved as ";
-		String strError = L"Saving image failed ";
-
-		Image img;
-		img.Construct();
-		r = img.EncodeToFile(*__pCroppedBmp, IMG_FORMAT_JPG, Tizen::App::App::GetInstance()->GetAppDataPath() + L"temp.jpg", true);
-		if(IsFailed(r))
-		{
-			AppLog("__pImage->EncodeToFile %s \n", GetErrorMessage(r));
-			ShowMessageBox(L"Error",strError);
-			return;
-		}
-		ContentManager contentManager;
-		ContentId contentId;
-		r = contentManager.Construct();
-		if(IsFailed(r))
-		{
-			AppLog("contentManager %s \n", GetErrorMessage(r));
-			ShowMessageBox(L"Error", strError);
-			return;
-		}
-
-
-		String imagePath = CreateUniqueFileName();
-		contentId = contentManager.CreateContent(Tizen::App::App::GetInstance()->GetAppDataPath() + L"temp.jpg", imagePath, true);
-
-		if (Tizen::Base::UuId::GetInvalidUuId() == contentId)
-		{
-			AppLog("contentManager.CreateContent %s \n", GetErrorMessage(r));
-			ShowMessageBox(L"Error", strError);
-			return;
-		}
-		else
-		{
-			ImageContentInfo* pImageContentInfo = null;
-			pImageContentInfo = (ImageContentInfo*)contentManager.GetContentInfoN(contentId);
-			pImageContentInfo->SetKeyword(L"Crop application");
-			pImageContentInfo->SetProvider(L"Crop");
-			contentManager.UpdateContent(*pImageContentInfo);
-			strOK.Append(imagePath);
-
-			ShowMessageBox(L"Saved", strOK);
-			return;
-		}
+		Dimension dim(width, height);
+		Bitmap* pBmp = new (std::nothrow) Bitmap;
+		TryReturn(pBmp != null, pBmp,"E_OUT_OF_MEMORY Bitmap creation failed");
+		result r = pBmp->Construct(*pBuffer, dim, Tizen::Graphics::BITMAP_PIXEL_FORMAT_ARGB8888);
+		TryReturn(r == E_SUCCESS, pBmp,"[%s] Bitmap->Construct", GetErrorMessage(r));
+		return pBmp;
 }
 
+void
+JoinForm::storeImageInternal(Bitmap *bitmap)
+{
+			AppLog("22222");
+
+			result r ;
+			///////////////////////////////////////////////////////////////// 버퍼 ///////////////////////////////////////////////////////////////////
+
+
+			String filePath(Environment::GetMediaPath() + L"TempPicture");
+			File file;
+
+			int width = 0, height = 0;
+			int readCnt;
+
+			ByteBuffer* pImageByteBuff = null;
+			pImageByteBuff = new (std::nothrow) ByteBuffer;
+
+			//r = ImageBuffer::GetImageInfo(*filePath, imgFormat, originalWidth, originalHeight);
+
+			// Create an Image instance.
+			Image img;
+			img.Construct();
+
+			String imagePath = CreateUniqueFileName();
+
+			// Get the image's size.
+		     width = __pCroppedBmp->GetWidth();
+		     height = __pCroppedBmp->GetHeight();
+
+			//이미지를   바이트로 변환
+			//pImageByteBuff = img.DecodeToBufferN(imagePath, BITMAP_PIXEL_FORMAT_ARGB8888, width, height);
+		     pImageByteBuff = img.EncodeToBufferN(*__pCroppedBmp, IMG_FORMAT_JPG);
+
+			//파일 생성
+			r = file.Construct(filePath, "w+");
+
+			//파일에 바이트 쓰기
+			r = file.Write(*pImageByteBuff);
+			readCnt = file.Read(*pImageByteBuff);
+
+			AppLog("Successed.\n");
+
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+			//////////////// 바이트를 다시 이미지로 변환
+			__ptempBitmap = CreateBitmapFromByteBufferN(pImageByteBuff, width, height);
+
+
+/*			AppLog("22222");
+
+			//바이트 버퍼////////////////////////////wq////////////////////////////////////////////////
+			ByteBuffer* pTempByteBuff = null;
+			pTempByteBuff = new (std::nothrow) ByteBuffer;
+
+			pTempByteBuff->SetByte();
+			TryCatch(pTempByteBuff != null, ,"pResizeByteBuffer is null, no memory");
+			////////////////////////////////////////////////////////////////////////////////////
+
+			AppLog("-------------------------check---------------------");
+
+			File *pFile;
+			pFile = new (std::nothrow) File;
+			r = pFile->Construct(imagePath, L"w", true);
+			r = pFile->Write(*pTempByteBuff);
+
+			pFile->Flush();
+
+			AppLog("-------------------------check2------------------");
+
+			//r = pFile->Read(*pTempByteBuff);
+
+			if(IsFailed(r))
+			{
+				AppLog("pTempImageByteBuff %s \n", GetErrorMessage(r));
+				ShowMessageBox(L"Error", strError);
+				return;
+			}
+
+			AppLog("-------------------------check3------------------");
+			//r = pFile->Write(pTempImageByteBuff);    //버퍼에 씀
+
+			CATCH:
+				return;
+			//
+			File copyFile = filePath;
+			BufferedOutputStream out = null;
+
+			try {
+				copyFile.createNewFile();
+				out = new BufferedOutputStream(new FileOutputStream(copyFile));
+				bitmap.compress(CompressFormat.JPEG, 100, out);
+				out.flush();
+				out.close();
+				*/
+
+}
 
 String
 JoinForm::CreateUniqueFileName( void )

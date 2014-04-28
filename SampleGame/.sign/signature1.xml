@@ -4,11 +4,11 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>dFgfo7TzciDGAbPV+9SCVszaih74sZhFP22dYD7kUyE=</DigestValue>
+<DigestValue>mA+omu47X+lKiFJIpukoGIrpFDFg/9+LVDNK5kEOQYA=</DigestValue>
 </Reference>
 <Reference URI="bin/ThreadUI.exe">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>G066M+va7a7p7I4juFfi3mqu2aF78xPDTW5b0t3caTM=</DigestValue>
+<DigestValue>bCVP/TajyjDS5UT1Y2PAMG7McHrFcGrDu7xmJKqCJf8=</DigestValue>
 </Reference>
 <Reference URI="info/manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -16,7 +16,7 @@
 </Reference>
 <Reference URI="lib/libTizenGameHubLibrary.so">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>OxPzT2HlO393WupzIky4yfHqNZ/dY9ScAN5UxGBd96w=</DigestValue>
+<DigestValue>A/rOgiZcsOJulhvbwGRe4TGTPnZW+fM8+v2Kw4sYsj0=</DigestValue>
 </Reference>
 <Reference URI="res/eng-GB.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -78,10 +78,6 @@
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>buSIj/g7b4CH0OMx7XADdaJRvYwloH2oWDvxsemLWHw=</DigestValue>
 </Reference>
-<Reference URI="res/screen-size-normal/IDF_CROPFORM.xml">
-<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>P6sqgAPOhM03N9BqzWvcxqbdM03X/UsXx0/VR6K2MCI=</DigestValue>
-</Reference>
 <Reference URI="res/screen-size-normal/IDF_POPUP.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>EaLq3L7eBtfGExMH4Qh8qFVkdVAzVc3TlQO6IJ1SR5A=</DigestValue>
@@ -106,10 +102,6 @@
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>hhXWjxz1pJ1PxT/3w7pXuib4GmdAFxH9mC56Qd0ynxE=</DigestValue>
 </Reference>
-<Reference URI="res/screen-size-normal/workflow.xml">
-<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>0oJL8oakIOPByUsQGGMKg6kyp50RzKEHKL7XzBAb2jY=</DigestValue>
-</Reference>
 <Reference URI="shared/res/screen-density-xhigh/mainmenu.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>Nz+SecsjmNuidhKNvmQ5+3nasrw8vI4q/bjPgbfx5fI=</DigestValue>
@@ -123,9 +115,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-X68hLZN/KvYobpMuXknzNFt1P3u9t8ak/guXwsNfUK+6eiffNj3wTyWNKAb00ZYs0H8OEYaF0R+d
-5u8/cuzxxXHFBIlD8X9yALrLm9qT0t+hmyU8H9Z58juHOEuLoOc/KB2kJ98WtnlnBK0LD7x7Oldn
-bbyaqUzJ9THW6kl+6Ek=
+l3cOKJHQ9deoRKialrcGmUadq1HS0kBby11o6Y0pEK2cVOhzL9yDWEX2lNUyl73P+4gmTrvbsfBi
+kDtfV2DvCrQTyUrsmPnWv35GYE5Q5nXkZZSoZ/s2voftbexxTmAynFk/F2Uw/JaHf6CS/a/i/OBR
+tLUZqonZ40Pv+I62KEA=
 </SignatureValue>
 <KeyInfo>
 <X509Data>

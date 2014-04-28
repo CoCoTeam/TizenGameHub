@@ -4,7 +4,7 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="bin/ThreadUI.exe">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>G066M+va7a7p7I4juFfi3mqu2aF78xPDTW5b0t3caTM=</DigestValue>
+<DigestValue>bCVP/TajyjDS5UT1Y2PAMG7McHrFcGrDu7xmJKqCJf8=</DigestValue>
 </Reference>
 <Reference URI="info/manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -12,7 +12,7 @@
 </Reference>
 <Reference URI="lib/libTizenGameHubLibrary.so">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>OxPzT2HlO393WupzIky4yfHqNZ/dY9ScAN5UxGBd96w=</DigestValue>
+<DigestValue>A/rOgiZcsOJulhvbwGRe4TGTPnZW+fM8+v2Kw4sYsj0=</DigestValue>
 </Reference>
 <Reference URI="res/eng-GB.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -74,10 +74,6 @@
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>buSIj/g7b4CH0OMx7XADdaJRvYwloH2oWDvxsemLWHw=</DigestValue>
 </Reference>
-<Reference URI="res/screen-size-normal/IDF_CROPFORM.xml">
-<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>P6sqgAPOhM03N9BqzWvcxqbdM03X/UsXx0/VR6K2MCI=</DigestValue>
-</Reference>
 <Reference URI="res/screen-size-normal/IDF_POPUP.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>EaLq3L7eBtfGExMH4Qh8qFVkdVAzVc3TlQO6IJ1SR5A=</DigestValue>
@@ -102,10 +98,6 @@
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>hhXWjxz1pJ1PxT/3w7pXuib4GmdAFxH9mC56Qd0ynxE=</DigestValue>
 </Reference>
-<Reference URI="res/screen-size-normal/workflow.xml">
-<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>0oJL8oakIOPByUsQGGMKg6kyp50RzKEHKL7XzBAb2jY=</DigestValue>
-</Reference>
 <Reference URI="shared/res/screen-density-xhigh/mainmenu.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>Nz+SecsjmNuidhKNvmQ5+3nasrw8vI4q/bjPgbfx5fI=</DigestValue>
@@ -119,9 +111,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-TnIOVKeXOPF7uOtnD8MZIbJ669HQ2fiSvzdUvhwRvMesiX7YvsHyCnw8WzO4yHyRpWTNbzHsNF7h
-8UGw5AS0Rx5+6irxWtI8RSO5x0gnJGRfsT5V2Y75pnfwR00Y3Lv+nfRD2LJojPclSAcmMKqU5FlB
-T2JS9ytlqgF1Q1BiLCo=
+D01FQQXiBbkAn76YhFiElq47Q7Noim0UhScID3MEUkDr5pPnsHSVh6cAaMNw2mFUedfQiKvFDktV
+3qG2EG+6DTx8314alo+xy+SUzrgomHrQpCJDJneVjAJcUD2sh9sjRDUBBkxvXMowgtKPb7Qeq+8o
+bYX6cE9TGPsKyM0SBeI=
 </SignatureValue>
 <KeyInfo>
 <X509Data>

@@ -15,7 +15,6 @@
 #include "SceneRegister.h"
 #include "GHPlayer/GHPlayerController.h"
 
-
 using namespace Tizen::Ui::Scenes;
 using namespace Tizen::Graphics;
 using namespace Tizen::Base::Collection;

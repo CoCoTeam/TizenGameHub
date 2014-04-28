@@ -7,7 +7,6 @@
 
 #include "GHForm/LeaderboardForm.h"
 #include "AppResourceId.h"
-//#include "TizenGameHubFrame.h"
 #include "GHForm/ListPanel.h"
 
 using namespace Tizen::Ui::Controls;
@@ -46,48 +45,15 @@ result LeaderboardForm::OnTerminating(void)
 {
 	result r = E_SUCCESS;
 
-	// TODO: Add your termination code here
-	return r;
-}
-//IActionEventListener
-void LeaderboardForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
-{
+	lb_list->RemoveAll();	delete lb_list;
 
+	return r;
 }
 //IFormBackEventListener
 void LeaderboardForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 {
-	AppLogDebug("[GameHub] OnFormBackRequested()");
-//	SceneManager* pSceneManager = SceneManager::GetInstance();
-//	AppAssert(pSceneManager);
-//
-//	pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_RIGHT));
-	this->Destroy();
+	source.GetParent()->RemoveControl(source);
 }
-void LeaderboardForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
-										  const Tizen::Ui::Scenes::SceneId& currentSceneId, Tizen::Base::Collection::IList* pArgs)
-{
-	// TODO: Activate your scene here.
-	if (pArgs != null)
-	{
-		if (pArgs->GetCount())
-		{
-			Tizen::Base::String *gameId = static_cast<Tizen::Base::String*>(pArgs->GetAt(0));
-			AppLog("[LeaderboardForm] Argument Received %S", gameId->GetPointer());
-			loadLeaderboards(this);
-		}
-		pArgs->RemoveAll(true);
-		delete pArgs;
-	}
-}
-
-void LeaderboardForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
-										   const Tizen::Ui::Scenes::SceneId& nextSceneId)
-{
-	// TODO: Deactivate your scene here.
-
-}
-
 void LeaderboardForm::loadLeaderboardFinished(Tizen::Base::Collection::ArrayList* leaderboardList)
 {
 	lb_list = leaderboardList;

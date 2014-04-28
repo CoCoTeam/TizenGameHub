@@ -13,10 +13,8 @@ using namespace Tizen::Ui::Controls;
 using namespace Tizen::Ui::Scenes;
 
 AchievementForm::AchievementForm() {
-	// TODO Auto-generated constructor stub
 }
 AchievementForm::~AchievementForm() {
-	// TODO Auto-generated destructor stub
 }
 bool AchievementForm::Initialize(void)
 {
@@ -29,12 +27,10 @@ result AchievementForm::OnInitializing(void)
 {
 	result r = E_SUCCESS;
 
-	// TODO: Add your initialization code here
-
 	// Setup back event listener
 	SetFormBackEventListener(this);
 
-	// Get a button via resource ID
+	// Get a panel via resource ID
 	pAchievement_scrollpanel = static_cast<ScrollPanel*>(GetControl(IDC_ACHIEVEMENT_SCROLLPANEL));
 	loadAchievements(this);
 
@@ -44,47 +40,16 @@ result AchievementForm::OnTerminating(void)
 {
 	result r = E_SUCCESS;
 
-	// TODO: Add your termination code here
-	return r;
-}
-//IActionEventListener
-void AchievementForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
-{
+	ac_list->RemoveAll();	delete ac_list;
+	pAchievement_scrollpanel->RemoveAllControls();
 
+	return r;
 }
 //IFormBackEventListener
 void AchievementForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 {
-//	SceneManager* pSceneManager = SceneManager::GetInstance();
-//	AppAssert(pSceneManager);
-//
-//	pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_RIGHT));
-	this->Destroy();
+	source.GetParent()->RemoveControl(source);
 }
-void AchievementForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
-										  const Tizen::Ui::Scenes::SceneId& currentSceneId, Tizen::Base::Collection::IList* pArgs)
-{
-	// TODO: Activate your scene here.
-	if (pArgs != null)
-	{
-		if (pArgs->GetCount())
-		{
-			Tizen::Base::String *gameId = static_cast<Tizen::Base::String*>(pArgs->GetAt(0));
-			AppLog("[AchievementForm] Argument Received %S", gameId->GetPointer());
-			loadAchievements(this);
-		}
-		pArgs->RemoveAll(true);
-		delete pArgs;
-	}
-}
-
-void AchievementForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
-										   const Tizen::Ui::Scenes::SceneId& nextSceneId)
-{
-	// TODO: Deactivate your scene here.
-
-}
-
 void AchievementForm::loadAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList)
 {
 	ac_list = achievementList;
@@ -97,7 +62,7 @@ void AchievementForm::setAchievementList()
 	int posX = 330, posY = 430;
 
 	int completeCount = 0;
-	for(int i=0 ; i<ac_list->GetCount()*5 ; i++)
+	for(int i=0 ; i<ac_list->GetCount() ; i++)
 	{
 		GHAchievement *achievement = (GHAchievement*)(ac_list->GetAt(0));
 		Panel* pPanelAchievement = new ListPanel(*achievement);
@@ -114,7 +79,6 @@ void AchievementForm::setAchievementList()
 	titleStr.Append("개 중 ");
 	titleStr.Append(completeCount);
 	titleStr.Append("개 달성");
-//	AppLogDebug("[AchievementForm] %S", titleStr.GetPointer());
 
 	Label* pLabelTitle = static_cast<Label*>(GetControl(IDC_ACHIEVEMENT_LABEL_TITLE));
 	pLabelTitle->SetText(titleStr);
