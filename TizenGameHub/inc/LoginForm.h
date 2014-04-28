@@ -91,6 +91,8 @@ private:
 	virtual void onMatchTurnWait();
 	virtual void onMatchFinish(Tizen::Base::String data);
 
+	GHTurnbasedMatchController* controller;
+
 	void doLogin();
 	void login(Tizen::Base::String email, Tizen::Base::String pw);
 

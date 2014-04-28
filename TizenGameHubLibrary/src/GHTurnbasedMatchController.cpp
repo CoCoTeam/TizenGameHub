@@ -53,8 +53,20 @@ void GHTurnbasedMatchController::ReceiveData(ListenerType::Type flag, Tizen::Bas
 }
 
 //개발자에게 사용하라고 공개하는 함수 ///////////////////////////////////////////////////////////////////////////
-void GHTurnbasedMatchController::sendDataToPlayer(Tizen::Base::String data) {
-	this->SendData(data);
+void GHTurnbasedMatchController::sendDataToPlayer(String data, int isFinish) {
+	String jData = "{\"flag\":11,\"isFinish\":" + Integer::ToString(isFinish) + ",\"data\":\"" + data + "\"}";
+	//String jData = '{"flag":11, "isFinish":' + Integer::ToString(isFinish) + ', "data":' + data + '"}';
+	AppLogDebug("sendDataToPlayer");
+	AppLogDebug("sendDataToPlayer : %S", jData.GetPointer() );
+
+	this->SendData(jData);
+}
+
+void GHTurnbasedMatchController::readyForStart(){
+	String jData = "{\"flag\":10\}";
+	AppLogDebug("sendDataToPlayer : %S", jData.GetPointer() );
+
+	this->SendData(jData);
 }
 
 result

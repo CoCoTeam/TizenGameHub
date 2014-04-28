@@ -25,7 +25,6 @@ class LeaderboardRankForm
 {
 public:
 	LeaderboardRankForm();
-	LeaderboardRankForm(Tizen::Base::String leaderboardId);
 	virtual ~LeaderboardRankForm();
 	bool Initialize(void);
 
