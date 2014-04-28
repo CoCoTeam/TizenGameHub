@@ -42,6 +42,7 @@ void GHTurnbasedMatchController::ReceiveData(ListenerType::Type flag, Tizen::Bas
 		currentListener->onMatchTurnWait();
 		break;
 	case ListenerType::OnMatchFinish:
+		this->OnClose();
 		currentListener->onMatchFinish(data);
 		break;
 	default:
@@ -62,8 +63,8 @@ void GHTurnbasedMatchController::sendDataToPlayer(String data, int isFinish) {
 	this->SendData(jData);
 }
 
-void GHTurnbasedMatchController::readyForStart(){
-	String jData = "{\"flag\":10\}";
+void GHTurnbasedMatchController::readyForPlay(){
+	String jData = "{\"flag\":10}";
 	AppLogDebug("sendDataToPlayer : %S", jData.GetPointer() );
 
 	this->SendData(jData);

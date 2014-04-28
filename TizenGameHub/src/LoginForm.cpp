@@ -181,10 +181,12 @@ void LoginForm::onMatchConnect(){
 }
 void LoginForm::onMatchStart(){
 	AppLogDebug("[onMatchStart]callback success");
-	controller->sendDataToPlayer("aa  aa d", 0);
+	//controller->readyForPlay();
+	//controller->sendDataToPlayer("aa  aa d", 0);
 }
 void LoginForm::onMatchMyturn(String data){
 	AppLogDebug("[onMatchMyturn]callback success");
+	//controller->sendDataToPlayer("data haha", 1);
 }
 void LoginForm::onMatchTurnWait(){
 	AppLogDebug("[onMatchTurnWait]callback success");
