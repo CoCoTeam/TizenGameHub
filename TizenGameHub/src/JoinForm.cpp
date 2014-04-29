@@ -30,7 +30,7 @@ using namespace Tizen::System;
 using namespace Tizen::Graphics;*/
 #define DEFAULT_CROPPED_FILE_PATH (Tizen::App::App::GetInstance()->GetAppDataPath() + L"DefCropped.jpg")
 
-JoinForm::JoinForm() : __pCroppedBmp(null)
+JoinForm::JoinForm() : __pCroppedBmp(null), count(0)
 {
 	// TODO Auto-generated constructor stub
 }
@@ -72,11 +72,9 @@ JoinForm::OnInitializing(void)
 	pTextName = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_NAME));
 
 
-
-
-	pButtonGalleryEdit = static_cast< Button* >(GetControl(IDC_JOIN_GALLERY_EDIT));
+/*	pButtonGalleryEdit = static_cast< Button* >(GetControl(IDC_JOIN_GALLERY_EDIT));
 	pButtonGalleryEdit->SetActionId(IDA_BUTTON_GALLERY_EDIT);
-	pButtonGalleryEdit->AddActionEventListener(*this);
+	pButtonGalleryEdit->AddActionEventListener(*this);*/
 
 
 	return r;
@@ -105,7 +103,7 @@ JoinForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 	case IDA_BUTTON_CANCEL:
 		pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_OUT));
 		break;
-	case IDA_BUTTON_GALLERY_EDIT:
+/*	case IDA_BUTTON_GALLERY_EDIT:
 
 		CropForm *pCropForm = new CropForm();
 		pCropForm->Initialize();
@@ -119,7 +117,7 @@ JoinForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 			pCropForm->Show();
 		}
 
-		break;
+		break;*/
 	}
 
 }
@@ -190,6 +188,7 @@ JoinForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 	SceneManager* pSceneManager = SceneManager::GetInstance();
 	AppAssert(pSceneManager);
 	pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_OUT));
+
 }
 
 
@@ -214,6 +213,8 @@ JoinForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 				pButtonJoin->SetText( "Edit" );
 				pTextEmail->SetText("kichul");
 				pTextEmail->SetEnabled(false);
+
+
 
 				//pGalleryProfile->SetShowState(true);
 
@@ -354,13 +355,14 @@ JoinForm::OnDraw()
 
 	pGalleryProfile = static_cast< Gallery* >(GetControl(IDC_JOIN_GALLERY_PROFILE));
 
-	//pGalleryProfile->
-	//pGalleryProfile->SetShowState(false);
 	pGalleryProfile->SetItemProvider(*this);
+	pGalleryProfile->AddTouchEventListener(*this);
 
 	//이미지 전환
 	GalleryItem* pGallery = new GalleryItem();
     pGallery->Construct(*__ptempBitmap);
+
+    count = 0; // 터치 이벤트 재초기화
 
 	return E_SUCCESS;
 }
@@ -385,7 +387,8 @@ JoinForm::storeImageInternal(Bitmap *bitmap)
 			///////////////////////////////////////////////////////////////// 버퍼 ///////////////////////////////////////////////////////////////////
 
 
-			String filePath(Environment::GetMediaPath() + L"TempPicture");
+			//String filePath(Environment::GetMediaPath() + L"TempPicture");
+			String imagePath = CreateUniqueFileName();
 			File file;
 
 			int width = 0, height = 0;
@@ -400,7 +403,6 @@ JoinForm::storeImageInternal(Bitmap *bitmap)
 			Image img;
 			img.Construct();
 
-			String imagePath = CreateUniqueFileName();
 
 			// Get the image's size.
 		     width = __pCroppedBmp->GetWidth();
@@ -411,7 +413,7 @@ JoinForm::storeImageInternal(Bitmap *bitmap)
 		     pImageByteBuff = img.EncodeToBufferN(*__pCroppedBmp, IMG_FORMAT_JPG);
 
 			//파일 생성
-			r = file.Construct(filePath, "w+");
+			r = file.Construct(imagePath, "w+");
 
 			//파일에 바이트 쓰기
 			r = file.Write(*pImageByteBuff);
@@ -480,7 +482,10 @@ JoinForm::CreateUniqueFileName( void )
 	// System Current time is always unique, so the same has been used to create a unique name
 	DateTime currentTime ;
 	SystemTime::GetCurrentTime (WALL_TIME, currentTime);
-	String imagePath = Environment::GetMediaPath() + L"Images/";
+	String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
+	//String imagePath = Environment::GetMediaPath() + L"TempPicture/";
+	String imagePath = Environment::GetMediaPath() + L"Others/" + player_id + L"_";
+
 
 	imagePath.Append(currentTime.GetYear());
 	if(currentTime.GetMonth() < 10)
@@ -511,3 +516,62 @@ JoinForm::ShowMessageBox(const String& title, const String& message)
 	messageBox.Construct(title, message, MSGBOX_STYLE_OK, 3000);
 	messageBox.ShowAndWait(modalResult);
 }
+
+
+void
+JoinForm::OnTouchDoublePressed (const Tizen::Ui::Control &source,	const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)
+{
+
+}
+void
+JoinForm::OnTouchFocusIn (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)
+{
+
+}
+void
+JoinForm::OnTouchFocusOut (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)
+{
+
+}
+void
+JoinForm::OnTouchLongPressed (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)
+{
+
+}
+
+void
+JoinForm::OnTouchMoved (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)
+{
+
+}
+
+void
+JoinForm::OnTouchPressed (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)
+{
+
+    if(count < 1)
+    {
+		AppLogDebug("-----------------------------------------------------------111100000000000");
+
+		CropForm *pCropForm = new CropForm();
+		pCropForm->Initialize();
+		Frame *pFrame = Application::GetInstance()->GetAppFrame()->GetFrame();
+		if(pFrame)
+		{
+			pFrame->AddControl(*pCropForm);
+			pCropForm->SendUserEvent(CropForm::REQUEST_ID_DISPLAYIMAGE, null);
+			pFrame->SetCurrentForm(*pCropForm);
+			pCropForm->Draw();
+			pCropForm->Show();
+		}
+
+		count++;
+    }
+}
+
+void
+JoinForm::OnTouchReleased (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)
+{
+
+}
+

@@ -42,6 +42,7 @@ void GHTurnbasedMatchController::ReceiveData(ListenerType::Type flag, Tizen::Bas
 		currentListener->onMatchTurnWait();
 		break;
 	case ListenerType::OnMatchFinish:
+		this->OnClose();
 		currentListener->onMatchFinish(data);
 		break;
 	default:
