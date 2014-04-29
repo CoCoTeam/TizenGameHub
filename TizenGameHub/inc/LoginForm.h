@@ -86,7 +86,8 @@ private:
 	virtual void saveCloudsaveFinished(int statusCode);
 	virtual void loadCloudsaveFinished(Tizen::Base::String data);
 	virtual void onMatchConnect();
-	virtual void onMatchStart();
+	virtual void onMatchSetting();
+	virtual void onMatchStart(Tizen::Base::String data);
 	virtual void onMatchMyturn(Tizen::Base::String data);
 	virtual void onMatchTurnWait();
 	virtual void onMatchFinish(Tizen::Base::String data);

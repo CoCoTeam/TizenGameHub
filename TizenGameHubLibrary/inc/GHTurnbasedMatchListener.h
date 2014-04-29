@@ -16,7 +16,8 @@ public:
 	virtual ~GHTurnbasedMatchListener();
 
 	virtual void onMatchConnect()  = 0;
-	virtual void onMatchStart()    = 0;
+	virtual void onMatchSetting() = 0;
+	virtual void onMatchStart(Tizen::Base::String data)    = 0;
 	virtual void onMatchMyturn(Tizen::Base::String data)   = 0;
 	virtual void onMatchTurnWait() = 0;
 	virtual void onMatchFinish(Tizen::Base::String data)   = 0;
