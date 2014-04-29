@@ -93,7 +93,8 @@ private:
 
 	 Tizen::Graphics::Bitmap* CreateBitmapFromByteBufferN(Tizen::Base::ByteBuffer* pBuffer, const int& width, const int& height);
 
-
+	 //gallery
+	 Tizen::Ui::Controls::Gallery* pGalleryProfile;
 
 	 //ITouchEventListener
 	 virtual void  OnTouchDoublePressed (const Tizen::Ui::Control &source,	const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo);

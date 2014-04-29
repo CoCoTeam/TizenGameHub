@@ -71,6 +71,7 @@ JoinForm::OnInitializing(void)
 	pTextPwconfirm = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_PWCONFIRM));
 	pTextName = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_NAME));
 
+	pGalleryProfile = static_cast< Gallery* >(GetControl(IDC_JOIN_GALLERY_PROFILE));
 
 /*	pButtonGalleryEdit = static_cast< Button* >(GetControl(IDC_JOIN_GALLERY_EDIT));
 	pButtonGalleryEdit->SetActionId(IDA_BUTTON_GALLERY_EDIT);
@@ -214,9 +215,7 @@ JoinForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 				pTextEmail->SetText("kichul");
 				pTextEmail->SetEnabled(false);
 
-
-
-				//pGalleryProfile->SetShowState(true);
+				pGalleryProfile->SetShowState(true);
 
 				//!! pGalleryProfile->Set이미지
 			}
@@ -351,9 +350,8 @@ JoinForm::OnUserEventReceivedN(RequestId requestId, Tizen::Base::Collection::ILi
 result
 JoinForm::OnDraw()
 {
-	Tizen::Ui::Controls::Gallery* pGalleryProfile;
 
-	pGalleryProfile = static_cast< Gallery* >(GetControl(IDC_JOIN_GALLERY_PROFILE));
+	 Tizen::Ui::Controls::Gallery* pGalleryProfile;
 
 	pGalleryProfile->SetItemProvider(*this);
 	pGalleryProfile->AddTouchEventListener(*this);
@@ -422,6 +420,10 @@ JoinForm::storeImageInternal(Bitmap *bitmap)
 			AppLog("Successed.\n");
 
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+			//GHhttpClient* httpPost = new GHhttpClient();
+			//httpPost->RequestImageUpload(this, L"/ImageUploads", pImageByteBuff); // !!!! 이미지 업로드 url은 임시..
+
 
 			//////////////// 바이트를 다시 이미지로 변환
 			__ptempBitmap = CreateBitmapFromByteBufferN(pImageByteBuff, width, height);
