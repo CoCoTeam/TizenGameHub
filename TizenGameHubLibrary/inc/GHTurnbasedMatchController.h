@@ -38,7 +38,7 @@ public:
 	// class member function
 	virtual result connectSocketServer(Tizen::Base::String ipAddress, int port, GHTurnbasedMatchListener* listener);
 	virtual void sendDataToPlayer(Tizen::Base::String data, int isFinish);
-	virtual void readyForStart();
+	virtual void readyForPlay();
 
 private:
 	GHTurnbasedMatchListener* currentListener;

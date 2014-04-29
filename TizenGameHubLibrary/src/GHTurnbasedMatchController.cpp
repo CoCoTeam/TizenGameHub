@@ -62,8 +62,8 @@ void GHTurnbasedMatchController::sendDataToPlayer(String data, int isFinish) {
 	this->SendData(jData);
 }
 
-void GHTurnbasedMatchController::readyForStart(){
-	String jData = "{\"flag\":10\}";
+void GHTurnbasedMatchController::readyForPlay(){
+	String jData = "{\"flag\":10}";
 	AppLogDebug("sendDataToPlayer : %S", jData.GetPointer() );
 
 	this->SendData(jData);
