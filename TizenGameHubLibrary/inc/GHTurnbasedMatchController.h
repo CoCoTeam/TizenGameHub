@@ -42,6 +42,7 @@ public:
 
 private:
 	GHTurnbasedMatchListener* currentListener;
+	Tizen::Ui::Controls::ProgressPopup* pProgressPopup;
 };
 
 #endif /* GHTurnBasedMatchController_H_ */

@@ -25,16 +25,6 @@ DataThread::Construct(Form* pForm,int threadid)
 
 }
 
-/*result
-DataThread::Construct(Form* pForm)
-{
-	__pForm = pForm;
-	setlive(true);
-
-   return Thread::Construct(THREAD_TYPE_EVENT_DRIVEN);
-
-}*/
-
 //Start()  => OnStart()
 bool
 DataThread::OnStart(void)
@@ -53,21 +43,6 @@ DataThread::OnStop(void)
 	AppLog("OnStop");
 	__pTimer->Cancel();
 
-/*	ArrayList* pList = new ArrayList();
-
-	DATAINFO* pInfo = new DATAINFO();
-	pList->Add(*pInfo);
-	if(pInfo)
-	{
-		pInfo->threadid = __threadid;
-		pInfo->percent = 0;
-
-	}
-	if(__pForm)
-	{
-		__pForm->SendUserEvent(200,pList);
-	}*/
-
 	//delete this;
 }
 
@@ -84,33 +59,6 @@ DataThread::Work()
 		this->Stop();
 		return;
 	}
-
-	//ArrayList* pList = new ArrayList();
-
-	//DATAINFO* pInfo = new DATAINFO();
-	//pList->Add(*pInfo);
-	/*if(pInfo)
-	{
-		__percent++;
-
-		pInfo->threadid = __threadid;
-		pInfo->percent = __percent;
-
-		if(__percent > 20)
-		{
-			AppLog("Stop because 100");
-			this->Stop();
-			return;
-		}
-	}*/
-
-
-/*	if(__islive == false)
-	{
-		AppLog("Stop because 20");
-		this->Stop();
-		return;
-	}*/
 
 	//Send Data to Form1
 	if(__pForm)

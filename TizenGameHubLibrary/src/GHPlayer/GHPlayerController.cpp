@@ -14,15 +14,23 @@ using namespace Tizen::Base::Collection;
 using namespace Tizen::Net::Http;
 using namespace Tizen::Web::Json;
 
-GHPlayerController::GHPlayerController() {
+GHPlayerController::GHPlayerController()
+{
 	// TODO Auto-generated constructor stub
 	pProgressPopup = new (std::nothrow) Tizen::Ui::Controls::ProgressPopup();
-	pProgressPopup->Construct(false, false);
+	pProgressPopup->Construct(true, false);
 }
 
 GHPlayerController::~GHPlayerController() {
 	// TODO Auto-generated destructor stub
 	delete pProgressPopup;
+}
+bool GHPlayerController::isLogin(){
+	String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
+	if(player_id == "") {
+		return false;
+	}
+	return true;
 }
 
 // 사용자 로그인 팝업 생성
@@ -117,7 +125,13 @@ void GHPlayerController::getPlayerData(Tizen::Base::String playerId, GHPlayerLis
 }
 
 // 사용자 로그아웃
-
+void GHPlayerController::playerLogout()
+{
+	// Save AppRegistry Data(Email, Password)----------
+	appReg.put(appReg.email, String(""));
+	appReg.put(appReg.pwd, String(""));
+	//------------------------------------------------
+}
 
 // 특정 게임에 사용자 등록하기(게임가입)
 void GHPlayerController::playerJoinToGame(Tizen::Base::String playerId, Tizen::Base::String gameId)
@@ -166,6 +180,7 @@ void GHPlayerController::OnTransactionReadyToRead(Tizen::Base::String apiCode, T
 			appReg.put(appReg.email, playerEmail);
 			appReg.put(appReg.pwd, playerPwd);
 			//------------------------------------------------
+
 			GHSharedAuthData & sharedInstance = GHSharedAuthData::getSharedInstance();
 			sharedInstance.setPlayerId(statusCode);
 

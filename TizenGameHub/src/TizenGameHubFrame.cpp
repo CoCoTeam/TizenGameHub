@@ -30,7 +30,7 @@ const wchar_t* SCENE_LEADERBOARDRANK = L"LeaderboardSceneRank";
 result
 TizenGameHubFrame::OnInitializing(void)
 {
-	//set sharedInstance
+	//Set sharedInstance
 	GHSharedAuthData & sharedInstance = GHSharedAuthData::getSharedInstance();
 	sharedInstance.setGameId("key_aa");
 

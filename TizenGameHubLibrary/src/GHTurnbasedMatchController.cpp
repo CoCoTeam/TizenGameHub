@@ -13,7 +13,8 @@ using namespace Tizen::Net::Sockets;
 
 GHTurnbasedMatchController::GHTurnbasedMatchController() {
 	// TODO Auto-generated constructor stub
-
+	pProgressPopup = new (std::nothrow) Tizen::Ui::Controls::ProgressPopup();
+	pProgressPopup->Construct(true, false);
 }
 
 GHTurnbasedMatchController::~GHTurnbasedMatchController() {
@@ -26,6 +27,12 @@ GHTurnbasedMatchController::OnSocketConnected(Socket& socket)
 {
 	GHSocket::OnSocketConnected(socket);
 	currentListener->onMatchConnect();
+
+	// progress Popup 생성
+	pProgressPopup->SetTitleText(L"Multiplay");
+	pProgressPopup->SetText(L"다른 사용자의 접속을 기다립니다.");
+	pProgressPopup->SetShowState(true);
+	pProgressPopup->Show();
 }
 
 //데이터 수신시 호출
@@ -34,6 +41,7 @@ void GHTurnbasedMatchController::ReceiveData(ListenerType::Type flag, Tizen::Bas
 	switch(flag) {
 	case ListenerType::OnMatchStart:
 		currentListener->onMatchStart();
+		pProgressPopup->SetShowState(false);
 		break;
 	case ListenerType::OnMatchTurnMy:
 		currentListener->onMatchMyturn(data);

@@ -179,14 +179,18 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 void LoginForm::onMatchConnect(){
 	AppLogDebug("[onMatchConnect]callback success");
 }
-void LoginForm::onMatchStart(){
+void LoginForm::onMatchSetting(){
+	AppLogDebug("[onMatchSetting]callback success");
+	controller->sendDataToSetting("setting data");
+}
+void LoginForm::onMatchStart(String data){
 	AppLogDebug("[onMatchStart]callback success");
-	//controller->readyForPlay();
-	//controller->sendDataToPlayer("aa  aa d", 0);
+	AppLogDebug("[DEBUG] onMatchStart data : %S", data.GetPointer() );
+	controller->readyForPlay();
 }
 void LoginForm::onMatchMyturn(String data){
 	AppLogDebug("[onMatchMyturn]callback success");
-	//controller->sendDataToPlayer("data haha", 1);
+	controller->sendDataToPlayer("data haha", 1);
 }
 void LoginForm::onMatchTurnWait(){
 	AppLogDebug("[onMatchTurnWait]callback success");
