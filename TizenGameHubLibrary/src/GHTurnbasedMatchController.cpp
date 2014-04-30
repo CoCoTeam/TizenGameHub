@@ -31,6 +31,9 @@ GHTurnbasedMatchController::OnSocketConnected(Socket& socket)
 //데이터 수신시 호출
 void GHTurnbasedMatchController::ReceiveData(ListenerType::Type flag, Tizen::Base::String data){
 
+	AppLogDebug("[Socket] respose flag: %d", flag);
+	AppLogDebug("[Socket] respose data : %S", data.GetPointer());
+
 	switch(flag) {
 	case ListenerType::onMatchSetting:
 		currentListener->onMatchSetting();
@@ -51,9 +54,6 @@ void GHTurnbasedMatchController::ReceiveData(ListenerType::Type flag, Tizen::Bas
 	default:
 		break;
 	}
-
-	AppLogDebug("[Socket] respose flag: %d", flag);
-	AppLogDebug("[Socket] respose data : %S", data.GetPointer());
 }
 
 
@@ -61,7 +61,6 @@ void GHTurnbasedMatchController::ReceiveData(ListenerType::Type flag, Tizen::Bas
 
 void GHTurnbasedMatchController::sendDataToSetting(String data) {
 	String jData = "{\"flag\":12, \"data\":\"" + data + "\"}";
-	//String jData = '{"flag":11, "isFinish":' + Integer::ToString(isFinish) + ', "data":' + data + '"}';
 	AppLogDebug("sendDataToSetting");
 	AppLogDebug("sendDataToSetting : %S", jData.GetPointer() );
 
