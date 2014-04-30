@@ -197,6 +197,7 @@ void LoginForm::onMatchTurnWait(){
 }
 void LoginForm::onMatchFinish(String data){
 	AppLogDebug("[onMatchFinish]callback success");
+
 }
 
 void LoginForm::saveCloudsaveFinished(int statusCode){
