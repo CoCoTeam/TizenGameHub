@@ -24,6 +24,11 @@
 #include "GHAchievement/GHAchievementController.h"
 
 
+
+const Tizen::Base::String IMAGE_UPLOAD = "00";
+const Tizen::Base::String PLAYER_JOIN = "01";
+const Tizen::Base::String PLAYER_MODIFY = "03";
+
 /*
 #include "GHPlayer/GHPlayerController.h"
 #include "GHPlayer/GHPlayerLoggedinListener.h"
@@ -110,6 +115,7 @@ private:
 
 	 //touch event 제한
 	 int count;
+	 Tizen::Base::String simg_url;  //img_url 저장
 
 	 // IHttpProgressEventListener
      virtual void OnHttpDownloadInProgress(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction, long long currentLength, long long totalLength);
