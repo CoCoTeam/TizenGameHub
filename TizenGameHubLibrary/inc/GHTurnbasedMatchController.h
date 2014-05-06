@@ -12,6 +12,7 @@
 #include "GHTurnbasedMatchListener.h"
 
 /*
+0. onMatchInit = 5;
 1. onMatchStart = 1;
 2. onMatchTurnMy = 2;
 3. onMatchTurnWait = 3;
@@ -37,6 +38,7 @@ public:
 
 	// class member function
 	virtual result connectSocketServer(Tizen::Base::String ipAddress, int port, GHTurnbasedMatchListener* listener);
+	virtual void sendDataToSetting(Tizen::Base::String data);
 	virtual void sendDataToPlayer(Tizen::Base::String data, int isFinish);
 	virtual void readyForPlay();
 

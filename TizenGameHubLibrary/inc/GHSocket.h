@@ -18,7 +18,8 @@ namespace ListenerType{
 		OnMatchStart = 1,
 		OnMatchTurnMy,
 		OnMatchTurnWait,
-		OnMatchFinish
+		OnMatchFinish,
+		onMatchSetting
 	};
 }
 

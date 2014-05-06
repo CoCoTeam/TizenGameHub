@@ -36,6 +36,7 @@ class JoinForm
 	, public Tizen::Ui::Scenes::ISceneEventListener
 	, public GHController
     , public Tizen::Ui::Controls::IGalleryItemProvider
+    , public Tizen::Ui::ITouchEventListener
 
 {
 public:
@@ -49,7 +50,7 @@ private:
 	Tizen::Ui::Controls::EditField *pTextEmail, *pTextPw, *pTextPwconfirm, *pTextName;
 	Tizen::Ui::Controls::Button* pButtonJoin;
 
-	Tizen::Ui::Controls::Button* pButtonGalleryEdit;
+	//Tizen::Ui::Controls::Button* pButtonGalleryEdit;
 
 	Tizen::Base::Boolean *isPlayerJoin;		//가입하는 시퀀스(true:가입, false:수정)
 
@@ -91,6 +92,28 @@ private:
 	 virtual int GetItemCount(void);
 
 	 Tizen::Graphics::Bitmap* CreateBitmapFromByteBufferN(Tizen::Base::ByteBuffer* pBuffer, const int& width, const int& height);
+
+	 //gallery
+	 Tizen::Ui::Controls::Gallery* pGalleryProfile;
+
+	 //ITouchEventListener
+	 virtual void  OnTouchDoublePressed (const Tizen::Ui::Control &source,	const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo);
+	 virtual void  OnTouchFocusIn (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo);
+	 virtual void  OnTouchFocusOut (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo);
+	 virtual void  OnTouchLongPressed (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo);
+	 virtual void  OnTouchMoved (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo);
+	 virtual void  OnTouchPressed (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo);
+	 virtual void  OnTouchReleased (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo);
+
+	 //touch event 제한
+	 int count;
+
+	/* virtual void 	OnTouchCanceled (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo);
+	 virtual void 	OnTouchFocusIn (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)=0;
+	 virtual void 	OnTouchFocusOut (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)=0;
+	 virtual void 	OnTouchMoved (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)=0;
+	 virtual void 	OnTouchPressed (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)=0;
+	 virtual void 	OnTouchReleased (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)=0;*/
 };
 
 #endif /* JOINFORM_H_ */

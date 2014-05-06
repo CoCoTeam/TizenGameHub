@@ -38,9 +38,15 @@ GHTurnbasedMatchController::OnSocketConnected(Socket& socket)
 //데이터 수신시 호출
 void GHTurnbasedMatchController::ReceiveData(ListenerType::Type flag, Tizen::Base::String data){
 
+	AppLogDebug("[Socket] respose flag: %d", flag);
+	AppLogDebug("[Socket] respose data : %S", data.GetPointer());
+
 	switch(flag) {
+	case ListenerType::onMatchSetting:
+		currentListener->onMatchSetting();
+		break;
 	case ListenerType::OnMatchStart:
-		currentListener->onMatchStart();
+		currentListener->onMatchStart(data);
 		pProgressPopup->SetShowState(false);
 		break;
 	case ListenerType::OnMatchTurnMy:
@@ -56,12 +62,19 @@ void GHTurnbasedMatchController::ReceiveData(ListenerType::Type flag, Tizen::Bas
 	default:
 		break;
 	}
-
-	AppLogDebug("[Socket] respose flag: %d", flag);
-	AppLogDebug("[Socket] respose data : %S", data.GetPointer());
 }
 
+
 //개발자에게 사용하라고 공개하는 함수 ///////////////////////////////////////////////////////////////////////////
+
+void GHTurnbasedMatchController::sendDataToSetting(String data) {
+	String jData = "{\"flag\":12, \"data\":\"" + data + "\"}";
+	AppLogDebug("sendDataToSetting");
+	AppLogDebug("sendDataToSetting : %S", jData.GetPointer() );
+
+	this->SendData(jData);
+}
+
 void GHTurnbasedMatchController::sendDataToPlayer(String data, int isFinish) {
 	String jData = "{\"flag\":11,\"isFinish\":" + Integer::ToString(isFinish) + ",\"data\":\"" + data + "\"}";
 	//String jData = '{"flag":11, "isFinish":' + Integer::ToString(isFinish) + ', "data":' + data + '"}';
