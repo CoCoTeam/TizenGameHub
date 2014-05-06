@@ -4,11 +4,11 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>mA+omu47X+lKiFJIpukoGIrpFDFg/9+LVDNK5kEOQYA=</DigestValue>
+<DigestValue>FceLdBs95GPTVevfiaKtyilBFXytwIZrkBwztiqg7lQ=</DigestValue>
 </Reference>
 <Reference URI="bin/ThreadUI.exe">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>bCVP/TajyjDS5UT1Y2PAMG7McHrFcGrDu7xmJKqCJf8=</DigestValue>
+<DigestValue>2gqOjvHUSQkr2YBgjAme0qCjyvJmu46dNmvBTQ+JzXU=</DigestValue>
 </Reference>
 <Reference URI="info/manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -16,11 +16,11 @@
 </Reference>
 <Reference URI="lib/libTizenGameHubLibrary.so">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>A/rOgiZcsOJulhvbwGRe4TGTPnZW+fM8+v2Kw4sYsj0=</DigestValue>
+<DigestValue>SbW/04RfaA1g8k7nyXTohx/CBFB/P8I1oNr5bYt2izM=</DigestValue>
 </Reference>
 <Reference URI="res/eng-GB.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>5AOtfuSjPltshQSHkmXiL+fhYiccaGETodjc8lHFc+o=</DigestValue>
+<DigestValue>yMuebTpeQuv6qFatqneDsZeF4Iv5QMkkKZXOt/Z0doc=</DigestValue>
 </Reference>
 <Reference URI="res/icon.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -68,11 +68,11 @@
 </Reference>
 <Reference URI="res/screen-size-normal/GameMain.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>f/bn7J0DttCpG+QDhn+buSOIzJb+xMqoZUafJBd51sw=</DigestValue>
+<DigestValue>oJUCA/6OSyU3aqwADoQpQ3YD0mggYHD3FgjGWW0JN3Q=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/GameMain2.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>f/bn7J0DttCpG+QDhn+buSOIzJb+xMqoZUafJBd51sw=</DigestValue>
+<DigestValue>oJUCA/6OSyU3aqwADoQpQ3YD0mggYHD3FgjGWW0JN3Q=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/GameSelect.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -80,7 +80,7 @@
 </Reference>
 <Reference URI="res/screen-size-normal/IDF_POPUP.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>EaLq3L7eBtfGExMH4Qh8qFVkdVAzVc3TlQO6IJ1SR5A=</DigestValue>
+<DigestValue>q9pEOW6BolP7tZavG6xCqFSZ69m65b3Dse5dnuVUW3g=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM_ACHIEVEMENT.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -92,15 +92,15 @@
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM_LEADERBOARDRANK.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>o6rCwPuNhJbPEjZIX8BiZE7UdO8ETe/EySp8n6N3tMI=</DigestValue>
+<DigestValue>KSkEDlU/lhbennCaqAQhtiYHYMv5lQ/X0mn/m2TAJH0=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_PANEL_LISTPANEL.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>XNqX54sHSE/nWGPeYmxBXJW4vDhW+Cdrz7comcPxI4o=</DigestValue>
+<DigestValue>lXN1HFteCvMW79u9FnEf8ceZu7VtP6GLJVA51VYQoEc=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/Ranking.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>hhXWjxz1pJ1PxT/3w7pXuib4GmdAFxH9mC56Qd0ynxE=</DigestValue>
+<DigestValue>IGl1dIqJ+BJQhJtnzM3dq0rQW2yzqcfdcyBlgtBEJxE=</DigestValue>
 </Reference>
 <Reference URI="shared/res/screen-density-xhigh/mainmenu.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -115,9 +115,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-l3cOKJHQ9deoRKialrcGmUadq1HS0kBby11o6Y0pEK2cVOhzL9yDWEX2lNUyl73P+4gmTrvbsfBi
-kDtfV2DvCrQTyUrsmPnWv35GYE5Q5nXkZZSoZ/s2voftbexxTmAynFk/F2Uw/JaHf6CS/a/i/OBR
-tLUZqonZ40Pv+I62KEA=
+DX8Ex0dE4eX4aY3Tuphku2jj7SJI8VlqLezaj+/WXnL0mXiYpnoyO2lLdGOw3PG5nWNcV/ei9ZgN
+qhi97jCd1Yyi5LTx/b1Mtka5ceUh/RL9ARrMcuk9KOTapEfCdNKOlE/YvAlHn01IYMV0rC8ytOEf
+iK4vyA1TtQM1rlbn0LM=
 </SignatureValue>
 <KeyInfo>
 <X509Data>

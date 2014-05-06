@@ -72,10 +72,8 @@ JoinForm::OnInitializing(void)
 	pTextName = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_NAME));
 
 	pGalleryProfile = static_cast< Gallery* >(GetControl(IDC_JOIN_GALLERY_PROFILE));
-
-/*	pButtonGalleryEdit = static_cast< Button* >(GetControl(IDC_JOIN_GALLERY_EDIT));
-	pButtonGalleryEdit->SetActionId(IDA_BUTTON_GALLERY_EDIT);
-	pButtonGalleryEdit->AddActionEventListener(*this);*/
+	pGalleryProfile->SetItemProvider(*this);
+	pGalleryProfile->AddTouchEventListener(*this);
 
 
 	return r;
@@ -104,21 +102,6 @@ JoinForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 	case IDA_BUTTON_CANCEL:
 		pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_OUT));
 		break;
-/*	case IDA_BUTTON_GALLERY_EDIT:
-
-		CropForm *pCropForm = new CropForm();
-		pCropForm->Initialize();
-		Frame *pFrame = Application::GetInstance()->GetAppFrame()->GetFrame();
-		if(pFrame)
-		{
-			pFrame->AddControl(*pCropForm);
-			pCropForm->SendUserEvent(CropForm::REQUEST_ID_DISPLAYIMAGE, null);
-			pFrame->SetCurrentForm(*pCropForm);
-			pCropForm->Draw();
-			pCropForm->Show();
-		}
-
-		break;*/
 	}
 
 }
@@ -136,6 +119,7 @@ JoinForm::doJoin()
 	String strPwconfirm = pTextPwconfirm->GetText();
 	String strName = pTextName->GetText();
 
+
 	if(strEmail == null || strPw == null || strPwconfirm == null || strName == null)
 	{
 		msgBox.Construct(L"Join", L"빈칸을 채워주세요.", MSGBOX_STYLE_OK);
@@ -149,7 +133,6 @@ JoinForm::doJoin()
 	else
 	{
 		if( isPlayerJoin->ToBool() ) {
-
 
 			GHhttpClient* httpPost = new GHhttpClient();
 
@@ -176,6 +159,9 @@ JoinForm::doJoin()
 
 			__pMap->Add(new String("pwd"), new String(strPw));
 			__pMap->Add(new String("name"), new String(strName));
+			__pMap->Add(new String("img_url"), new String(simg_url));
+
+			AppLog("simg_url put : %s",simg_url.GetPointer());
 
 			httpPost->RequestHttpPutTran(this, url, __pMap);
 		}
@@ -219,6 +205,10 @@ JoinForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 
 				//!! pGalleryProfile->Set이미지
 			}
+			else
+			{
+				pGalleryProfile->SetEnabled(false);
+			}
 
 		}
 		pArgs->RemoveAll(true);
@@ -261,7 +251,6 @@ JoinForm::GetItemCount(void)
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
 void
 JoinForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
 										   const Tizen::Ui::Scenes::SceneId& nextSceneId)
@@ -272,49 +261,76 @@ JoinForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
 
 void JoinForm::OnTransactionReadyToRead(String apiCode, String statusCode,IJsonValue* data)
 {
-//	JsonObject* pJsonObj = static_cast<JsonObject*>(data);
-//
-//	// reveal TEST /////////////////////////////////////////////////////////
-//	//JsonArray* pJsonArray = static_cast<JsonArray*>(data);
-//	String* pStrFNKey      = new String(L"statusCode");
-//	IJsonValue* pObjValue = null;
-//	pJsonObj->GetValue(pStrFNKey, pObjValue);
-//	JsonString* pJsonStr = static_cast<JsonString*>(pObjValue);
-//	AppLogDebug("value : %S", pJsonStr->GetPointer());
-//
-//	//JsonNumber* pJsonStr = static_cast<JsonNumber*>(pObjValue);
-//	AppLogDebug("value : %d", pJsonStr->ToInt());
-//	///////////////////////////////////////////////////////////////////
-//	//형변환
-//	String zString(pJsonStr->GetPointer());
-
-	//AppLogDebug("value : %s", statusCode->GetPointer());
-
-	MessageBox msgBox;
-	int modalResult;
-
-	SceneManager* pSceneManager = SceneManager::GetInstance();
-	AppAssert(pSceneManager);
-
-
-	if(statusCode ==  "0")	// 로그인 실패
+	if(apiCode.Equals(PLAYER_JOIN))
 	{
-		AppLog("fail");
-		msgBox.Construct(L"Join", L"Join fail", MSGBOX_STYLE_OK);
-		msgBox.ShowAndWait(modalResult);
+		MessageBox msgBox;
+		int modalResult;
+
+		SceneManager* pSceneManager = SceneManager::GetInstance();
+		AppAssert(pSceneManager);
+
+		if(statusCode ==  "0")	// (가입 실패)
+		{
+			AppLog("PLAYER_JOIN fail");
+			msgBox.Construct(L"Join", L"Join fail", MSGBOX_STYLE_OK);
+			msgBox.ShowAndWait(modalResult);
+		}
+		else if(statusCode == "1")	// (가입 성공)
+		{
+			AppLog("PLAYER_JOIN success");
+			pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_OUT));
+		}
+		else if(statusCode == "2")  // (가입 중복)
+		{
+			msgBox.Construct(L"Join", L"Join 중복", MSGBOX_STYLE_OK);
+			msgBox.ShowAndWait(modalResult);
+		}
 	}
-/*	else if(statusCode == "2")
+	else if(apiCode.Equals(IMAGE_UPLOAD))
 	{
-		msgBox.Construct(L"Join", L"Join 중복", MSGBOX_STYLE_OK);
-		msgBox.ShowAndWait(modalResult);
-	}*/
-	else	// (가입 성공 시)
+		if(statusCode ==  "0")	// (이미지 업로드 실패)
+		{
+			AppLog("IMAGE_UPLOAD fail");
+		}
+		else if(statusCode == "1")	// (이미지 업로드 성공)
+		{
+			AppLog("IMAGE_UPLOAD success");
+
+			JsonObject *pJsonOject 	= static_cast<JsonObject*>(data);
+
+			String* img_url	= new String(L"img_url");
+			simg_url= getStringByKey(pJsonOject, img_url);
+
+			AppLog("simg_url : %s", simg_url.GetPointer());
+		}
+	}
+	else if(apiCode.Equals(PLAYER_MODIFY))
 	{
-		AppLog("success");
-		pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_OUT));
+		if(statusCode ==  "0")	// (정보 수정 실패)
+		{
+			AppLog("PLAYER_MODIFY fail");
+		}
+		else if(statusCode == "1")	// (정보 수정 성공)
+		{
+			AppLog("PLAYER_MODIFY success");
+		}
 	}
 }
 
+void
+JoinForm::OnTransactionCompleted(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction)
+{
+
+	 AppLog("success");
+
+	 Tizen::Net::Http::HttpMultipartEntity* pMultipartEntity = static_cast< Tizen::Net::Http::HttpMultipartEntity* >(httpTransaction.GetUserObject());
+
+	 if (pMultipartEntity)
+	      delete pMultipartEntity;
+
+	 delete &httpTransaction;
+
+}
 //CROP IMAGE
 void
 JoinForm::OnUserEventReceivedN(RequestId requestId, Tizen::Base::Collection::IList* pArgs)
@@ -337,11 +353,9 @@ JoinForm::OnUserEventReceivedN(RequestId requestId, Tizen::Base::Collection::ILi
 		else
 			__pCroppedBmp = img.DecodeN(DEFAULT_CROPPED_FILE_PATH, BITMAP_PIXEL_FORMAT_RGB565);
 
-		//__rcCropDisplay.width = __pCroppedBmp->GetWidth();
-		//__rcCropDisplay.height = __pCroppedBmp->GetHeight();
-
 
 		RequestRedraw();
+		//AppLogDebug("------------------crop image set----------------");
 		storeImageInternal(__pCroppedBmp);
 		//saveImage();
 	}
@@ -351,14 +365,13 @@ result
 JoinForm::OnDraw()
 {
 
-	 Tizen::Ui::Controls::Gallery* pGalleryProfile;
+	pGalleryProfile->RefreshGallery(0,GALLERY_REFRESH_TYPE_ITEM_MODIFY);
 
-	pGalleryProfile->SetItemProvider(*this);
-	pGalleryProfile->AddTouchEventListener(*this);
+	AppLogDebug("---------------------Redraw-----------------");
 
 	//이미지 전환
-	GalleryItem* pGallery = new GalleryItem();
-    pGallery->Construct(*__ptempBitmap);
+	/*GalleryItem* pGallery = new GalleryItem();
+    pGallery->Construct(*__ptempBitmap);*/
 
     count = 0; // 터치 이벤트 재초기화
 
@@ -382,11 +395,11 @@ JoinForm::storeImageInternal(Bitmap *bitmap)
 			AppLog("22222");
 
 			result r ;
+
 			///////////////////////////////////////////////////////////////// 버퍼 ///////////////////////////////////////////////////////////////////
-
-
 			//String filePath(Environment::GetMediaPath() + L"TempPicture");
-			String imagePath = CreateUniqueFileName();
+			//String imagePath = CreateUniqueFileName();
+
 			File file;
 
 			int width = 0, height = 0;
@@ -401,7 +414,6 @@ JoinForm::storeImageInternal(Bitmap *bitmap)
 			Image img;
 			img.Construct();
 
-
 			// Get the image's size.
 		     width = __pCroppedBmp->GetWidth();
 		     height = __pCroppedBmp->GetHeight();
@@ -411,7 +423,7 @@ JoinForm::storeImageInternal(Bitmap *bitmap)
 		     pImageByteBuff = img.EncodeToBufferN(*__pCroppedBmp, IMG_FORMAT_JPG);
 
 			//파일 생성
-			r = file.Construct(imagePath, "w+");
+			r = file.Construct(USER_CROPPED_FILE_PATH, "w+");
 
 			//파일에 바이트 쓰기
 			r = file.Write(*pImageByteBuff);
@@ -421,73 +433,32 @@ JoinForm::storeImageInternal(Bitmap *bitmap)
 
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			//GHhttpClient* httpPost = new GHhttpClient();
-			//httpPost->RequestImageUpload(this, L"/ImageUploads", pImageByteBuff); // !!!! 이미지 업로드 url은 임시..
-
-
 			//////////////// 바이트를 다시 이미지로 변환
 			__ptempBitmap = CreateBitmapFromByteBufferN(pImageByteBuff, width, height);
 
-
-/*			AppLog("22222");
-
-			//바이트 버퍼////////////////////////////wq////////////////////////////////////////////////
-			ByteBuffer* pTempByteBuff = null;
-			pTempByteBuff = new (std::nothrow) ByteBuffer;
-
-			pTempByteBuff->SetByte();
-			TryCatch(pTempByteBuff != null, ,"pResizeByteBuffer is null, no memory");
-			////////////////////////////////////////////////////////////////////////////////////
-
-			AppLog("-------------------------check---------------------");
-
-			File *pFile;
-			pFile = new (std::nothrow) File;
-			r = pFile->Construct(imagePath, L"w", true);
-			r = pFile->Write(*pTempByteBuff);
-
-			pFile->Flush();
-
-			AppLog("-------------------------check2------------------");
-
-			//r = pFile->Read(*pTempByteBuff);
-
-			if(IsFailed(r))
-			{
-				AppLog("pTempImageByteBuff %s \n", GetErrorMessage(r));
-				ShowMessageBox(L"Error", strError);
-				return;
-			}
-
-			AppLog("-------------------------check3------------------");
-			//r = pFile->Write(pTempImageByteBuff);    //버퍼에 씀
-
-			CATCH:
-				return;
-			//
-			File copyFile = filePath;
-			BufferedOutputStream out = null;
-
-			try {
-				copyFile.createNewFile();
-				out = new BufferedOutputStream(new FileOutputStream(copyFile));
-				bitmap.compress(CompressFormat.JPEG, 100, out);
-				out.flush();
-				out.close();
-				*/
-
+			//서버에 보내기
+			GHhttpClient* httpPost = new GHhttpClient();
+			httpPost->RequestImageUpload(this, this, L"/players/imageupload", pImageByteBuff);
 }
+
 
 String
 JoinForm::CreateUniqueFileName( void )
 {
+	AppLog("-------------------------check3------------------");
+
 	// System Current time is always unique, so the same has been used to create a unique name
 	DateTime currentTime ;
 	SystemTime::GetCurrentTime (WALL_TIME, currentTime);
 	String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
 	//String imagePath = Environment::GetMediaPath() + L"TempPicture/";
-	String imagePath = Environment::GetMediaPath() + L"Others/" + player_id + L"_";
+	//String imagePath = Environment::GetMediaPath() + L"Others/" + player_id + L"_";
+	//String imagePath = Tizen::App::App::GetInstance()->GetAppRootPath() +L"Images/";
 
+
+	String imagePath = Tizen::App::App::GetInstance()->GetAppRootPath();
+
+	AppLog("%S", imagePath.GetPointer());
 
 	imagePath.Append(currentTime.GetYear());
 	if(currentTime.GetMonth() < 10)
@@ -507,6 +478,10 @@ JoinForm::CreateUniqueFileName( void )
 	imagePath.Append(currentTime.GetSecond());
 
 	imagePath.Append(L".jpg");
+
+	AppLog("%S", imagePath.GetPointer());
+	//AppLog("%S", imagePath2.GetPointer());
+
 	return imagePath;
 }
 
@@ -521,30 +496,15 @@ JoinForm::ShowMessageBox(const String& title, const String& message)
 
 
 void
-JoinForm::OnTouchDoublePressed (const Tizen::Ui::Control &source,	const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)
+JoinForm::OnHttpDownloadInProgress(Tizen::Net::Http::HttpSession& httpSession,Tizen::Net::Http::HttpTransaction& httpTransaction, long long currentLength, long long totalLength)
 {
-
-}
-void
-JoinForm::OnTouchFocusIn (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)
-{
-
-}
-void
-JoinForm::OnTouchFocusOut (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)
-{
-
-}
-void
-JoinForm::OnTouchLongPressed (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)
-{
-
+   AppLog("---Upload Current Bytes: %lld, Total Bytes: %lld---", currentLength, totalLength);
 }
 
 void
-JoinForm::OnTouchMoved (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)
+JoinForm::OnHttpUploadInProgress(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction, long long currentLength, long long totalLength)
 {
-
+   AppLog("---Upload Current Bytes: %lld, Total Bytes: %lld---", currentLength, totalLength);
 }
 
 void
@@ -572,8 +532,34 @@ JoinForm::OnTouchPressed (const Tizen::Ui::Control &source, const Tizen::Graphic
 }
 
 void
+JoinForm::OnTouchDoublePressed (const Tizen::Ui::Control &source,	const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)
+{
+
+}
+void
+JoinForm::OnTouchFocusIn (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)
+{
+
+}
+void
+JoinForm::OnTouchFocusOut (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)
+{
+
+}
+void
+JoinForm::OnTouchLongPressed (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)
+{
+
+}
+void
+JoinForm::OnTouchMoved (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)
+{
+
+}
+void
 JoinForm::OnTouchReleased (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)
 {
 
 }
+
 

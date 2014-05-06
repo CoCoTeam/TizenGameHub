@@ -24,6 +24,11 @@
 #include "GHAchievement/GHAchievementController.h"
 
 
+
+const Tizen::Base::String IMAGE_UPLOAD = "00";
+const Tizen::Base::String PLAYER_JOIN = "01";
+const Tizen::Base::String PLAYER_MODIFY = "03";
+
 /*
 #include "GHPlayer/GHPlayerController.h"
 #include "GHPlayer/GHPlayerLoggedinListener.h"
@@ -37,6 +42,7 @@ class JoinForm
 	, public GHController
     , public Tizen::Ui::Controls::IGalleryItemProvider
     , public Tizen::Ui::ITouchEventListener
+    , public Tizen::Net::Http::IHttpProgressEventListener
 
 {
 public:
@@ -72,6 +78,8 @@ private:
 
 	// GHController
 	virtual void OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data);
+	virtual void OnTransactionCompleted(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction);
+
 
 	result doJoin();
 
@@ -107,6 +115,11 @@ private:
 
 	 //touch event 제한
 	 int count;
+	 Tizen::Base::String simg_url;  //img_url 저장
+
+	 // IHttpProgressEventListener
+     virtual void OnHttpDownloadInProgress(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction, long long currentLength, long long totalLength);
+	 virtual void OnHttpUploadInProgress(Tizen::Net::Http::HttpSession &httpSession, Tizen::Net::Http::HttpTransaction &httpTransaction, long long currentLength, long long totalLength);
 
 	/* virtual void 	OnTouchCanceled (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo);
 	 virtual void 	OnTouchFocusIn (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)=0;
