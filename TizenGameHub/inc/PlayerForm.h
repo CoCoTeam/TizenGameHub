@@ -22,6 +22,15 @@
 #include "GHPlayer/GHPlayerLoadedListener.h"
 #include "GHPlayer/GHPlayerGamesLoadedListener.h"
 
+#include <FBase.h>
+#include <FUi.h>
+#include <FIo.h>
+#include <FGraphics.h>
+#include <FMedia.h>
+#include <FApp.h>
+#include <FContent.h>
+#include <FSystem.h>
+
 using namespace Tizen::Base;
 using namespace Tizen::Ui::Controls;
 using namespace Tizen::Base::Collection;
@@ -34,6 +43,8 @@ class PlayerForm
 	, public GHPlayerController
 	, public GHPlayerLoadedListener
 	, public GHPlayerGamesLoadedListener
+	, public Tizen::Media::IImageDecodeUrlEventListener
+/*	, public GHController*/
 {
 public:
 	PlayerForm();
@@ -88,6 +99,15 @@ private:
 	static const int ID_FOOTER_FIRST_TAB = 801;
 	static const int ID_FOOTER_SECOND_TAB = 802;
 	static const int IDA_BUTTON_USER = 101;
+
+	 //
+	 void RequestImage(const Tizen::Base::String& path,int width, int height,int timeout);
+	 virtual void  OnImageDecodeUrlReceived (RequestId reqId, Tizen::Graphics::Bitmap *pBitmap, result r, const Tizen::Base::String errorCode, const Tizen::Base::String errorMessage);
+
+	// GHController
+/*	virtual void OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data);
+	virtual void OnTransactionCompleted(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction);*/
+
 };
 
 #endif /* PLAYERFORM_H_ */

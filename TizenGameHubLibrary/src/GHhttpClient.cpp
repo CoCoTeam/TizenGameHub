@@ -27,7 +27,7 @@ using namespace Tizen::System;
 
 GHhttpClient::GHhttpClient(void)
 	: __pHttpSession(null)
-	, hostAddr(L"http://54.238.195.222:8081")
+	, hostAddr(L"http://54.238.195.222:80")
 {
 }
 
@@ -53,7 +53,7 @@ GHhttpClient::RequestHttpGet(IHttpTransactionEventListener* listener)
 
 	// 주소
 	String player_id = "hhhh";
-	String hostAddr(L"http://211.189.127.187:8081");
+	String hostAddr(L"http://211.189.127.187:80");
 	String requestAddr(L"http://211.189.127.187:8081/players/" + player_id);
 
 	if (__pHttpSession == null)
@@ -896,7 +896,8 @@ CATCH:
 	return r;
 }
 
-result GHhttpClient::RequestImageDownload(Tizen::Net::Http::IHttpTransactionEventListener* listener, Tizen::Base::String url)
+/*
+result GHhttpClient::RequestImageDownload(Tizen::Net::Http::IHttpTransactionEventListener* listener,Tizen::Net::Http::IHttpProgressEventListener* listener2,  Tizen::Base::String url)
 {
 	AppLog("------------------>Request<------------------------- ");
 
@@ -904,12 +905,12 @@ result GHhttpClient::RequestImageDownload(Tizen::Net::Http::IHttpTransactionEven
 	result r = E_SUCCESS;
 	HttpTransaction* pHttpTransaction = null;
 	HttpRequest* pHttpRequest = null;
-
-	HttpHeader* pHeader = null;
-	pHeader = pHttpRequest->GetHeader();
+	HttpMultipartEntity* pMultipartEntity = null;
 
 	// 주소
-	String requestAddr(hostAddr + url);
+	String requestAddr(hostAddr + "/players/pkeykichul/image");
+
+	AppLog("url --> %S", requestAddr.GetPointer());
 
 	if (__pHttpSession == null)
 	{
@@ -937,6 +938,9 @@ result GHhttpClient::RequestImageDownload(Tizen::Net::Http::IHttpTransactionEven
 	r = pHttpTransaction->AddHttpTransactionListener(*listener);
 	TryCatch(r == E_SUCCESS, , "Failed to add the HttpTransactionListener.");
 
+	pHttpTransaction->AddHttpTransactionListener(*listener);
+	pHttpTransaction->SetHttpProgressListener(*listener2);
+
 	// Get an HTTP request
 	pHttpRequest = const_cast< HttpRequest* >(pHttpTransaction->GetRequest());
 
@@ -944,7 +948,7 @@ result GHhttpClient::RequestImageDownload(Tizen::Net::Http::IHttpTransactionEven
 	r = pHttpRequest->SetUri(requestAddr);
 	TryCatch(r == E_SUCCESS, , "Failed to set the uri.");
 
-	r = pHttpRequest->SetMethod(NET_HTTP_METHOD_POST);
+	r = pHttpRequest->SetMethod(NET_HTTP_METHOD_GET);
 	TryCatch(r == E_SUCCESS, , "Failed to set the method.");
 
 	// Submit the request
@@ -961,5 +965,6 @@ CATCH:
 	AppLog("RequestHttpDelTran() failed. (%s)", GetErrorMessage(r));
 	return r;
 }
+*/
 
 

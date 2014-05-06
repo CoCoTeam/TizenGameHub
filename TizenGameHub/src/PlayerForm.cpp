@@ -8,9 +8,26 @@
 #include "PlayerForm.h"
 #include "AppResourceId.h"
 #include "TizenGameHubFrame.h"
+#include "GHSharedAuthData.h"
 
 using namespace Tizen::App;
 using namespace Tizen::Ui::Scenes;
+using namespace Tizen::Web::Json;
+
+using namespace Tizen::Ui::Controls;
+using namespace Tizen::Base;
+using namespace Tizen::Base::Collection;
+
+using namespace Tizen::App;
+using namespace Tizen::Ui;
+using namespace Tizen::Io;
+using namespace Tizen::Graphics;
+using namespace Tizen::Media;
+using namespace Tizen::Base::Collection;
+using namespace Tizen::Base::Utility;
+using namespace Tizen::Content;
+using namespace Tizen::System;
+
 
 PlayerForm::PlayerForm() {
 	// TODO Auto-generated constructor stub
@@ -59,7 +76,63 @@ PlayerForm::OnInitializing(void)
 
 	setFooterMenu();
 
+	AppLog("__pCroppedBmp EXIST");
+
+
+	String path = L"http://54.238.195.222:80/players/pkeykichul/image";
+	this->RequestImage(path,400,400,5000);
+
+
 	return r;
+}
+
+void
+PlayerForm::RequestImage(const String& path,int width, int height,int timeout)
+{
+	Image* pImage = new Image();
+	pImage->Construct();
+
+	// Set a URL
+	Uri uri;
+	RequestId reqId;
+
+	uri.SetUri(path);
+
+	//서버에 보내기
+	pImage->DecodeUrl(uri, BITMAP_PIXEL_FORMAT_RGB565, width, height, reqId, *this, timeout);
+
+}
+
+// Receive the image and call the delete timer
+void
+PlayerForm::OnImageDecodeUrlReceived (RequestId reqId, Tizen::Graphics::Bitmap *pBitmap, result r, const Tizen::Base::String errorCode, const Tizen::Base::String errorMessage)
+{
+	AppLog("OnImageDecodeUrlReceived");
+	AppLog("reqId : %d",reqId);
+	if(IsFailed(r))
+	{
+		AppLog("Request failed: errorCode(%ls) errorMessage(%ls)", errorCode.GetPointer(), errorMessage.GetPointer());
+	}
+	else
+	{
+		// Create a label and set the background bitmap
+		Label* pLabel = new Label();
+		pLabel->Construct(Rectangle(0,50, pBitmap->GetWidth(),pBitmap->GetHeight()),L"");
+		AddControl(*pLabel);
+		pLabel->SetBackgroundBitmap(*pBitmap);
+
+		Draw();Show();
+
+
+		/*Gallery* pGalleryProfile = static_cast< Gallery* >(GetControl(IDC_JOIN_GALLERY_PROFILE));
+		pGalleryProfile->SetItemProvider(*this);
+
+		GalleryItem* pGallery = new GalleryItem();
+		pGallery->Construct(*pBitmap);*/
+
+		//pGalleryProfile->RefreshGallery(0,GALLERY_REFRESH_TYPE_ITEM_MODIFY);
+
+	}
 }
 
 result
@@ -209,6 +282,20 @@ void PlayerForm::setPlayerData()
 	String totalScoreStr;
 	totalScoreStr.Append(mPlayer->getTotalScore());
 	pLabelUserScore->SetText( totalScoreStr );
+
+
+
+/*	GHhttpClient* httpPost = new GHhttpClient();
+	String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
+	String url(L"/players" + player_id);
+
+	httpPost->RequestImageDownload(this, this, url);*/
+
+
+
+	//pGalleryUserProfile->Set
+
+
 	//!! 프로필 이미지 세팅
 	//	pGalleryUserProfile->Set
 
@@ -298,3 +385,26 @@ void PlayerForm::changePanel(int selected)
 		break;
 	}
 }
+
+
+/*
+void PlayerForm::OnTransactionReadyToRead(String apiCode, String statusCode,IJsonValue* data)
+{
+	 AppLog("return data");
+}
+
+void
+PlayerForm::OnTransactionCompleted(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction)
+{
+
+	 AppLog("success");
+
+	 Tizen::Net::Http::HttpMultipartEntity* pMultipartEntity = static_cast< Tizen::Net::Http::HttpMultipartEntity* >(httpTransaction.GetUserObject());
+
+	 if (pMultipartEntity)
+	      delete pMultipartEntity;
+
+	 delete &httpTransaction;
+
+}
+*/
