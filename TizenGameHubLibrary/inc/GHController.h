@@ -13,6 +13,7 @@
 
 class GHController
 	: public Tizen::Net::Http::IHttpTransactionEventListener
+
 {
 	public:
 		GHController();
@@ -26,6 +27,7 @@ class GHController
 		virtual void OnTransactionHeaderCompleted(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction, int headerLen, bool authRequired);
 		virtual void OnTransactionCompleted(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction);
 		virtual void OnTransactionCertVerificationRequiredN(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction, Tizen::Base::String* pCert);
+
 
 	protected:
 		GHhttpClient httpPost;

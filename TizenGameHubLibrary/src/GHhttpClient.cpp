@@ -23,11 +23,11 @@ using namespace Tizen::Base;
 using namespace Tizen::Net::Http;
 using namespace Tizen::Base::Collection;
 using namespace Tizen::Base::Utility;
-
+using namespace Tizen::System;
 
 GHhttpClient::GHhttpClient(void)
 	: __pHttpSession(null)
-	, hostAddr(L"http://54.238.195.222:8081")
+	, hostAddr(L"http://54.238.195.222:80")
 {
 }
 
@@ -53,7 +53,7 @@ GHhttpClient::RequestHttpGet(IHttpTransactionEventListener* listener)
 
 	// 주소
 	String player_id = "hhhh";
-	String hostAddr(L"http://211.189.127.187:8081");
+	String hostAddr(L"http://211.189.127.187:80");
 	String requestAddr(L"http://211.189.127.187:8081/players/" + player_id);
 
 	if (__pHttpSession == null)
@@ -615,8 +615,6 @@ CATCH:
 	return r;
 }
 
-//
-//
 //result
 //GHhttpClient::RequestHttpDelTran(IHttpTransactionEventListener* listener, String url, Tizen::Base::Collection::IMap *map)
 //{
@@ -783,11 +781,190 @@ CATCH:
 //		return r;*/
 //}
 
-result GHhttpClient::RequestImageUpload(Tizen::Net::Http::IHttpTransactionEventListener* listener, Tizen::Base::String url)
+result GHhttpClient::RequestImageUpload(Tizen::Net::Http::IHttpTransactionEventListener* listener, Tizen::Net::Http::IHttpProgressEventListener* listener2, Tizen::Base::String url, Tizen::Base::ByteBuffer* pBuffer)
+/*result GHhttpClient::RequestImageUpload(Tizen::Base::Runtime::IEventListener* listener, Tizen::Net::Http::IHttpProgressEventListener* listener2, Tizen::Base::String url, Tizen::Base::ByteBuffer* pBuffer)
+undefined reference to `GHhttpClient::RequestImageUpload(Tizen::Net::Http::IHttpTransactionEventListener*, Tizen::Base::String, Tizen::Base::ByteBuffer*)*/
 {
+	AppLog("------------------>Request<------------------------- ");
 
+	//String hostAddr(L"http://54.238.195.222:3000");
+
+	// Construct an HTTP session
+	result r = E_SUCCESS;
+	HttpTransaction* pHttpTransaction = null;
+	HttpRequest* pHttpRequest = null;
+	HttpMultipartEntity* pMultipartEntity = null;
+
+	// 주소
+	String requestAddr(hostAddr + url);
+
+	if (__pHttpSession == null)
+	{
+		__pHttpSession = new (std::nothrow) HttpSession();
+
+		r = __pHttpSession->Construct(NET_HTTP_SESSION_MODE_PIPELINING , null, hostAddr, null);
+		if (IsFailed(r))
+		{
+			delete __pHttpSession;
+			__pHttpSession = null;
+			AppLogException("Failed to create the HttpSession.");
+			goto CATCH;
+		}
+
+		r = __pHttpSession->SetAutoRedirectionEnabled(true);
+		TryCatch(r == E_SUCCESS, , "Failed to set the redirection automatically.");
+	}
+
+	AppLog("-------------------------3-------------------------- ");
+	//----------------------------------------------------------------------
+	// Open a new transaction
+	pHttpTransaction = __pHttpSession->OpenTransactionN();
+	r = GetLastResult();
+	TryCatch(pHttpTransaction != null, , "Failed to open the HttpTransaction.");
+
+	// Add a listener
+	//pHttpTransaction->AddHttpTransactionListener(* (reinterpret_cast<Tizen::Net::Http::IHttpTransactionEventListener *> (listener)));
+	//pHttpTransaction->SetHttpProgressListener(* (reinterpret_cast<Tizen::Net::Http::IHttpProgressEventListener *> (listener)));
+	//TryCatch(r == E_SUCCESS, , "Failed to add the HttpTransactionListener.");
+	pHttpTransaction->AddHttpTransactionListener(*listener);
+	pHttpTransaction->SetHttpProgressListener(*listener2);
+
+	// Get an HTTP request
+	pHttpRequest = const_cast< HttpRequest* >(pHttpTransaction->GetRequest());
+
+	// Set the HTTP method and URI
+	r = pHttpRequest->SetUri(requestAddr);
+	TryCatch(r == E_SUCCESS, , "Failed to set the uri.");
+
+	r = pHttpRequest->SetMethod(NET_HTTP_METHOD_POST);
+	TryCatch(r == E_SUCCESS, , "Failed to set the method.");
+
+/*	HttpHeader* pHeader = null;
+	pHeader = pHttpRequest->GetHeader();*/
+
+	///////////// header와 body에 포함시켜서 보냄 /////////////////////
+/*
+	r = pHeader->AddField(L"Content-Length",L"100000");
+		//TryCatch(r == E_SUCCESS, , "Failed to set Length.");
+	//r = pHeader->AddField(L"Content-Type",L"image/jpg");
+	r = pHeader->AddField(L"Content-Type",L"multipart");
+		//TryCatch(r == E_SUCCESS, , "Failed to set Type.");
+	r = pHeader->AddField(L"Content-Disposition",L"form-data");
+	r = pHeader->AddField(L"name",L"uploadedfile");
+	r = pHeader->AddField(L"filename",L"hello.o");
+
+	r = pHttpRequest->WriteBody(*pBuffer);*/
+	//TryCatch(r == E_SUCCESS, , "Failed to write body buffer.");
+	//////////////////////////////////////////////////////////
+
+	pMultipartEntity = new HttpMultipartEntity();
+    pMultipartEntity->Construct();
+    //pMultipartEntity->AddFilePart(L"photoFile", Tizen::App::App::GetInstance()->GetAppDataPath() + L"Images/20140430003645.jpg");
+    pMultipartEntity->AddFilePart(L"photoFile",	Tizen::App::App::GetInstance()->GetAppDataPath() + L"UserCropped.jpg");
+    //pMultipartEntity->AddFilePart(L"photoFile", Tizen::System::Environment::GetMediaPath() + L"Images/image1.jpg");
+
+    pHttpRequest->SetEntity(*pMultipartEntity);
+
+    pHttpTransaction->SetUserObject(pMultipartEntity);
+
+	AppLog("-------------------------2-------------------------- ");
+
+	// Submit the request
+	r = pHttpTransaction->Submit();
+	TryCatch(r == E_SUCCESS, , "Failed to submit the HttpTransaction.");
+
+	//로그
+/*	for(int i = 0; i < pHeader->GetFieldNamesN()->GetCount(); i++)
+	{
+		AppLog("%s", static_cast< String* > ( pHeader->GetFieldNamesN()->GetAt(i))->GetPointer());
+		String *s =  static_cast< String* > (pHeader->GetFieldNamesN()->GetAt(i));
+
+		IEnumerator *irator = pHeader->GetFieldValuesN(*s);
+		while(irator->MoveNext() == E_SUCCESS)
+		{
+			AppLog("%s", static_cast< String* > (irator->GetCurrent())->GetPointer());
+		}
+	}*/
+	return r;
+
+CATCH:
+
+	delete pHttpTransaction;
+	pHttpTransaction = null;
+
+	AppLog("RequestHttpDelTran() failed. (%s)", GetErrorMessage(r));
+	return r;
 }
-result GHhttpClient::RequestImageDownload(Tizen::Net::Http::IHttpTransactionEventListener* listener, Tizen::Base::String url)
+
+/*
+result GHhttpClient::RequestImageDownload(Tizen::Net::Http::IHttpTransactionEventListener* listener,Tizen::Net::Http::IHttpProgressEventListener* listener2,  Tizen::Base::String url)
 {
+	AppLog("------------------>Request<------------------------- ");
 
+	// Construct an HTTP session
+	result r = E_SUCCESS;
+	HttpTransaction* pHttpTransaction = null;
+	HttpRequest* pHttpRequest = null;
+	HttpMultipartEntity* pMultipartEntity = null;
+
+	// 주소
+	String requestAddr(hostAddr + "/players/pkeykichul/image");
+
+	AppLog("url --> %S", requestAddr.GetPointer());
+
+	if (__pHttpSession == null)
+	{
+		__pHttpSession = new (std::nothrow) HttpSession();
+
+		r = __pHttpSession->Construct(NET_HTTP_SESSION_MODE_PIPELINING , null, hostAddr, null);
+		if (IsFailed(r))
+		{
+			delete __pHttpSession;
+			__pHttpSession = null;
+			AppLogException("Failed to create the HttpSession.");
+			goto CATCH;
+		}
+
+		r = __pHttpSession->SetAutoRedirectionEnabled(true);
+		TryCatch(r == E_SUCCESS, , "Failed to set the redirection automatically.");
+	}
+	//----------------------------------------------------------------------
+	// Open a new transaction
+	pHttpTransaction = __pHttpSession->OpenTransactionN();
+	r = GetLastResult();
+	TryCatch(pHttpTransaction != null, , "Failed to open the HttpTransaction.");
+
+	// Add a listener
+	r = pHttpTransaction->AddHttpTransactionListener(*listener);
+	TryCatch(r == E_SUCCESS, , "Failed to add the HttpTransactionListener.");
+
+	pHttpTransaction->AddHttpTransactionListener(*listener);
+	pHttpTransaction->SetHttpProgressListener(*listener2);
+
+	// Get an HTTP request
+	pHttpRequest = const_cast< HttpRequest* >(pHttpTransaction->GetRequest());
+
+	// Set the HTTP method and URI
+	r = pHttpRequest->SetUri(requestAddr);
+	TryCatch(r == E_SUCCESS, , "Failed to set the uri.");
+
+	r = pHttpRequest->SetMethod(NET_HTTP_METHOD_GET);
+	TryCatch(r == E_SUCCESS, , "Failed to set the method.");
+
+	// Submit the request
+	r = pHttpTransaction->Submit();
+	TryCatch(r == E_SUCCESS, , "Failed to submit the HttpTransaction.");
+
+	return r;
+
+CATCH:
+
+	delete pHttpTransaction;
+	pHttpTransaction = null;
+
+	AppLog("RequestHttpDelTran() failed. (%s)", GetErrorMessage(r));
+	return r;
 }
+*/
+
+

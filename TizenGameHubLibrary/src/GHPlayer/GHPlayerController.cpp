@@ -14,15 +14,23 @@ using namespace Tizen::Base::Collection;
 using namespace Tizen::Net::Http;
 using namespace Tizen::Web::Json;
 
-GHPlayerController::GHPlayerController() {
+GHPlayerController::GHPlayerController()
+{
 	// TODO Auto-generated constructor stub
 	pProgressPopup = new (std::nothrow) Tizen::Ui::Controls::ProgressPopup();
-	pProgressPopup->Construct(false, false);
+	pProgressPopup->Construct(true, false);
 }
 
 GHPlayerController::~GHPlayerController() {
 	// TODO Auto-generated destructor stub
 	delete pProgressPopup;
+}
+bool GHPlayerController::isLogin(){
+	String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
+	if(player_id == "") {
+		return false;
+	}
+	return true;
 }
 
 // 사용자 로그인 팝업 생성
@@ -45,7 +53,7 @@ void GHPlayerController::getLoginPopup(GHPlayerListener* listener)
 
 	//!! for debug---
 	pTextEmail->SetText(String("kichul"));
-	pTextPwd->SetText(String("kichulbabo"));
+	pTextPwd->SetText(String("kichul"));
 	//---------------
 
 	msgBox.ShowAndWait(modalResult);
@@ -73,11 +81,14 @@ void GHPlayerController::playerLogin(GHPlayerListener* listener)
 	appReg.get(appReg.pwd, pwd);
 
 	if(email != NULL && pwd != NULL) {
-		playerLogin(email, pwd, listener);
+		if(email != "") {
+			playerLogin(email, pwd, listener);
+			return ;
+		}
 	}
-	else {
-		getLoginPopup(listener);
-	}
+
+	getLoginPopup(listener);
+	return ;
 }
 // 사용자 로그인
 void GHPlayerController::playerLogin(Tizen::Base::String email, Tizen::Base::String pwd, GHPlayerListener* listener)
@@ -92,6 +103,7 @@ void GHPlayerController::playerLogin(Tizen::Base::String email, Tizen::Base::Str
 	__pMap->Construct();
 	__pMap->Add(new String("email"), new String(email));
 	__pMap->Add(new String("pwd"), new String(pwd));
+	__pMap->Add(new String("game_id"), new String(GHSharedAuthData::getSharedInstance().getGameId()));
 
 	playerEmail = email; playerPwd = pwd;
 
@@ -117,7 +129,14 @@ void GHPlayerController::getPlayerData(Tizen::Base::String playerId, GHPlayerLis
 }
 
 // 사용자 로그아웃
+void GHPlayerController::playerLogout()
+{
+	// Save AppRegistry Data(Email, Password)----------
+	appReg.put(appReg.email, NULL);
+	appReg.put(appReg.pwd, NULL);
 
+	GHSharedAuthData::getSharedInstance().setPlayerId("");
+}
 
 // 특정 게임에 사용자 등록하기(게임가입)
 void GHPlayerController::playerJoinToGame(Tizen::Base::String playerId, Tizen::Base::String gameId)
@@ -166,6 +185,7 @@ void GHPlayerController::OnTransactionReadyToRead(Tizen::Base::String apiCode, T
 			appReg.put(appReg.email, playerEmail);
 			appReg.put(appReg.pwd, playerPwd);
 			//------------------------------------------------
+
 			GHSharedAuthData & sharedInstance = GHSharedAuthData::getSharedInstance();
 			sharedInstance.setPlayerId(statusCode);
 

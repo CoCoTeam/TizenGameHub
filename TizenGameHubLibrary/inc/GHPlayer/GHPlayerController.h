@@ -29,18 +29,20 @@ public:
 	GHPlayerController();
 	virtual ~GHPlayerController();
 
-	// 사용자 로그인 팝업 생성
-	void getLoginPopup(GHPlayerListener* listener = null);
+	// 사용자 로그인 상태 리턴
+	bool isLogin();
 
 	// 사용자 로그인
 	void playerLogin(GHPlayerListener* listener = null);
 	void playerLogin(Tizen::Base::String email, Tizen::Base::String pwd, GHPlayerListener* listener = null);
+	// 사용자 로그인 팝업 생성
+	void getLoginPopup(GHPlayerListener* listener = null);
 
 	// 사용자 정보 가져오기
 	void getPlayerData(Tizen::Base::String playerId, GHPlayerListener* listener = null);
 
 	// 사용자 로그아웃
-
+	void playerLogout();
 
 	// 특정 게임에 사용자 등록하기(게임가입)
 	void playerJoinToGame(Tizen::Base::String playerId, Tizen::Base::String gameId);

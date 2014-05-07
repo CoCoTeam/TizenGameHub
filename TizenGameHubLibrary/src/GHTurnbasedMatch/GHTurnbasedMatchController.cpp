@@ -13,7 +13,8 @@ using namespace Tizen::Net::Sockets;
 
 GHTurnbasedMatchController::GHTurnbasedMatchController() {
 	// TODO Auto-generated constructor stub
-
+	pProgressPopup = new (std::nothrow) Tizen::Ui::Controls::ProgressPopup();
+	pProgressPopup->Construct(true, false);
 }
 
 GHTurnbasedMatchController::~GHTurnbasedMatchController() {
@@ -26,10 +27,19 @@ GHTurnbasedMatchController::OnSocketConnected(Socket& socket)
 {
 	GHSocket::OnSocketConnected(socket);
 	currentListener->onMatchConnect();
+
+	// progress Popup 생성
+	pProgressPopup->SetTitleText(L"Multiplay");
+	pProgressPopup->SetText(L"다른 사용자의 접속을 기다립니다.");
+	pProgressPopup->SetShowState(true);
+	pProgressPopup->Show();
 }
 
 //데이터 수신시 호출
 void GHTurnbasedMatchController::ReceiveData(ListenerType::Type flag, Tizen::Base::String data){
+
+	AppLogDebug("[Socket] respose flag: %d", flag);
+	AppLogDebug("[Socket] respose data : %S", data.GetPointer());
 
 	switch(flag) {
 	case ListenerType::onMatchSetting:
@@ -37,6 +47,7 @@ void GHTurnbasedMatchController::ReceiveData(ListenerType::Type flag, Tizen::Bas
 		break;
 	case ListenerType::OnMatchStart:
 		currentListener->onMatchStart(data);
+		pProgressPopup->SetShowState(false);
 		break;
 	case ListenerType::OnMatchTurnMy:
 		currentListener->onMatchMyturn(data);
@@ -53,9 +64,6 @@ void GHTurnbasedMatchController::ReceiveData(ListenerType::Type flag, Tizen::Bas
 	default:
 		break;
 	}
-
-	AppLogDebug("[Socket] respose flag: %d", flag);
-	AppLogDebug("[Socket] respose data : %S", data.GetPointer());
 }
 
 
@@ -63,7 +71,6 @@ void GHTurnbasedMatchController::ReceiveData(ListenerType::Type flag, Tizen::Bas
 
 void GHTurnbasedMatchController::sendDataToSetting(String data) {
 	String jData = "{\"flag\":12, \"data\":\"" + data + "\"}";
-	//String jData = '{"flag":11, "isFinish":' + Integer::ToString(isFinish) + ', "data":' + data + '"}';
 	AppLogDebug("sendDataToSetting");
 	AppLogDebug("sendDataToSetting : %S", jData.GetPointer() );
 
