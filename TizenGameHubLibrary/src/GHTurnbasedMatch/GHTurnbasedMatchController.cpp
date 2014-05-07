@@ -5,7 +5,7 @@
  *      Author: KICHUL
  */
 
-#include "GHTurnbasedMatchController.h"
+#include "GHTurnbasedMatch/GHTurnbasedMatchController.h"
 
 using namespace Tizen::Base;
 using namespace Tizen::Net;
@@ -45,7 +45,9 @@ void GHTurnbasedMatchController::ReceiveData(ListenerType::Type flag, Tizen::Bas
 		currentListener->onMatchTurnWait();
 		break;
 	case ListenerType::OnMatchFinish:
-		this->OnClose();
+		AppLogDebug("zzzzzzzzzzzzzzzzzzzzz");
+		this->OnCloseSocket();
+		AppLogDebug("zzzzzzzzzzzzzzzzzzzzz2");
 		currentListener->onMatchFinish(data);
 		break;
 	default:

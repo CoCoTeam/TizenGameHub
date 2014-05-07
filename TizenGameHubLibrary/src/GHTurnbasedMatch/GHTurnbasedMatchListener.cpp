@@ -5,7 +5,7 @@
  *      Author: KICHUL
  */
 
-#include "GHTurnbasedMatchListener.h"
+#include "GHTurnbasedMatch/GHTurnbasedMatchListener.h"
 
 GHTurnbasedMatchListener::GHTurnbasedMatchListener() {
 	// TODO Auto-generated constructor stub

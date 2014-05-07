@@ -136,7 +136,7 @@ GHSocket::OnSocketClosed(Socket& socket, NetSocketClosedReason reason)
     AppLog(GetErrorMessage(GetLastResult()));
     AppLog("Reasoning %d", reason);
 
-    OnClose();
+    OnCloseSocket();
     AppLog("Close Socket");
 
     //pSceneManager->GoBackward(BackwardSceneTransition(SCENE_MAIN_MENU));
@@ -279,7 +279,7 @@ GHSocket::ReceiveData(void)
 }
 
 void
-GHSocket::OnClose(void)
+GHSocket::OnCloseSocket(void)
 {
     result res = E_SUCCESS;
     AppLog("Socket Close Received");
@@ -296,18 +296,19 @@ GHSocket::OnClose(void)
 
             __pSocket->Close();
         }
-
-        if (__pTcpSocket != null)
-        {
-            __pTcpSocket->Close();
-        }
+//
+//        if (__pTcpSocket != null)
+//        {
+//            __pTcpSocket->Close();
+//        }
     }
 
     delete __pSocket;
-    delete __pTcpSocket;
+//    delete __pTcpSocket;
 
     __pSocket = null;
     __pTcpSocket = null;
     __isConnected = false;
     __isConstructed = false;
+    AppLog("Socket Close Received2");
 }
