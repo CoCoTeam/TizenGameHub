@@ -3,8 +3,8 @@
 
 #include "tizenx.h"
 #include "FormGame.h"
-#include "GHTurnbasedMatchController.h"
-#include "GHTurnbasedMatchListener.h"
+#include "GHTurnbasedMatch/GHTurnbasedMatchController.h"
+#include "GHTurnbasedMatch/GHTurnbasedMatchListener.h"
 
 class FormGameMulti
 	: public FormGame
