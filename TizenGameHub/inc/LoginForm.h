@@ -33,8 +33,8 @@
 #include "GHCloudsave/GHCloudsaveLoadListener.h"
 
 #include "GHSocket.h"
-#include "GHTurnbasedMatchController.h"
-#include "GHTurnbasedMatchListener.h"
+#include "GHTurnbasedMatch/GHTurnbasedMatchController.h"
+#include "GHTurnbasedMatch/GHTurnbasedMatchListener.h"
 
 using namespace Tizen::Ui::Controls;
 

@@ -665,9 +665,9 @@ src/CardPairFormFactory.d: ../src/CardPairFormFactory.cpp \
   C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\CardPair\inc/AppResourceId.h \
   C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\CardPair\inc\FormGameSeconds.h \
   C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\CardPair\inc\FormGameMulti.h \
-  C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHTurnbasedMatchController.h \
-  C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc/GHSocket.h \
-  C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc/GHTurnbasedMatchListener.h \
+  C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHTurnbasedMatch/GHTurnbasedMatchController.h \
+  C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHSocket.h \
+  C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHTurnbasedMatch/GHTurnbasedMatchListener.h \
   C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\CardPair\inc\CardPairFrame.h
 
 C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\CardPair\inc\CardPairFormFactory.h:
@@ -2002,10 +2002,10 @@ C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\CardPair\inc\FormG
 
 C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\CardPair\inc\FormGameMulti.h:
 
-C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHTurnbasedMatchController.h:
+C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHTurnbasedMatch/GHTurnbasedMatchController.h:
 
-C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc/GHSocket.h:
+C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHSocket.h:
 
-C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc/GHTurnbasedMatchListener.h:
+C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHTurnbasedMatch/GHTurnbasedMatchListener.h:
 
 C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\CardPair\inc\CardPairFrame.h:

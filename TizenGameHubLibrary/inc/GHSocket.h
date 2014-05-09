@@ -44,7 +44,7 @@ protected:
     result ReceiveData(void);
     virtual void ReceiveData(ListenerType::Type flag, Tizen::Base::String data) = 0;
 
-    void OnClose(void);
+    void OnCloseSocket(void);
 
     Tizen::Net::Ip4Address* __pClientIp;
     int __port;

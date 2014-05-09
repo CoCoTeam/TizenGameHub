@@ -75,6 +75,8 @@ JoinForm::OnInitializing(void)
 	pGalleryProfile->SetItemProvider(*this);
 	pGalleryProfile->AddTouchEventListener(*this);
 
+	String path = L"http://54.238.195.222:80/players/pkeykichul/image";
+	this->RequestImage(path,500,500,5000);
 
 	return r;
 }
@@ -87,6 +89,81 @@ JoinForm::OnTerminating(void)
 	// TODO: Add your termination code here
 	return r;
 }
+
+// Request the image and add the image pointer to the list
+void
+JoinForm::RequestImage(const String& path,int width, int height,int timeout)
+{
+	Image* pImage = new Image();
+	pImage->Construct();
+
+	// Set a URL
+	Uri uri;
+	RequestId reqId;
+
+	uri.SetUri(path);
+
+/*
+    uri.SetPort(8081);
+	uri.SetPath("/players/pkeykichul/image");
+	uri.SetHost("http://54.238.195.222/players/pkeykichul/image");
+*/
+/*	BitmapPixelFormat format;
+	if(path.EndsWith(L"jpg") or path.EndsWith(L"bmp") or path.EndsWith(L"gif"))
+	{
+		format = BITMAP_PIXEL_FORMAT_RGB565;
+	}
+	else if(path.EndsWith(L"png"))
+	{
+		format = BITMAP_PIXEL_FORMAT_ARGB8888;
+	}
+	else
+	{
+		return;
+	}*/
+
+
+	//uri.Set
+
+	// Request image
+
+	//서버에 보내기
+	pImage->DecodeUrl(uri, BITMAP_PIXEL_FORMAT_RGB565, width, height, reqId, *this, timeout);
+
+}
+
+// Receive the image and call the delete timer
+void
+JoinForm::OnImageDecodeUrlReceived (RequestId reqId, Tizen::Graphics::Bitmap *pBitmap, result r, const Tizen::Base::String errorCode, const Tizen::Base::String errorMessage)
+{
+	AppLog("OnImageDecodeUrlReceived");
+	AppLog("reqId : %d",reqId);
+	if(IsFailed(r))
+	{
+		AppLog("Request failed: errorCode(%ls) errorMessage(%ls)", errorCode.GetPointer(), errorMessage.GetPointer());
+	}
+	else
+	{
+		// Create a label and set the background bitmap
+/*		Label* pLabel = new Label();
+		pLabel->Construct(Rectangle(0,50, pBitmap->GetWidth(),pBitmap->GetHeight()),L"");
+		AddControl(*pLabel);
+		pLabel->SetBackgroundBitmap(*pBitmap);
+
+		Draw();Show();*/
+
+		/*Gallery* pGalleryProfile = static_cast< Gallery* >(GetControl(IDC_JOIN_GALLERY_PROFILE));
+		pGalleryProfile->SetItemProvider(*this);
+		 */
+
+		GalleryItem* pGallery = new GalleryItem();
+		pGallery->Construct(*pBitmap);
+
+		pGalleryProfile->RefreshGallery(0,GALLERY_REFRESH_TYPE_ITEM_MODIFY);
+
+	}
+}
+
 
 void
 JoinForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
@@ -101,9 +178,18 @@ JoinForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		break;
 	case IDA_BUTTON_CANCEL:
 		pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_OUT));
+		//for test~!!!
+		/*AppLog("__pCroppedBmp EXIST");
+
+		//String path = L"http://sstatic.naver.net/search/img3/h1_naver.gif";
+		String path = L"http://54.238.195.222:80/players/pkeykichul/image";
+		//String path = L"http://img.naver.net:80/static/www/u/2013/0731/nmms_224940510.gif";
+		//String path = L"http://cfile25.uf.tistory.com/image/112CA2274C2220D2B47CB1";
+
+		this->RequestImage(path,500,500,5000);
+*/
 		break;
 	}
-
 }
 
 result
@@ -226,13 +312,15 @@ JoinForm::CreateItem(int index)
    // Bitmap* pImageTemp = pAppResource->GetBitmapN(L"Image.jpg");
 
     // Creates an instance of GalleryItem and registers the bitmap to the gallery item
-    GalleryItem* pGallery = new GalleryItem();
-    pGallery->Construct(*__pCroppedBmp);
+
+	AppLog("__pCroppedBmp NULL");
+	GalleryItem* pGallery = new GalleryItem();
+	pGallery->Construct(*__pCroppedBmp);
+
+	return pGallery;
 
     // Deallocates the bitmap
    // delete pImageTemp;
-
-    return pGallery;
 }
 
 bool
@@ -301,7 +389,7 @@ void JoinForm::OnTransactionReadyToRead(String apiCode, String statusCode,IJsonV
 			String* img_url	= new String(L"img_url");
 			simg_url= getStringByKey(pJsonOject, img_url);
 
-			AppLog("simg_url : %s", simg_url.GetPointer());
+			AppLog("simg_url : %S", simg_url.GetPointer());
 		}
 	}
 	else if(apiCode.Equals(PLAYER_MODIFY))
@@ -315,6 +403,11 @@ void JoinForm::OnTransactionReadyToRead(String apiCode, String statusCode,IJsonV
 			AppLog("PLAYER_MODIFY success");
 		}
 	}
+
+	 AppLog("1");
+
+
+
 }
 
 void
@@ -323,7 +416,18 @@ JoinForm::OnTransactionCompleted(Tizen::Net::Http::HttpSession& httpSession, Tiz
 
 	 AppLog("success");
 
-	 Tizen::Net::Http::HttpMultipartEntity* pMultipartEntity = static_cast< Tizen::Net::Http::HttpMultipartEntity* >(httpTransaction.GetUserObject());
+	Tizen::Net::Http::HttpMultipartEntity* pMultipartEntity = static_cast< Tizen::Net::Http::HttpMultipartEntity* >(httpTransaction.GetUserObject());
+
+/*	 ByteBuffer* pReceiveImageByteBuff = new (std::nothrow) ByteBuffer;
+	 pReceiveImageByteBuff = pMultipartEntity->GetNextDataN(100);
+
+	 AppLog("pReceiveImageByteBuff : %S",pReceiveImageByteBuff);*/
+
+/*	Tizen::Net::Http::HttpResponse* pHttpResponse = httpTransaction.GetResponse();
+	ByteBuffer* pBuffer = pHttpResponse->ReadBodyN();
+	String htmlContent((char *)(pBuffer->GetPointer()));*/
+
+	//AppLog("%S",htmlContent);
 
 	 if (pMultipartEntity)
 	      delete pMultipartEntity;
@@ -373,6 +477,7 @@ JoinForm::OnDraw()
 	/*GalleryItem* pGallery = new GalleryItem();
     pGallery->Construct(*__ptempBitmap);*/
 
+
     count = 0; // 터치 이벤트 재초기화
 
 	return E_SUCCESS;
@@ -392,7 +497,7 @@ JoinForm::CreateBitmapFromByteBufferN(ByteBuffer* pBuffer, const int& width, con
 void
 JoinForm::storeImageInternal(Bitmap *bitmap)
 {
-			AppLog("22222");
+			//AppLog("22222");
 
 			result r ;
 
@@ -495,11 +600,13 @@ JoinForm::ShowMessageBox(const String& title, const String& message)
 }
 
 
+
 void
 JoinForm::OnHttpDownloadInProgress(Tizen::Net::Http::HttpSession& httpSession,Tizen::Net::Http::HttpTransaction& httpTransaction, long long currentLength, long long totalLength)
 {
-   AppLog("---Upload Current Bytes: %lld, Total Bytes: %lld---", currentLength, totalLength);
+   AppLog("---Download Current Bytes: %lld, Total Bytes: %ll d---", currentLength, totalLength);
 }
+
 
 void
 JoinForm::OnHttpUploadInProgress(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction, long long currentLength, long long totalLength)

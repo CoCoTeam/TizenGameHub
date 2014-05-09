@@ -519,8 +519,8 @@ src/FormGameMulti.d: ../src/FormGameMulti.cpp \
   C:/Users/Administrator/AppData/Local/Tizen/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp/glmacro.h \
   C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\CardPair\inc/FormGame.h \
   C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\CardPair\inc/AppResourceId.h \
-  C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHTurnbasedMatchController.h \
-  C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc/GHSocket.h \
+  C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHTurnbasedMatch/GHTurnbasedMatchController.h \
+  C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHSocket.h \
   C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc/GHTizen.h \
   C:/Users/Administrator/AppData/Local/Tizen/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FNet.h \
   C:/Users/Administrator/AppData/Local/Tizen/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FNetNetTypes.h \
@@ -653,7 +653,7 @@ src/FormGameMulti.d: ../src/FormGameMulti.cpp \
   C:/Users/Administrator/AppData/Local/Tizen/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FNetNfcINdefTagConnectionListener.h \
   C:/Users/Administrator/AppData/Local/Tizen/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FNetNfcINfcDeviceDiscoveryEventListener.h \
   C:/Users/Administrator/AppData/Local/Tizen/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FNetNfcINdefPushManagerListener.h \
-  C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc/GHTurnbasedMatchListener.h
+  C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHTurnbasedMatch/GHTurnbasedMatchListener.h
 
 C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\CardPair\inc\FormGameMulti.h:
 
@@ -1695,9 +1695,9 @@ C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\CardPair\inc/FormG
 
 C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\CardPair\inc/AppResourceId.h:
 
-C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHTurnbasedMatchController.h:
+C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHTurnbasedMatch/GHTurnbasedMatchController.h:
 
-C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc/GHSocket.h:
+C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHSocket.h:
 
 C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc/GHTizen.h:
 
@@ -1963,4 +1963,4 @@ C:/Users/Administrator/AppData/Local/Tizen/tizen-sdk/platforms/tizen2.2/rootstra
 
 C:/Users/Administrator/AppData/Local/Tizen/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FNetNfcINdefPushManagerListener.h:
 
-C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc/GHTurnbasedMatchListener.h:
+C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHTurnbasedMatch/GHTurnbasedMatchListener.h:
