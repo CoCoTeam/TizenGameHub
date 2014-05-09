@@ -147,9 +147,6 @@ void GameForm::getGameInstance(Tizen::Base::String id)
 {
 	AppLogDebug("gameId : %S", id.GetPointer());
 	getGameData(id, this);
-
-//	mGame = new GHGame("111", "100", "FunnyGame", "This Game is really fun.", "default", 1, 1, 1, false, false);
-//	setGameData();
 }
 void GameForm::loadPlayerDataFinished(GHGame* game)
 {
@@ -160,6 +157,7 @@ void GameForm::setGameData()
 {
 	pLabelGameName->SetText( mGame->getTitle() );
 	pLabelGameDesc->SetText( mGame->getDescription() );
+	AppLogDebug("=======================ImgUrl : %S", mGame->getImgUrl().GetPointer());
 	Draw();
 }
 

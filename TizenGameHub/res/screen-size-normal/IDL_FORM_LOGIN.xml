@@ -44,9 +44,4 @@
         <layout height="60.0" mode="Portrait" width="146.0" x="105.0" y="481.0"/>
         <layout height="112.0" mode="Landscape" width="688.0" x="42.0" y="438.0"/>
     </Label>
-    <Button id="IDC_LOGIN_BUTTON_TEST" parent="IDL_FORM_LOGIN">
-        <property DisabledBitmapX="0.0" DisabledBitmapY="0.0" NormalBitmapX="0.0" NormalBitmapY="0.0" PressedBitmapX="0.0" PressedBitmapY="0.0" accessibilityHint="" disableTextColor="" disabledBGBitmapPath="" disabledBitmapPath="" disabledColor="" disabledColorOpacity="100" highlightedBGBitmapPath="" highlightedBitmapPath="" highlightedBitmapX="0.0" highlightedBitmapY="0.0" highlightedColor="" highlightedColorOpacity="100" highlightedTextColor="" horizontalAlign="ALIGN_CENTER" normalBGBitmapPath="" normalBitmapPath="" normalColor="" normalColorOpacity="100" normalTextColor="" pressedBGBitmapPath="" pressedBitmapPath="" pressedColor="" pressedColorOpacity="100" pressedTextColor="" text="수정짱짱예쁜이" textSize="32.0" verticalAlign="ALIGN_MIDDLE"/>
-        <layout height="85.0" mode="Portrait" width="414.0" x="150.0" y="794.0"/>
-        <layout height="85.0" mode="Landscape" width="461.0" x="103.0" y="544.0"/>
-    </Button>
 </Scene>

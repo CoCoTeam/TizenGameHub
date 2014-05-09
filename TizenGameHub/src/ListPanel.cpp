@@ -26,15 +26,12 @@ ListPanel::~ListPanel() {
 	}
 }
 
-ListPanel::ListPanel(GHLeaderboard leaderboard)
-{
-
-}
 ListPanel::ListPanel(GHAchievement achievement)
 {
 	Construct(IDL_PANEL_LISTPANEL);
 	isTouchEnable = false;
 
+//	game_id = gameId;
 	id = achievement.getId();
 	title = achievement.getTitle();
 	imgUrl = achievement.getImgUrl();
@@ -54,8 +51,8 @@ ListPanel::ListPanel(GHAchievement achievement)
 //	pImg->Set
 }
 
-ListPanel::ListPanel(Tizen::Base::String _id, Tizen::Base::String _title, Tizen::Base::String _imgUrl)
-	: id(_id), title(_title), imgUrl(_imgUrl)
+ListPanel::ListPanel(Tizen::Base::String gameId, Tizen::Base::String _id, Tizen::Base::String _title, Tizen::Base::String _imgUrl)
+	: game_id(gameId), id(_id), title(_title), imgUrl(_imgUrl)
 {
 	Construct(IDL_PANEL_LISTPANEL);
 	isTouchEnable = true;
@@ -83,6 +80,7 @@ void ListPanel::OnTouchReleased (const Tizen::Ui::Control &source, const Tizen::
 	Tizen::Base::Collection::ArrayList* pList = new (std::nothrow)Tizen::Base::Collection::ArrayList;
 	AppAssert(pList);
 	pList->Construct();
+	pList->Add( new String(game_id) );
 	pList->Add( new String(getId()) );
 
 	// Scene 이동

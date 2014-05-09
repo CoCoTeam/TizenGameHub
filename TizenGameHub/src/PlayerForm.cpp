@@ -317,6 +317,9 @@ void PlayerForm::getGames(String playerId)
 }
 void PlayerForm::loadPlayerGamesFinished(Tizen::Base::Collection::ArrayList* gameList)
 {
+	if(gameList == null) {
+		return;
+	}
 	pGameList = gameList;
 	setGameList();
 }

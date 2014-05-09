@@ -11,7 +11,7 @@
 #include "GHTizen.h"
 #include "GHLeaderboard.h"
 //#include "GHLeaderboard/GHLeaderboard"
-#include "GHLeaderboard/GHLeaderboardController.h"
+#include "GameHub/AppGHLeaderboardController.h"
 #include "GHLeaderboard/GHLeaderboardListLoadedListener.h"
 #include "LeaderboardRankProvider.h"
 
@@ -20,7 +20,7 @@ class LeaderboardRankForm
 	, public Tizen::Ui::IActionEventListener
 	, public Tizen::Ui::Controls::IFormBackEventListener
 	, public Tizen::Ui::Scenes::ISceneEventListener
-	, public GHLeaderboardController
+	, public AppGHLeaderboardController
 	, public GHLeaderboardListLoadedListener
 {
 public:

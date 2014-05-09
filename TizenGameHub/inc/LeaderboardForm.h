@@ -10,7 +10,7 @@
 
 #include <GHTizen.h>
 #include "GHLeaderboard.h"
-#include "GHLeaderboard/GHLeaderboardController.h"
+#include "GameHub/AppGHLeaderboardController.h"
 #include "GHLeaderboard/GHLeaderboardDataLoadedListener.h"
 
 class LeaderboardForm
@@ -18,7 +18,7 @@ class LeaderboardForm
 	, public Tizen::Ui::IActionEventListener
 	, public Tizen::Ui::Controls::IFormBackEventListener
 	, public Tizen::Ui::Scenes::ISceneEventListener
-	, public GHLeaderboardController
+	, public AppGHLeaderboardController
 	, public GHLeaderboardDataLoadedListener
 {
 public:
@@ -45,6 +45,7 @@ private:
 	virtual void loadLeaderboardFinished(Tizen::Base::Collection::ArrayList* leaderboardList);
 
 	void setLeaderboardList();
+	Tizen::Base::String gameId;
 
 	Tizen::Ui::Controls::ScrollPanel* pLeaderboard_scrollpanel;
 };

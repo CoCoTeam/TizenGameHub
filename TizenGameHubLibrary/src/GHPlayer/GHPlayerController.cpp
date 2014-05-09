@@ -111,7 +111,11 @@ void GHPlayerController::playerLogin(Tizen::Base::String email, Tizen::Base::Str
 	__pMap->Construct();
 	__pMap->Add(new String("email"), new String(email));
 	__pMap->Add(new String("pwd"), new String(pwd));
-	__pMap->Add(new String("game_id"), new String(GHSharedAuthData::getSharedInstance().getGameId()));
+	if(String(GHSharedAuthData::getSharedInstance().getGameId()) != null) {
+		__pMap->Add(new String("game_id"), new String(GHSharedAuthData::getSharedInstance().getGameId()));
+		String *tmp = new String(GHSharedAuthData::getSharedInstance().getGameId());
+		AppLogDebug("===================================> GameId = %S ", tmp->GetPointer());
+	}
 
 	playerEmail = email; playerPwd = pwd;
 

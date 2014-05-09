@@ -69,9 +69,10 @@ void LeaderboardRankForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& pr
 	{
 		if (pArgs->GetCount())
 		{
-			Tizen::Base::String *leaderboardId = static_cast<Tizen::Base::String*>(pArgs->GetAt(0));
+			Tizen::Base::String *gameId = static_cast<Tizen::Base::String*>(pArgs->GetAt(0));
+			Tizen::Base::String *leaderboardId = static_cast<Tizen::Base::String*>(pArgs->GetAt(1));
 //			AppLogDebug("[LeaderboardRankForm] Argument Received (%S)", leaderboardId->GetPointer());
-			loadLeaderboardRank(*leaderboardId, this);
+			loadLeaderboardRank(*gameId, *leaderboardId, this);
 		}
 		pArgs->RemoveAll(true);
 		delete pArgs;
@@ -87,6 +88,9 @@ void LeaderboardRankForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& c
 
 void LeaderboardRankForm::loadLeaderboardRankFinished(GHLeaderboard* _leaderboard)
 {
+	if(_leaderboard == null) {
+		return;
+	}
 	leaderboard = _leaderboard;
 	rank_list = leaderboard->getRankList();
 	AppLogDebug("[LeaderboardRankForm] leaderboardRankList Received. (listSize : %d)", rank_list->GetCount() );

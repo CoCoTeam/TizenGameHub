@@ -48,12 +48,12 @@ public:
 	void setAchievement(Tizen::Base::String ac_id);
 	void setAchievement(Tizen::Base::String ac_id, GHAchievementSettedListener* listener); 	// update listener
 
-
+protected:
+	GHAchievementListener* currentListener;
 
 private:
 	virtual void OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data);
 	Tizen::Base::Collection::HashMap* __pMap;
-	GHAchievementListener* currentListener;
 };
 
 #endif /* GHACHIEVEMENTCONTROLLER_H_ */
