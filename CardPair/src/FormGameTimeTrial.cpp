@@ -44,7 +44,19 @@ void FormGameTimeTrial::onStageComplete()
 	AppLog("Complete Stage");
 	String timeStr = pLabelTimer->GetText();		// mm:ss:msms
 	int totalMis = getMillisec(timeStr);
-//	maxCombo
+//	maxCombo, gameScore, totalMis
+/*	if(maxCombo >= 5) {
+		// [Achievement] 최대 콤보 5회 이상 달성
+
+	}
+	if(totalMis <= 30 * 1000) {
+		// [Achievement] 30초 이내에 달성
+
+	}*/
+
+	// 리더보드
+//	leaderboardUpdate(ld_id, totalMis);	// 시간 리더보드 업데이트
+
 
 }
 

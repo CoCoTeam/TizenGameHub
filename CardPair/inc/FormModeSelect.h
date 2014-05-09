@@ -22,6 +22,8 @@ private:
 	virtual void OnFormBackRequested(Tizen::Ui::Controls::Form& source);
 	virtual void loginPlayerFinished(Tizen::Base::String statusCode);
 
+	bool checkHeart();
+
 protected:
 	static const int IDA_BUTTON_TIME 	= 101;
 	static const int IDA_BUTTON_SECONDS = 102;

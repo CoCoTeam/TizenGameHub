@@ -103,28 +103,6 @@ JoinForm::RequestImage(const String& path,int width, int height,int timeout)
 
 	uri.SetUri(path);
 
-/*
-    uri.SetPort(8081);
-	uri.SetPath("/players/pkeykichul/image");
-	uri.SetHost("http://54.238.195.222/players/pkeykichul/image");
-*/
-/*	BitmapPixelFormat format;
-	if(path.EndsWith(L"jpg") or path.EndsWith(L"bmp") or path.EndsWith(L"gif"))
-	{
-		format = BITMAP_PIXEL_FORMAT_RGB565;
-	}
-	else if(path.EndsWith(L"png"))
-	{
-		format = BITMAP_PIXEL_FORMAT_ARGB8888;
-	}
-	else
-	{
-		return;
-	}*/
-
-
-	//uri.Set
-
 	// Request image
 
 	//서버에 보내기
@@ -159,7 +137,7 @@ JoinForm::OnImageDecodeUrlReceived (RequestId reqId, Tizen::Graphics::Bitmap *pB
 		GalleryItem* pGallery = new GalleryItem();
 		pGallery->Construct(*pBitmap);
 
-		pGalleryProfile->RefreshGallery(0,GALLERY_REFRESH_TYPE_ITEM_MODIFY);
+		//pGalleryProfile->RefreshGallery(0,GALLERY_REFRESH_TYPE_ITEM_MODIFY);
 
 	}
 }

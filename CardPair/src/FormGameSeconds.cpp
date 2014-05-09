@@ -74,6 +74,13 @@ void FormGameSeconds::onGameEnded()
 	pLabelTimer->SetText("00:00:00");
 
 //	maxCombo, gameScore
+/*	if(maxCombo >= 5) {
+		// [Achievement] 최대 콤보 5회 이상 달성
+
+	}*/
+
+	// 리더보드
+//	leaderboardUpdate(ld_id2, gameScore);	// 최종 점수 리더보드 업데이트
 
 
 }

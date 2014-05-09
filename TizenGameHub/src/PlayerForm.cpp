@@ -29,7 +29,7 @@ using namespace Tizen::Content;
 using namespace Tizen::System;
 
 
-PlayerForm::PlayerForm() {
+PlayerForm::PlayerForm()  : __pUserBmp(null) {
 	// TODO Auto-generated constructor stub
 	isLocalPlayer = new Boolean(true);
 	isFriend = new Boolean(false);
@@ -62,7 +62,7 @@ PlayerForm::OnInitializing(void)
 
 	// Get a button via resource ID
 	pPanelUser = static_cast< Panel* >(GetControl(IDC_USER_PANEL_USER));
-	pGalleryUserProfile = static_cast< Gallery* >(pPanelUser->GetControl(IDC_USER_IMG_USERIMG));
+
 	pLabelUserName = static_cast< Label* >(pPanelUser->GetControl(IDC_USER_LABEL_USERNAME));
 	pLabelUserScore = static_cast< Label* >(pPanelUser->GetControl(IDC_USER_LABEL_USERSCORE));
 	pButtonUserFriend = static_cast< Button* >(pPanelUser->GetControl(IDC_USER_BUTTON_USERFRIEND));
@@ -78,9 +78,14 @@ PlayerForm::OnInitializing(void)
 
 	AppLog("__pCroppedBmp EXIST");
 
+	/*pGalleryUserProfile->SetItemProvider(*this);
+	pGalleryUserProfile->AddTouchEventListener(*this);*/
 
+	//User Image 설정
 	String path = L"http://54.238.195.222:80/players/pkeykichul/image";
 	this->RequestImage(path,400,400,5000);
+
+
 
 
 	return r;
@@ -101,6 +106,8 @@ PlayerForm::RequestImage(const String& path,int width, int height,int timeout)
 	//서버에 보내기
 	pImage->DecodeUrl(uri, BITMAP_PIXEL_FORMAT_RGB565, width, height, reqId, *this, timeout);
 
+	//pGalleryUserProfile->SetItemProvider(*this);
+
 }
 
 // Receive the image and call the delete timer
@@ -115,22 +122,28 @@ PlayerForm::OnImageDecodeUrlReceived (RequestId reqId, Tizen::Graphics::Bitmap *
 	}
 	else
 	{
+		AppLog("========================test1 ");
+
 		// Create a label and set the background bitmap
+/*
 		Label* pLabel = new Label();
 		pLabel->Construct(Rectangle(0,50, pBitmap->GetWidth(),pBitmap->GetHeight()),L"");
 		AddControl(*pLabel);
 		pLabel->SetBackgroundBitmap(*pBitmap);
 
 		Draw();Show();
+*/
 
+/*		Gallery* pGalleryProfile = static_cast< Gallery* >(GetControl(IDC_GAME_IMG_GAMEIMG));
+		pGalleryProfile->SetItemProvider(*this);*/
 
-		/*Gallery* pGalleryProfile = static_cast< Gallery* >(GetControl(IDC_JOIN_GALLERY_PROFILE));
-		pGalleryProfile->SetItemProvider(*this);
+		__pUserBmp = pBitmap;
 
-		GalleryItem* pGallery = new GalleryItem();
-		pGallery->Construct(*pBitmap);*/
+		Gallery *pGalleryUserProfile;
+		pGalleryUserProfile = static_cast< Gallery* >(pPanelUser->GetControl(IDC_USER_IMG_USERIMG));
+		pGalleryUserProfile->SetItemProvider(*this);
 
-		//pGalleryProfile->RefreshGallery(0,GALLERY_REFRESH_TYPE_ITEM_MODIFY);
+		AppLog("========================test2 ");
 
 	}
 }
@@ -284,15 +297,6 @@ void PlayerForm::setPlayerData()
 	pLabelUserScore->SetText( totalScoreStr );
 
 
-
-/*	GHhttpClient* httpPost = new GHhttpClient();
-	String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
-	String url(L"/players" + player_id);
-
-	httpPost->RequestImageDownload(this, this, url);*/
-
-
-
 	//pGalleryUserProfile->Set
 
 
@@ -385,6 +389,57 @@ void PlayerForm::changePanel(int selected)
 		break;
 	}
 }
+
+// IGalleryItemProvider implementation  ( 이걸 해야 Galley 에 추가할 수 있음 ... !! )
+
+GalleryItem*
+PlayerForm::CreateItem(int index)
+{
+    // Gets an instance of Bitmap
+   // AppResource* pAppResource = Application::GetInstance()->GetAppResource();
+   // Bitmap* pImageTemp = pAppResource->GetBitmapN(L"Image.jpg");
+
+    // Creates an instance of GalleryItem and registers the bitmap to the gallery item
+
+	AppLog("__pCroppedBmp NULL");
+
+	GalleryItem* pGallery = new GalleryItem();
+	pGallery->Construct(*__pUserBmp);
+
+	/*if(__pUserBmp != null)
+	{
+		delete __pUserBmp;
+		__pUserBmp = null;
+		AppLog("__pUserBmp NotNull");
+	}
+	else
+	{
+		AppLog("__pUserBmp Null");
+	}
+*/
+
+	return pGallery;
+
+    // Deallocates the bitmap
+   // delete pImageTemp;
+}
+
+bool
+PlayerForm::DeleteItem(int index, GalleryItem *pItem)
+{
+    delete pItem;
+    return true;
+}
+
+int
+PlayerForm::GetItemCount(void)
+{
+    return 1;
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 
 /*
