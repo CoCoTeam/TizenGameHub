@@ -13,15 +13,14 @@ using namespace Tizen::Base;
 using namespace Tizen::Net::Http;
 using namespace Tizen::Web::Json;
 
-GHController::GHController() {
+GHController::GHController()
+{
 	// TODO Auto-generated constructor stub
-
 }
 
 GHController::~GHController() {
 	// TODO Auto-generated destructor stub
 }
-
 
 void GHController::OnTransactionReadyToRead(HttpSession& httpSession, HttpTransaction& httpTransaction, int availableBodyLen)
 {

@@ -47,7 +47,7 @@ public:
 	Tizen::Base::String cardChar[MAX_CARD_SIZE];
 
 	bool isClickable, isComplete;
-	int prevSelected, nowSelected, countRemoved, gameScore, combo;
+	int prevSelected, nowSelected, countRemoved, gameScore, combo, maxCombo;
 	void setGameScore();
 	void setCardVisible(int cardNum, bool visibility = true);
 	void removeCard();

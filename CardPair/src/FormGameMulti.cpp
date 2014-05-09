@@ -70,7 +70,7 @@ result FormGameMulti::SetGameTimer(Tizen::Base::TimeSpan ts)
  */
 void FormGameMulti::onStageComplete()
 {
-	AppLog("Complete Stage");
+	AppLog("============================================ Complete Stage ============================================");
 
 
 }
@@ -79,9 +79,12 @@ void FormGameMulti::onStageComplete()
  */
 void FormGameMulti::onTurnFinished(int actionType, int cardNum, bool isCorrect)
 {
+	int finished = 1;
+	if(isComplete) {
+		finished = 0;
+	}
 	String data("{\'actionType\':"+Integer::ToString(actionType)+ ",\'cardNum\':"+Integer::ToString(cardNum) +",\'score\':"+Integer::ToString(gameScore)
-				+ ",\'isCorrect\':\'"+Boolean::ToString(isCorrect)+ "\',\'isFinished\':\'"+Boolean::ToString(isComplete) +"\'}");
-	AppLogDebug("%S", data.GetPointer());
+				+ ",\'isCorrect\':\'"+Boolean::ToString(isCorrect)+ "\',\'isFinished\':"+Integer::ToString(finished) +"}");
 	multiController->sendDataToPlayer(data, 0);
 }
 
@@ -165,14 +168,16 @@ void FormGameMulti::onMatchMyturn(String data){
 			pButtonCard[firstSelected]->SetShowState(false);
 			pButtonCard[secondSelected]->SetShowState(false);
 
+			countRemoved++;
+
 			pObject->GetValue(new String("isFinished"), pValue);
-			JsonBool *pjIsFinished = static_cast<JsonBool*>(pValue);
-			bool isFinished = pjIsFinished->ToBool();
+			JsonNumber *pjIsFinished = static_cast<JsonNumber*>(pValue);
+			bool isFinished = (pjIsFinished->ToInt() == 0 ? true : false);
 			delete pjIsFinished;
 
 			// isGameFinished
 			if(isFinished) {
-				AppLogDebug("=========== Game Finished ============");
+				AppLogDebug("============================================ Game Finished =============================================");
 				// lose
 
 
@@ -191,10 +196,6 @@ void FormGameMulti::onMatchMyturn(String data){
 			// 5초 Thread 시작
 			startMyTurnThread();
 		}
-	}
-
-	if(isMyTurn) {
-		isClickable = true;
 	}
 }
 void FormGameMulti::onMatchTurnWait(){

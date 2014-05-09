@@ -19,12 +19,20 @@ GHPlayerController::GHPlayerController()
 	// TODO Auto-generated constructor stub
 	pProgressPopup = new (std::nothrow) Tizen::Ui::Controls::ProgressPopup();
 	pProgressPopup->Construct(true, false);
+//	pProgressPopup->AddProgressPopupEventListener(*this);
 }
 
 GHPlayerController::~GHPlayerController() {
 	// TODO Auto-generated destructor stub
-	delete pProgressPopup;
+	if(pProgressPopup != null) {
+		delete pProgressPopup;
+	}
 }
+void GHPlayerController::OnProgressPopupCanceled()
+{
+	pProgressPopup->SetShowState(false);
+}
+
 bool GHPlayerController::isLogin(){
 	String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
 	if(player_id == "") {

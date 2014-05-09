@@ -22,7 +22,7 @@ private:
 
 	void onGameEnded();
 	Tizen::Base::TimeSpan timespan = null;
-	static const int GAME_SEC = 10;
+	static const int GAME_SEC = 60;
 };
 
 #endif	//_CARD_PAIR_FORM_SECONDS_H_

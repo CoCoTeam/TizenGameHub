@@ -42,6 +42,24 @@ result FormGameTimeTrial::SetGameTimer(Tizen::Base::TimeSpan ts)
 void FormGameTimeTrial::onStageComplete()
 {
 	AppLog("Complete Stage");
+	String timeStr = pLabelTimer->GetText();		// mm:ss:msms
+	int totalMis = getMillisec(timeStr);
+//	maxCombo
+
+}
+
+int FormGameTimeTrial::getMillisec(String timeStr)
+{
+	String sMin, sSec, sMis;
+	int iMin, iSec, iMis;
+	timeStr.SubString(0,2,sMin);
+	timeStr.SubString(3,2,sSec);
+	timeStr.SubString(6,2,sMis);
+
+	Integer::Parse(sMin, iMin);
+	Integer::Parse(sSec, iSec);
+	Integer::Parse(sMis, iMis);
 
 
+	return iMis + iSec*100 + iMin*60*100;
 }

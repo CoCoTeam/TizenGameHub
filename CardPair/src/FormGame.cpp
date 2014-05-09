@@ -9,7 +9,7 @@ using namespace Tizen::Ui::Scenes;
 const Tizen::Base::String CARD_SET_A[FormGame::MAX_CARD_SIZE/2] = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
 
 FormGame::FormGame(void)
-:gameTick(0),initTick(0),isClickable(false),isComplete(false),prevSelected(-1),countRemoved(0),isMultiplay(false),gameScore(0),combo(0), initialTime(0), initialScore(0)
+:gameTick(0),initTick(0),isClickable(false),isComplete(false),prevSelected(-1),countRemoved(0),isMultiplay(false),gameScore(0),combo(0), initialTime(0), initialScore(0), maxCombo(0)
 {
 }
 
@@ -226,7 +226,6 @@ void FormGame::OnTimerExpired(Tizen::Base::Runtime::Timer& timer)
 		span = getCurrentTimeSpan(multiTick);
 
 		if( span.GetSeconds() == 1) {
-			isClickable = true;
 
 			// 틀리면 카드 다시 뒤집기
 			for(int i=0 ; i<MAX_CARD_SIZE ; i++) {
@@ -236,6 +235,7 @@ void FormGame::OnTimerExpired(Tizen::Base::Runtime::Timer& timer)
 			}
 		}
 		if( span.GetSeconds() < 4 ) {
+			isClickable = true;
 
 			String __watchText;
 			__watchText.Clear();
@@ -364,9 +364,9 @@ void FormGame::startInitState()
 result FormGame::startGame()
 {
 	//!!! 카드 전체 뒤집어서 안보이게
-//	for(int i=0 ; i<MAX_CARD_SIZE ; i++) {
+	for(int i=0 ; i<MAX_CARD_SIZE ; i++) {
 //		setCardVisible(i, false);
-//	}
+	}
 
 	// 카드 선택 가능하게(게임 시작)
 	if(!isMultiplay) {
@@ -412,11 +412,17 @@ void FormGame::compareCard()
 		// 점수 증가
 		gameScore += (200 + 10 * (combo*combo));
 		setGameScore();
-		combo++;
-		countRemoved++;
+		if(maxCombo <= ++combo) {
+			maxCombo = combo;
+		}
 
 		// 스테이지 클리어 조건 체크
-		if(countRemoved >= (MAX_CARD_SIZE/2)) {
+		if(++countRemoved >= (MAX_CARD_SIZE/2)) {
+			if(isMultiplay) {
+				pTimerMulti->Cancel();
+			} else {
+				pTimerGame->Cancel();
+			}
 			isComplete = true;
 
 			// 스테이지 클리어 점수 증가
@@ -428,7 +434,10 @@ void FormGame::compareCard()
 
 		onTurnFinished(2, nowSelected, true);
 		nowSelected = -1;
-		startMyTurnThread();
+
+		if(!isComplete) {
+			startMyTurnThread();
+		}
 	}
 	else {
 		// 다시 뒤집기

@@ -56,7 +56,6 @@ void FormGameSeconds::onStageComplete()
 {
 	AppLog("Complete Stage");
 
-	pTimerGame->Cancel();
 	initialTime = timespan.GetTicks();
 
 	// 새로운 게임 시작
@@ -72,7 +71,9 @@ void FormGameSeconds::onStageComplete()
 void FormGameSeconds::onGameEnded()
 {
 	AppLog("onGameEnded()");
-	pTimerGame->Cancel();
 	pLabelTimer->SetText("00:00:00");
+
+//	maxCombo, gameScore
+
 
 }

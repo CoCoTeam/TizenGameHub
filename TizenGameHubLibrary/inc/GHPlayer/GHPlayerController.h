@@ -24,6 +24,7 @@ const Tizen::Base::String PLAYER_GAMELIST = "07";
 
 class GHPlayerController
 	: public GHController
+//	, public Tizen::Ui::IProgressPopupEventListener
 {
 public:
 	GHPlayerController();
@@ -50,6 +51,9 @@ public:
 	//사용자가 플레이하는 게임 리스트 가져오기
 	void getPlayerGameList(Tizen::Base::String playerId, int start_pos=0, int max_length=5);
 	void getPlayerGameList(Tizen::Base::String playerId, GHPlayerListener* listener, int start_pos=0, int max_length=5);
+
+	//IProgressPopupEventListener
+	virtual void OnProgressPopupCanceled();
 
 
 private:

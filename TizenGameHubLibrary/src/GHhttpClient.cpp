@@ -27,7 +27,7 @@ using namespace Tizen::System;
 
 GHhttpClient::GHhttpClient(void)
 	: __pHttpSession(null)
-	, hostAddr(L"http://54.238.195.222:8081")
+	, hostAddr(L"http://54.238.195.222:80")
 {
 }
 
@@ -53,8 +53,8 @@ GHhttpClient::RequestHttpGet(IHttpTransactionEventListener* listener)
 
 	// 주소
 	String player_id = "hhhh";
-	String hostAddr(L"http://211.189.127.187:8081");
-	String requestAddr(L"http://211.189.127.187:8081/players/" + player_id);
+	String hostAddr(L"http://211.189.127.187:80");
+	String requestAddr(L"http://211.189.127.187:80/players/" + player_id);
 
 	if (__pHttpSession == null)
 	{
@@ -122,8 +122,8 @@ GHhttpClient::RequestHttpPost(IHttpTransactionEventListener* listener)
 
 	// 주소
 	String player_id = "hhhh";
-	String hostAddr(L"http://54.238.195.222:8081");
-	String requestAddr(L"http://54.238.195.222:8081/developers");
+	String hostAddr(L"http://54.238.195.222:80");
+	String requestAddr(L"http://54.238.195.222:80/developers");
 
 	if (__pHttpSession == null)
 	{
@@ -369,12 +369,12 @@ GHhttpClient::RequestHttpPostTran(IHttpTransactionEventListener* listener, Strin
 	String* pKey = null;
 	String* pValue = null;
 
-	/*	String hostAddr(L"http://211.189.127.187:8081");
-	String requestAddr(L"http://211.189.127.187:8081/players");*/
+	/*	String hostAddr(L"http://211.189.127.187:80");
+	String requestAddr(L"http://211.189.127.187:80/players");*/
 
 
-	//String hostAddr(L"http://54.238.195.222:8081");
-	//String requestAddr(L"http://54.238.195.222:8081/players");
+	//String hostAddr(L"http://54.238.195.222:80");
+	//String requestAddr(L"http://54.238.195.222:80/players");
 	String requestAddr( hostAddr + url);
 
 	if (__pHttpSession == null)
@@ -635,12 +635,12 @@ CATCH:
 //		String* pKey = null;
 //		String* pValue = null;
 //
-//		/*	String hostAddr(L"http://211.189.127.187:8081");
-//		String requestAddr(L"http://211.189.127.187:8081/players");*/
+//		/*	String hostAddr(L"http://211.189.127.187:80");
+//		String requestAddr(L"http://211.189.127.187:80/players");*/
 //
 //
-//		//String hostAddr(L"http://54.238.195.222:8081");
-//		//String requestAddr(L"http://54.238.195.222:8081/players");
+//		//String hostAddr(L"http://54.238.195.222:80");
+//		//String requestAddr(L"http://54.238.195.222:80/players");
 //		String requestAddr( hostAddr + url);
 //
 //		if (__pHttpSession == null)
