@@ -83,18 +83,9 @@ LoginForm::OnInitializing(void)
 	}
 	else {	//!! for debug
 		pTextEmail->SetText(String("kichul"));
-		pTextPw->SetText(String("kichulbabo"));
+		pTextPw->SetText(String("kichul"));
 	}
 	//------------------------------------------------------
-
-	//Button Test----------------------------
-	Button* pButtonTest = static_cast< Button* >(GetControl(IDC_LOGIN_BUTTON_TEST));
-	if (pButtonTest != null)
-	{
-		pButtonTest->SetActionId(IDA_BUTTON_TEST);
-		pButtonTest->AddActionEventListener(*this);
-		pButtonTest->SetText("LoginForm");
-	}
 
 	return r;
 }
@@ -129,128 +120,7 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		doLogin();
 
 		break;
-
-	// API TEST
-	case IDA_BUTTON_TEST:
-		//---------------------------------------------------------
-
-		//GHPlayerController* controller = new GHPlayerController();
-		//controller->playerLogin("S","W");
-		//controller->getPlayerData("pkeyS");
-
-		//GHAchievementController* controller = new GHAchievementController();
-	 	//controller->loadAchievements(this);
-		//controller->revealAchievement("4", this);
-		//controller->completeAchievement("4");
-		//controller->increaseAchievement("4");
-
-		///GHAttackhelperController* controller = new GHAttackhelperController();
-		//controller->loadAttackhelpers(this);
-		//controller->sendAttackhelperData("pkeykichulee", "1", 3, this);
-		//controller->respondAttackhelperData(5, this); //del 점검필요
-		//controller->loadAttackhelperDatas(this);
-
-
-		//GHLeaderboardController* controller = new GHLeaderboardController();
-		//controller->loadLeaderboardRank("key_aa_0");    // 확인 필요
-
-		//controller->loadLeaderboardRank("key_aa_0",this);
-
-		//controller->updateLeaderboardScore("key_aa","key_aa_0",50,this);
-		//controller->updateLeaderboardScore("key_aa","key_aa_0",50);
-
-		//controller->loadLeaderboards(this);
-
-		//GHCloudsaveController* controller = new GHCloudsaveController();
-		//controller->loadCloudSlotData(1, this);
-		//controller->saveCloudSlotData("hahaha kichul zzang", 2, this);
-
-		//GHSocket* socket = new GHSocket();
-		//socket->ConnectSocketServer("54.238.195.222", 8081);
-
-		controller = new GHTurnbasedMatchController();
-		controller->connectSocketServer("54.238.195.222", 8082, this);
-
-		break;
 	}
-}
-
-// API TEST
-void LoginForm::onMatchConnect(){
-	AppLogDebug("[onMatchConnect]callback success");
-}
-void LoginForm::onMatchSetting(){
-	AppLogDebug("[onMatchSetting]callback success");
-	controller->sendDataToSetting("setting data");
-}
-void LoginForm::onMatchStart(String data){
-	AppLogDebug("[onMatchStart]callback success");
-	AppLogDebug("[DEBUG] onMatchStart data : %S", data.GetPointer() );
-	controller->readyForPlay();
-}
-void LoginForm::onMatchMyturn(String data){
-	AppLogDebug("[onMatchMyturn]callback success");
-	controller->sendDataToPlayer("data haha", 1);
-}
-void LoginForm::onMatchTurnWait(){
-	AppLogDebug("[onMatchTurnWait]callback success");
-}
-void LoginForm::onMatchFinish(String data){
-	AppLogDebug("[onMatchFinish]callback success");
-}
-
-void LoginForm::saveCloudsaveFinished(int statusCode){
-	AppLogDebug("[DEBUG] saveCloud statusCode : %d", statusCode );
-}
-
-void LoginForm::loadCloudsaveFinished(String data){
-	AppLogDebug("[DEBUG] loadCloud data : %S", data.GetPointer() );
-}
-
-// API TEST
-void LoginForm::loadAchievementFinished(ArrayList* achievementList) {
-
-	// TEST
-	GHAchievement * test = static_cast<GHAchievement*>(achievementList->GetAt(0));
-	AppLogDebug("[DEBUG] acArr ID : %S", test->getId().GetPointer() );
-}
-void LoginForm::loadAttackhelperFinished(ArrayList* achievementList) {
-
-	// TEST
-	GHAttackhelper * test = static_cast<GHAttackhelper*>(achievementList->GetAt(0));
-	AppLogDebug("[DEBUG] ahArr ID : %S", test->getItemName().GetPointer() );
-}
-void LoginForm::respondAttackhelperDataFinished(int statusCode)
-{
-	AppLogDebug("[DEBUG] statusCode : %d", statusCode );
-}
-
-//Leaderboard Test
-void LoginForm::loadLeaderboardFinished(ArrayList* leaderboardList)
-{
-	//TEST
-	GHLeaderboard * test = static_cast<GHLeaderboard*>(leaderboardList->GetAt(0));
-	AppLogDebug("[DEBUG] Leaderboard ID : %d, %S", leaderboardList->GetCount(), test->getId().GetPointer() );
-}
-void LoginForm::loadLeaderboardRankFinished(GHLeaderboard* _leaderboard)
-{
-	//AppLogDebug("[DEBUG]----------------------------------------------------------------->");
-	GHLeaderboard * test = _leaderboard;
-	GHPlayerRank* test2 = static_cast<GHPlayerRank*>(test->getRankList()->GetAt(0));
-
-	//GHPlayerRank* test2 = test->getRankList()->GetAt(0);
-	//GHLeaderboard * test = static_cast<GHLeaderboard*>(leaderboardList->GetAt(0));
-
-	AppLogDebug("[DEBUG] Leaderboard ID : %S", test->getId().GetPointer());
-	//GHPlayer * test3 = static_cast<GHPlayer*>(test2);
-	//AppLogDebug("[DEBUG] test :  %S ", test2->getName().GetPointer() ); // 왜 데이터가 안올까  ㅠ___ㅠ;;;
-
-	AppLogDebug("[DEBUG] P_id : %S", test2->getId().GetPointer() );
-
-}
-void LoginForm::updateLeaderboardScoreFinished(int statusCode)
-{
-	AppLogDebug("[DEBUG] statusCode : %d", statusCode );
 }
 
 void LoginForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)

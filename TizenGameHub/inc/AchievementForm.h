@@ -10,7 +10,7 @@
 
 #include <GHTizen.h>
 #include "GHAchievement.h"
-#include "GHAchievement/GHAchievementController.h"
+#include "GameHub/AppGHAchievementController.h"
 #include "GHAchievement/GHAchievementLoadedListener.h"
 
 class AchievementForm
@@ -18,7 +18,7 @@ class AchievementForm
 	, public Tizen::Ui::IActionEventListener
 	, public Tizen::Ui::Controls::IFormBackEventListener
 	, public Tizen::Ui::Scenes::ISceneEventListener
-	, public GHAchievementController
+	, public AppGHAchievementController
 	, public GHAchievementLoadedListener
 //	, public Tizen::Ui::Controls::IScrollEventListener
 {
@@ -47,6 +47,7 @@ private:
 	virtual void loadAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList);
 
 	void setAchievementList();
+	Tizen::Base::String *gameId;
 
 	Tizen::Ui::Controls::ScrollPanel* pAchievement_scrollpanel;
 

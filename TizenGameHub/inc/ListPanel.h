@@ -20,8 +20,7 @@ class ListPanel
 public:
 	ListPanel();
 	virtual ~ListPanel();
-	ListPanel(Tizen::Base::String _id, Tizen::Base::String _title, Tizen::Base::String _imgUrl);
-	ListPanel(GHLeaderboard leaderboard);
+	ListPanel(Tizen::Base::String gameId, Tizen::Base::String _id, Tizen::Base::String _title, Tizen::Base::String _imgUrl);
 	ListPanel(GHAchievement achievement);
 	//ITouchEventListener
 	virtual void OnTouchFocusIn (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo){};
@@ -36,6 +35,7 @@ public:
 	Tizen::Base::String getImgUrl();
 
 private:
+	Tizen::Base::String game_id;
 	Tizen::Base::String id;
 	Tizen::Base::String title;
 	Tizen::Base::String imgUrl;

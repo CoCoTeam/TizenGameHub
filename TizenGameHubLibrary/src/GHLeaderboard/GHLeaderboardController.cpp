@@ -208,6 +208,7 @@ void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String st
 			}
 			else { // 에러가 발생했을 때
 				leRankArr = null;
+				leaderboard = null;
 			}
 
 			if(this->currentListener != null) this->currentListener->loadLeaderboardRankFinished(leaderboard);
