@@ -85,9 +85,6 @@ PlayerForm::OnInitializing(void)
 	String path = L"http://54.238.195.222:80/players/pkeykichul/image";
 	this->RequestImage(path,400,400,5000);
 
-
-
-
 	return r;
 }
 
@@ -145,6 +142,8 @@ PlayerForm::OnImageDecodeUrlReceived (RequestId reqId, Tizen::Graphics::Bitmap *
 
 		AppLog("========================test2 ");
 
+		//서버에서 image 다운로드
+		DownloadStart();
 	}
 }
 
@@ -296,10 +295,6 @@ void PlayerForm::setPlayerData()
 	totalScoreStr.Append(mPlayer->getTotalScore());
 	pLabelUserScore->SetText( totalScoreStr );
 
-
-	//pGalleryUserProfile->Set
-
-
 	//!! 프로필 이미지 세팅
 	//	pGalleryUserProfile->Set
 
@@ -443,8 +438,32 @@ PlayerForm::GetItemCount(void)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
+void PlayerForm::DownloadStart() {
+
+             String url =L"http://54.238.195.222:80/players/pkeykichul/image";
+
+             DownloadRequest request(url);
+             DownloadManager* pManager =DownloadManager::GetInstance();
+
+             pManager->SetDownloadListener(this);
+             pManager->Start(request,__requestId);
+
+}
+
+void
+PlayerForm::OnDownloadInProgress (RequestId reqId, unsigned long long receivedSize, unsigned long long totalSize) {
+
+             String strMessage =L"";
+             strMessage.Append((long)receivedSize);
+             strMessage.Append("/ ");
+             strMessage.Append((long)totalSize);
+}
 
 
+void
+PlayerForm::OnDownloadCompleted (RequestId reqId, const Tizen::Base::String &path) {
+
+}
 /*
 void PlayerForm::OnTransactionReadyToRead(String apiCode, String statusCode,IJsonValue* data)
 {
