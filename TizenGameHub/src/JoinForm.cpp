@@ -30,6 +30,8 @@ using namespace Tizen::System;
 using namespace Tizen::Graphics;*/
 #define DEFAULT_CROPPED_FILE_PATH (Tizen::App::App::GetInstance()->GetAppDataPath() + L"DefCropped.jpg")
 
+
+
 JoinForm::JoinForm() : __pCroppedBmp(null), count(0)
 {
 	// TODO Auto-generated constructor stub
@@ -75,8 +77,16 @@ JoinForm::OnInitializing(void)
 	pGalleryProfile->SetItemProvider(*this);
 	pGalleryProfile->AddTouchEventListener(*this);
 
-	String path = L"http://54.238.195.222:80/players/pkeykichul/image";
-	this->RequestImage(path,500,500,5000);
+	/*String path = L"http://54.238.195.222:80/players/pkeykichul/image";
+	this->RequestImage(path,500,500,5000);*/
+
+	//다운로드 받은 이미지 경로를 통해 사진을 설정함
+	String user_image_path = Environment::GetMediaPath() + L"Downloads/image.jpg";
+	AppLogDebug("USER_IMAGE --> %S", user_image_path.GetPointer());
+
+	Image img;
+	img.Construct();
+	__pCroppedBmp = img.DecodeN(user_image_path, BITMAP_PIXEL_FORMAT_ARGB8888);
 
 	return r;
 }
@@ -102,28 +112,6 @@ JoinForm::RequestImage(const String& path,int width, int height,int timeout)
 	RequestId reqId;
 
 	uri.SetUri(path);
-
-/*
-    uri.SetPort(8081);
-	uri.SetPath("/players/pkeykichul/image");
-	uri.SetHost("http://54.238.195.222/players/pkeykichul/image");
-*/
-/*	BitmapPixelFormat format;
-	if(path.EndsWith(L"jpg") or path.EndsWith(L"bmp") or path.EndsWith(L"gif"))
-	{
-		format = BITMAP_PIXEL_FORMAT_RGB565;
-	}
-	else if(path.EndsWith(L"png"))
-	{
-		format = BITMAP_PIXEL_FORMAT_ARGB8888;
-	}
-	else
-	{
-		return;
-	}*/
-
-
-	//uri.Set
 
 	// Request image
 
@@ -313,7 +301,7 @@ JoinForm::CreateItem(int index)
 
     // Creates an instance of GalleryItem and registers the bitmap to the gallery item
 
-	AppLog("__pCroppedBmp NULL");
+
 	GalleryItem* pGallery = new GalleryItem();
 	pGallery->Construct(*__pCroppedBmp);
 

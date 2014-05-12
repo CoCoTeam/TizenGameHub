@@ -44,6 +44,8 @@ class PlayerForm
 	, public GHPlayerLoadedListener
 	, public GHPlayerGamesLoadedListener
 	, public Tizen::Media::IImageDecodeUrlEventListener
+	, public Tizen::Ui::Controls::IGalleryItemProvider
+	,  public Tizen::Content::IDownloadListener
 /*	, public GHController*/
 {
 public:
@@ -105,6 +107,22 @@ private:
 	 void RequestImage(const Tizen::Base::String& path,int width, int height,int timeout);
 	 virtual void  OnImageDecodeUrlReceived (RequestId reqId, Tizen::Graphics::Bitmap *pBitmap, result r, const Tizen::Base::String errorCode, const Tizen::Base::String errorMessage);
 
+	 //IGalleryItemProvider
+	 virtual Tizen::Ui::Controls::GalleryItem* CreateItem (int index);
+	 virtual bool DeleteItem (int index, Tizen::Ui::Controls::GalleryItem *pItem);
+	 virtual int GetItemCount(void);
+
+	Tizen::Graphics::Bitmap *__pUserBmp;
+
+     virtual void  OnDownloadCanceled (RequestId reqId) {}
+     virtual void  OnDownloadCompleted (RequestId reqId, const Tizen::Base::String &path);
+     virtual void  OnDownloadFailed (RequestId reqId, result r, const Tizen::Base::String &errorCode) {}
+     virtual void  OnDownloadInProgress (RequestId reqId,unsigned long long receivedSize, unsigned long long totalSize);
+     virtual void  OnDownloadPaused (RequestId reqId) {}
+
+     void DownloadStart();
+protected:
+     RequestId __requestId;
 	// GHController
 /*	virtual void OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data);
 	virtual void OnTransactionCompleted(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction);*/

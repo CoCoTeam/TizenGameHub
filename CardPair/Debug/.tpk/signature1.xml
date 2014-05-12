@@ -4,19 +4,11 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<<<<<<< HEAD
-<DigestValue>c9zF0FKCyd7yhzi9lAxzl/EO7tAUijWVls59NtLEL30=</DigestValue>
+<DigestValue>/RzWa4DCTmHqgZsXqWJEd3c34oyWcaxqJBfH7FaAMnM=</DigestValue>
 </Reference>
 <Reference URI="bin/CardPair.exe">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>sTKB13UeBWIcuo0vy7qyi9H+1MhfgOE0RYpdYV5oNBA=</DigestValue>
-=======
-<DigestValue>pf9u5zDJaSV7JPl5pVWiCt8iDlXoXLNPJ/tdvLTkn0g=</DigestValue>
-</Reference>
-<Reference URI="bin/CardPair.exe">
-<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>e6TJ97IXwouVQBESOLGWyaB9wQ4NdGKkSgLlFk4c6gA=</DigestValue>
->>>>>>> 76513bd8c7a315676416c076a40fa38c095c11f3
+<DigestValue>Gy/XoNTK4itmBCq0rSkCswPm6nHkxNaJVGoMp+4XTYg=</DigestValue>
 </Reference>
 <Reference URI="info/manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -24,15 +16,11 @@
 </Reference>
 <Reference URI="lib/libTizenGameHubLibrary.so">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<<<<<<< HEAD
-<DigestValue>lU2mQo0arCgADfG5Y/Uv+uoqeZgtNITaoRy1Sb5AWtE=</DigestValue>
-=======
-<DigestValue>g0Fu6DwyoWFSAxL1UdhWtBnRapJZVaav7AzT5Dsn9pc=</DigestValue>
+<DigestValue>64aJ9Q7heUV9J0VTKEgBqqYprCr/50uUznYnN9J29Z4=</DigestValue>
 </Reference>
 <Reference URI="res/720x1280/heart.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>p/arUQetJna0/mGYSnQ0XkCS3qRjV9vd1iyBGu6TwTc=</DigestValue>
->>>>>>> 76513bd8c7a315676416c076a40fa38c095c11f3
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -79,15 +67,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-<<<<<<< HEAD
-p6xogEChphxK6QsNxiRkiwkC650cICwLX2J+lmaojABWp1IG1EbnzabQONn9ejNNyxLWE2xrzMOX
-qwNGPd0LZRiNZXJeVtK9h8Sy12fqHFpnqGaPR8e17Lwy9rF4rsi358sSmYe+TYtfCz+9BHRiC8uO
-TgFOYdhJQ4EIhAoP7b4=
-=======
-I6HqWNfsra44iof3+Vq3A1xoNeN6s9Opg4U3JUj3Afnl4Jf79Xjny1xLZMrwKI/axykJfL3OaxrG
-ABtM/My9ERhXjIhKIEFga3PoLVzYjS7Nv6J/8vX8vge28TLDzKA3XnwvDjZBYE4+OoW5L9HN9Qni
-/4MvfdsvEVdoZkuRyO4=
->>>>>>> 76513bd8c7a315676416c076a40fa38c095c11f3
+svIn98a4ItD8aK3pXNfRthgE9T1LwuChb3l/dSy0tE75rRFYEJaegIlDUvY1s+vzucwWIhr0KIQF
+htJebvlEEdxxPVaJ9QdFaydm7V/Xs182NTbERv3IWITA52NerqIu6425c7wm6gViMiE9kOFpwnKj
+sqwLh27b6cUTmWaqFCY=
 </SignatureValue>
 <KeyInfo>
 <X509Data>

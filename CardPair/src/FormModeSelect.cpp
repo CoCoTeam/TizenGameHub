@@ -81,16 +81,22 @@ FormModeSelect::OnActionPerformed(const Tizen::Ui::Control& source, int actionId
 	switch(actionId)
 	{
 	case IDA_BUTTON_TIME:
-		pSceneManager->GoForward(ForwardSceneTransition(SCENE_GAME_TIMETRIAL, SCENE_TRANSITION_ANIMATION_TYPE_FADE_IN_OUT));
+		if(checkHeart()) {
+			pSceneManager->GoForward(ForwardSceneTransition(SCENE_GAME_TIMETRIAL, SCENE_TRANSITION_ANIMATION_TYPE_FADE_IN_OUT));
+		}
 		break;
 	case IDA_BUTTON_SECONDS:
-		pSceneManager->GoForward(ForwardSceneTransition(SCENE_GAME_SECONDS, SCENE_TRANSITION_ANIMATION_TYPE_FADE_IN_OUT));
+		if(checkHeart()) {
+			pSceneManager->GoForward(ForwardSceneTransition(SCENE_GAME_SECONDS, SCENE_TRANSITION_ANIMATION_TYPE_FADE_IN_OUT));
+		}
 		break;
 	case IDA_BUTTON_MULTI:
 		GHPlayerController *playerController = new GHPlayerController();
 		bool isLogin = playerController->isLogin();
 		if(isLogin) {
-			pSceneManager->GoForward(ForwardSceneTransition(SCENE_GAME_MULTI, SCENE_TRANSITION_ANIMATION_TYPE_FADE_IN_OUT));
+			if(checkHeart()) {
+				pSceneManager->GoForward(ForwardSceneTransition(SCENE_GAME_MULTI, SCENE_TRANSITION_ANIMATION_TYPE_FADE_IN_OUT));
+			}
 		} else {
 			playerController->playerLogin(this);
 		}
@@ -110,5 +116,11 @@ void FormModeSelect::loginPlayerFinished(Tizen::Base::String statusCode)
 	SceneManager* pSceneManager = SceneManager::GetInstance();
 	AppAssert(pSceneManager);
 	pSceneManager->GoForward(ForwardSceneTransition(SCENE_GAME_MULTI, SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_IN));
+}
+
+bool FormModeSelect::checkHeart()
+{
+
+	return true;
 }
 

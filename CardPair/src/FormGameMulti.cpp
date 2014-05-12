@@ -71,7 +71,12 @@ result FormGameMulti::SetGameTimer(Tizen::Base::TimeSpan ts)
 void FormGameMulti::onStageComplete()
 {
 	AppLog("============================================ Complete Stage ============================================");
-
+	// 게임 종료, 승리
+//	gameScore, maxCombo
+//	win = saveMyGrade(true)	// 게임 전적 저장 -> cloudSave
+//	if(win > 10) {
+//		// [Achievement] 멀티플레이 10승 달성
+//	}
 
 }
 /*
@@ -178,7 +183,7 @@ void FormGameMulti::onMatchMyturn(String data){
 			// isGameFinished
 			if(isFinished) {
 				AppLogDebug("============================================ Game Finished =============================================");
-				// lose
+				// 게임 종료, 패배
 
 
 			} else {
