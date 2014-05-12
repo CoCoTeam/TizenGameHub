@@ -59,7 +59,7 @@ private:
 	Panel *pPanelUser;
 	Label *pLabelUserName, *pLabelUserScore;
 	Gallery *pGalleryUserProfile;
-	Button *pButtonUserFriend;
+	Button *pButtonUserFriend, *pButtonSearchFriend;
 
 	Panel *pPanelScroll, *pPanelGame, *pPanelFriend;
 	ListView *pListViewGame, *pListViewFriend;
@@ -99,6 +99,7 @@ private:
 	static const int ID_FOOTER_FIRST_TAB = 801;
 	static const int ID_FOOTER_SECOND_TAB = 802;
 	static const int IDA_BUTTON_USER = 101;
+	static const int IDA_BUTTON_SEARCHFRIEND = 102;
 
 	 //
 	 void RequestImage(const Tizen::Base::String& path,int width, int height,int timeout);

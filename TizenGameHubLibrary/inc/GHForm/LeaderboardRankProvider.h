@@ -16,7 +16,7 @@ class LeaderboardRankProvider
 public:
 	LeaderboardRankProvider();
 	virtual ~LeaderboardRankProvider();
-	void setItemList(Tizen::Base::Collection::ArrayList* _list);
+	void addItemList(Tizen::Base::Collection::ArrayList* _list);
 
 private:
 	int GetItemCount(void);

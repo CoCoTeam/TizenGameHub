@@ -22,7 +22,7 @@
         <layout height="720.0" mode="Landscape" type="NONE" width="677.0" x="20.0" y="0.0"/>
     </ScrollPanel>
     <Label id="IDC_ACHIEVEMENT_LABEL_TITLE" parent="IDL_FORM_ACHIEVEMENT">
-        <property accessibilityHint="" backgroundBitmapPath="" backgroundColor="" backgroundColorOpacity="0" horizontalAlign="ALIGN_LEFT" leftMargin="16" text="업적 XX개 중 X개 달성" textColor="" textSize="36.0" textStyle="LABEL_TEXT_STYLE_NORMAL" topMargin="0" verticalAlign="ALIGN_MIDDLE"/>
+        <property accessibilityHint="" backgroundBitmapPath="" backgroundColor="" backgroundColorOpacity="0" horizontalAlign="ALIGN_LEFT" leftMargin="16" text="" textColor="" textSize="36.0" textStyle="LABEL_TEXT_STYLE_NORMAL" topMargin="0" verticalAlign="ALIGN_MIDDLE"/>
         <layout height="70.0" mode="Portrait" width="525.0" x="19.0" y="15.0"/>
         <layout height="70.0" mode="Landscape" width="525.0" x="19.0" y="80.0"/>
     </Label>

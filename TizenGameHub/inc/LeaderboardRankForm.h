@@ -20,6 +20,7 @@ class LeaderboardRankForm
 	, public Tizen::Ui::IActionEventListener
 	, public Tizen::Ui::Controls::IFormBackEventListener
 	, public Tizen::Ui::Scenes::ISceneEventListener
+	, public Tizen::Ui::Controls::IScrollEventListener
 	, public AppGHLeaderboardController
 	, public GHLeaderboardListLoadedListener
 {
@@ -40,15 +41,20 @@ private:
 								   const Tizen::Ui::Scenes::SceneId& currentSceneId, Tizen::Base::Collection::IList* pArgs);
 	virtual void OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
 									const Tizen::Ui::Scenes::SceneId& nextSceneId);
+	//IScrollEventListener
+	virtual void OnScrollEndReached(Tizen::Ui::Control &source, Tizen::Ui::Controls::ScrollEndEvent type);
+
 	//GHLeaderboardListLoadedListener
 	virtual void loadLeaderboardRankFinished(GHLeaderboard* _leaderboard);
 
+
 	GHLeaderboard* leaderboard;
-	Tizen::Base::String leaderboardId;
+	Tizen::Base::String gameId, leaderboardId;
 	Tizen::Base::Collection::ArrayList* rank_list;
 	Tizen::Ui::Controls::ListView *pRankListView;
 	LeaderboardRankProvider *pRankProvider;
 
+	int offset;
 
 };
 

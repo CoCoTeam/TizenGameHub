@@ -37,7 +37,7 @@ void GHPlayerListItemEventListener::OnListViewItemStateChanged
 		AppAssert(pList);
 		pList->Construct();
 		pList->Add( playerId );	// playerId
-		pList->Add( new Tizen::Base::Boolean(false) );	// isLocalPlayer
+		pList->Add( new Tizen::Base::Boolean(true) );	// isLocalPlayer
 		pList->Add( new Tizen::Base::Boolean(false) );	// isFriend
 
 		// Scene 이동

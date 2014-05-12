@@ -42,7 +42,7 @@ bool LeaderboardRankProvider::DeleteItem
 {
 	return false;
 }
-void LeaderboardRankProvider::setItemList(Tizen::Base::Collection::ArrayList* _list)
+void LeaderboardRankProvider::addItemList(Tizen::Base::Collection::ArrayList* _list)
 {
 	for(int i=0 ; i<_list->GetCount() ; i++)
 	{

@@ -73,6 +73,9 @@ PlayerForm::OnInitializing(void)
 
 	pListViewGame = static_cast< ListView* >(pPanelGame->GetControl(IDC_USER_LISTVIEW_GAME));
 	pListViewFriend = static_cast< ListView* >(pPanelFriend->GetControl(IDC_USER_LISTVIEW_FRIEND));
+	pButtonSearchFriend = static_cast< Button* >(pPanelFriend->GetControl(IDC_USER_BUTTON_SEARCHFRIEND));
+	pButtonSearchFriend->SetActionId(IDA_BUTTON_SEARCHFRIEND);
+	pButtonSearchFriend->AddActionEventListener(*this);
 
 	setFooterMenu();
 
@@ -170,6 +173,10 @@ PlayerForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 			}
 
 		}
+		break;
+	case IDA_BUTTON_SEARCHFRIEND:
+		//!! 친구 검색 팝업
+
 		break;
 
 	case ID_FOOTER_FIRST_TAB:
@@ -279,9 +286,6 @@ void PlayerForm::setPlayerData()
 	AppLogDebug("---------->setPlayerData()<----------");
 
 	pLabelUserName->SetText( (mPlayer->getName()) );
-	String totalScoreStr;
-	totalScoreStr.Append(mPlayer->getTotalScore());
-	pLabelUserScore->SetText( totalScoreStr );
 
 
 

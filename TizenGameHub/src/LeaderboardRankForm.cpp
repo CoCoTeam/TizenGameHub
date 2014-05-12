@@ -13,7 +13,9 @@ using namespace Tizen::Base;
 using namespace Tizen::Ui::Scenes;
 using namespace Tizen::Ui::Controls;
 
-LeaderboardRankForm::LeaderboardRankForm() {
+LeaderboardRankForm::LeaderboardRankForm()
+:offset(0)
+{
 	// TODO Auto-generated constructor stub
 
 }
@@ -37,7 +39,9 @@ result LeaderboardRankForm::OnInitializing(void)
 	SetFormBackEventListener(this);
 
 	// Get a button via resource ID
-	pRankListView = static_cast<ListView*>(GetControl(IDC_LEADERBOARDRANK_LIST_RANK));
+	pRankListView = (ListView*)(GetControl(IDC_LEADERBOARDRANK_LIST_RANK));
+	pRankListView->AddScrollEventListener(*this);
+	pRankProvider = new LeaderboardRankProvider();
 
 	return r;
 }
@@ -69,10 +73,12 @@ void LeaderboardRankForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& pr
 	{
 		if (pArgs->GetCount())
 		{
-			Tizen::Base::String *gameId = static_cast<Tizen::Base::String*>(pArgs->GetAt(0));
-			Tizen::Base::String *leaderboardId = static_cast<Tizen::Base::String*>(pArgs->GetAt(1));
+			Tizen::Base::String *pGameId = static_cast<Tizen::Base::String*>(pArgs->GetAt(0));
+			Tizen::Base::String *pLeaderboardId = static_cast<Tizen::Base::String*>(pArgs->GetAt(1));
 //			AppLogDebug("[LeaderboardRankForm] Argument Received (%S)", leaderboardId->GetPointer());
-			loadLeaderboardRank(*gameId, *leaderboardId, this);
+			gameId = *pGameId;
+			leaderboardId = *pLeaderboardId;
+			loadLeaderboardRank(gameId, leaderboardId, this, 0, 8);
 		}
 		pArgs->RemoveAll(true);
 		delete pArgs;
@@ -93,11 +99,20 @@ void LeaderboardRankForm::loadLeaderboardRankFinished(GHLeaderboard* _leaderboar
 	}
 	leaderboard = _leaderboard;
 	rank_list = leaderboard->getRankList();
+	offset += rank_list->GetCount();
 	AppLogDebug("[LeaderboardRankForm] leaderboardRankList Received. (listSize : %d)", rank_list->GetCount() );
 
-	pRankProvider = new LeaderboardRankProvider();
-	pRankProvider->setItemList(rank_list);
+	pRankProvider->setUnit(leaderboard->getUnit());
+	pRankProvider->addItemList(rank_list);
+
 	pRankListView->SetItemProvider( *pRankProvider );
-	Draw();
+	pRankListView->Draw();
 }
 
+void LeaderboardRankForm::OnScrollEndReached(Tizen::Ui::Control &source, Tizen::Ui::Controls::ScrollEndEvent type)
+{
+	if(type == SCROLL_END_EVENT_END_BOTTOM) {
+		AppLogDebug("[LeaderboardRankForm] OnScrollEndReached()");
+		loadLeaderboardRank(gameId, leaderboardId, this, offset, 8);
+	}
+}

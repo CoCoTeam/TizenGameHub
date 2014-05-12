@@ -43,11 +43,6 @@
         <layout height="38.0" mode="Portrait" width="151.0" x="325.0" y="107.0"/>
         <layout height="38.0" mode="Landscape" width="301.0" x="323.0" y="112.0"/>
     </Label>
-    <Label id="IDC_USER_LABEL_USERSCORE" parent="IDC_USER_PANEL_USER">
-        <property accessibilityHint="" backgroundBitmapPath="" backgroundColor="" backgroundColorOpacity="0" horizontalAlign="ALIGN_LEFT" leftMargin="1" text="0" textColor="" textSize="20.0" textStyle="LABEL_TEXT_STYLE_NORMAL" topMargin="0" verticalAlign="ALIGN_MIDDLE"/>
-        <layout height="38.0" mode="Portrait" width="151.0" x="476.0" y="107.0"/>
-        <layout height="38.0" mode="Landscape" width="301.0" x="333.0" y="122.0"/>
-    </Label>
     <ScrollPanel id="IDC_USER_SCROLLPANEL" parent="IDL_FORM_PLAYER">
         <property autoResizingEnabled="true" backgroundColor="" backgroundColorOpacity="0" clientAreaHeight="0" clientAreaWidth="0" pageScrollEnabled="false" scrollBarVisible="true" scrollDirection="SCROLL_PANEL_SCROLL_DIRECTION_VERTICAL" scrollInputMode="SCROLL_INPUT_MODE_ALLOW_ANY_DIRECTION"/>
         <panelLayout height="673.0" mode="Portrait" width="720.0"/>
@@ -85,4 +80,9 @@
         <layout height="599.0" mode="Portrait" width="620.0" x="20.0" y="70.0"/>
         <layout height="238.0" mode="Landscape" width="629.0" x="12.0" y="80.0"/>
     </ListView>
+    <Button id="IDC_USER_BUTTON_SEARCHFRIEND" parent="IDC_USER_PANEL_FRIEND">
+        <property DisabledBitmapX="0.0" DisabledBitmapY="0.0" NormalBitmapX="0.0" NormalBitmapY="0.0" PressedBitmapX="0.0" PressedBitmapY="0.0" accessibilityHint="" disableTextColor="" disabledBGBitmapPath="" disabledBitmapPath="" disabledColor="" disabledColorOpacity="100" highlightedBGBitmapPath="" highlightedBitmapPath="" highlightedBitmapX="0.0" highlightedBitmapY="0.0" highlightedColor="" highlightedColorOpacity="100" highlightedTextColor="" horizontalAlign="ALIGN_CENTER" normalBGBitmapPath="" normalBitmapPath="" normalColor="" normalColorOpacity="100" normalTextColor="" pressedBGBitmapPath="" pressedBitmapPath="" pressedColor="" pressedColorOpacity="100" pressedTextColor="" text="친구 검색" textSize="20.0" verticalAlign="ALIGN_MIDDLE"/>
+        <layout height="38.0" mode="Portrait" width="138.0" x="502.0" y="12.0"/>
+        <layout height="38.0" mode="Landscape" width="138.0" x="4.0" y="7.0"/>
+    </Button>
 </Scene>
