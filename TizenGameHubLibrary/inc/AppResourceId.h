@@ -16,5 +16,10 @@ extern const wchar_t* IDC_LISTPANEL_LABEL_DESC;
 /* IDL_FORM_LEADERBOARDRANK */
 extern const wchar_t* IDL_FORM_LEADERBOARDRANK;
 extern const wchar_t* IDC_LEADERBOARDRANK_LIST_RANK;
+extern const wchar_t* IDC_LEADERBOARDRANK_PANEL_MYRANK;
+extern const wchar_t* IDC_LEADERBOARDRANK_MYRANK_GALLERY;
+extern const wchar_t* IDC_LEADERBOARDRANK_MYRANK_LABEL_NAME;
+extern const wchar_t* IDC_LEADERBOARDRANK_MYRANK_LABEL_RANK;
+extern const wchar_t* IDC_LEADERBOARDRANK_MYRANK_LABEL_SCORE;
 /*extern const wchar_t* FOOTERITEM1;*/
 #endif // _APP_RESOURCE_ID_H_

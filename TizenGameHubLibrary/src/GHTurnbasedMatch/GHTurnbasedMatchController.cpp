@@ -15,6 +15,7 @@ GHTurnbasedMatchController::GHTurnbasedMatchController() {
 	// TODO Auto-generated constructor stub
 	pProgressPopup = new (std::nothrow) Tizen::Ui::Controls::ProgressPopup();
 	pProgressPopup->Construct(true, false);
+//	pProgressPopup->RemoveProgressPopupEventListener(*this);
 }
 
 GHTurnbasedMatchController::~GHTurnbasedMatchController() {

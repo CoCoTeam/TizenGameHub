@@ -43,6 +43,7 @@ result LeaderboardRankForm::OnInitializing(void)
 	pRankListView->AddScrollEventListener(*this);
 	pRankProvider = new LeaderboardRankProvider();
 
+
 	return r;
 }
 result LeaderboardRankForm::OnTerminating(void)
@@ -102,7 +103,8 @@ void LeaderboardRankForm::loadLeaderboardRankFinished(GHLeaderboard* _leaderboar
 	offset += rank_list->GetCount();
 	AppLogDebug("[LeaderboardRankForm] leaderboardRankList Received. (listSize : %d)", rank_list->GetCount() );
 
-	pRankProvider->setUnit(leaderboard->getUnit());
+	strUnit = leaderboard->getUnit();
+	pRankProvider->setUnit(strUnit);
 	pRankProvider->addItemList(rank_list);
 
 	pRankListView->SetItemProvider( *pRankProvider );
@@ -115,4 +117,20 @@ void LeaderboardRankForm::OnScrollEndReached(Tizen::Ui::Control &source, Tizen::
 		AppLogDebug("[LeaderboardRankForm] OnScrollEndReached()");
 		loadLeaderboardRank(gameId, leaderboardId, this, offset, 8);
 	}
+}
+
+
+void LeaderboardRankForm::setMyRank()
+{
+	// Set My rank Info.
+//	pPanelMyrank = static_cast<Panel*>(GetControl(IDC_LEADERBOARDRANK_PANEL_MYRANK));
+//	pLabelName = static_cast<Label*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_LABEL_NAME));
+//	pLabelScore = static_cast<Label*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_LABEL_SCORE));
+//	pLabelRank = static_cast<Label*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_LABEL_RANK));
+//	pGallery = static_cast<Gallery*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_GALLERY));
+
+	GHPlayerRank myRank;
+	pLabelName->SetText(myRank.getName());
+	pLabelScore->SetText(Integer::ToString(myRank.getScore()) + strUnit);
+	pLabelRank->SetText(Integer::ToString(myRank.getRank()) + " 위");
 }

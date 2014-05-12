@@ -21,6 +21,9 @@ const Tizen::Base::String PLAYER_LOGIN = "02";
 const Tizen::Base::String PLAYER_PLAYERDATA = "04";
 const Tizen::Base::String PLAYER_GAMEJOIN = "05";
 const Tizen::Base::String PLAYER_GAMELIST = "07";
+const Tizen::Base::String PLAYER_LOADFRIENDS = "08";
+const Tizen::Base::String PLAYER_SEARCHFRIEND = "010";
+const Tizen::Base::String PLAYER_ADDFRIEND = "011";
 
 class GHPlayerController
 	: public GHController
@@ -51,6 +54,13 @@ public:
 	//사용자가 플레이하는 게임 리스트 가져오기
 	void getPlayerGameList(Tizen::Base::String playerId, int start_pos=0, int max_length=5);
 	void getPlayerGameList(Tizen::Base::String playerId, GHPlayerListener* listener, int start_pos=0, int max_length=5);
+
+	// 친구 검색
+	void searchFriend(Tizen::Base::String searchKey, GHPlayerListener* listener = null);
+	// 친구 추가
+	void addFriend(Tizen::Base::String playerId, Tizen::Base::String friendEmail, GHPlayerListener* listener = null);
+	// 사용자의 친구 리스트 불러오기
+	void getFriendsList(Tizen::Base::String player_id, GHPlayerListener* listener = null);
 
 	//IProgressPopupEventListener
 	virtual void OnProgressPopupCanceled();

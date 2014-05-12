@@ -3,6 +3,8 @@
 
 #include "tizenx.h"
 #include "GHPlayer/GHPlayerController.h"
+#include "GHPlayer/GHPlayerLoggedinListener.h"
+#include "GHAttackhelper/GHAttackhelperController.h"
 
 class FormMain
 	: public Tizen::Ui::Controls::Form
@@ -10,6 +12,7 @@ class FormMain
 	, public Tizen::Ui::Controls::IFormBackEventListener
  	, public Tizen::Ui::Scenes::ISceneEventListener
  	, public GHPlayerController
+ 	, public GHPlayerLoggedinListener
 {
 public:
 	FormMain(void);
@@ -25,6 +28,9 @@ private:
 								   const Tizen::Ui::Scenes::SceneId& currentSceneId, Tizen::Base::Collection::IList* pArgs);
 	virtual void OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
 									const Tizen::Ui::Scenes::SceneId& nextSceneId);
+	// GHPlayerLoggedinListener
+	virtual void loginPlayerFinished(Tizen::Base::String statusCode);
+	GHAttackhelperController *ahController;
 
 protected:
 	static const int IDA_BUTTON_PLAY = 101;

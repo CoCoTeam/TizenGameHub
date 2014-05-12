@@ -7,6 +7,7 @@
 
 #include "GHGame.h"
 #include "GHGame/GHGameController.h"
+#include "GHSharedAuthData.h"
 
 using namespace Tizen::Base;
 using namespace Tizen::Base::Collection;
@@ -27,8 +28,10 @@ void GHGameController::getGameData(Tizen::Base::String gameId, GHGameListener* l
 {
 	this->currentListener = listener;
 
+	String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
+
 	//GET 함수 호출
-	String url(L"/f_games/" + gameId);
+	String url(L"/f_games/" + gameId + "?player_id="+player_id);
 	httpPost.RequestHttpGetTran(this, url);
 }
 
@@ -56,6 +59,7 @@ void GHGameController::OnTransactionReadyToRead(Tizen::Base::String apiCode, Tiz
 				String* pkeyLbCount		= new String(L"lb_count");
 				String* pkeyAcCount		= new String(L"ac_count");
 				String* pkeyAhCount		= new String(L"ah_count");
+				String* pkeyIsPlaying	= new String(L"is_playing");
 
 				String  sGameId		= getStringByKey(pJsonOject, pkeyId);
 				String  sGameTitle	= getStringByKey(pJsonOject, pkeyTitle);
@@ -67,18 +71,20 @@ void GHGameController::OnTransactionReadyToRead(Tizen::Base::String apiCode, Tiz
 				int  iAhCount 		= getIntByKey(pJsonOject, pkeyAhCount);
 				bool isCloudSave	= getBoolByKey(pJsonOject, pkeyIsCloudsave);
 				bool iMultiEnable	= getBoolByKey(pJsonOject, pkeyMultiEnable);
+				bool iPlaying		= getBoolByKey(pJsonOject, pkeyIsPlaying);
 
 
 				AppLogDebug("--------------------------------------------------");
 
 				game = new GHGame(sGameId, "", sGameTitle, sDesc, sImgUrl, iLbCount, iAcCount, iAhCount, isCloudSave, iMultiEnable);
+				game->setIsPlaying(iPlaying);
 
 				// KEY NAME DELETE
 				delete pkeyId;			delete pkeyTitle;
 				delete pkeyImgUrl;	 	delete pkeyDesc;
 				delete pkeyIsCloudsave;	delete pkeyMultiEnable;
 				delete pkeyLbCount;	 	delete pkeyAcCount;
-				delete pkeyAhCount;
+				delete pkeyAhCount;		delete pkeyIsPlaying;
 
 			}
 			else { // 에러가 발생했을 때

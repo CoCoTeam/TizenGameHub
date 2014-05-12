@@ -187,8 +187,7 @@ PlayerForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		}
 		break;
 	case IDA_BUTTON_SEARCHFRIEND:
-		//!! 친구 검색 팝업
-
+		pSceneManager->GoForward(ForwardSceneTransition(SCENE_SEARCHFRIEND, SCENE_TRANSITION_ANIMATION_TYPE_LEFT));
 		break;
 
 	case ID_FOOTER_FIRST_TAB:
@@ -249,7 +248,7 @@ PlayerForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 				pButtonUserFriend->SetText( "정보 수정" );
 
 				// 친구 리스트 설정
-				getFriends("1001");
+				getFriends( *mPlayerId );
 				setPlayerList();
 			}
 			else {
@@ -324,34 +323,39 @@ void PlayerForm::loadPlayerGamesFinished(Tizen::Base::Collection::ArrayList* gam
 }
 void PlayerForm::setGameList()
 {
-	pGameProvider = new GHGameProvider();
+	GHGameProvider *pGameProvider = new GHGameProvider();
 	pGameProvider->setItemList(pGameList);
 	pListViewGame->SetItemProvider( *pGameProvider );
 
-	pGameListItemEventListener = new GHGameListItemEventListener();
+	GHGameListItemEventListener *pGameListItemEventListener = new GHGameListItemEventListener();
 	pGameListItemEventListener->setItemList(pGameList);
 	pListViewGame->AddListViewItemEventListener( *pGameListItemEventListener );
 	Draw();
 }
 
-
 void PlayerForm::getFriends(String playerId)
 {
 	pFriendList = new ArrayList();
-
-	pFriendList->Add( (Object*)new GHPlayer("1", "aaa@aaa.com", "전경호", "default") );
-	pFriendList->Add( (Object*)new GHPlayer("2", "bbb@aaa.com", "김기철", "default") );
-	pFriendList->Add( (Object*)new GHPlayer("3", "ccc@aaa.com", "노동완", "default") );
+	getFriendsList(playerId, this);
+}
+void PlayerForm::loadPlayerFriendsFinished(Tizen::Base::Collection::ArrayList* friendsList)
+{
+	if(friendsList == null) {
+		return;
+	}
+	pFriendList = friendsList;
+	setPlayerList();
 }
 void PlayerForm::setPlayerList()
 {
-	pFriendProvider = new GHPlayerProvider();
+	GHPlayerProvider *pFriendProvider = new GHPlayerProvider();
 	pFriendProvider->setItemList(pFriendList);
-	pFriendListItemEventListener = new GHPlayerListItemEventListener();
-	pFriendListItemEventListener->setItemList(pFriendList);
-
 	pListViewFriend->SetItemProvider( *pFriendProvider );
+
+	GHPlayerListItemEventListener *pFriendListItemEventListener = new GHPlayerListItemEventListener();
+	pFriendListItemEventListener->setItemList(pFriendList);
 	pListViewFriend->AddListViewItemEventListener( *pFriendListItemEventListener );
+	Draw();
 }
 
 

@@ -26,16 +26,18 @@ const Tizen::Base::String ATTACKHELPER_DATA_RESPOND = "34";
 
 
 class GHAttackhelperController
-	: public GHController{
+	: public GHController
+	  , public Tizen::Ui::IActionEventListener
+{
 public:
 	GHAttackhelperController();
 	virtual ~GHAttackhelperController();
 
 	// attack helper 목록을 가져온다.
-	void loadAttackhelpers(GHAttackhelperLoadedListener* listener);							// load listener
+	void loadAttackhelpers(GHAttackhelperLoadedListener* listener = null);				// load listener
 
 	// attack helper data 목록을 가져온다.
-	void loadAttackhelperDatas(GHAttackhelperDataLoadedListener* listener); 	// update listener
+	void loadAttackhelperDatas(GHAttackhelperDataLoadedListener* listener = null); 	// update listener
 
 	// normal achievement update
 	void sendAttackhelperData(Tizen::Base::String receiver_id, Tizen::Base::String ah_id, int quantity);
@@ -45,10 +47,17 @@ public:
 	void respondAttackhelperData(int data_idx);
 	void respondAttackhelperData(int data_idx, GHAttackhelperDataRespondedListener* listener); 	// update listener
 
+	void loadDataSendPopup();
+	void loadDataReceievedPopup(Tizen::Base::Collection::ArrayList* pArr);
+	virtual void OnActionPerformed(const Tizen::Ui::Control& source, int actionId);
+
 private:
 	virtual void OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data);
 	Tizen::Base::Collection::HashMap* __pMap;
 	GHAttackhelperListener* currentListener;
+
+	static const int ACTION_POPUP_CLOSE = 101;
+	Tizen::Ui::Controls::Popup *pPopup;
 };
 
 #endif /* GHATTACKHELPERCONTROLLER_H_ */

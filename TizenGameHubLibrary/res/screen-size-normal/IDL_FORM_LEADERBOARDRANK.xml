@@ -19,4 +19,29 @@
         <layout height="933.0" mode="Portrait" width="703.0" x="8.0" y="11.0"/>
         <layout height="720.0" mode="Landscape" width="703.0" x="8.0" y="0.0"/>
     </ListView>
+    <Panel id="IDC_LEADERBOARDRANK_PANEL_MYRANK" parent="IDL_FORM_LEADERBOARDRANK">
+        <property backgroundColor="" backgroundColorOpacity="0" compositeEnabled="true" groupStyle="GROUP_STYLE_NONE"/>
+        <layout height="137.0" mode="Portrait" type="NONE" width="699.0" x="7.0" y="967.0"/>
+        <layout height="137.0" mode="Landscape" type="NONE" width="699.0" x="7.0" y="492.0"/>
+    </Panel>
+    <Gallery id="IDC_LEADERBOARDRANK_MYRANK_GALLERY" parent="IDC_LEADERBOARDRANK_PANEL_MYRANK">
+        <property accessibilityHint="" backgroundColor="" bitmapPathOfEmptyGallery="" slideShowAnimation="GALLERY_ANIMATION_PAGE" slideShowAnimationDuration="3000" slideShowViewDuration="10" textOfEmptyGallery="" zoomingEnabled="true"/>
+        <layout height="100.0" mode="Portrait" width="100.0" x="15.0" y="20.0"/>
+        <layout height="101.0" mode="Landscape" width="109.0" x="14.0" y="20.0"/>
+    </Gallery>
+    <Label id="IDC_LEADERBOARDRANK_MYRANK_LABEL_NAME" parent="IDC_LEADERBOARDRANK_PANEL_MYRANK">
+        <property accessibilityHint="" backgroundBitmapPath="" backgroundColor="" backgroundColorOpacity="0" horizontalAlign="ALIGN_LEFT" leftMargin="16" text="" textColor="#000000" textSize="50.0" textStyle="LABEL_TEXT_STYLE_NORMAL" topMargin="0" verticalAlign="ALIGN_TOP"/>
+        <layout height="46.0" mode="Portrait" width="293.0" x="134.0" y="18.0"/>
+        <layout height="46.0" mode="Landscape" width="293.0" x="134.0" y="18.0"/>
+    </Label>
+    <Label id="IDC_LEADERBOARDRANK_MYRANK_LABEL_SCORE" parent="IDC_LEADERBOARDRANK_PANEL_MYRANK">
+        <property accessibilityHint="" backgroundBitmapPath="" backgroundColor="" backgroundColorOpacity="0" horizontalAlign="ALIGN_LEFT" leftMargin="16" text="" textColor="#939393" textSize="40.0" textStyle="LABEL_TEXT_STYLE_NORMAL" topMargin="0" verticalAlign="ALIGN_TOP"/>
+        <layout height="46.0" mode="Portrait" width="293.0" x="134.0" y="74.0"/>
+        <layout height="46.0" mode="Landscape" width="293.0" x="144.0" y="28.0"/>
+    </Label>
+    <Label id="IDC_LEADERBOARDRANK_MYRANK_LABEL_RANK" parent="IDC_LEADERBOARDRANK_PANEL_MYRANK">
+        <property accessibilityHint="" backgroundBitmapPath="" backgroundColor="" backgroundColorOpacity="0" horizontalAlign="ALIGN_RIGHT" leftMargin="16" text="" textColor="#000000" textSize="40.0" textStyle="LABEL_TEXT_STYLE_NORMAL" topMargin="0" verticalAlign="ALIGN_MIDDLE"/>
+        <layout height="46.0" mode="Portrait" width="147.0" x="534.0" y="46.0"/>
+        <layout height="46.0" mode="Landscape" width="293.0" x="144.0" y="28.0"/>
+    </Label>
 </Scene>

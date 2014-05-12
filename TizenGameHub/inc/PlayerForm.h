@@ -21,6 +21,7 @@
 #include "GHPlayer/GHPlayerController.h"
 #include "GHPlayer/GHPlayerLoadedListener.h"
 #include "GHPlayer/GHPlayerGamesLoadedListener.h"
+#include "GHPlayer/GHPlayerFriendsLoadedListener.h"
 
 #include <FBase.h>
 #include <FUi.h>
@@ -43,6 +44,7 @@ class PlayerForm
 	, public GHPlayerController
 	, public GHPlayerLoadedListener
 	, public GHPlayerGamesLoadedListener
+	, public GHPlayerFriendsLoadedListener
 	, public Tizen::Media::IImageDecodeUrlEventListener
 	, public Tizen::Ui::Controls::IGalleryItemProvider
 	,  public Tizen::Content::IDownloadListener
@@ -67,10 +69,6 @@ private:
 	ListView *pListViewGame, *pListViewFriend;
 
 	ArrayList *pGameList, *pFriendList;
-	GHGameProvider *pGameProvider;
-	GHGameListItemEventListener *pGameListItemEventListener;
-	GHPlayerProvider *pFriendProvider;
-	GHPlayerListItemEventListener *pFriendListItemEventListener;
 
 	virtual result OnInitializing(void);
 	virtual result OnTerminating(void);
@@ -87,6 +85,8 @@ private:
 	virtual void loadPlayerDataFinished(GHPlayer* player);
 	//GHPlayerGamesLoadedListener
 	virtual void loadPlayerGamesFinished(Tizen::Base::Collection::ArrayList* gameList);
+	//GHPlayerFriendsLoadedListener
+	virtual void loadPlayerFriendsFinished(Tizen::Base::Collection::ArrayList* friendsList);
 
 	//
 	void getCurrentPlayerData(String playerId);	// 서버로부터 플레이어의 정보를 받아온다.

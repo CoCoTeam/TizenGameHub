@@ -29,6 +29,7 @@ extern const wchar_t* IDC_GAME_LABEL_SCORE2;
 extern const wchar_t* IDC_GAME_LABEL_TIMER;
 extern const wchar_t* IDC_LABEL1;
 extern const wchar_t* IDC_LABEL2;
+extern const wchar_t* IDC_MAIN_BUTTON_LOGIN;
 extern const wchar_t* IDL_FORM_GAME;
 extern const wchar_t* IDL_FORM_GAME2;
 extern const wchar_t* IDL_FORM_GAME3;

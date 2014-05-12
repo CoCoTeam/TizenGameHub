@@ -28,11 +28,13 @@ private:
 	Tizen::Ui::Controls::Button* pButtonLogin;
 	Tizen::Ui::Controls::Button* pButtonLeaderboard;
 	Tizen::Ui::Controls::Button* pButtonAchievement;
+	Tizen::Ui::Controls::Button* pButtonAttackHelper;
 
 protected:
 	static const int IDA_BUTTON_PLAY = 101;
 	static const int IDA_BUTTON_LEADERBOARD = 102;
 	static const int IDA_BUTTON_ACHIEVEMENT  = 103;
+	static const int IDA_BUTTON_ATTACKHELPER  = 104;
 };
 
 #endif	//_CARD_PAIR_FORM_SOCIAL_H_

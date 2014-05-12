@@ -1,6 +1,10 @@
 #ifndef _APP_RESOURCE_ID_H_
 #define _APP_RESOURCE_ID_H_
-//
+/* IDL_FORM_SEARCHFRIEND */
+extern const wchar_t* IDL_FORM_SEARCHFRIEND;
+extern const wchar_t* IDC_SEARCHFRIEND_BUTTON_SEARCH;
+extern const wchar_t* IDC_SEARCHFRIEND_LIST_FRIEND;
+extern const wchar_t* IDC_SEARCHFRIEND_TEXTBOX_FRIEND;
 /* IDL_FORM */
 extern const wchar_t* IDC_JOIN_GALLERY_EDIT;
 extern const wchar_t* IDL_FORM;

@@ -54,7 +54,13 @@ private:
 	Tizen::Ui::Controls::ListView *pRankListView;
 	LeaderboardRankProvider *pRankProvider;
 
+	Tizen::Ui::Controls::Panel *pPanelMyrank;
+	Tizen::Ui::Controls::Label *pLabelName, *pLabelScore, *pLabelRank;
+	Tizen::Ui::Controls::Gallery *pGallery;
+
+	Tizen::Base::String strUnit;
 	int offset;
+	void setMyRank();
 
 };
 

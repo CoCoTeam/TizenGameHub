@@ -5,9 +5,9 @@
  *      Author: Administrator
  */
 
-#include "TizenGameHubFrame.h"
-#include "GHGameListItemEventListener.h"
 #include "GHGame.h"
+#include "GHGameListItemEventListener.h"
+#include "TizenGameHubFrame.h"
 
 using namespace Tizen::Ui::Scenes;
 
@@ -31,8 +31,10 @@ void GHGameListItemEventListener::OnListViewItemStateChanged
 (Tizen::Ui::Controls::ListView &listView, int index, int elementId, Tizen::Ui::Controls::ListItemStatus status)
 {
 	if (status == Tizen::Ui::Controls::LIST_ITEM_STATUS_SELECTED) {
+		if(index >= list.GetCount()) {
+			return ;
+		}
 		Tizen::Base::String gameId = ((GHGame*)(list.GetAt(index)))->getId();
-//		AppLog("[GHGameListItemEventListener] Game Id : %s", gameId);
 
 		Tizen::Base::Collection::ArrayList* pList = new (std::nothrow)Tizen::Base::Collection::ArrayList;
 		AppAssert(pList);

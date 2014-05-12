@@ -39,6 +39,8 @@ FormMain::OnInitializing(void)
 	SetFormBackEventListener(this);
 
 	// Get a button via resource ID
+	Tizen::Ui::Controls::Button* pButtonTmp = static_cast< Button* >(GetControl(IDC_MAIN_BUTTON_LOGIN));
+	pButtonTmp->SetShowState(false);
 	Tizen::Ui::Controls::Button* pButtonPlay = static_cast< Button* >(GetControl(IDC_MAIN_BUTTON_PLAY));
 	if (pButtonPlay != null)
 	{
@@ -60,7 +62,7 @@ FormMain::OnInitializing(void)
 		pButtonAchievement->AddActionEventListener(*this);
 	}
 
-	playerLogin();
+	playerLogin(this);
 
 	return r;
 }
@@ -126,5 +128,13 @@ FormMain::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
 {
 	// TODO: Deactivate your scene here.
 
+}
+
+void FormMain::loginPlayerFinished(Tizen::Base::String statusCode)
+{
+	if(statusCode != "0") {
+		ahController = new GHAttackhelperController();
+		ahController->loadAttackhelperDatas();
+	}
 }
 

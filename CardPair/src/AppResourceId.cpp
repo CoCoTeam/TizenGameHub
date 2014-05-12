@@ -28,6 +28,7 @@ const wchar_t* IDC_GAME_LABEL_SCORE2 = L"IDC_GAME_LABEL_SCORE2";
 const wchar_t* IDC_GAME_LABEL_TIMER = L"IDC_GAME_LABEL_TIMER";
 const wchar_t* IDC_LABEL1 = L"IDC_LABEL1";
 const wchar_t* IDC_LABEL2 = L"IDC_LABEL2";
+const wchar_t* IDC_MAIN_BUTTON_LOGIN = L"IDC_MAIN_BUTTON_LOGIN";
 const wchar_t* IDL_FORM_GAME = L"IDL_FORM_GAME";
 const wchar_t* IDL_FORM_GAME2 = L"IDL_FORM_GAME2";
 const wchar_t* IDL_FORM_GAME3 = L"IDL_FORM_GAME3";

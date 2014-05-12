@@ -55,7 +55,7 @@ void GHPlayerController::getLoginPopup(GHPlayerListener* listener)
 	msgBox.AddControl(pTextEmail);
 
     Tizen::Ui::Controls::EditField* pTextPwd = new Tizen::Ui::Controls::EditField();
-    pTextPwd->Construct(Tizen::Graphics::Rectangle(60, 185, 550, 65));
+    pTextPwd->Construct(Tizen::Graphics::Rectangle(60, 185, 550, 65), Tizen::Ui::Controls::EDIT_FIELD_STYLE_PASSWORD);
     pTextPwd->SetGuideText(String("Password"));
 	msgBox.AddControl(pTextPwd);
 
@@ -113,8 +113,6 @@ void GHPlayerController::playerLogin(Tizen::Base::String email, Tizen::Base::Str
 	__pMap->Add(new String("pwd"), new String(pwd));
 	if(String(GHSharedAuthData::getSharedInstance().getGameId()) != null) {
 		__pMap->Add(new String("game_id"), new String(GHSharedAuthData::getSharedInstance().getGameId()));
-		String *tmp = new String(GHSharedAuthData::getSharedInstance().getGameId());
-		AppLogDebug("===================================> GameId = %S ", tmp->GetPointer());
 	}
 
 	playerEmail = email; playerPwd = pwd;
@@ -178,6 +176,39 @@ void GHPlayerController::getPlayerGameList(Tizen::Base::String playerId, GHPlaye
 {
 	this->currentListener = listener;
 	this->getPlayerGameList(playerId, start_pos, max_length);
+}
+
+void GHPlayerController::searchFriend(Tizen::Base::String searchKey, GHPlayerListener* listener)
+{
+	// Set current Listener
+	this->currentListener = listener;
+
+	//GET 함수 호출
+	String url(L"/players/search" + searchKey);
+	httpPost.RequestHttpGetTran(this, url);
+}
+void GHPlayerController::addFriend(Tizen::Base::String playerId, Tizen::Base::String friendEmail, GHPlayerListener* listener)
+{
+	// Set current Listener
+	this->currentListener = listener;
+
+	__pMap = new (std::nothrow) Tizen::Base::Collection::HashMap();
+	__pMap->Construct();
+	__pMap->Add(new String("friend_email"), new String(friendEmail));
+
+	//GET 함수 호출
+	String url(L"/players/" + playerId + "/addfriend");
+	httpPost.RequestHttpPutTran(this, url, __pMap);
+}
+// 사용자의 친구 리스트 불러오기
+void GHPlayerController::getFriendsList(Tizen::Base::String player_id, GHPlayerListener* listener)
+{
+	// Set current Listener
+	this->currentListener = listener;
+
+	//GET 함수 호출
+	String url(L"/players/" + player_id + "/friends");
+	httpPost.RequestHttpGetTran(this, url);
 }
 
 
@@ -257,6 +288,7 @@ void GHPlayerController::OnTransactionReadyToRead(Tizen::Base::String apiCode, T
 			String* pKeyGameId 		= new String(L"game_id");
 			String* pKeyGameTitle	= new String(L"title");
 			String* pkeyGameImgUrl	= new String(L"img_url");
+			String* pKeyGameDesc	= new String(L"description");
 
 			AppLogDebug("[DEBUG] arrNum : %d", arrNum );
 
@@ -267,9 +299,10 @@ void GHPlayerController::OnTransactionReadyToRead(Tizen::Base::String apiCode, T
 				String  sGameId			= getStringByKey(pJsonOject, pKeyGameId);
 				String  sGameTitle		= getStringByKey(pJsonOject, pKeyGameTitle);
 				String  sGameImgUrl 	= getStringByKey(pJsonOject, pkeyGameImgUrl);
+				String  sGameDesc	 	= getStringByKey(pJsonOject, pKeyGameDesc);
 
 				// 리스트에 추가
-				gameList->Add( new GHGame(sGameId, "", sGameTitle, "", sGameImgUrl, 0, 0, 0, false, false) );
+				gameList->Add( new GHGame(sGameId, "", sGameTitle, sGameDesc, sGameImgUrl, 0, 0, 0, false, false) );
 			}
 
 			// KEY NAME DELETE
@@ -281,6 +314,85 @@ void GHPlayerController::OnTransactionReadyToRead(Tizen::Base::String apiCode, T
 
 		if(this->currentListener != null) this->currentListener->loadPlayerGamesFinished(gameList);
 
+
+	}
+	else if(apiCode.Equals(PLAYER_SEARCHFRIEND))
+	{
+		ArrayList *friendList;
+
+		if(statusCode == "1") {
+//			JsonArray* 	pJsonArray 	= static_cast<JsonArray*>(data);
+//			int 		arrNum 		= pJsonArray->GetCount();
+			friendList = new ArrayList();
+
+			// KEY NAME
+//			String* pKeyGameId 		= new String(L"game_id");
+//			String* pKeyGameTitle	= new String(L"title");
+//			String* pkeyGameImgUrl	= new String(L"img_url");
+//
+//			AppLogDebug("[DEBUG] arrNum : %d", arrNum );
+//
+//			for(int i=0; i<arrNum; i++) {
+//				JsonObject *pJsonOject 	= getJsonObjectByIndex(pJsonArray, i);
+//
+//				// 데이터 파싱
+//				String  sGameId			= getStringByKey(pJsonOject, pKeyGameId);
+//				String  sGameTitle		= getStringByKey(pJsonOject, pKeyGameTitle);
+//				String  sGameImgUrl 	= getStringByKey(pJsonOject, pkeyGameImgUrl);
+//
+//				// 리스트에 추가
+//				friendList->Add( new GHGame(sGameId, "", sGameTitle, "", sGameImgUrl, 0, 0, 0, false, false) );
+//			}
+//
+//			// KEY NAME DELETE
+//			delete pKeyGameId;		delete pKeyGameTitle;	 delete pkeyGameImgUrl;
+		}
+		else { // 에러가 발생했을 때
+			friendList = null;
+		}
+
+		if(this->currentListener != null) this->currentListener->searchFriendFinished(friendList);
+	}
+	else if(apiCode.Equals(PLAYER_ADDFRIEND))
+	{
+		if(this->currentListener != null) this->currentListener->addFriendFinished(apiCode);
+	}
+	else if(apiCode.Equals(PLAYER_LOADFRIENDS))	// 친구 목록 불러오기
+	{
+		ArrayList *friendList;
+
+		if(statusCode == "1") {
+				JsonArray* 	pJsonArray 	= static_cast<JsonArray*>(data);
+				int 		arrNum 		= pJsonArray->GetCount();
+			friendList = new ArrayList();
+
+			// KEY NAME
+				String* pKeyPlayer		= new String(L"player_id");
+				String* pKeyPlayerName	= new String(L"name");
+				String* pkeyPlayerImgUrl= new String(L"img_url");
+
+				AppLogDebug("[DEBUG] arrNum : %d", arrNum );
+
+				for(int i=0; i<arrNum; i++) {
+					JsonObject *pJsonOject 	= getJsonObjectByIndex(pJsonArray, i);
+
+					// 데이터 파싱
+					String  sPlayerId		= getStringByKey(pJsonOject, pKeyPlayer);
+					String  sPlayerName		= getStringByKey(pJsonOject, pKeyPlayerName);
+					String  sPlayerImgUrl 	= getStringByKey(pJsonOject, pkeyPlayerImgUrl);
+
+					// 리스트에 추가
+					friendList->Add( new GHPlayer(sPlayerId, sPlayerName, sPlayerImgUrl) );
+				}
+
+				// KEY NAME DELETE
+				delete pKeyPlayer;		delete pKeyPlayerName;	 delete pkeyPlayerImgUrl;
+		}
+		else { // 에러가 발생했을 때
+			friendList = null;
+		}
+
+		if(this->currentListener != null) this->currentListener->loadPlayerFriendsFinished(friendList);
 
 	}
 	else //PLAYER_LOGIN ,PLAYER_GAMEJOIN

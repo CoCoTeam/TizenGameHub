@@ -158,12 +158,21 @@ void GameForm::setGameData()
 	pLabelGameName->SetText( mGame->getTitle() );
 	pLabelGameDesc->SetText( mGame->getDescription() );
 	AppLogDebug("=======================ImgUrl : %S", mGame->getImgUrl().GetPointer());
+
+	if(mGame->isPlaying()) {
+		pButtonGame->SetText(L"Play");
+	}
+	else {
+		pButtonGame->SetText(L"Install");
+	}
+
 	Draw();
 }
 
 void GameForm::setPlayerList()
 {
 	pFriendList = new ArrayList();
+//	getFriendsList("pkeykichul");
 
 	pFriendList->Add( (Object*)new GHPlayer("1", "aaa@aaa.com", "전경호", "default") );
 	pFriendList->Add( (Object*)new GHPlayer("2", "bbb@aaa.com", "김기철", "default") );
