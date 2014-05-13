@@ -665,6 +665,10 @@ src/FormMain.d: ../src/FormMain.cpp \
   C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHAttackhelper/GHAttackhelperDataLoadedListener.h \
   C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHAttackhelper/GHAttackhelperDataSendedListener.h \
   C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHAttackhelper/GHAttackhelperDataRespondedListener.h \
+  C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHGame/GHGameController.h \
+  C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHGame/GHGameListener.h \
+  C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHGame.h \
+  C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHGame/GHGamePlayingFriendListener.h \
   C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\CardPair\inc\AppResourceId.h \
   C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\CardPair\inc\CardPairFrame.h \
   C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHLeaderboard/GHLeaderboardController.h \
@@ -2013,6 +2017,14 @@ C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrar
 C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHAttackhelper/GHAttackhelperDataSendedListener.h:
 
 C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHAttackhelper/GHAttackhelperDataRespondedListener.h:
+
+C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHGame/GHGameController.h:
+
+C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHGame/GHGameListener.h:
+
+C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHGame.h:
+
+C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHGame/GHGamePlayingFriendListener.h:
 
 C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\CardPair\inc\AppResourceId.h:
 

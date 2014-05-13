@@ -35,6 +35,23 @@ void GHGameController::getGameData(Tizen::Base::String gameId, GHGameListener* l
 	httpPost.RequestHttpGetTran(this, url);
 }
 
+// 게임을 플레이하는 친구 정보 가져오기
+void GHGameController::getGamePlayingFriends(Tizen::Base::String gameId, int start_pos, int max_length)
+{
+	String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
+
+	//GET 함수 호출
+	String url(L"/f_games/" + gameId +"/"+ player_id +"/friends?start_pos="+Integer::ToString(start_pos) +"&max_length="+Integer::ToString(max_length));
+	httpPost.RequestHttpGetTran(this, url);
+}
+void GHGameController::getGamePlayingFriends(Tizen::Base::String gameId, GHGameListener* listener, int start_pos, int max_length)
+{
+	this->currentListener = listener;
+
+	getGamePlayingFriends(gameId, start_pos, max_length);
+}
+
+
 void GHGameController::OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data)
 {
 	AppLogDebug("[DEBUG] apiCode : %S", apiCode.GetPointer() );
@@ -92,5 +109,41 @@ void GHGameController::OnTransactionReadyToRead(Tizen::Base::String apiCode, Tiz
 			}
 
 			if(this->currentListener != null) this->currentListener->loadPlayerDataFinished(game);
+	}
+	else if(apiCode.Equals(GAME_GAMEFRIEND)) {	// GAME_GAMEFRIEND
+		ArrayList *friendList;
+
+		if(statusCode == "1") {
+			JsonArray* 	pJsonArray 	= static_cast<JsonArray*>(data);
+			int 		arrNum 		= pJsonArray->GetCount();
+			friendList = new ArrayList();
+
+			// KEY NAME
+				String* pKeyPlayer		= new String(L"player_id");
+				String* pKeyPlayerName	= new String(L"name");
+				String* pkeyPlayerImgUrl= new String(L"img_url");
+
+				AppLogDebug("[DEBUG] arrNum : %d", arrNum );
+
+				for(int i=0; i<arrNum; i++) {
+					JsonObject *pJsonOject 	= getJsonObjectByIndex(pJsonArray, i);
+
+					// 데이터 파싱
+					String  sPlayerId		= getStringByKey(pJsonOject, pKeyPlayer);
+					String  sPlayerName		= getStringByKey(pJsonOject, pKeyPlayerName);
+					String  sPlayerImgUrl 	= getStringByKey(pJsonOject, pkeyPlayerImgUrl);
+
+					// 리스트에 추가
+					friendList->Add( new GHPlayer(sPlayerId, sPlayerName, sPlayerImgUrl) );
+				}
+
+				// KEY NAME DELETE
+				delete pKeyPlayer;		delete pKeyPlayerName;	 delete pkeyPlayerImgUrl;
+		}
+		else { // 에러가 발생했을 때
+			friendList = null;
+		}
+
+		if(this->currentListener != null) this->currentListener->loadGamePlayingFriendFinished(friendList);
 	}
 }

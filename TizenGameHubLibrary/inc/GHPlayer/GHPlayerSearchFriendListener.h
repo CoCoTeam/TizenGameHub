@@ -11,10 +11,13 @@
 #include "GHPlayer.h"
 #include "GHPlayer/GHPlayerListener.h"
 
-class GHPlayerSearchFriendListener {
+class GHPlayerSearchFriendListener
+	: public virtual GHPlayerListener
+{
 public:
 	GHPlayerSearchFriendListener();
 	virtual ~GHPlayerSearchFriendListener();
+
 	virtual void searchFriendFinished(Tizen::Base::Collection::ArrayList* friendsList)=0;
 };
 

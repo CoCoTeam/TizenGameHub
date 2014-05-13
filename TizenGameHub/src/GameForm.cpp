@@ -13,7 +13,9 @@ using namespace Tizen::Base;
 using namespace Tizen::Ui::Scenes;
 using namespace Tizen::Ui::Controls;
 
-GameForm::GameForm() {
+GameForm::GameForm()
+:friendOffset(0)
+{
 	// TODO Auto-generated constructor stub
 
 }
@@ -64,8 +66,12 @@ GameForm::OnInitializing(void)
 	pButtonAchievement->SetActionId(ID_BUTTON_ACHIEVEMENT);
 	pButtonAchievement->AddActionEventListener(*this);
 
+	pListViewFriend = static_cast< ListView* >(pPanelFriend->GetControl(IDC_GAME_LISTVIEW_FRIEND));
+	pListViewFriend->AddScrollEventListener(*this);
+	pFriendProvider = new PlayerProvider();
+	pFriendListItemEventListener = new GHPlayerListItemEventListener();
+
 	setFooterMenu();
-	setPlayerList();
 
 	return r;
 }
@@ -126,12 +132,10 @@ GameForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 		if (pArgs->GetCount())
 		{
 			String *gameId = static_cast<String*>(pArgs->GetAt(0));
-			AppLog("[GameForm] Argument Received (%S)", gameId->GetPointer());
 			getGameInstance( *gameId );
 		}
 //		pArgs->RemoveAll(true);
 		delete pArgs;
-		AppLog("[GameForm] Argument Received" );
 	}
 }
 
@@ -142,11 +146,20 @@ GameForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
 	// TODO: Deactivate your scene here.
 
 }
+void GameForm::OnScrollEndReached(Tizen::Ui::Control &source, Tizen::Ui::Controls::ScrollEndEvent type)
+{
+	if(type == SCROLL_END_EVENT_END_BOTTOM) {
+		getGamePlayingFriends(mGame->getId(), this, friendOffset);
+	}
+}
 
 void GameForm::getGameInstance(Tizen::Base::String id)
 {
 	AppLogDebug("gameId : %S", id.GetPointer());
 	getGameData(id, this);
+
+	pFriendList = new ArrayList();
+	getGamePlayingFriends(id, this, friendOffset);
 }
 void GameForm::loadPlayerDataFinished(GHGame* game)
 {
@@ -157,7 +170,7 @@ void GameForm::setGameData()
 {
 	pLabelGameName->SetText( mGame->getTitle() );
 	pLabelGameDesc->SetText( mGame->getDescription() );
-	AppLogDebug("=======================ImgUrl : %S", mGame->getImgUrl().GetPointer());
+	//ImgUrl : %S", mGame->getImgUrl().GetPointer());
 
 	if(mGame->isPlaying()) {
 		pButtonGame->SetText(L"Play");
@@ -165,27 +178,29 @@ void GameForm::setGameData()
 	else {
 		pButtonGame->SetText(L"Install");
 	}
+	pButtonGame->SetEnabled(false);
 
 	Draw();
+}
+void GameForm::loadGamePlayingFriendFinished(Tizen::Base::Collection::ArrayList* friendsList)
+{
+	if(friendsList == null) {
+		return;
+	}
+	pFriendList = friendsList;
+	friendOffset += pFriendList->GetCount();
+	setPlayerList();
 }
 
 void GameForm::setPlayerList()
 {
-	pFriendList = new ArrayList();
-//	getFriendsList("pkeykichul");
-
-	pFriendList->Add( (Object*)new GHPlayer("1", "aaa@aaa.com", "전경호", "default") );
-	pFriendList->Add( (Object*)new GHPlayer("2", "bbb@aaa.com", "김기철", "default") );
-	pFriendList->Add( (Object*)new GHPlayer("3", "ccc@aaa.com", "노동완", "default") );
-
-	pFriendProvider = new GHPlayerProvider();
 	pFriendProvider->setItemList(pFriendList);
-	pFriendListItemEventListener = new GHPlayerListItemEventListener();
-	pFriendListItemEventListener->setItemList(pFriendList);
-
-	pListViewFriend = static_cast< ListView* >(pPanelFriend->GetControl(IDC_GAME_LISTVIEW_FRIEND));
 	pListViewFriend->SetItemProvider( *pFriendProvider );
+
+	pFriendListItemEventListener->setItemList(pFriendList);
 	pListViewFriend->AddListViewItemEventListener( *pFriendListItemEventListener );
+
+	pListViewFriend->Draw();
 }
 
 void GameForm::setFooterMenu()
@@ -205,7 +220,7 @@ void GameForm::setFooterMenu()
 	footerItem2.Construct(ID_FOOTER_SECOND_TAB);
 	footerItem2.SetText(L"친구 정보");
 	pFooter->AddItem(footerItem2);
-//	pFooter->SetItemSelected(0);
+
 	pFooter->AddActionEventListener(*this);
 }
 

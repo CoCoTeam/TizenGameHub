@@ -21,13 +21,11 @@ GHPlayer::~GHPlayer() {
 GHPlayer::GHPlayer(Tizen::Base::String _id, Tizen::Base::String _email, Tizen::Base::String _name, Tizen::Base::String _imgUrl)
 : id(_id), email(_email), name(_name), imgUrl(_imgUrl)
 {
-	totalScore = this->getTotalScore();
 }
 
 GHPlayer::GHPlayer(Tizen::Base::String _id, Tizen::Base::String _name, Tizen::Base::String _imgUrl)
 : id(_id), name(_name), imgUrl(_imgUrl)
 {
-	totalScore = this->getTotalScore();
 }
 
 Tizen::Base::String GHPlayer::getId()		{return id;}
@@ -40,10 +38,6 @@ void GHPlayer::setEmail(Tizen::Base::String _email)		{this->email = _email; }
 void GHPlayer::setName(Tizen::Base::String _name)		{this->name= _name; }
 void GHPlayer::setImgUrl(Tizen::Base::String _imgUrl)	{this->imgUrl=_imgUrl; }
 
-
-long GHPlayer::getTotalScore()
-{
-	//!! return Achievement.getTotalAchievementScore(id);
-	return 123456;
-}
-
+bool GHPlayer::isFriend() 			{return misFriend;}
+void GHPlayer::setIsFriend(bool b) 	{misFriend = b;}
+long GHPlayer::getTotalScore() 		{return 123456;}

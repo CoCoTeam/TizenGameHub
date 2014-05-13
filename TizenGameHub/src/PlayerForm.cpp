@@ -29,10 +29,10 @@ using namespace Tizen::Content;
 using namespace Tizen::System;
 
 
-PlayerForm::PlayerForm()  : __pUserBmp(null) {
+PlayerForm::PlayerForm()
+: __pUserBmp(null), gameOffset(0), friendOffset(0), isLocalPlayer(true), isFriend(false)
+{
 	// TODO Auto-generated constructor stub
-	isLocalPlayer = new Boolean(true);
-	isFriend = new Boolean(false);
 }
 
 PlayerForm::~PlayerForm() {
@@ -73,11 +73,16 @@ PlayerForm::OnInitializing(void)
 
 	pListViewGame = static_cast< ListView* >(pPanelGame->GetControl(IDC_USER_LISTVIEW_GAME));
 	pListViewFriend = static_cast< ListView* >(pPanelFriend->GetControl(IDC_USER_LISTVIEW_FRIEND));
+
+	pListViewGame->AddScrollEventListener(*this);
+	pListViewFriend->AddScrollEventListener(*this);
+
 	pButtonSearchFriend = static_cast< Button* >(pPanelFriend->GetControl(IDC_USER_BUTTON_SEARCHFRIEND));
 	pButtonSearchFriend->SetActionId(IDA_BUTTON_SEARCHFRIEND);
 	pButtonSearchFriend->AddActionEventListener(*this);
 
-	setFooterMenu();
+	pGameProvider = new GHGameProvider();
+	pGameListItemEventListener = new GHGameListItemEventListener();
 
 	AppLog("__pCroppedBmp EXIST");
 
@@ -181,7 +186,7 @@ PlayerForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 
 			}
 			else {	//!! (친구가 아니면) 친구 요청
-
+				addFriend(GHSharedAuthData::getSharedInstance().getPlayerId(), mPlayer->getEmail(), this);
 			}
 
 		}
@@ -198,8 +203,9 @@ PlayerForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		if( isLocalPlayer ) {	// (나 자신이면) 친구 리스트 Panel 보이기
 			changePanel(1);
 		}
-		else {		//!! (아니면) 내 정보 페이지로 이동하기
-
+		else {		// (아니면) 내 정보 페이지로 이동하기
+			pSceneManager->ClearSceneHistory();
+			pSceneManager->GoForward(ForwardSceneTransition(SCENE_PLAYER, SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_OUT, SCENE_HISTORY_OPTION_NO_HISTORY, SCENE_DESTROY_OPTION_DESTROY));
 		}
 		break;
 	}
@@ -212,14 +218,28 @@ PlayerForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 	AppAssert(pSceneManager);
 
 	// (SceneHistory가 있으면) 이전 Scene으로 이동
-AppLogDebug("[DEBUG] History : %d", pSceneManager->GetSceneHistoryN()->GetCount());
 	if(pSceneManager->GetSceneHistoryN()->GetCount() != 0) {
 		pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_OUT));
 	}
 	else {	// (없으면) 앱 종료
-		UiApp* pApp = UiApp::GetInstance();
-		AppAssert(pApp);
-		pApp->Terminate();
+		Tizen::Ui::Controls::MessageBox msgBox;
+		int modalResult;
+		msgBox.Construct(L"Exit", L"TizenGameHub를 종료하시겠습니까?", Tizen::Ui::Controls::MSGBOX_STYLE_OKCANCEL);
+		msgBox.ShowAndWait(modalResult);
+
+		switch (modalResult)
+		{
+		case Tizen::Ui::Controls::MSGBOX_RESULT_OK:
+			{
+				// 앱 종료
+				UiApp* pApp = UiApp::GetInstance();
+				AppAssert(pApp);
+				pApp->Terminate();
+			}
+			break;
+		default:
+			break;
+		}
 	}
 }
 
@@ -232,39 +252,15 @@ PlayerForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 	{
 		if (pArgs->GetCount())
 		{
-			AppLog("[PlayerForm] Argument Received");
+			AppLogDebug("[PlayerForm] Argument Received");
 			mPlayerId = static_cast<Tizen::Base::String*>(pArgs->GetAt(0));
-			isLocalPlayer = static_cast<Tizen::Base::Boolean*>(pArgs->GetAt(1));
-			isFriend = static_cast<Tizen::Base::Boolean*>(pArgs->GetAt(2));
+			isLocalPlayer = (*mPlayerId == GHSharedAuthData::getSharedInstance().getPlayerId() ? true : false);
+			setFooterMenu();
 
 			// 사용자 데이터 수신
 			getCurrentPlayerData( *mPlayerId );
-
-			if( isLocalPlayer ) {
-				//!! Footer 정보 변경
-//				setFooterMenu();
-
-				// 버튼 정보 변경
-				pButtonUserFriend->SetText( "정보 수정" );
-
-				// 친구 리스트 설정
-				getFriends( *mPlayerId );
-				setPlayerList();
-			}
-			else {
-				//!! Footer 정보 변경
-//				setFooterMenu();
-
-				// 버튼 정보 변경
-				if( isFriend ) {
-					pButtonUserFriend->SetText( "친구 해제" );
-				}
-				else {
-					pButtonUserFriend->SetText( "친구 요청" );
-				}
-			}
 		}
-		pArgs->RemoveAll(true);
+//		pArgs->RemoveAll(true);
 		delete pArgs;
 	}
 }
@@ -287,6 +283,7 @@ void PlayerForm::loadPlayerDataFinished(GHPlayer* player)
 	if(player != null)
 	{
 		mPlayer = player;
+		isFriend = mPlayer->isFriend();
 		setPlayerData();
 
 		getGames( mPlayer->getId() );
@@ -294,24 +291,40 @@ void PlayerForm::loadPlayerDataFinished(GHPlayer* player)
 }
 void PlayerForm::setPlayerData()
 {
-	AppLogDebug("---------->setPlayerData()<----------");
-
 	pLabelUserName->SetText( (mPlayer->getName()) );
 
 	//!! 프로필 이미지 세팅
 	//	pGalleryUserProfile->Set
 
+
+	if( isLocalPlayer ) {
+		// 버튼 정보 변경
+		pButtonUserFriend->SetText( "정보 수정" );
+
+		// 친구 리스트 설정
+		getFriends( mPlayer->getId() );
+	}
+	else {
+		// 버튼 정보 변경
+		if( isFriend ) {
+			pButtonUserFriend->SetText( "친구 해제" );
+			pButtonUserFriend->SetEnabled(false);
+		}
+		else {
+			pButtonUserFriend->SetText( "친구 요청" );
+		}
+	}
+
 	pButtonUserFriend->SetActionId(IDA_BUTTON_USER);
 	pButtonUserFriend->AddActionEventListener(*this);
 
-	AppLogDebug("---------->setPlayerData End<----------");
 	Draw();
 }
 
 void PlayerForm::getGames(String playerId)
 {
 	pGameList = new ArrayList();
-	getPlayerGameList(playerId);
+	getPlayerGameList(playerId, this, gameOffset);
 }
 void PlayerForm::loadPlayerGamesFinished(Tizen::Base::Collection::ArrayList* gameList)
 {
@@ -319,24 +332,24 @@ void PlayerForm::loadPlayerGamesFinished(Tizen::Base::Collection::ArrayList* gam
 		return;
 	}
 	pGameList = gameList;
+	gameOffset += pGameList->GetCount();
 	setGameList();
 }
 void PlayerForm::setGameList()
 {
-	GHGameProvider *pGameProvider = new GHGameProvider();
 	pGameProvider->setItemList(pGameList);
 	pListViewGame->SetItemProvider( *pGameProvider );
 
-	GHGameListItemEventListener *pGameListItemEventListener = new GHGameListItemEventListener();
 	pGameListItemEventListener->setItemList(pGameList);
 	pListViewGame->AddListViewItemEventListener( *pGameListItemEventListener );
-	Draw();
+
+	pListViewGame->Draw();
 }
 
 void PlayerForm::getFriends(String playerId)
 {
 	pFriendList = new ArrayList();
-	getFriendsList(playerId, this);
+	getFriendsList(playerId, this, friendOffset);
 }
 void PlayerForm::loadPlayerFriendsFinished(Tizen::Base::Collection::ArrayList* friendsList)
 {
@@ -344,20 +357,33 @@ void PlayerForm::loadPlayerFriendsFinished(Tizen::Base::Collection::ArrayList* f
 		return;
 	}
 	pFriendList = friendsList;
+	friendOffset += pFriendList->GetCount();
 	setPlayerList();
 }
 void PlayerForm::setPlayerList()
 {
-	GHPlayerProvider *pFriendProvider = new GHPlayerProvider();
+	PlayerProvider *pFriendProvider = new PlayerProvider();
 	pFriendProvider->setItemList(pFriendList);
 	pListViewFriend->SetItemProvider( *pFriendProvider );
 
 	GHPlayerListItemEventListener *pFriendListItemEventListener = new GHPlayerListItemEventListener();
 	pFriendListItemEventListener->setItemList(pFriendList);
 	pListViewFriend->AddListViewItemEventListener( *pFriendListItemEventListener );
-	Draw();
-}
 
+	pListViewFriend->Draw();
+}
+void PlayerForm::addFriendFinished(Tizen::Base::String statusCode)
+{
+	if(statusCode == "1") {
+		Tizen::Ui::Controls::MessageBox msgBox;
+		int modalResult;
+		msgBox.Construct(L"친구추가", L"친구가 추가되었습니다.", Tizen::Ui::Controls::MSGBOX_STYLE_OK);
+		msgBox.ShowAndWait(modalResult);
+
+		pButtonUserFriend->SetText( "친구 해제" );
+		pButtonUserFriend->SetEnabled(false);
+	}
+}
 
 void PlayerForm::setFooterMenu()
 {
@@ -374,9 +400,14 @@ void PlayerForm::setFooterMenu()
 
 	FooterItem footerItem2;
 	footerItem2.Construct(ID_FOOTER_SECOND_TAB);
-	footerItem2.SetText(L"친구 정보");
+	if(isLocalPlayer) {
+		footerItem2.SetText(L"친구 정보");
+	}
+	else {
+		footerItem2.SetText(L"내 정보로");
+	}
 	pFooter->AddItem(footerItem2);
-//	pFooter->SetItemSelected(0);
+
 	pFooter->AddActionEventListener(*this);
 }
 
@@ -393,6 +424,18 @@ void PlayerForm::changePanel(int selected)
 		pPanelGame->SetShowState(false);
 		pPanelFriend->SetShowState(true);
 		break;
+	}
+}
+
+void PlayerForm::OnScrollEndReached(Tizen::Ui::Control &source, Tizen::Ui::Controls::ScrollEndEvent type)
+{
+	if(type == SCROLL_END_EVENT_END_BOTTOM) {
+		if(source.Equals(*pListViewFriend)) {
+			getFriendsList(mPlayer->getId(), this, friendOffset, 8);
+		}
+		else if(source.Equals(*pListViewGame)) {
+			getPlayerGameList(mPlayer->getId(), this, gameOffset, 8);
+		}
 	}
 }
 

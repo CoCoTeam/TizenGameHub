@@ -60,7 +60,8 @@ public:
 	// 친구 추가
 	void addFriend(Tizen::Base::String playerId, Tizen::Base::String friendEmail, GHPlayerListener* listener = null);
 	// 사용자의 친구 리스트 불러오기
-	void getFriendsList(Tizen::Base::String player_id, GHPlayerListener* listener = null);
+	void getFriendsList(Tizen::Base::String player_id, int start_pos=0, int max_length=8);
+	void getFriendsList(Tizen::Base::String playerId, GHPlayerListener* listener, int start_pos=0, int max_length=8);
 
 	//IProgressPopupEventListener
 	virtual void OnProgressPopupCanceled();

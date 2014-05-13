@@ -18,6 +18,8 @@
 #include "GHAttackhelperDataSendedListener.h"
 #include "GHAttackhelperDataRespondedListener.h"
 #include "GHhttpClient.h"
+#include "GHGame/GHGameController.h"
+#include "GHGame/GHGamePlayingFriendListener.h"
 
 const Tizen::Base::String ATTACKHELPER_LOAD			= "31";
 const Tizen::Base::String ATTACKHELPER_DATA_LOAD 	= "32";
@@ -27,7 +29,8 @@ const Tizen::Base::String ATTACKHELPER_DATA_RESPOND = "34";
 
 class GHAttackhelperController
 	: public GHController
-	  , public Tizen::Ui::IActionEventListener
+	, public Tizen::Ui::IActionEventListener
+	, public GHGamePlayingFriendListener
 {
 public:
 	GHAttackhelperController();
@@ -58,6 +61,9 @@ private:
 
 	static const int ACTION_POPUP_CLOSE = 101;
 	Tizen::Ui::Controls::Popup *pPopup;
+
+	//GHGamePlayingFriendListener
+	virtual void loadGamePlayingFriendFinished(Tizen::Base::Collection::ArrayList* friendsList);
 };
 
 #endif /* GHATTACKHELPERCONTROLLER_H_ */

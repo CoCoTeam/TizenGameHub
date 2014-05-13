@@ -13,6 +13,9 @@ extern const wchar_t* IDL_PANEL_LISTPANEL;
 extern const wchar_t* IDC_LISTPANEL_IMG;
 extern const wchar_t* IDC_LISTPANEL_LABEL_TITLE;
 extern const wchar_t* IDC_LISTPANEL_LABEL_DESC;
+extern const wchar_t* IDC_LISTPANEL_LABEL_POINT;
+extern const wchar_t* IDC_LISTPANEL_GALLERY_COMPLETE;
+extern const wchar_t* IDC_LISTPANEL_OVERLAY;
 /* IDL_FORM_LEADERBOARDRANK */
 extern const wchar_t* IDL_FORM_LEADERBOARDRANK;
 extern const wchar_t* IDC_LEADERBOARDRANK_LIST_RANK;

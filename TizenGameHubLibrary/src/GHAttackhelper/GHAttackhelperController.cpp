@@ -7,8 +7,10 @@
 
 #include "GHAttackhelper/GHAttackhelperController.h"
 #include "GHSharedAuthData.h"
+#include "GHForm/PlayerProvider.h"
 #include "GHForm/AttackHelperProvider.h"
 #include "GHForm/AttackHelperReceiveListener.h"
+#include "GHForm/AttackHelperSendListener.h"
 
 using namespace Tizen::Web::Json;
 using namespace Tizen::Net::Http;
@@ -86,33 +88,49 @@ void GHAttackhelperController::respondAttackhelperData(int data_idx, GHAttackhel
 
 void GHAttackhelperController::loadDataSendPopup()
 {
+	GHGameController *gameController = new GHGameController();
+	gameController->getGamePlayingFriends(GHSharedAuthData::getSharedInstance().getGameId(), this, 0, 20);
+}
+void GHAttackhelperController::loadGamePlayingFriendFinished(Tizen::Base::Collection::ArrayList* friendsList)
+{
 	pPopup = new Tizen::Ui::Controls::Popup();
 	pPopup->Construct(true, Tizen::Graphics::Dimension(600, 800));
 	pPopup->SetTitleText("Attack-Helper");
 
-//	if(pArr->GetCount() > 0) {	// (데이터가 있으면) 친구 목록 생성
-//		Tizen::Ui::Controls::ListView* pAhList = new Tizen::Ui::Controls::ListView();
-//		pAhList->Construct(Tizen::Graphics::Rectangle(25, 100, 550, 500), false, false);
-//
-//		AttackHelperProvider *pProvider = new AttackHelperProvider();
-//		pProvider->addItemList(pArr);
-//		pAhList->SetItemProvider( *pProvider );
-//		pPopup->AddControl(pAhList);
-//	}
-//	else {	// (데이터가 없으면) 메시지
+	if(friendsList != null && friendsList->GetCount() > 0) {	// (데이터가 있으면) 친구 목록 생성
+
+		Tizen::Ui::Controls::Label *pLabelText = new Tizen::Ui::Controls::Label();
+		pLabelText->Construct(Tizen::Graphics::Rectangle(25, 10, 550, 80), "친구에게 아이템을 보내세요.");
+		pPopup->AddControl(pLabelText);
+
+		Tizen::Ui::Controls::ListView* pAhList = new Tizen::Ui::Controls::ListView();
+		pAhList->Construct(Tizen::Graphics::Rectangle(25, 100, 550, 500), false, false);
+
+		PlayerProvider *pProvider = new PlayerProvider();
+		pProvider->setItemList(friendsList);
+		pAhList->SetItemProvider( *pProvider );
+		AttackHelperSendListener *pListener = new AttackHelperSendListener();
+		pListener->setItemList(friendsList);
+		pAhList->AddListViewItemEventListener( *pListener );
+
+		pPopup->AddControl(pAhList);
+	}
+	else
+	{	// (데이터가 없으면) 메시지
 		Tizen::Ui::Controls::Label *pLabelNoItem = new Tizen::Ui::Controls::Label();
 		pLabelNoItem->Construct(Tizen::Graphics::Rectangle(25, 100, 550, 100), "아이템을 보낼 친구가 없습니다.");
 		pPopup->AddControl(pLabelNoItem);
-//	}
+	}
 
 	Tizen::Ui::Controls::Button* pButtonClose = new Tizen::Ui::Controls::Button();
-	pButtonClose->Construct(Tizen::Graphics::Rectangle(100, 600, 400, 100), "닫  기");
+	pButtonClose->Construct(Tizen::Graphics::Rectangle(100, 620, 400, 80), "닫  기");
 	pButtonClose->SetActionId(ACTION_POPUP_CLOSE);
 	pButtonClose->AddActionEventListener(*this);
 	pPopup->AddControl(pButtonClose);
 
 	pPopup->SetShowState(true);
 	pPopup->Show();
+
 }
 
 void GHAttackhelperController::loadDataReceievedPopup(ArrayList* pArr)

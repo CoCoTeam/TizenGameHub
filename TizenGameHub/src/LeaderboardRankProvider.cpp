@@ -29,8 +29,6 @@ int LeaderboardRankProvider::GetItemCount(void)
 }
 Tizen::Ui::Controls::ListItemBase* LeaderboardRankProvider::CreateItem(int index, int itemWidth)
 {
-	AppLog("[LeaderboardRankProvider] CreateItem() : %d / %d",index+1, list.GetCount());
-
 	Tizen::Ui::Controls::CustomItem* pItem = new Tizen::Ui::Controls::CustomItem();
 	AppAssert(pItem);
 	pItem->Construct(Tizen::Graphics::Dimension(itemWidth, 130), Tizen::Ui::Controls::LIST_ANNEX_STYLE_NORMAL);
@@ -50,7 +48,7 @@ Tizen::Ui::Controls::ListItemBase* LeaderboardRankProvider::CreateItem(int index
 	Color cBlack(0x00, 0x00, 0x00);
 	Color cGray(0x93, 0x93, 0x93);
 	String strScore(Integer::ToString(rank->getScore()) +" "+ unit);
-	String strRank(Integer::ToString(rank->getRank()) + " 위");
+	String strRank(Integer::ToString(rank->getRank()) + "위");
 
 	pItem->AddElement(Rectangle(10, 15, 100, 100), 0,  *pBitmap);
 	pItem->AddElement(Rectangle(120, 10, 300, 50), 1, String(rank->getName()), 50, cBlack, cBlack, cBlack);

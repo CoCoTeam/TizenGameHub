@@ -25,8 +25,8 @@
         <layout height="79.0" mode="Landscape" width="120.0" x="587.0" y="79.0"/>
     </Button>
     <EditField id="IDC_SEARCHFRIEND_TEXTBOX_FRIEND" parent="IDL_FORM_SEARCHFRIEND">
-        <property accessibilityHint="" disabledBGBitmapPath="" disabledColor="" disabledColorOpacity="100" disabledTextColor="" ellipsisPosition="ELLIPSIS_POSITION_END" enableClear="true" groupStyle="GROUP_STYLE_NONE" guideText="email" guideTextColor="" highlightedBGBitmapPath="" highlightedColor="" highlightedColorOpacity="100" highlightedTextColor="" horizontalMargin="16.0" inputStyle="INPUT_STYLE_FULLSCREEN" keypadAction="" keypadEnabled="true" limitLength="100" linkTextColor="" lowerCaseMode="false" normalBGBitmapPath="" normalColor="" normalColorOpacity="100" normalTextColor="" pressedBGBitmapPath="" pressedColor="" pressedColorOpacity="100" text="" textHorizontalAlignment="ALIGNMENT_LEFT" textSize="45.0" titleStyle="EDIT_FIELD_TITLE_STYLE_NONE" titleText="" titleTextColor="" verticalMargin="10.0" viewMode="false"/>
-        <layout height="82.0" mode="Portrait" style="" width="566.0" x="8.0" y="13.0"/>
-        <layout height="82.0" mode="Landscape" style="" width="566.0" x="5.0" y="78.0"/>
+        <property accessibilityHint="" disabledBGBitmapPath="" disabledColor="" disabledColorOpacity="100" disabledTextColor="" ellipsisPosition="ELLIPSIS_POSITION_END" enableClear="true" groupStyle="GROUP_STYLE_NONE" guideText="email" guideTextColor="" highlightedBGBitmapPath="" highlightedColor="" highlightedColorOpacity="100" highlightedTextColor="" horizontalMargin="16.0" inputStyle="INPUT_STYLE_OVERLAY" keypadAction="KEYPAD_ACTION_ENTER" keypadEnabled="true" limitLength="100" linkTextColor="" lowerCaseMode="false" normalBGBitmapPath="" normalColor="" normalColorOpacity="100" normalTextColor="" pressedBGBitmapPath="" pressedColor="" pressedColorOpacity="100" text="" textHorizontalAlignment="ALIGNMENT_LEFT" textSize="45.0" titleStyle="EDIT_FIELD_TITLE_STYLE_NONE" titleText="" titleTextColor="" verticalMargin="10.0" viewMode="false"/>
+        <layout height="82.0" mode="Portrait" style="EDIT_FIELD_STYLE_EMAIL_SMALL" width="566.0" x="8.0" y="13.0"/>
+        <layout height="82.0" mode="Landscape" style="EDIT_FIELD_STYLE_EMAIL_SMALL" width="566.0" x="5.0" y="78.0"/>
     </EditField>
 </Scene>

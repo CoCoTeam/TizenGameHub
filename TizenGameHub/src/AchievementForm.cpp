@@ -99,7 +99,7 @@ void AchievementForm::loadAchievementFinished(Tizen::Base::Collection::ArrayList
 void AchievementForm::setAchievementList()
 {
 	int initX = 20, initY = 10;
-	int posX = 330, posY = 430;
+	int posX = 340, posY = 430;
 
 	int completeCount = 0;
 	for(int i=0 ; i<ac_list->GetCount() ; i++)
