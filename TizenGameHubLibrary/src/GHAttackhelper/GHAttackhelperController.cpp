@@ -69,19 +69,20 @@ void GHAttackhelperController::sendAttackhelperData(String receiver_id, String a
 }
 
 // incremental achievement update
-void GHAttackhelperController::respondAttackhelperData(int data_idx){
+void GHAttackhelperController::respondAttackhelperData(int data_idx, int accept_flag){
 	String game_id(GHSharedAuthData::getSharedInstance().getGameId());
 	String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
 	String url(L"/f_attackhelpers/" + game_id );
 	__pMap = new (std::nothrow) Tizen::Base::Collection::HashMap();
 	__pMap->Construct();
 	__pMap->Add(new String("data_idx"), new String(Integer::ToString(data_idx)));
+	__pMap->Add(new String("accept_flag"), new String(Integer::ToString(accept_flag)));
 
 	httpPost.RequestHttpPutTran(this, url, __pMap);
 }
-void GHAttackhelperController::respondAttackhelperData(int data_idx, GHAttackhelperDataRespondedListener* listener){
+void GHAttackhelperController::respondAttackhelperData(int data_idx, int accept_flag, GHAttackhelperDataRespondedListener* listener){
 	this->currentListener = listener;
-	this->respondAttackhelperData(data_idx);
+	this->respondAttackhelperData(data_idx, accept_flag);
 }
 
 void GHAttackhelperController::loadDataSendPopup()
@@ -255,11 +256,45 @@ void GHAttackhelperController::OnTransactionReadyToRead(String apiCode, String s
 		if(this->currentListener != null) this->currentListener->sendAttackhelperDataFinished(stateCode);
 
 
-	} else if(apiCode.Equals(ATTACKHELPER_DATA_RESPOND)) {
+	} else if(apiCode.Equals(ATTACKHELPER_DATA_RESPOND)) { // 데이터를 보내줘야함.
 		int stateCode;
 		Integer::Parse(statusCode, stateCode);
 
-		if(this->currentListener != null) this->currentListener->respondAttackhelperDataFinished(stateCode);
+		GHAttackhelperData * ahdObj = null;
+		int accept_flag;
+
+		// 정상적으로 결과를 반환했을 때
+		if(statusCode == "1") {
+			JsonObject* pJsonOject 	= static_cast<JsonObject*>(data);
+
+			// KEY NAME
+			String* pkeyDataIdx		= new String(L"data_idx");
+			String* pkeySenderId	= new String(L"sender_id");
+			String* pkeySenderName	= new String(L"sender_name");
+			String* pkeyId 			= new String(L"ah_id");
+			String* pkeyItemName	= new String(L"item_name");
+			String* pkeyDenyEnbale	= new String(L"deny_enable");
+			String* pkeyQuantity	= new String(L"quantity");
+			String* pkeyAcceptFlag	= new String(L"accept_flag");
+
+			// 데이터 파싱
+			int iDataIdx			= getIntByKey(pJsonOject, pkeyDataIdx);
+			String  sSenderId 		= getStringByKey(pJsonOject, pkeySenderId);
+			String  sSenderName		= getStringByKey(pJsonOject, pkeySenderName);
+			String  sId 			= getStringByKey(pJsonOject, pkeyId);
+			String  sItemName		= getStringByKey(pJsonOject, pkeyItemName);
+			int iDenyEnable			= getIntByKey(pJsonOject, pkeyDenyEnbale);
+			int iQuantity			= getIntByKey(pJsonOject, pkeyQuantity);
+			accept_flag				= getIntByKey(pJsonOject, pkeyAcceptFlag);
+
+
+			ahdObj = new GHAttackhelperData(iDataIdx, sSenderId, sSenderName, sId, sItemName, iDenyEnable, iQuantity);
+
+		}else {
+			ahdObj = null;
+		}
+
+		if(this->currentListener != null) this->currentListener->respondAttackhelperDataFinished(ahdObj, accept_flag);
 
 	}
 

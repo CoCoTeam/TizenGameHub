@@ -16,7 +16,7 @@ public:
 	GHAttackhelperDataRespondedListener();
 	virtual ~GHAttackhelperDataRespondedListener();
 
-	virtual void respondAttackhelperDataFinished(int statusCode) = 0;
+	virtual void respondAttackhelperDataFinished(GHAttackhelperData* attackhelperData, int accpet_flag) = 0;
 
 };
 

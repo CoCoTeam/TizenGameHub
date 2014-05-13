@@ -204,7 +204,6 @@ PlayerForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		break;
 	}
 }
-
 void
 PlayerForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 {
