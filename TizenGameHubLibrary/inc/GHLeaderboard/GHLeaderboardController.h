@@ -33,9 +33,7 @@ public:
 	void loadLeaderboardForm();
 
 	// leaderboard 목록을 가져운다.
-	void loadLeaderboards(GHLeaderboardDataLoadedListener * listener);	//(static Player)
-	//!! Hub App에서 범용적으로 사용하기 위해 Method를 한번 더 감싸준다.
-	// void loadLeaderboards(GHLeaderboardListener * listener, STRING* playerId);
+	void loadLeaderboards(GHLeaderboardDataLoadedListener * listener);
 
 	// 각 Leaderboard에 해당하는 랭킹 목록을 가져온다.
 	void loadLeaderboardRank(Tizen::Base::String leaderboardId, int startPosition = 0, int loadSize = 10);
@@ -45,10 +43,12 @@ public:
 	void updateLeaderboardScore(Tizen::Base::String leaderboardId, long score);
 	void updateLeaderboardScore(Tizen::Base::String leaderboardId, long score, GHLeaderboardScoreUpdatedListener * listener);
 
+protected:
+	GHLeaderboardListener* currentListener;
+
 private:
 	virtual void OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data);
 	Tizen::Base::Collection::HashMap* __pMap;
-	GHLeaderboardListener* currentListener;
 };
 
 #endif /* GHLEADERBOARDCONTROLLER_H_ */

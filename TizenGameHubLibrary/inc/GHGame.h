@@ -25,6 +25,8 @@ private:
 	bool misCloudsaveEnable;			// cloudsave 사용 여부
 	bool misTurnbasedMultiEnable;		// multiplay 사용 여부
 
+	bool misPlaying;					// 사용자 플레이 여부
+
 public:
 	GHGame();
 	GHGame(Tizen::Base::String _id, Tizen::Base::String _developerId, Tizen::Base::String _title, Tizen::Base::String _description, Tizen::Base::String _imgUrl,
@@ -48,6 +50,8 @@ public:
 	bool isTurnbasedMultiEnable();
 	//----------------------------------------------------------------
 
+	bool isPlaying();
+	void setIsPlaying(bool b);
 
 
 };

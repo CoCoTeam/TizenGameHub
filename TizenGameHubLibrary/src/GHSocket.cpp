@@ -297,17 +297,19 @@ GHSocket::OnCloseSocket(void)
             __pSocket->Close();
         }
 
-        if (__pTcpSocket != null)
-        {
-            //__pTcpSocket->Close();
-        }
+//
+//        if (__pTcpSocket != null)
+//        {
+//            __pTcpSocket->Close();
+//        }
     }
 
     delete __pSocket;
-    //delete __pTcpSocket;
+//    delete __pTcpSocket;
 
     __pSocket = null;
     __pTcpSocket = null;
     __isConnected = false;
     __isConstructed = false;
+    AppLog("Socket Close Received2");
 }

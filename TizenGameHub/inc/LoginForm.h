@@ -16,26 +16,6 @@
 #include "GHPlayer/GHPlayerController.h"
 #include "GHPlayer/GHPlayerLoggedinListener.h"
 
-#include "GHAchievement/GHAchievementController.h"
-#include "GHAchievement/GHAchievementLoadedListener.h"
-#include "GHAttackhelper/GHAttackhelperController.h"
-#include "GHAttackhelper/GHAttackhelperLoadedListener.h"
-#include "GHAttackhelper/GHAttackhelperDataRespondedListener.h"
-
-
-#include "GHLeaderboard/GHLeaderboardController.h"
-#include "GHLeaderboard/GHLeaderboardDataLoadedListener.h"
-#include "GHLeaderboard/GHLeaderboardListLoadedListener.h"
-#include "GHLeaderboard/GHLeaderboardScoreUpdatedListener.h"
-
-#include "GHCloudsave/GHCloudsaveController.h"
-#include "GHCloudsave/GHCloudsaveSaveListener.h"
-#include "GHCloudsave/GHCloudsaveLoadListener.h"
-
-#include "GHSocket.h"
-#include "GHTurnbasedMatchController.h"
-#include "GHTurnbasedMatchListener.h"
-
 using namespace Tizen::Ui::Controls;
 
 class LoginForm
@@ -44,18 +24,6 @@ class LoginForm
 	, public Tizen::Ui::Controls::IFormBackEventListener
 	, public GHPlayerController
 	, public GHPlayerLoggedinListener
-	, public GHAchievementLoadedListener // TEST API
-	, public GHAttackhelperLoadedListener // TEST API
-	, public GHAttackhelperDataRespondedListener // TEST API
-
-	, public GHLeaderboardDataLoadedListener //Test API
-	, public GHLeaderboardListLoadedListener
-	, public GHLeaderboardScoreUpdatedListener
-
-	, public GHCloudsaveSaveListener	// TEST API
-	, public GHCloudsaveLoadListener	// TEST API
-
-	, public GHTurnbasedMatchListener // TEST API
 {
 public:
 	LoginForm();
@@ -77,30 +45,9 @@ private:
 
 	static const int IDA_BUTTON_LOGIN = 101;
 	static const int IDA_BUTTON_JOIN = 102;
-	static const int IDA_BUTTON_TEST = 103;
-
-	// API TEST
-	virtual void loadAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList);
-	virtual void loadAttackhelperFinished(Tizen::Base::Collection::ArrayList* achievementList);
-	virtual void respondAttackhelperDataFinished(int statusCode);
-	virtual void saveCloudsaveFinished(int statusCode);
-	virtual void loadCloudsaveFinished(Tizen::Base::String data);
-	virtual void onMatchConnect();
-	virtual void onMatchSetting();
-	virtual void onMatchStart(Tizen::Base::String data);
-	virtual void onMatchMyturn(Tizen::Base::String data);
-	virtual void onMatchTurnWait();
-	virtual void onMatchFinish(Tizen::Base::String data);
-
-	GHTurnbasedMatchController* controller;
 
 	void doLogin();
 	void login(Tizen::Base::String email, Tizen::Base::String pw);
-
-	// GHLeaderboard
-	virtual void loadLeaderboardFinished(Tizen::Base::Collection::ArrayList* leaderboardList);
-	virtual void loadLeaderboardRankFinished(GHLeaderboard* _leaderboard);
-	virtual void updateLeaderboardScoreFinished(int statusCode);
 
 };
 

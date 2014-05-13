@@ -29,7 +29,9 @@ protected:
 	Tizen::Base::String name;		// 사용자 이름
 	Tizen::Base::String imgUrl;		// 사용자 프로필이미지 URL
 
+	bool misFriend;
 	long totalScore;				// 사용자별 Achievement 총합 점수
+
 
 public:
 	GHPlayer();
@@ -42,14 +44,16 @@ public:
 	Tizen::Base::String getEmail();
 	Tizen::Base::String getName();
 	Tizen::Base::String getImgUrl();
-	//!! getTotalScore() -> HubApp
-	long getTotalScore();
 	//----------------------------------------------------------------
 
 	void setId(Tizen::Base::String _id);
 	void setEmail(Tizen::Base::String _email);
 	void setName(Tizen::Base::String _name);
 	void setImgUrl(Tizen::Base::String _imgUrl);
+
+	bool isFriend();
+	void setIsFriend(bool b);
+	long getTotalScore();
 };
 
 #endif /* GHUSER_H_ */

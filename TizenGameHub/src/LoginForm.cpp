@@ -83,18 +83,9 @@ LoginForm::OnInitializing(void)
 	}
 	else {	//!! for debug
 		pTextEmail->SetText(String("kichul"));
-		pTextPw->SetText(String("kichulbabo"));
+		pTextPw->SetText(String("kichul"));
 	}
 	//------------------------------------------------------
-
-	//Button Test----------------------------
-	Button* pButtonTest = static_cast< Button* >(GetControl(IDC_LOGIN_BUTTON_TEST));
-	if (pButtonTest != null)
-	{
-		pButtonTest->SetActionId(IDA_BUTTON_TEST);
-		pButtonTest->AddActionEventListener(*this);
-		pButtonTest->SetText("LoginForm");
-	}
 
 	return r;
 }
@@ -127,49 +118,6 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 	case IDA_BUTTON_LOGIN:
 		//!! do Login
 		doLogin();
-
-		break;
-
-	// API TEST
-	case IDA_BUTTON_TEST:
-		//---------------------------------------------------------
-
-		//GHPlayerController* controller = new GHPlayerController();
-		//controller->playerLogin("S","W");
-		//controller->getPlayerData("pkeyS");
-
-		//GHAchievementController* controller = new GHAchievementController();
-	 	//controller->loadAchievements(this);
-		//controller->revealAchievement("4", this);
-		//controller->completeAchievement("4");
-		//controller->increaseAchievement("4");
-
-		///GHAttackhelperController* controller = new GHAttackhelperController();
-		//controller->loadAttackhelpers(this);
-		//controller->sendAttackhelperData("pkeykichulee", "1", 3, this);
-		//controller->respondAttackhelperData(5, this); //del 점검필요
-		//controller->loadAttackhelperDatas(this);
-
-
-		//GHLeaderboardController* controller = new GHLeaderboardController();
-		//controller->loadLeaderboardRank("key_aa_0");    // 확인 필요
-
-		//controller->loadLeaderboardRank("key_aa_0",this);
-
-		//controller->updateLeaderboardScore("key_aa","key_aa_0",50,this);
-		//controller->updateLeaderboardScore("key_aa","key_aa_0",50);
-
-		//controller->loadLeaderboards(this);
-
-		//GHCloudsaveController* controller = new GHCloudsaveController();
-		//controller->loadCloudSlotData(1, this);
-		//controller->saveCloudSlotData("hahaha kichul zzang", 2, this);
-
-		//GHSocket* socket = new GHSocket();
-		//socket->ConnectSocketServer("54.238.195.222", 8081);
-
-		controller = new GHTurnbasedMatchController();
-		controller->connectSocketServer("54.238.195.222", 8082, this);
 
 		break;
 	}
@@ -315,8 +263,6 @@ void LoginForm::loginPlayerFinished(Tizen::Base::String statusCode)
 	{
 		String playerKey = statusCode;
 		pList->Add( new Tizen::Base::String(playerKey) );	// playerId
-		pList->Add( new Tizen::Base::Boolean(true) );		// isLocalPlayer
-		pList->Add( new Tizen::Base::Boolean(false) );		// isFriend
 		pSceneManager->GoForward(ForwardSceneTransition(SCENE_PLAYER, SCENE_TRANSITION_ANIMATION_TYPE_RIGHT, SCENE_HISTORY_OPTION_NO_HISTORY), pList);
 	}
 	else		// (로그인 실패 시) 로그인 실패 팝업

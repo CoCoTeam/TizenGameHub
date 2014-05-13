@@ -62,7 +62,7 @@ void LeaderboardRankForm::loadLeaderboardRankFinished(GHLeaderboard* _leaderboar
 	AppLogDebug("[LeaderboardRankForm] leaderboardRankList Received. (listSize : %d)", rank_list->GetCount() );
 
 	pRankProvider = new LeaderboardRankProvider();
-	pRankProvider->setItemList(rank_list);
+	pRankProvider->addItemList(rank_list);
 	pRankListView->SetItemProvider( *pRankProvider );
 	Draw();
 }

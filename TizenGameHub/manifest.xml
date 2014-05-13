@@ -11,8 +11,15 @@
     <Apps>
         <ApiVersion>2.2</ApiVersion>
         <Privileges>
+<<<<<<< HEAD
             <Privilege>http://tizen.org/privilege/content.read</Privilege>
             <Privilege>http://tizen.org/privilege/socket</Privilege>
+=======
+            <Privilege>http://tizen.org/privilege/download</Privilege>
+            <Privilege>http://tizen.org/privilege/socket</Privilege>
+            <Privilege>http://tizen.org/privilege/content.read</Privilege>
+            <Privilege>http://tizen.org/privilege/http</Privilege>
+>>>>>>> d50772aa5b31aad78637807e2c4fd23097705a0c
             <Privilege>http://tizen.org/privilege/application.launch</Privilege>
             <Privilege>http://tizen.org/privilege/http</Privilege>
             <Privilege>http://tizen.org/privilege/content.write</Privilege>

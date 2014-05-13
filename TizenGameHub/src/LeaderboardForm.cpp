@@ -69,9 +69,10 @@ void LeaderboardForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previo
 	{
 		if (pArgs->GetCount())
 		{
-			Tizen::Base::String *gameId = static_cast<Tizen::Base::String*>(pArgs->GetAt(0));
-			AppLog("[LeaderboardForm] Argument Received %S", gameId->GetPointer());
-			loadLeaderboards(this);
+			Tizen::Base::String *pGameId = static_cast<Tizen::Base::String*>(pArgs->GetAt(0));
+			gameId = *pGameId;
+			AppLog("[LeaderboardForm] Argument Received %S", gameId.GetPointer());
+			loadLeaderboards(this, gameId);
 		}
 		pArgs->RemoveAll(true);
 		delete pArgs;
@@ -87,6 +88,9 @@ void LeaderboardForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& curre
 
 void LeaderboardForm::loadLeaderboardFinished(Tizen::Base::Collection::ArrayList* leaderboardList)
 {
+	if(leaderboardList == null) {
+		return;
+	}
 	lb_list = leaderboardList;
 	AppLogDebug("[LeaderboardForm] leaderboardList Received. (listSize : %d)", lb_list->GetCount() );
 	setLeaderboardList();
@@ -94,11 +98,12 @@ void LeaderboardForm::loadLeaderboardFinished(Tizen::Base::Collection::ArrayList
 void LeaderboardForm::setLeaderboardList()
 {
 	int initX = 20, initY = 10;
-	int posX = 330, posY = 430;
+	int posX = 340, posY = 430;
+
 	for(int i=0 ; i<lb_list->GetCount() ; i++)
 	{
-		GHLeaderboard *leaderboard = (GHLeaderboard*)(lb_list->GetAt(0));
-		Panel* pPanelLeaderboard= new ListPanel(leaderboard->getId(), leaderboard->getTitle(), leaderboard->getImgUrl());
+		GHLeaderboard *leaderboard = (GHLeaderboard*)(lb_list->GetAt(i));
+		Panel* pPanelLeaderboard= new ListPanel(gameId, leaderboard->getId(), leaderboard->getTitle(), leaderboard->getImgUrl());
 		pPanelLeaderboard->SetPosition(initX + posX*(i%2), initY + posY*(i/2));
 		pLeaderboard_scrollpanel->AddControl(pPanelLeaderboard);
 	}

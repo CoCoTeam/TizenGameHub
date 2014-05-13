@@ -13,7 +13,9 @@ using namespace Tizen::Base;
 using namespace Tizen::Ui::Scenes;
 using namespace Tizen::Ui::Controls;
 
-LeaderboardRankForm::LeaderboardRankForm() {
+LeaderboardRankForm::LeaderboardRankForm()
+:offset(0)
+{
 	// TODO Auto-generated constructor stub
 
 }
@@ -37,7 +39,10 @@ result LeaderboardRankForm::OnInitializing(void)
 	SetFormBackEventListener(this);
 
 	// Get a button via resource ID
-	pRankListView = static_cast<ListView*>(GetControl(IDC_LEADERBOARDRANK_LIST_RANK));
+	pRankListView = (ListView*)(GetControl(IDC_LEADERBOARDRANK_LIST_RANK));
+	pRankListView->AddScrollEventListener(*this);
+	pRankProvider = new LeaderboardRankProvider();
+
 
 	return r;
 }
@@ -69,9 +74,12 @@ void LeaderboardRankForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& pr
 	{
 		if (pArgs->GetCount())
 		{
-			Tizen::Base::String *leaderboardId = static_cast<Tizen::Base::String*>(pArgs->GetAt(0));
+			Tizen::Base::String *pGameId = static_cast<Tizen::Base::String*>(pArgs->GetAt(0));
+			Tizen::Base::String *pLeaderboardId = static_cast<Tizen::Base::String*>(pArgs->GetAt(1));
 //			AppLogDebug("[LeaderboardRankForm] Argument Received (%S)", leaderboardId->GetPointer());
-			loadLeaderboardRank(*leaderboardId, this);
+			gameId = *pGameId;
+			leaderboardId = *pLeaderboardId;
+			loadLeaderboardRank(gameId, leaderboardId, this, 0, 8);
 		}
 		pArgs->RemoveAll(true);
 		delete pArgs;
@@ -87,13 +95,42 @@ void LeaderboardRankForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& c
 
 void LeaderboardRankForm::loadLeaderboardRankFinished(GHLeaderboard* _leaderboard)
 {
+	if(_leaderboard == null) {
+		return;
+	}
 	leaderboard = _leaderboard;
 	rank_list = leaderboard->getRankList();
+	offset += rank_list->GetCount();
 	AppLogDebug("[LeaderboardRankForm] leaderboardRankList Received. (listSize : %d)", rank_list->GetCount() );
 
-	pRankProvider = new LeaderboardRankProvider();
-	pRankProvider->setItemList(rank_list);
+	strUnit = leaderboard->getUnit();
+	pRankProvider->setUnit(strUnit);
+	pRankProvider->addItemList(rank_list);
+
 	pRankListView->SetItemProvider( *pRankProvider );
-	Draw();
+	pRankListView->Draw();
 }
 
+void LeaderboardRankForm::OnScrollEndReached(Tizen::Ui::Control &source, Tizen::Ui::Controls::ScrollEndEvent type)
+{
+	if(type == SCROLL_END_EVENT_END_BOTTOM) {
+		AppLogDebug("[LeaderboardRankForm] OnScrollEndReached()");
+		loadLeaderboardRank(gameId, leaderboardId, this, offset, 8);
+	}
+}
+
+
+void LeaderboardRankForm::setMyRank()
+{
+	// Set My rank Info.
+//	pPanelMyrank = static_cast<Panel*>(GetControl(IDC_LEADERBOARDRANK_PANEL_MYRANK));
+//	pLabelName = static_cast<Label*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_LABEL_NAME));
+//	pLabelScore = static_cast<Label*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_LABEL_SCORE));
+//	pLabelRank = static_cast<Label*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_LABEL_RANK));
+//	pGallery = static_cast<Gallery*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_GALLERY));
+
+	GHPlayerRank myRank;
+	pLabelName->SetText(myRank.getName());
+	pLabelScore->SetText(Integer::ToString(myRank.getScore()) + strUnit);
+	pLabelRank->SetText(Integer::ToString(myRank.getRank()) + " 위");
+}

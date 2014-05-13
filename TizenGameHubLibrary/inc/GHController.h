@@ -13,7 +13,6 @@
 
 class GHController
 	: public Tizen::Net::Http::IHttpTransactionEventListener
-
 {
 	public:
 		GHController();

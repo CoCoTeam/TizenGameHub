@@ -24,6 +24,9 @@ public:
 	virtual void loadPlayerDataFinished(GHPlayer* player){};
 	virtual void loadPlayerGamesFinished(Tizen::Base::Collection::ArrayList* gameList){};
 	virtual void loadPlayerFriendsFinished(Tizen::Base::Collection::ArrayList* friendsList){};
+
+	virtual void searchFriendFinished(Tizen::Base::Collection::ArrayList* friendsList){};
+	virtual void addFriendFinished(Tizen::Base::String statusCode){};
 };
 
 #endif /* GHPLAYERLISTENER_H_ */

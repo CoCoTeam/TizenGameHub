@@ -9,6 +9,7 @@
 #include "AppResourceId.h"
 #include "TizenGameHubFrame.h"
 #include "ListPanel.h"
+#include "GHSharedAuthData.h"
 
 using namespace Tizen::Ui::Controls;
 using namespace Tizen::Ui::Scenes;
@@ -68,9 +69,11 @@ void AchievementForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previo
 	{
 		if (pArgs->GetCount())
 		{
-			Tizen::Base::String *gameId = static_cast<Tizen::Base::String*>(pArgs->GetAt(0));
+			gameId = static_cast<Tizen::Base::String*>(pArgs->GetAt(0));
 			AppLog("[AchievementForm] Argument Received %S", gameId->GetPointer());
-			loadAchievements(this);
+
+			GHSharedAuthData & sharedInstance = GHSharedAuthData::getSharedInstance();
+			loadAchievements(this, *gameId, sharedInstance.getPlayerId());
 		}
 		pArgs->RemoveAll(true);
 		delete pArgs;
@@ -86,6 +89,9 @@ void AchievementForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& curre
 
 void AchievementForm::loadAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList)
 {
+	if(achievementList == null) {
+		return;
+	}
 	ac_list = achievementList;
 	AppLogDebug("[AchievementForm] achievementArray Received. (arraySize : %d)", ac_list->GetCount() );
 	setAchievementList();
@@ -93,10 +99,10 @@ void AchievementForm::loadAchievementFinished(Tizen::Base::Collection::ArrayList
 void AchievementForm::setAchievementList()
 {
 	int initX = 20, initY = 10;
-	int posX = 330, posY = 430;
+	int posX = 340, posY = 430;
 
 	int completeCount = 0;
-	for(int i=0 ; i<ac_list->GetCount()*5 ; i++)
+	for(int i=0 ; i<ac_list->GetCount() ; i++)
 	{
 		GHAchievement *achievement = (GHAchievement*)(ac_list->GetAt(0));
 		Panel* pPanelAchievement = new ListPanel(*achievement);
