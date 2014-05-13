@@ -8,6 +8,7 @@
 #include "GHPlayer.h"
 #include "GHPlayerListItemEventListener.h"
 #include "TizenGameHubFrame.h"
+#include "GHSharedAuthData.h"
 
 using namespace Tizen::Ui::Scenes;
 
@@ -39,12 +40,11 @@ void GHPlayerListItemEventListener::OnListViewItemStateChanged
 			AppAssert(pList);
 			pList->Construct();
 			pList->Add( playerId );	// playerId
-			pList->Add( new Tizen::Base::Boolean(true) );	// isLocalPlayer
-			pList->Add( new Tizen::Base::Boolean(false) );	// isFriend
 
 			// Scene 이동
 			SceneManager* pSceneManager = SceneManager::GetInstance();
-			pSceneManager->GoForward(ForwardSceneTransition(SCENE_PLAYER, SCENE_TRANSITION_ANIMATION_TYPE_LEFT), pList);
+			SceneId sceneId = (playerId.Equals(GHSharedAuthData::getSharedInstance().getPlayerId()) ? SCENE_PLAYER : SCENE_PLAYERFRIEND);
+			pSceneManager->GoForward(ForwardSceneTransition(sceneId, SCENE_TRANSITION_ANIMATION_TYPE_LEFT), pList);
 		}
 	}
 }

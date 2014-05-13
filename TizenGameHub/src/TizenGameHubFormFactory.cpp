@@ -5,6 +5,7 @@
 #include "LoginForm.h"
 #include "JoinForm.h"
 #include "PlayerForm.h"
+#include "PlayerFriendForm.h"
 #include "GameForm.h"
 #include "AchievementForm.h"
 #include "LeaderboardForm.h"
@@ -55,6 +56,14 @@ TizenGameHubFormFactory::CreateFormN(const Tizen::Base::String& formId, const Ti
 	else if(formId == IDL_FORM_PLAYER)
 	{
 		PlayerForm *pForm = new (std::nothrow) PlayerForm();
+		TryReturn(pForm != null, null, "The memory is insufficient.");
+		pSceneManager->AddSceneEventListener(sceneId, *pForm);
+		pForm->Initialize();
+		pNewForm = pForm;
+	}
+	else if(formId == IDL_FORM_PLAYERFRIEND)
+	{
+		PlayerFriendForm *pForm = new (std::nothrow) PlayerFriendForm();
 		TryReturn(pForm != null, null, "The memory is insufficient.");
 		pSceneManager->AddSceneEventListener(sceneId, *pForm);
 		pForm->Initialize();

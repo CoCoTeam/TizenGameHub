@@ -666,6 +666,10 @@ src/CardPairFormFactory.d: ../src/CardPairFormFactory.cpp \
   C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHAttackhelper/GHAttackhelperDataLoadedListener.h \
   C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHAttackhelper/GHAttackhelperDataSendedListener.h \
   C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHAttackhelper/GHAttackhelperDataRespondedListener.h \
+  C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHGame/GHGameController.h \
+  C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHGame/GHGameListener.h \
+  C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHGame.h \
+  C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHGame/GHGamePlayingFriendListener.h \
   C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\CardPair\inc\FormModeSelect.h \
   C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\CardPair\inc\FormSocial.h \
   C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\CardPair\inc\FormGameTimeTrial.h \
@@ -2011,6 +2015,14 @@ C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrar
 C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHAttackhelper/GHAttackhelperDataSendedListener.h:
 
 C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHAttackhelper/GHAttackhelperDataRespondedListener.h:
+
+C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHGame/GHGameController.h:
+
+C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHGame/GHGameListener.h:
+
+C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHGame.h:
+
+C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHGame/GHGamePlayingFriendListener.h:
 
 C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\CardPair\inc\FormModeSelect.h:
 

@@ -5,7 +5,7 @@
  *      Author: Administrator
  */
 
-#include "AppGHLeaderboardController.h"
+#include "GameHub/AppGHLeaderboardController.h"
 using namespace Tizen::Base;
 
 AppGHLeaderboardController::AppGHLeaderboardController() {

@@ -15,7 +15,8 @@ public:
 	GHGameListener();
 	virtual ~GHGameListener();
 
-	virtual void loadPlayerDataFinished(GHGame* game)=0;
+	virtual void loadPlayerDataFinished(GHGame* game){};
+	virtual void loadGamePlayingFriendFinished(Tizen::Base::Collection::ArrayList* friendsList){};
 };
 
 #endif /* GHGAMELISTENER_H_ */

@@ -40,7 +40,7 @@ void AttackHelperReceiveListener::OnListViewItemStateChanged
 		GHAttackhelperData* ahData = (GHAttackhelperData*)(list.GetAt(index));
 		AppLogDebug("%d, %S", ahData->getDataIndex(), ahData->getItemName().GetPointer());
 
-		ahId = ahData->getId();
+		ahId = ahData->getDataIndex();
 
 		pPopup = new Tizen::Ui::Controls::Popup();
 		pPopup->Construct(false, Tizen::Graphics::Dimension(400, 350));
@@ -65,7 +65,9 @@ void AttackHelperReceiveListener::OnListViewItemStateChanged
 void AttackHelperReceiveListener::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 {
 	GHAttackhelperController *ahController = new GHAttackhelperController();
-	ahController->respondAttackhelperData(7, 1); // 일단 임시로 1 넣어놓음~
+
+	ahController->respondAttackhelperData(ahId, 1); // 일단 임시로 1 넣어놓음~
+
 	switch(actionId)
 	{
 	case ACTION_POPUP_ACCEPT:
@@ -73,7 +75,6 @@ void AttackHelperReceiveListener::OnActionPerformed(const Tizen::Ui::Control& so
 
 	case ACTION_POPUP_DENY:
 		break;
-
 	}
 	if(pPopup != null) {
 		delete pPopup;

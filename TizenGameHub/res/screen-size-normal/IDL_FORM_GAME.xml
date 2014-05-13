@@ -30,7 +30,7 @@
         <layout height="74.0" mode="Landscape" width="136.0" x="347.0" y="555.0"/>
     </Button>
     <Gallery id="IDC_GAME_IMG_GAMEIMG" parent="IDC_GAME_PANEL_GAME">
-        <property accessibilityHint="" backgroundColor="" bitmapPathOfEmptyGallery="" slideShowAnimation="GALLERY_ANIMATION_PAGE" slideShowAnimationDuration="3000" slideShowViewDuration="10" textOfEmptyGallery="" zoomingEnabled="true"/>
+        <property accessibilityHint="" backgroundColor="" bitmapPathOfEmptyGallery="" slideShowAnimation="GALLERY_ANIMATION_PAGE" slideShowAnimationDuration="3000" slideShowViewDuration="10" textOfEmptyGallery="" zoomingEnabled="false"/>
         <layout height="222.0" mode="Portrait" width="207.0" x="45.0" y="32.0"/>
         <layout height="222.0" mode="Landscape" width="411.0" x="87.0" y="63.0"/>
     </Gallery>
@@ -76,7 +76,6 @@
         <layout height="38.0" mode="Portrait" width="138.0" x="179.0" y="9.0"/>
         <layout height="38.0" mode="Landscape" width="138.0" x="14.0" y="17.0"/>
     </Button>
-    
     <Panel id="IDC_GAME_PANEL_FRIEND" parent="IDC_GAME_SCROLLPANEL">
         <property backgroundColor="" backgroundColorOpacity="0" compositeEnabled="true" groupStyle="GROUP_STYLE_NONE"/>
         <layout height="673.0" mode="Portrait" type="NONE" width="665.0" x="28.0" y="0.0"/>

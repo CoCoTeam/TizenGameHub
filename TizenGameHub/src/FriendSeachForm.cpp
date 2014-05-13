@@ -8,6 +8,9 @@
 #include "FriendSeachForm.h"
 #include "AppResourceId.h"
 #include "TizenGameHubFrame.h"
+#include "GHPlayerProvider.h"
+#include "GHPlayerListItemEventListener.h"
+#include "GHSharedAuthData.h"
 
 using namespace Tizen::Base;
 using namespace Tizen::Ui::Scenes;
@@ -42,7 +45,7 @@ result FriendSeachForm::OnInitializing(void)
 
 	// Get a button via resource ID
 	pTextEmail = static_cast< EditField* >(GetControl(IDC_SEARCHFRIEND_TEXTBOX_FRIEND));
-	pListFriend = static_cast< ListView* >(GetControl(IDC_SEARCHFRIEND_LIST_FRIEND));
+	pListViewFriend = static_cast< ListView* >(GetControl(IDC_SEARCHFRIEND_LIST_FRIEND));
 	pButtonSearch = static_cast< Button* >(GetControl(IDC_SEARCHFRIEND_BUTTON_SEARCH));
 	pButtonSearch->SetActionId(IDA_BUTTON_SEARCH);
 	pButtonSearch->AddActionEventListener(*this);
@@ -66,8 +69,7 @@ void FriendSeachForm::OnActionPerformed(const Tizen::Ui::Control& source, int ac
 	switch(actionId)
 	{
 	case IDA_BUTTON_SEARCH:
-//		searchFriend
-
+		searchFriend(pTextEmail->GetText(), this);
 		break;
 	}
 
@@ -82,5 +84,24 @@ void FriendSeachForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 
 void FriendSeachForm::searchFriendFinished(Tizen::Base::Collection::ArrayList* friendsList)
 {
+	if(friendsList == null) {
+		return;
+	}
+	for(int i=0 ; i<friendsList->GetCount() ; i++) {
+		GHPlayer *p = (GHPlayer*)(friendsList->GetAt(i));
+		if(p->getId() == GHSharedAuthData::getSharedInstance().getPlayerId()) {
+			friendsList->RemoveAt(i);
+			break;
+		}
+	}
 
+	PlayerProvider *pFriendProvider = new PlayerProvider();
+	pFriendProvider->setItemList(friendsList);
+	pListViewFriend->SetItemProvider( *pFriendProvider );
+
+	GHPlayerListItemEventListener *pFriendListItemEventListener = new GHPlayerListItemEventListener();
+	pFriendListItemEventListener->setItemList(friendsList);
+	pListViewFriend->AddListViewItemEventListener( *pFriendListItemEventListener );
+
+	pListViewFriend->Draw();
 }

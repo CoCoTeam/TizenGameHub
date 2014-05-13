@@ -184,8 +184,6 @@ void LoginForm::loginPlayerFinished(Tizen::Base::String statusCode)
 	{
 		String playerKey = statusCode;
 		pList->Add( new Tizen::Base::String(playerKey) );	// playerId
-		pList->Add( new Tizen::Base::Boolean(true) );		// isLocalPlayer
-		pList->Add( new Tizen::Base::Boolean(false) );		// isFriend
 		pSceneManager->GoForward(ForwardSceneTransition(SCENE_PLAYER, SCENE_TRANSITION_ANIMATION_TYPE_RIGHT, SCENE_HISTORY_OPTION_NO_HISTORY), pList);
 	}
 	else		// (로그인 실패 시) 로그인 실패 팝업

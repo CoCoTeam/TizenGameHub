@@ -32,7 +32,7 @@ Tizen::Ui::Controls::ListItemBase* GHGameProvider::CreateItem(int index, int ite
 
 	CustomItem* pItem = new CustomItem();
 	AppAssert(pItem);
-	pItem->Construct(Tizen::Graphics::Dimension(itemWidth, 120), LIST_ANNEX_STYLE_NORMAL);
+	pItem->Construct(Tizen::Graphics::Dimension(itemWidth, 150), LIST_ANNEX_STYLE_NORMAL);
 
 	GHGame* game = (GHGame*)(list.GetAt(index));
 
@@ -47,9 +47,9 @@ Tizen::Ui::Controls::ListItemBase* GHGameProvider::CreateItem(int index, int ite
 	Color cBlack(0x00, 0x00, 0x00);
 	Color cGray(0x93, 0x93, 0x93);
 
-	pItem->AddElement(Rectangle(10, 10, 100, 100), 0, *pBitmap);
-	pItem->AddElement(Rectangle(120, 10, 300, 50), 1, game->getTitle(), 40, cBlack, cBlack, cBlack);
-	pItem->AddElement(Rectangle(120, 60, 300, 40), 2, game->getDescription(), 30, cGray, cGray, cGray);
+	pItem->AddElement(Rectangle(10, 15, 120, 120), 0, *pBitmap);
+	pItem->AddElement(Rectangle(150, 10, itemWidth-160, 60), 1, game->getTitle(), 45, cBlack, cBlack, cBlack);
+	pItem->AddElement(Rectangle(150, 70, itemWidth-160, 60), 2, game->getDescription(), 30, cGray, cGray, cGray);
 
 	return pItem;
 }

@@ -34,7 +34,7 @@
         <layout height="74.0" mode="Landscape" width="136.0" x="347.0" y="555.0"/>
     </Button>
     <Gallery id="IDC_USER_IMG_USERIMG" parent="IDC_USER_PANEL_USER">
-        <property accessibilityHint="" backgroundColor="" bitmapPathOfEmptyGallery="" slideShowAnimation="GALLERY_ANIMATION_PAGE" slideShowAnimationDuration="3000" slideShowViewDuration="10" textOfEmptyGallery="" zoomingEnabled="true"/>
+        <property accessibilityHint="" backgroundColor="" bitmapPathOfEmptyGallery="" slideShowAnimation="GALLERY_ANIMATION_PAGE" slideShowAnimationDuration="3000" slideShowViewDuration="10" textOfEmptyGallery="" zoomingEnabled="false"/>
         <layout height="222.0" mode="Portrait" width="207.0" x="45.0" y="32.0"/>
         <layout height="222.0" mode="Landscape" width="411.0" x="87.0" y="63.0"/>
     </Gallery>

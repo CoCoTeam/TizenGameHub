@@ -11,23 +11,22 @@
 using namespace Tizen::Base;
 using namespace Tizen::Graphics;
 
-GHPlayerProvider::GHPlayerProvider() {
+PlayerProvider::PlayerProvider() {
 	// TODO Auto-generated constructor stub
 }
 
-GHPlayerProvider::~GHPlayerProvider() {
+PlayerProvider::~PlayerProvider() {
 	// TODO Auto-generated destructor stub
 }
 
-int GHPlayerProvider::GetItemCount(void)
+int PlayerProvider::GetItemCount(void)
 {
 	AppLog("[GameHub] Friend List Count : %d",list.GetCount());
 	return list.GetCount();
 }
-Tizen::Ui::Controls::ListItemBase* GHPlayerProvider::CreateItem(int index, int itemWidth)
+Tizen::Ui::Controls::ListItemBase* PlayerProvider::CreateItem(int index, int itemWidth)
 {
-	int width = 0;
-	int height = 0;
+	int width = 0, height = 0;
 
 	Tizen::Ui::Controls::CustomItem* pItem = new Tizen::Ui::Controls::CustomItem();
 	AppAssert(pItem);
@@ -50,12 +49,12 @@ Tizen::Ui::Controls::ListItemBase* GHPlayerProvider::CreateItem(int index, int i
 	pItem->AddElement(Rectangle(120, 10, 300, 70), 1, player->getName(), 40, cBlack, cBlack, cBlack);
 	return pItem;
 }
-bool GHPlayerProvider::DeleteItem
+bool PlayerProvider::DeleteItem
 (int index, Tizen::Ui::Controls::ListItemBase* pItem, int itemWidth)
 {
 	return false;
 }
-void GHPlayerProvider::setItemList(Tizen::Base::Collection::ArrayList* _list)
+void PlayerProvider::setItemList(Tizen::Base::Collection::ArrayList* _list)
 {
 	for(int i=0 ; i<_list->GetCount() ; i++)
 	{

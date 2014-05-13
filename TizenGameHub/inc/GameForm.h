@@ -17,6 +17,7 @@
 #include "GHhttpClient.h"
 #include "GHGame/GHGameController.h"
 #include "GHGame/GHGameLoadedListener.h"
+#include "GHGame/GHGamePlayingFriendListener.h"
 
 using namespace Tizen::Ui::Controls;
 using namespace Tizen::Base::Collection;
@@ -26,8 +27,10 @@ class GameForm
 	, public Tizen::Ui::IActionEventListener
 	, public Tizen::Ui::Controls::IFormBackEventListener
 	, public Tizen::Ui::Scenes::ISceneEventListener
+	, public Tizen::Ui::Controls::IScrollEventListener
 	, public GHGameController
 	, public GHGameLoadedListener
+	, public GHGamePlayingFriendListener
 {
 public:
 	GameForm();
@@ -48,8 +51,9 @@ private:
 	ListView *pListViewFriend;
 
 	ArrayList *pFriendList;
-	GHPlayerProvider *pFriendProvider;
+	PlayerProvider *pFriendProvider;
 	GHPlayerListItemEventListener *pFriendListItemEventListener;
+	int friendOffset;
 
 	virtual result OnInitializing(void);
 	virtual result OnTerminating(void);
@@ -62,8 +66,13 @@ private:
 								   const Tizen::Ui::Scenes::SceneId& currentSceneId, Tizen::Base::Collection::IList* pArgs);
 	virtual void OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
 									const Tizen::Ui::Scenes::SceneId& nextSceneId);
+	//IScrollEventListener
+	virtual void OnScrollEndReached(Tizen::Ui::Control &source, Tizen::Ui::Controls::ScrollEndEvent type);
+
 	//GHGameLoadedListener
 	void loadPlayerDataFinished(GHGame* game);
+	//GHGamePlayingFriendListener
+	void loadGamePlayingFriendFinished(Tizen::Base::Collection::ArrayList* friendsList);
 
 	void getGameInstance(Tizen::Base::String id);
 	void setGameData();

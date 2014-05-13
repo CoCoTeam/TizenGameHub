@@ -32,13 +32,14 @@ private:
 	//IFormBackEventListener
 	virtual void OnFormBackRequested(Tizen::Ui::Controls::Form& source);
 
-	Tizen::Ui::Controls::EditField 	*pTextEmail;
-	Tizen::Ui::Controls::Button 	*pButtonSearch;
-	Tizen::Ui::Controls::ListView 	*pListFriend;
-	static const int IDA_BUTTON_SEARCH = 101;
-
 	// GHPlayerSearchFriendListener
 	virtual void searchFriendFinished(Tizen::Base::Collection::ArrayList* friendsList);
+
+	Tizen::Ui::Controls::EditField 	*pTextEmail;
+	Tizen::Ui::Controls::Button 	*pButtonSearch;
+	Tizen::Ui::Controls::ListView 	*pListViewFriend;
+	static const int IDA_BUTTON_SEARCH = 101;
+
 
 };
 

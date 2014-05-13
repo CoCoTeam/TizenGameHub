@@ -4,7 +4,7 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="bin/CardPair.exe">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>aTytLJvcA+tgE38z9sXSY/M+3MEtVXF6d1rvcKM1lxo=</DigestValue>
+<DigestValue>gwfWzJZASs8CecJssPvYlnS+6VfSOZLSg5Qxhwi7cbA=</DigestValue>
 </Reference>
 <Reference URI="info/manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -12,7 +12,11 @@
 </Reference>
 <Reference URI="lib/libTizenGameHubLibrary.so">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>grBpPmkbwhgbBMMboQ8Jozqz7EGgz5ufN2sTJQLeQ5g=</DigestValue>
+<DigestValue>THVD2hxexzUSXu200m/0jGpxz3NDW7FjDWDLNDIpwYw=</DigestValue>
+</Reference>
+<Reference URI="res/720x1280/achievement_complete.png">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>vFOVfVPTjEAAyJpNKUEu0fKR9HCHx5mctp/tvpEz0tA=</DigestValue>
 </Reference>
 <Reference URI="res/720x1280/heart.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -48,7 +52,7 @@
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_PANEL_LISTPANEL.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>XNqX54sHSE/nWGPeYmxBXJW4vDhW+Cdrz7comcPxI4o=</DigestValue>
+<DigestValue>Q4wxeQRUhvn3syFfqw6IJqsnvhFw7nJ+nS45qlyLx5k=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/workflow.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -67,9 +71,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-chLFKPIask/dyIjH2WwcsixzOErFGTVg8DDfoFKL1spyvFlIxm52qfwxiDda5k5gMKScl7b9uHwL
-c3oXuEz++bnUnBeR5IX5HAgPycBqy2AJGkdXWcM2mcBzol+Yy4Crb2wraE5/WHm1i8DhJeMVbvBH
-A3NCmeaCvr0JgBOkI+g=
+ZmqLUI2f2vVgAdHAiUuFBlJXNBLgo3I0JKZJ8rSf5kdHaAgsMQdQairsVfM6xki0+DQrjPDMy+SE
+xwArj6y5sHoJgo110MAKLuJUkvrB65K0pUZgmWfKv7634OdIWXbHN6daP3VfNn2sbRCtDlxvhcHY
+8XxCz52GJjRWZaKm+FU=
 </SignatureValue>
 <KeyInfo>
 <X509Data>

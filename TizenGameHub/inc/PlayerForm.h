@@ -22,6 +22,7 @@
 #include "GHPlayer/GHPlayerLoadedListener.h"
 #include "GHPlayer/GHPlayerGamesLoadedListener.h"
 #include "GHPlayer/GHPlayerFriendsLoadedListener.h"
+#include "GHPlayer/GHPlayerAddFriendListener.h"
 
 #include <FBase.h>
 #include <FUi.h>
@@ -41,10 +42,12 @@ class PlayerForm
 	, public Tizen::Ui::IActionEventListener
 	, public Tizen::Ui::Controls::IFormBackEventListener
 	, public Tizen::Ui::Scenes::ISceneEventListener
+	, public Tizen::Ui::Controls::IScrollEventListener
 	, public GHPlayerController
 	, public GHPlayerLoadedListener
 	, public GHPlayerGamesLoadedListener
 	, public GHPlayerFriendsLoadedListener
+	, public GHPlayerAddFriendListener
 	, public Tizen::Media::IImageDecodeUrlEventListener
 	, public Tizen::Ui::Controls::IGalleryItemProvider
 	,  public Tizen::Content::IDownloadListener
@@ -57,8 +60,8 @@ public:
 
 private:
 	String *mPlayerId;
-	GHPlayer *mPlayer;	// Player 자기 자신 (getPlayerInstance)
-	Boolean *isLocalPlayer, *isFriend;
+	GHPlayer *mPlayer;
+	bool isLocalPlayer, isFriend;
 
 	Panel *pPanelUser;
 	Label *pLabelUserName, *pLabelUserScore;
@@ -66,9 +69,13 @@ private:
 	Button *pButtonUserFriend, *pButtonSearchFriend;
 
 	Panel *pPanelScroll, *pPanelGame, *pPanelFriend;
-	ListView *pListViewGame, *pListViewFriend;
-
 	ArrayList *pGameList, *pFriendList;
+	ListView *pListViewGame, *pListViewFriend;
+	int gameOffset, friendOffset;
+
+	GHGameProvider *pGameProvider;
+	GHGameListItemEventListener *pGameListItemEventListener;
+
 
 	virtual result OnInitializing(void);
 	virtual result OnTerminating(void);
@@ -81,12 +88,16 @@ private:
 								   const Tizen::Ui::Scenes::SceneId& currentSceneId, Tizen::Base::Collection::IList* pArgs);
 	virtual void OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
 									const Tizen::Ui::Scenes::SceneId& nextSceneId);
+	//IScrollEventListener
+	virtual void OnScrollEndReached(Tizen::Ui::Control &source, Tizen::Ui::Controls::ScrollEndEvent type);
 	//GHPlayerLoadedListener
 	virtual void loadPlayerDataFinished(GHPlayer* player);
 	//GHPlayerGamesLoadedListener
 	virtual void loadPlayerGamesFinished(Tizen::Base::Collection::ArrayList* gameList);
 	//GHPlayerFriendsLoadedListener
 	virtual void loadPlayerFriendsFinished(Tizen::Base::Collection::ArrayList* friendsList);
+	//GHPlayerAddFriendListener
+	virtual void addFriendFinished(Tizen::Base::String statusCode);
 
 	//
 	void getCurrentPlayerData(String playerId);	// 서버로부터 플레이어의 정보를 받아온다.
