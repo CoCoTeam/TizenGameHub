@@ -72,10 +72,8 @@ JoinForm::OnInitializing(void)
 	pTextName = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_NAME));
 
 	pGalleryProfile = static_cast< Gallery* >(GetControl(IDC_JOIN_GALLERY_PROFILE));
-
-/*	pButtonGalleryEdit = static_cast< Button* >(GetControl(IDC_JOIN_GALLERY_EDIT));
-	pButtonGalleryEdit->SetActionId(IDA_BUTTON_GALLERY_EDIT);
-	pButtonGalleryEdit->AddActionEventListener(*this);*/
+	pGalleryProfile->SetItemProvider(*this);
+	pGalleryProfile->AddTouchEventListener(*this);
 
 
 	return r;
@@ -104,21 +102,6 @@ JoinForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 	case IDA_BUTTON_CANCEL:
 		pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_OUT));
 		break;
-/*	case IDA_BUTTON_GALLERY_EDIT:
-
-		CropForm *pCropForm = new CropForm();
-		pCropForm->Initialize();
-		Frame *pFrame = Application::GetInstance()->GetAppFrame()->GetFrame();
-		if(pFrame)
-		{
-			pFrame->AddControl(*pCropForm);
-			pCropForm->SendUserEvent(CropForm::REQUEST_ID_DISPLAYIMAGE, null);
-			pFrame->SetCurrentForm(*pCropForm);
-			pCropForm->Draw();
-			pCropForm->Show();
-		}
-
-		break;*/
 	}
 
 }
@@ -315,6 +298,20 @@ void JoinForm::OnTransactionReadyToRead(String apiCode, String statusCode,IJsonV
 	}
 }
 
+void
+JoinForm::OnTransactionCompleted(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction)
+{
+
+	 AppLog("success");
+
+	 Tizen::Net::Http::HttpMultipartEntity* pMultipartEntity = static_cast< Tizen::Net::Http::HttpMultipartEntity* >(httpTransaction.GetUserObject());
+
+	 if (pMultipartEntity)
+	      delete pMultipartEntity;
+
+	 delete &httpTransaction;
+
+}
 //CROP IMAGE
 void
 JoinForm::OnUserEventReceivedN(RequestId requestId, Tizen::Base::Collection::IList* pArgs)
@@ -342,6 +339,7 @@ JoinForm::OnUserEventReceivedN(RequestId requestId, Tizen::Base::Collection::ILi
 
 
 		RequestRedraw();
+		//AppLogDebug("------------------crop image set----------------");
 		storeImageInternal(__pCroppedBmp);
 		//saveImage();
 	}
@@ -351,14 +349,20 @@ result
 JoinForm::OnDraw()
 {
 
-	 Tizen::Ui::Controls::Gallery* pGalleryProfile;
+	pGalleryProfile->RefreshGallery(0,GALLERY_REFRESH_TYPE_ITEM_MODIFY);
 
-	pGalleryProfile->SetItemProvider(*this);
-	pGalleryProfile->AddTouchEventListener(*this);
+	AppLogDebug("---------------------Redraw-----------------");
+
+	//Tizen::Ui::Controls::Gallery* pGalleryProfile;
+
+	//pGalleryProfile = static_cast< Gallery* >(GetControl(IDC_JOIN_GALLERY_PROFILE));
+
+	//pGalleryProfile->SetItemProvider(*this);
+	//pGalleryProfile->AddTouchEventListener(*this);
 
 	//이미지 전환
-	GalleryItem* pGallery = new GalleryItem();
-    pGallery->Construct(*__ptempBitmap);
+	/*GalleryItem* pGallery = new GalleryItem();
+    pGallery->Construct(*__ptempBitmap);*/
 
     count = 0; // 터치 이벤트 재초기화
 
@@ -382,11 +386,11 @@ JoinForm::storeImageInternal(Bitmap *bitmap)
 			AppLog("22222");
 
 			result r ;
+
 			///////////////////////////////////////////////////////////////// 버퍼 ///////////////////////////////////////////////////////////////////
-
-
 			//String filePath(Environment::GetMediaPath() + L"TempPicture");
-			String imagePath = CreateUniqueFileName();
+			//String imagePath = CreateUniqueFileName();
+
 			File file;
 
 			int width = 0, height = 0;
@@ -401,7 +405,6 @@ JoinForm::storeImageInternal(Bitmap *bitmap)
 			Image img;
 			img.Construct();
 
-
 			// Get the image's size.
 		     width = __pCroppedBmp->GetWidth();
 		     height = __pCroppedBmp->GetHeight();
@@ -411,7 +414,7 @@ JoinForm::storeImageInternal(Bitmap *bitmap)
 		     pImageByteBuff = img.EncodeToBufferN(*__pCroppedBmp, IMG_FORMAT_JPG);
 
 			//파일 생성
-			r = file.Construct(imagePath, "w+");
+			r = file.Construct(USER_CROPPED_FILE_PATH, "w+");
 
 			//파일에 바이트 쓰기
 			r = file.Write(*pImageByteBuff);
@@ -421,73 +424,32 @@ JoinForm::storeImageInternal(Bitmap *bitmap)
 
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			//GHhttpClient* httpPost = new GHhttpClient();
-			//httpPost->RequestImageUpload(this, L"/ImageUploads", pImageByteBuff); // !!!! 이미지 업로드 url은 임시..
-
-
 			//////////////// 바이트를 다시 이미지로 변환
 			__ptempBitmap = CreateBitmapFromByteBufferN(pImageByteBuff, width, height);
 
-
-/*			AppLog("22222");
-
-			//바이트 버퍼////////////////////////////wq////////////////////////////////////////////////
-			ByteBuffer* pTempByteBuff = null;
-			pTempByteBuff = new (std::nothrow) ByteBuffer;
-
-			pTempByteBuff->SetByte();
-			TryCatch(pTempByteBuff != null, ,"pResizeByteBuffer is null, no memory");
-			////////////////////////////////////////////////////////////////////////////////////
-
-			AppLog("-------------------------check---------------------");
-
-			File *pFile;
-			pFile = new (std::nothrow) File;
-			r = pFile->Construct(imagePath, L"w", true);
-			r = pFile->Write(*pTempByteBuff);
-
-			pFile->Flush();
-
-			AppLog("-------------------------check2------------------");
-
-			//r = pFile->Read(*pTempByteBuff);
-
-			if(IsFailed(r))
-			{
-				AppLog("pTempImageByteBuff %s \n", GetErrorMessage(r));
-				ShowMessageBox(L"Error", strError);
-				return;
-			}
-
-			AppLog("-------------------------check3------------------");
-			//r = pFile->Write(pTempImageByteBuff);    //버퍼에 씀
-
-			CATCH:
-				return;
-			//
-			File copyFile = filePath;
-			BufferedOutputStream out = null;
-
-			try {
-				copyFile.createNewFile();
-				out = new BufferedOutputStream(new FileOutputStream(copyFile));
-				bitmap.compress(CompressFormat.JPEG, 100, out);
-				out.flush();
-				out.close();
-				*/
-
+			//서버에 보내기
+			GHhttpClient* httpPost = new GHhttpClient();
+			httpPost->RequestImageUpload(this, this, L"/players/imageupload", pImageByteBuff);
 }
+
 
 String
 JoinForm::CreateUniqueFileName( void )
 {
+	AppLog("-------------------------check3------------------");
+
 	// System Current time is always unique, so the same has been used to create a unique name
 	DateTime currentTime ;
 	SystemTime::GetCurrentTime (WALL_TIME, currentTime);
 	String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
 	//String imagePath = Environment::GetMediaPath() + L"TempPicture/";
-	String imagePath = Environment::GetMediaPath() + L"Others/" + player_id + L"_";
+	//String imagePath = Environment::GetMediaPath() + L"Others/" + player_id + L"_";
+	//String imagePath = Tizen::App::App::GetInstance()->GetAppRootPath() +L"Images/";
 
+
+	String imagePath = Tizen::App::App::GetInstance()->GetAppRootPath();
+
+	AppLog("%S", imagePath.GetPointer());
 
 	imagePath.Append(currentTime.GetYear());
 	if(currentTime.GetMonth() < 10)
@@ -507,6 +469,10 @@ JoinForm::CreateUniqueFileName( void )
 	imagePath.Append(currentTime.GetSecond());
 
 	imagePath.Append(L".jpg");
+
+	AppLog("%S", imagePath.GetPointer());
+	//AppLog("%S", imagePath2.GetPointer());
+
 	return imagePath;
 }
 
@@ -517,6 +483,19 @@ JoinForm::ShowMessageBox(const String& title, const String& message)
 	int modalResult = 0;
 	messageBox.Construct(title, message, MSGBOX_STYLE_OK, 3000);
 	messageBox.ShowAndWait(modalResult);
+}
+
+
+void
+JoinForm::OnHttpDownloadInProgress(Tizen::Net::Http::HttpSession& httpSession,Tizen::Net::Http::HttpTransaction& httpTransaction, long long currentLength, long long totalLength)
+{
+   AppLog("---Upload Current Bytes: %lld, Total Bytes: %lld---", currentLength, totalLength);
+}
+
+void
+JoinForm::OnHttpUploadInProgress(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction, long long currentLength, long long totalLength)
+{
+   AppLog("---Upload Current Bytes: %lld, Total Bytes: %lld---", currentLength, totalLength);
 }
 
 
@@ -576,4 +555,5 @@ JoinForm::OnTouchReleased (const Tizen::Ui::Control &source, const Tizen::Graphi
 {
 
 }
+
 

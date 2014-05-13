@@ -37,6 +37,7 @@ class JoinForm
 	, public GHController
     , public Tizen::Ui::Controls::IGalleryItemProvider
     , public Tizen::Ui::ITouchEventListener
+    , public Tizen::Net::Http::IHttpProgressEventListener
 
 {
 public:
@@ -72,6 +73,8 @@ private:
 
 	// GHController
 	virtual void OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data);
+	virtual void OnTransactionCompleted(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction);
+
 
 	result doJoin();
 
@@ -107,6 +110,10 @@ private:
 
 	 //touch event 제한
 	 int count;
+
+	 // IHttpProgressEventListener
+     virtual void OnHttpDownloadInProgress(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction, long long currentLength, long long totalLength);
+	 virtual void OnHttpUploadInProgress(Tizen::Net::Http::HttpSession &httpSession, Tizen::Net::Http::HttpTransaction &httpTransaction, long long currentLength, long long totalLength);
 
 	/* virtual void 	OnTouchCanceled (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo);
 	 virtual void 	OnTouchFocusIn (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)=0;
