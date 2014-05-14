@@ -9,7 +9,7 @@
 #define LEADERBOARDFORM_H_
 
 #include <GHTizen.h>
-#include "GHLeaderboard.h"
+#include "GHLeaderboard/GHLeaderboard.h"
 #include "GHLeaderboard/GHLeaderboardController.h"
 #include "GHLeaderboard/GHLeaderboardDataLoadedListener.h"
 

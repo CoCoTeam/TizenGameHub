@@ -9,7 +9,7 @@
 #define ATTACKHELPERPROVIDER_H_
 
 #include "GHTizen.h"
-#include "GHAttackhelperData.h"
+#include "GHAttackhelper/GHAttackhelperData.h"
 
 class AttackHelperProvider
 	: public Tizen::Ui::Controls::IListViewItemProvider

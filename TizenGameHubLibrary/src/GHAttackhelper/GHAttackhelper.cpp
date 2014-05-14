@@ -5,7 +5,7 @@
  *      Author: KICHUL
  */
 
-#include "GHAttackhelper.h"
+#include "GHAttackhelper/GHAttackhelper.h"
 
 using namespace Tizen::Base;
 

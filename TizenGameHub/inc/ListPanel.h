@@ -10,8 +10,8 @@
 
 #include <FUiCtrlPanel.h>
 #include "GHTizen.h"
-#include "GHAchievement.h"
-#include "GHLeaderboard.h"
+#include "GHAchievement/GHAchievement.h"
+#include "GHLeaderboard/GHLeaderboard.h"
 
 class ListPanel
 	: public Tizen::Ui::Controls::Panel

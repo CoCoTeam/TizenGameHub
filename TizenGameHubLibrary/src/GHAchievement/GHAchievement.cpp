@@ -5,7 +5,7 @@
  *      Author: Administrator
  */
 
-#include "GHAchievement.h"
+#include "GHAchievement/GHAchievement.h"
 
 using namespace Tizen::Base;
 

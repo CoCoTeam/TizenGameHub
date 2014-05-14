@@ -9,8 +9,8 @@
 #define GAMEFORM_H_
 
 #include <GHTizen.h>
-#include "GHGame.h"
-#include "GHPlayer.h"
+#include "GHGame/GHGame.h"
+#include "GHPlayer/GHPlayer.h"
 #include "GHPlayerProvider.h"
 #include "GHPlayerListItemEventListener.h"
 //통신
