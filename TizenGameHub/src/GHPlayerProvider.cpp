@@ -14,7 +14,6 @@ using namespace Tizen::Graphics;
 PlayerProvider::PlayerProvider() {
 	// TODO Auto-generated constructor stub
 }
-
 PlayerProvider::~PlayerProvider() {
 	// TODO Auto-generated destructor stub
 }

@@ -134,7 +134,18 @@ void FormMain::loginPlayerFinished(Tizen::Base::String statusCode)
 {
 	if(statusCode != "0") {
 		ahController = new GHAttackhelperController();
-		ahController->loadAttackhelperDatas();
+		ahController->loadAttackhelperDatas(this);
 	}
 }
+
+void FormMain::respondAttackhelperDataFinished(GHAttackhelperData* attackhelperData, int accpet_flag)
+{
+	if(attackhelperData == null) {
+		return;
+	}
+
+
+}
+
+
 

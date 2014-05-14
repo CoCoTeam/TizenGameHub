@@ -108,7 +108,7 @@ FormSocial::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		break;
 	case IDA_BUTTON_ATTACKHELPER:
 		GHAttackhelperController *ahController = new GHAttackhelperController();
-		ahController->loadDataSendPopup();
+		ahController->loadDataSendPopup(this, 1, 1);
 		break;
 
 	}
@@ -138,4 +138,10 @@ void FormSocial::setButtonConfig()
 	pButtonAttackHelper->SetEnabled(isLogin());
 	pButtonLeaderboard->SetEnabled(isLogin());
 	pButtonAchievement->SetEnabled(isLogin());
+}
+
+void FormSocial::sendAttackhelperDataFinished(int statusCode)
+{
+	AppLogDebug("sendAttackhelperDataFinished", statusCode);
+
 }

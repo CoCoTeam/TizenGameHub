@@ -19,7 +19,11 @@ using namespace Tizen::Base::Collection;
 
 GHAttackhelperController::GHAttackhelperController() {
 	// TODO Auto-generated constructor stub
-
+	useProvidedPopup = true;
+}
+GHAttackhelperController::GHAttackhelperController(bool providePopup) {
+	// TODO Auto-generated constructor stub
+	this->useProvidedPopup = providePopup;
 }
 
 GHAttackhelperController::~GHAttackhelperController() {
@@ -39,9 +43,10 @@ void GHAttackhelperController::loadAttackhelpers(GHAttackhelperLoadedListener * 
 }
 
 // attack helper data 목록을 가져온다.
-void GHAttackhelperController::loadAttackhelperDatas(GHAttackhelperDataLoadedListener* listener)
+void GHAttackhelperController::loadAttackhelperDatas(GHAttackhelperDataRespondedListener* respondListener, GHAttackhelperDataLoadedListener* loadedListener)
 {
-	this->currentListener = listener;
+	this->respondListener = respondListener;
+	this->currentListener = loadedListener;
 
 	//GET 함수 호출
 	String game_id(GHSharedAuthData::getSharedInstance().getGameId());
@@ -51,7 +56,10 @@ void GHAttackhelperController::loadAttackhelperDatas(GHAttackhelperDataLoadedLis
 }
 
 // normal achievement update
-void GHAttackhelperController::sendAttackhelperData(String receiver_id, String ah_id, int quantity){
+void GHAttackhelperController::sendAttackhelperData(String receiver_id, int ah_id, int quantity, GHAttackhelperDataSendedListener* listener)
+{
+	this->sendListener = listener;
+
 	String game_id(GHSharedAuthData::getSharedInstance().getGameId());
 	String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
 	String url(L"/f_attackhelpers/" + game_id );
@@ -59,18 +67,17 @@ void GHAttackhelperController::sendAttackhelperData(String receiver_id, String a
 	__pMap->Construct();
 	__pMap->Add(new String("sender_id"), new String(player_id));
 	__pMap->Add(new String("receiver_id"), new String(receiver_id));
-	__pMap->Add(new String("ah_id"), new String(ah_id));
+	__pMap->Add(new String("ah_id"), new String(Integer::ToString(ah_id)));
 	__pMap->Add(new String("quantity"), new String(Integer::ToString(quantity)));
 
 	httpPost.RequestHttpPostTran(this, url, __pMap);
 }
-void GHAttackhelperController::sendAttackhelperData(String receiver_id, String ah_id, int quantity, GHAttackhelperDataSendedListener* listener){
-	this->currentListener = listener;
-	this->sendAttackhelperData(receiver_id, ah_id, quantity);
-}
 
 // incremental achievement update
-void GHAttackhelperController::respondAttackhelperData(int data_idx, int accept_flag){
+void GHAttackhelperController::respondAttackhelperData(int data_idx, int accept_flag, GHAttackhelperDataRespondedListener* listener)
+{
+	this->respondListener = listener;
+
 	String game_id(GHSharedAuthData::getSharedInstance().getGameId());
 	String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
 	String url(L"/f_attackhelpers/" + game_id );
@@ -81,13 +88,13 @@ void GHAttackhelperController::respondAttackhelperData(int data_idx, int accept_
 
 	httpPost.RequestHttpPutTran(this, url, __pMap);
 }
-void GHAttackhelperController::respondAttackhelperData(int data_idx, int accept_flag, GHAttackhelperDataRespondedListener* listener){
-	this->currentListener = listener;
-	this->respondAttackhelperData(data_idx, accept_flag);
-}
 
-void GHAttackhelperController::loadDataSendPopup()
+void GHAttackhelperController::loadDataSendPopup(GHAttackhelperDataSendedListener* listener, int ah_id, int quantity)
 {
+	this->sendListener = listener;
+	this->ah_id = ah_id;
+	this->quantity = quantity;
+
 	GHGameController *gameController = new GHGameController();
 	gameController->getGamePlayingFriends(GHSharedAuthData::getSharedInstance().getGameId(), this, 0, 20);
 }
@@ -109,7 +116,7 @@ void GHAttackhelperController::loadGamePlayingFriendFinished(Tizen::Base::Collec
 		PlayerProvider *pProvider = new PlayerProvider();
 		pProvider->setItemList(friendsList);
 		pAhList->SetItemProvider( *pProvider );
-		AttackHelperSendListener *pListener = new AttackHelperSendListener();
+		AttackHelperSendListener *pListener = new AttackHelperSendListener(this->sendListener, ah_id, quantity);
 		pListener->setItemList(friendsList);
 		pAhList->AddListViewItemEventListener( *pListener );
 
@@ -135,6 +142,10 @@ void GHAttackhelperController::loadGamePlayingFriendFinished(Tizen::Base::Collec
 
 void GHAttackhelperController::loadDataReceievedPopup(ArrayList* pArr)
 {
+	if(!useProvidedPopup) {
+		return;
+	}
+
 	pPopup = new Tizen::Ui::Controls::Popup();
 	pPopup->Construct(true, Tizen::Graphics::Dimension(600, 800));
 	pPopup->SetTitleText("Attack-Helper");
@@ -146,11 +157,11 @@ void GHAttackhelperController::loadDataReceievedPopup(ArrayList* pArr)
 	}
 	else {	// (데이터가 있으면) 리스트 뷰 생성
 		Tizen::Ui::Controls::ListView* pAhList = new Tizen::Ui::Controls::ListView();
-		pAhList->Construct(Tizen::Graphics::Rectangle(25, 20, 550, 500), false, false);
+		pAhList->Construct(Tizen::Graphics::Rectangle(25, 20, 550, 550), false, false);
 
 		AttackHelperProvider *pProvider = new AttackHelperProvider();
 		pProvider->addItemList(pArr);
-		AttackHelperReceiveListener *pListener = new AttackHelperReceiveListener();
+		AttackHelperReceiveListener *pListener = new AttackHelperReceiveListener(this->respondListener);
 		pListener->setItemList(pArr);
 		pAhList->SetItemProvider( *pProvider );
 		pAhList->AddListViewItemEventListener( *pListener );
@@ -216,9 +227,8 @@ void GHAttackhelperController::OnTransactionReadyToRead(String apiCode, String s
 		}
 
 		if(this->currentListener != null) this->currentListener->loadAttackhelperFinished(ahArr);
-
-
-	} else if(apiCode.Equals(ATTACKHELPER_DATA_LOAD)) {
+	}
+	else if(apiCode.Equals(ATTACKHELPER_DATA_LOAD)) {
 		ArrayList* ahdArr;
 
 		// 정상적으로 결과를 반환했을 때
@@ -264,15 +274,14 @@ void GHAttackhelperController::OnTransactionReadyToRead(String apiCode, String s
 		loadDataReceievedPopup(ahdArr);
 
 		if(this->currentListener != null) this->currentListener->loadAttackhelperDataFinished(ahdArr);
-
-	} else if(apiCode.Equals(ATTACKHELPER_DATA_SEND)) {
+	}
+	else if(apiCode.Equals(ATTACKHELPER_DATA_SEND)) {
 		int stateCode;
 		Integer::Parse(statusCode, stateCode);
 
-		if(this->currentListener != null) this->currentListener->sendAttackhelperDataFinished(stateCode);
-
-
-	} else if(apiCode.Equals(ATTACKHELPER_DATA_RESPOND)) { // 데이터를 보내줘야함.
+		if(this->sendListener != null) this->sendListener->sendAttackhelperDataFinished(stateCode);
+	}
+	else if(apiCode.Equals(ATTACKHELPER_DATA_RESPOND)) { // 데이터를 보내줘야함.
 		int stateCode;
 		Integer::Parse(statusCode, stateCode);
 
@@ -294,23 +303,28 @@ void GHAttackhelperController::OnTransactionReadyToRead(String apiCode, String s
 			String* pkeyAcceptFlag	= new String(L"accept_flag");
 
 			// 데이터 파싱
-			int iDataIdx			= getIntByKey(pJsonOject, pkeyDataIdx);
-			String  sSenderId 		= getStringByKey(pJsonOject, pkeySenderId);
-			String  sSenderName		= getStringByKey(pJsonOject, pkeySenderName);
-			String  sId 			= getStringByKey(pJsonOject, pkeyId);
-			String  sItemName		= getStringByKey(pJsonOject, pkeyItemName);
-			int iDenyEnable			= getIntByKey(pJsonOject, pkeyDenyEnbale);
-			int iQuantity			= getIntByKey(pJsonOject, pkeyQuantity);
-			accept_flag				= getIntByKey(pJsonOject, pkeyAcceptFlag);
+			int iDataIdx		= getIntByKey(pJsonOject, pkeyDataIdx);
+			String  sSenderId 	= getStringByKey(pJsonOject, pkeySenderId);
+			String  sSenderName	= getStringByKey(pJsonOject, pkeySenderName);
+			String  sId 		= getStringByKey(pJsonOject, pkeyId);
+			String  sItemName	= getStringByKey(pJsonOject, pkeyItemName);
+			int iDenyEnable		= getIntByKey(pJsonOject, pkeyDenyEnbale);
+			int iQuantity		= getIntByKey(pJsonOject, pkeyQuantity);
+			accept_flag			= getIntByKey(pJsonOject, pkeyAcceptFlag);
 
 
 			ahdObj = new GHAttackhelperData(iDataIdx, sSenderId, sSenderName, sId, sItemName, iDenyEnable, iQuantity);
 
+			delete pkeyDataIdx;	delete pkeySenderId;	delete pkeySenderName;
+			delete pkeyId;		delete pkeyItemName;	delete pkeyDenyEnbale;
+			delete pkeyQuantity;delete pkeyAcceptFlag;
 		}else {
 			ahdObj = null;
 		}
 
-		if(this->currentListener != null) this->currentListener->respondAttackhelperDataFinished(ahdObj, accept_flag);
+		if(this->respondListener != null) {
+			this->respondListener->respondAttackhelperDataFinished(ahdObj, accept_flag);
+		}
 
 	}
 
