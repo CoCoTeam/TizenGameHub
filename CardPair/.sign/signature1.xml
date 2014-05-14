@@ -4,11 +4,11 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>sz+QDeFTW5717KJ8Gdi7rRv1YbrAT42cSkt5Rw7ylUE=</DigestValue>
+<DigestValue>yD968RQeFfVR3tEhAC7cMi1QcIDksvcvwuyhQG3LG00=</DigestValue>
 </Reference>
 <Reference URI="bin/CardPair.exe">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>D2yAizbJytRroRGFf+2nGurBvaUE80qvoK7DsOfXxZk=</DigestValue>
+<DigestValue>3u5g/n0jWivEOGd3pD/KfvqWkecAMSMSleJ7hGYSJsI=</DigestValue>
 </Reference>
 <Reference URI="info/manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -16,7 +16,7 @@
 </Reference>
 <Reference URI="lib/libTizenGameHubLibrary.so">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>xtD7PxSjQ1K36mQ4iEmqkM0jeyGhVAlp1pgw8NR2xXs=</DigestValue>
+<DigestValue>CPSu641iPubB/pLMnczO647gWc4Hg0u0qWhddh2x2Pw=</DigestValue>
 </Reference>
 <Reference URI="res/720x1280/achievement_complete.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -36,7 +36,7 @@
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>Y93D0HX8xHx6tlpgJIM0L7FiPx9lV1kgPZTYk92A1rM=</DigestValue>
+<DigestValue>b2uQUAthCRkO1mcT3924wSLi8GGyb2jctkcfHzOUOwQ=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM_ACHIEVEMENT.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -79,9 +79,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-UwKW/PFGKIC4cZK7XX2oYQUc02tvWt1ZH0e0EcvX33EHsMsZIuL0GVNnhLRCGnDAAGF3tBVmRHSA
-Th3slseolu2DnwmHiFrNRyvsPu+ZgVx3Y3b2A90C5kybbdW6f9IjRMoRn5JMY69cJ0qfafWJ7M/x
-YrIFTFwi7zyXpqHoXhM=
+lg+pxr92gUI0Bb6k9G1hG3WUtN+CG8tzGW43cOnDw8arinNlfm4M0DAI2YUqIMtQmpCtcVGtWq3U
+46tApG46ypdxdQWO3kI00TLPQ9ERjLCbYM2eCu0Hso1omxB0vrKaD8s6DJD1VPtzhe342ELSlPjE
+BGjxR3lRyGVbnGeC7O0=
 </SignatureValue>
 <KeyInfo>
 <X509Data>

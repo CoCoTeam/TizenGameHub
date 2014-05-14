@@ -31,6 +31,7 @@ extern const wchar_t* IDC_LABEL1;
 extern const wchar_t* IDC_LABEL2;
 extern const wchar_t* IDC_LABEL3;
 extern const wchar_t* IDC_LABEL4;
+extern const wchar_t* IDC_LABEL_RECORD;
 extern const wchar_t* IDC_MAIN_BUTTON_LOGIN;
 extern const wchar_t* IDC_USER_BUTTON_SEARCHFRIEND;
 extern const wchar_t* IDC_USER_BUTTON_USERFRIEND;
@@ -60,6 +61,7 @@ extern const wchar_t* IDL_FORM3;
 extern const wchar_t* IDC_MAIN_BUTTON_PLAY;
 extern const wchar_t* IDC_MAIN_BUTTON_LEADERBOARD;
 extern const wchar_t* IDC_MAIN_BUTTON_ACHIEVEMENT;
+extern const wchar_t* IDC_LABEL_RECORD;
 /* SCENE */
 extern const wchar_t* IDSCNT_MAIN_SCENE;
 extern const wchar_t* MainScene;

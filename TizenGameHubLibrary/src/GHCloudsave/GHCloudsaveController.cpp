@@ -62,6 +62,7 @@ void GHCloudsaveController::OnTransactionReadyToRead(Tizen::Base::String apiCode
 
 	} else if(apiCode.Equals(CLOUDSAVE_LOAD)) {
 		String slotdata = null;
+		int slotidx;
 
 		// 정상적으로 결과를 반환했을 때
 		// data:{value:""}
@@ -70,13 +71,18 @@ void GHCloudsaveController::OnTransactionReadyToRead(Tizen::Base::String apiCode
 
 			// KEY NAME
 			String* pkeyValue		= new String(L"value");
+			String* pkeyIdx		= new String(L"slot_idx");
+
 			slotdata = getStringByKey(pJsonOject, pkeyValue);
+			slotidx	= getIntByKey(pJsonOject, pkeyIdx);
 
 			delete pkeyValue;
+			delete pkeyIdx;
 		}else {
 			slotdata = null;
+			slotidx = -1;
 		}
 
-		if(this->currentListener != null) this->currentListener->loadCloudsaveFinished(slotdata);
+		if(this->currentListener != null) this->currentListener->loadCloudsaveFinished(slotidx, slotdata);
 	}
 }

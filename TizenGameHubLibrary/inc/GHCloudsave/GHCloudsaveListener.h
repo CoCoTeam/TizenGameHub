@@ -16,7 +16,7 @@ public:
 	virtual ~GHCloudsaveListener();
 
 	virtual void saveCloudsaveFinished(int statusCode){};
-	virtual void loadCloudsaveFinished(Tizen::Base::String achievementList){};
+	virtual void loadCloudsaveFinished(int slotIdx, Tizen::Base::String data){};
 };
 
 #endif /* GHCLOUDSAVELISTENER_H_ */

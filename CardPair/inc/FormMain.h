@@ -6,6 +6,7 @@
 #include "GHPlayer/GHPlayerLoggedinListener.h"
 #include "GHAttackhelper/GHAttackhelperController.h"
 #include "GHCloudsave/GHCloudsaveController.h"
+#include "GHCloudsave/GHCloudsaveLoadListener.h"
 
 class FormMain
 	: public Tizen::Ui::Controls::Form
@@ -14,6 +15,8 @@ class FormMain
  	, public Tizen::Ui::Scenes::ISceneEventListener
  	, public GHPlayerController
  	, public GHPlayerLoggedinListener
+ 	, public GHCloudsaveLoadListener
+
 {
 public:
 	FormMain(void);
@@ -36,7 +39,8 @@ private:
 
 	// Cloud Save
 	GHCloudsaveController *csController;
-
+	virtual void loadCloudsaveFinished(int slotIdx, Tizen::Base::String data);
+	int csLoadCount = 0;
 
 protected:
 	static const int IDA_BUTTON_PLAY = 101;
