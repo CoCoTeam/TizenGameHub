@@ -26,8 +26,8 @@ public:
 	int getScore();
 	int getRank();
 
-	void GHPlayerRank::setScore(int _score);
-	void GHPlayerRank::setRank(int _rank);
+	void setScore(int score);
+	void setRank(int rank);
 
 };
 #endif /* GHPLAYERRANK_H_ */
