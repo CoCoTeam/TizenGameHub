@@ -13,6 +13,7 @@
 //#include "GHLeaderboard/GHLeaderboard"
 #include "GameHub/AppGHLeaderboardController.h"
 #include "GHLeaderboard/GHLeaderboardListLoadedListener.h"
+#include "GHLeaderboard/GHLeaderboardMyRankLoadedListener.h"
 #include "LeaderboardRankProvider.h"
 
 class LeaderboardRankForm
@@ -23,6 +24,7 @@ class LeaderboardRankForm
 	, public Tizen::Ui::Controls::IScrollEventListener
 	, public AppGHLeaderboardController
 	, public GHLeaderboardListLoadedListener
+	, public GHLeaderboardMyRankLoadedListener
 {
 public:
 	LeaderboardRankForm();
@@ -46,6 +48,8 @@ private:
 
 	//GHLeaderboardListLoadedListener
 	virtual void loadLeaderboardRankFinished(GHLeaderboard* _leaderboard);
+	//GHLeaderboardMyRankLoadedListener
+	virtual void loadLeaderboardMyRankFinished(GHPlayerRank* pPlayerRank);
 
 
 	GHLeaderboard* leaderboard;
@@ -53,6 +57,7 @@ private:
 	Tizen::Base::Collection::ArrayList* rank_list;
 	Tizen::Ui::Controls::ListView *pRankListView;
 	LeaderboardRankProvider *pRankProvider;
+	GHPlayerRank *myRank;
 
 	Tizen::Ui::Controls::Panel *pPanelMyrank;
 	Tizen::Ui::Controls::Label *pLabelName, *pLabelScore, *pLabelRank;

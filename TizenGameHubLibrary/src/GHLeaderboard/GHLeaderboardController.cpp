@@ -48,30 +48,37 @@ void GHLeaderboardController::loadLeaderboards(GHLeaderboardDataLoadedListener *
 }
 
 // 각 Leaderboard에 해당하는 랭킹 목록을 가져온다.
-void GHLeaderboardController::loadLeaderboardRank(Tizen::Base::String leaderboardId, int startPosition, int loadSize)
+void GHLeaderboardController::loadLeaderboardRank(Tizen::Base::String leaderboardId, int start_position, int max_length)
 {
 	this->currentListener = null;
 
 	//GET 함수 호출
 	String game_id(GHSharedAuthData::getSharedInstance().getGameId());
-	Tizen::Base::String sOffset, sSize;
-	sOffset.Append(startPosition);
-	sSize.Append(loadSize);
-	String external = "?order=true&start_pos="+sOffset+"&max_length="+sSize;
+	String external = "?order=true&start_pos="+Integer::ToString(start_position)+"&max_length="+Integer::ToString(max_length);
 	String url(L"/f_leaderboards/rank/" + game_id +"/"+ leaderboardId );//+ external);
 
 	httpPost.RequestHttpGetTran(this, url);
 }
-void GHLeaderboardController::loadLeaderboardRank(Tizen::Base::String leaderboardId, GHLeaderboardListLoadedListener * listener, int startPosition, int loadSize)
+void GHLeaderboardController::loadLeaderboardRank(Tizen::Base::String leaderboardId, GHLeaderboardListLoadedListener * listener, int start_position, int max_length)
 {
-	this->loadLeaderboardRank(leaderboardId, startPosition, loadSize);
+	this->loadLeaderboardRank(leaderboardId, start_position, max_length);
 	this->currentListener = listener;
+}
+void GHLeaderboardController::loadLeaderboardMyRank(Tizen::Base::String leaderboardId, GHLeaderboardListLoadedListener * listener)
+{
+	this->currentListener = listener;
+
+	String game_id(GHSharedAuthData::getSharedInstance().getGameId());
+	String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
+	String url(L"/f_leaderboards/rank/" + game_id +"/"+ leaderboardId +"/"+ player_id);
+
+	httpPost.RequestHttpGetTran(this, url);
 }
 
 // 해당 Leaderboard에 점수를 업데이트한다.
-void GHLeaderboardController::updateLeaderboardScore(Tizen::Base::String leaderboardId, long score)
+void GHLeaderboardController::updateLeaderboardScore(Tizen::Base::String leaderboardId, long score, GHLeaderboardScoreUpdatedListener * listener)
 {
-	this->currentListener = null;
+	this->currentListener = listener;
 
 	String* game_id = new String(GHSharedAuthData::getSharedInstance().getGameId());
 	String* lb_id = new String(leaderboardId);
@@ -88,11 +95,6 @@ void GHLeaderboardController::updateLeaderboardScore(Tizen::Base::String leaderb
 	__pMap->Add(new String("player_id"), player_id);
 
 	httpPost.RequestHttpPutTran(this, url, __pMap);
-}
-void GHLeaderboardController::updateLeaderboardScore(Tizen::Base::String leaderboardId, long score, GHLeaderboardScoreUpdatedListener * listener)
-{
-	this->updateLeaderboardScore(leaderboardId, score);
-	this->currentListener = listener;
 }
 
 // HTTP 통신 Listener -------------------------------------------------------------------------------------------------------
@@ -223,5 +225,42 @@ void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String st
 
 			if(this->currentListener != null) this->currentListener->updateLeaderboardScoreFinished(stateCode);
 
+		}
+		else if(apiCode.Equals(LEADERBOARD_MYRANK)) {
+			GHPlayerRank* PlayerRank;
+
+			// 정상적으로 결과를 반환했을 때
+			if(statusCode == "1") {
+				JsonObject *pJsonOject 	= static_cast<JsonObject*>(data);
+
+				String* pkeyP_id	= new String(L"player_id");
+				String* pkeyP_name	= new String(L"name");
+				String* pkeyP_url 	= new String(L"img_url");
+				String* pkeyRank	= new String(L"rank");
+				String* pkeyScore 	= new String(L"score");
+
+				String 	sP_id		= getStringByKey(pJsonOject, pkeyP_id);
+				String 	sP_name		= getStringByKey(pJsonOject, pkeyP_name);
+				String 	sP_url 		= getStringByKey(pJsonOject, pkeyP_url);
+				int 	iRank		= getIntByKey(pJsonOject, pkeyRank);
+				int 	iScore		= getIntByKey(pJsonOject, pkeyScore);
+
+				PlayerRank = new GHPlayerRank(sP_id, sP_name, sP_url, iRank, iScore);
+
+				PlayerRank->setId(sP_id);
+				PlayerRank->setName(sP_name);
+				PlayerRank->setImgUrl(sP_url);
+				PlayerRank->setRank(iRank);
+				PlayerRank->setScore(iScore);
+
+				// KEY NAME DELETE
+				delete pkeyP_id;	delete pkeyP_name;		delete pkeyP_url; 	delete pkeyRank;	delete pkeyScore;
+
+			}
+			else {
+				PlayerRank = null;
+			}
+
+			if(this->currentListener != null) this->currentListener->loadLeaderboardMyRankFinished(PlayerRank);
 		}
 }

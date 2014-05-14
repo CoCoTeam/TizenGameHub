@@ -21,6 +21,7 @@
 const Tizen::Base::String LEADERBOARD_LEADERBOARDS		= "21";
 const Tizen::Base::String LEADERBOARD_RANK 				= "22";
 const Tizen::Base::String LEADERBOARD_SCORE 			= "23";
+const Tizen::Base::String LEADERBOARD_MYRANK 			= "24";
 
 
 class GHLeaderboardController
@@ -36,12 +37,14 @@ public:
 	void loadLeaderboards(GHLeaderboardDataLoadedListener * listener);
 
 	// 각 Leaderboard에 해당하는 랭킹 목록을 가져온다.
-	void loadLeaderboardRank(Tizen::Base::String leaderboardId, int startPosition = 0, int loadSize = 10);
-	void loadLeaderboardRank(Tizen::Base::String leaderboardId, GHLeaderboardListLoadedListener * listener, int startPosition = 0, int loadSize = 10);
+	void loadLeaderboardRank(Tizen::Base::String leaderboardId, int start_position = 0, int max_length = 10);
+	void loadLeaderboardRank(Tizen::Base::String leaderboardId, GHLeaderboardListLoadedListener * listener, int start_position = 0, int max_length = 10);
+
+	// 해당 Leaderboard에 대한 해당 player의 랭킹 정보를 가져온다.
+	void loadLeaderboardMyRank(Tizen::Base::String leaderboardId, GHLeaderboardListLoadedListener * listener);
 
 	// 해당 Leaderboard에 점수를 업데이트한다.
-	void updateLeaderboardScore(Tizen::Base::String leaderboardId, long score);
-	void updateLeaderboardScore(Tizen::Base::String leaderboardId, long score, GHLeaderboardScoreUpdatedListener * listener);
+	void updateLeaderboardScore(Tizen::Base::String leaderboardId, long score, GHLeaderboardScoreUpdatedListener * listener = null);
 
 protected:
 	GHLeaderboardListener* currentListener;

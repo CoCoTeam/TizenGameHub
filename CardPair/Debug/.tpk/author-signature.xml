@@ -12,7 +12,7 @@
 </Reference>
 <Reference URI="lib/libTizenGameHubLibrary.so">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>THVD2hxexzUSXu200m/0jGpxz3NDW7FjDWDLNDIpwYw=</DigestValue>
+<DigestValue>hNrs9r+BIIpUHWfrN/jWnMN5oCI4qsoh6+4iILzCI8g=</DigestValue>
 </Reference>
 <Reference URI="res/720x1280/achievement_complete.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -71,9 +71,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-ZmqLUI2f2vVgAdHAiUuFBlJXNBLgo3I0JKZJ8rSf5kdHaAgsMQdQairsVfM6xki0+DQrjPDMy+SE
-xwArj6y5sHoJgo110MAKLuJUkvrB65K0pUZgmWfKv7634OdIWXbHN6daP3VfNn2sbRCtDlxvhcHY
-8XxCz52GJjRWZaKm+FU=
+TdpOVb1zHVMFhVfe4q1iFEpMbJ+nAux43epPnvRiv00mIsgNiLzuqZaJ9WLTjXHvu51YAD2+V79p
+3wGmvnQyirkb06UHakDJVj1NENWCx9a6+GJRuAchOFwN9MHjf2sOD9eQeCxnof1iT9i6p2CluKmv
+E1JdcOqLZjXjvCcoTd0=
 </SignatureValue>
 <KeyInfo>
 <X509Data>

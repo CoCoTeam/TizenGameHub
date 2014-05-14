@@ -43,7 +43,6 @@ result LeaderboardRankForm::OnInitializing(void)
 	pRankListView->AddScrollEventListener(*this);
 	pRankProvider = new LeaderboardRankProvider();
 
-
 	return r;
 }
 result LeaderboardRankForm::OnTerminating(void)
@@ -80,6 +79,7 @@ void LeaderboardRankForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& pr
 			gameId = *pGameId;
 			leaderboardId = *pLeaderboardId;
 			loadLeaderboardRank(gameId, leaderboardId, this, 0, 8);
+			loadLeaderboardMyRank(gameId, leaderboardId, this);
 		}
 		pArgs->RemoveAll(true);
 		delete pArgs;
@@ -119,18 +119,33 @@ void LeaderboardRankForm::OnScrollEndReached(Tizen::Ui::Control &source, Tizen::
 	}
 }
 
+void LeaderboardRankForm::loadLeaderboardMyRankFinished(GHPlayerRank* pPlayerRank)
+{
+	if(pPlayerRank == null) {
+		pPanelMyrank = static_cast<Panel*>(GetControl(IDC_LEADERBOARDRANK_PANEL_MYRANK));
+		pGallery = static_cast<Gallery*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_GALLERY));
+		pGallery->SetShowState(false);
+		pLabelName = static_cast<Label*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_LABEL_NAME));
+		pLabelName->SetText("No data");
+		Draw();
+		return;
+	}
+	myRank = pPlayerRank;
+	setMyRank();
+}
 
 void LeaderboardRankForm::setMyRank()
 {
 	// Set My rank Info.
-//	pPanelMyrank = static_cast<Panel*>(GetControl(IDC_LEADERBOARDRANK_PANEL_MYRANK));
-//	pLabelName = static_cast<Label*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_LABEL_NAME));
-//	pLabelScore = static_cast<Label*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_LABEL_SCORE));
-//	pLabelRank = static_cast<Label*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_LABEL_RANK));
-//	pGallery = static_cast<Gallery*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_GALLERY));
+	pPanelMyrank = static_cast<Panel*>(GetControl(IDC_LEADERBOARDRANK_PANEL_MYRANK));
+	pLabelName = static_cast<Label*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_LABEL_NAME));
+	pLabelScore = static_cast<Label*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_LABEL_SCORE));
+	pLabelRank = static_cast<Label*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_LABEL_RANK));
+	pGallery = static_cast<Gallery*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_GALLERY));
 
-	GHPlayerRank myRank;
-	pLabelName->SetText(myRank.getName());
-	pLabelScore->SetText(Integer::ToString(myRank.getScore()) + strUnit);
-	pLabelRank->SetText(Integer::ToString(myRank.getRank()) + " 위");
+
+	pLabelName->SetText(myRank->getName());
+	pLabelScore->SetText(Integer::ToString(myRank->getScore()) + strUnit);
+	pLabelRank->SetText(Integer::ToString(myRank->getRank()) + " 위");
+	Draw();
 }
