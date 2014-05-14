@@ -9,7 +9,7 @@
 #define ACHIEVEMENTFORM_H_
 
 #include <GHTizen.h>
-#include "GHAchievement.h"
+#include "GHAchievement/GHAchievement.h"
 #include "GHAchievement/GHAchievementController.h"
 #include "GHAchievement/GHAchievementLoadedListener.h"
 

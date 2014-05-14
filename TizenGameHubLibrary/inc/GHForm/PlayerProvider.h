@@ -8,7 +8,7 @@
 #ifndef PLAYERPROVIDER_H_
 #define PLAYERPROVIDER_H_
 
-#include "GHPlayer.h"
+#include "GHPlayer/GHPlayer.h"
 
 class PlayerProvider
 : public Tizen::Ui::Controls::IListViewItemProvider

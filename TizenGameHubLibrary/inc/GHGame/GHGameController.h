@@ -9,7 +9,7 @@
 #define GHGAMECONTROLLER_H_
 
 #include "GHTizen.h"
-#include "GHPlayer.h"
+#include "GHPlayer/GHPlayer.h"
 #include "GHGame/GHGameListener.h"
 #include "GHController.h"
 

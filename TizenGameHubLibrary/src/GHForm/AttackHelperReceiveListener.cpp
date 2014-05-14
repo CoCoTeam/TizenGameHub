@@ -5,7 +5,7 @@
  *      Author: Administrator
  */
 
-#include "GHAttackhelperData.h"
+#include "GHAttackhelper/GHAttackhelperData.h"
 #include "GHAttackhelper/GHAttackhelperController.h"
 #include "GHForm/AttackHelperReceiveListener.h"
 

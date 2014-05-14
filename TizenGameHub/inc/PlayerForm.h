@@ -9,9 +9,9 @@
 #define PLAYERFORM_H_
 
 #include "GHTizen.h"
-#include "GHGame.h"
+#include "GHGame/GHGame.h"
 //리스트
-#include "GHPlayer.h"
+#include "GHPlayer/GHPlayer.h"
 #include "GHGameProvider.h"
 #include "GHPlayerProvider.h"
 #include "GHGameListItemEventListener.h"
