@@ -143,12 +143,13 @@ void FormMain::loginPlayerFinished(Tizen::Base::String statusCode)
 {
 	if(statusCode != "0") {
 		ahController = new GHAttackhelperController();
-		ahController->loadAttackhelperDatas();
+		ahController->loadAttackhelperDatas(this);
 
 		// clound save 데이터를 불러온다. (멀티플레이 전적)
 		csController = new GHCloudsaveController();
 		csController->loadCloudSlotData(1,this); // 멀티플레이 승 데이터
 		csController->loadCloudSlotData(2,this); // 멀티플레이 패 데이터
+
 	}
 }
 void FormMain::loadCloudsaveFinished(int slotIdx, Tizen::Base::String data)
@@ -172,6 +173,17 @@ void FormMain::loadCloudsaveFinished(int slotIdx, Tizen::Base::String data)
 		pLabelRecord->Draw();
 
 	}
+}
+
+
+
+void FormMain::respondAttackhelperDataFinished(GHAttackhelperData* attackhelperData, int accpet_flag)
+{
+	if(attackhelperData == null) {
+		return;
+	}
+
+
 }
 
 

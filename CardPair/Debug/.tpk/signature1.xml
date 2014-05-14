@@ -4,11 +4,11 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>yD968RQeFfVR3tEhAC7cMi1QcIDksvcvwuyhQG3LG00=</DigestValue>
+<DigestValue>BEv3QwkSjc7vkMwMHwIkG4abr0OFzXNCv+MLD66o14k=</DigestValue>
 </Reference>
 <Reference URI="bin/CardPair.exe">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>3u5g/n0jWivEOGd3pD/KfvqWkecAMSMSleJ7hGYSJsI=</DigestValue>
+<DigestValue>IbwYBf4yQWkiG0GLzgFybhrQWPoemkVo+FuZkeLYG3Q=</DigestValue>
 </Reference>
 <Reference URI="info/manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -16,7 +16,7 @@
 </Reference>
 <Reference URI="lib/libTizenGameHubLibrary.so">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>CPSu641iPubB/pLMnczO647gWc4Hg0u0qWhddh2x2Pw=</DigestValue>
+<DigestValue>Uj9ogVKqXV12mYyO/LYy0G4pi0IwK12ljiSwt4rmFaY=</DigestValue>
 </Reference>
 <Reference URI="res/720x1280/achievement_complete.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -79,9 +79,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-lg+pxr92gUI0Bb6k9G1hG3WUtN+CG8tzGW43cOnDw8arinNlfm4M0DAI2YUqIMtQmpCtcVGtWq3U
-46tApG46ypdxdQWO3kI00TLPQ9ERjLCbYM2eCu0Hso1omxB0vrKaD8s6DJD1VPtzhe342ELSlPjE
-BGjxR3lRyGVbnGeC7O0=
+E5pepQksV0a/0CBUPd9oFuGQ5BSeUXVwOYSqCy6ffB07c9lLZ2pK3lSefqzKoT0VmyFuATzNWUAB
+Nw24rQ+xk//qiC2+8+MamPVUbSFxUjTTl035/Dd4OZ2PvEQ6cdEhtsQnVZKG4d2xtKApoMF8DrNG
+7q2ozUsU3fT3fiyJAEk=
 </SignatureValue>
 <KeyInfo>
 <X509Data>

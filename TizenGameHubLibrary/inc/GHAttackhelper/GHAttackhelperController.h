@@ -34,33 +34,36 @@ class GHAttackhelperController
 {
 public:
 	GHAttackhelperController();
+	GHAttackhelperController(bool providePopup);
 	virtual ~GHAttackhelperController();
 
 	// attack helper 목록을 가져온다.
 	void loadAttackhelpers(GHAttackhelperLoadedListener* listener = null);				// load listener
 
 	// attack helper data 목록을 가져온다.
-	void loadAttackhelperDatas(GHAttackhelperDataLoadedListener* listener = null); 	// update listener
+	void loadAttackhelperDatas(GHAttackhelperDataRespondedListener* respondListener, GHAttackhelperDataLoadedListener* loadedListener = null); 	// update listener
 
 	// normal achievement update
-	void sendAttackhelperData(Tizen::Base::String receiver_id, Tizen::Base::String ah_id, int quantity);
-	void sendAttackhelperData(Tizen::Base::String receiver_id, Tizen::Base::String ah_id, int quantity, GHAttackhelperDataSendedListener* listener); 	// update listener
+	void sendAttackhelperData(Tizen::Base::String receiver_id, int ah_id, int quantity, GHAttackhelperDataSendedListener* listener = null); 	// update listener
 
 	// incremental achievement update
-	void respondAttackhelperData(int data_idx, int accept_flag);
-	void respondAttackhelperData(int data_idx, int accept_flag, GHAttackhelperDataRespondedListener* listener); 	// update listener
+	void respondAttackhelperData(int data_idx, int accept_flag, GHAttackhelperDataRespondedListener* listener = null); 	// update listener
 
-	void loadDataSendPopup();
+	void loadDataSendPopup(GHAttackhelperDataSendedListener* listener, int ah_id, int quantity=1);
 	void loadDataReceievedPopup(Tizen::Base::Collection::ArrayList* pArr);
-	virtual void OnActionPerformed(const Tizen::Ui::Control& source, int actionId);
 
+	virtual void OnActionPerformed(const Tizen::Ui::Control& source, int actionId);
 private:
 	virtual void OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data);
 	Tizen::Base::Collection::HashMap* __pMap;
 	GHAttackhelperListener* currentListener;
+	GHAttackhelperDataRespondedListener* respondListener;
+	GHAttackhelperDataSendedListener* sendListener;
 
 	static const int ACTION_POPUP_CLOSE = 101;
 	Tizen::Ui::Controls::Popup *pPopup;
+	bool useProvidedPopup;
+	int ah_id, quantity;
 
 	//GHGamePlayingFriendListener
 	virtual void loadGamePlayingFriendFinished(Tizen::Base::Collection::ArrayList* friendsList);

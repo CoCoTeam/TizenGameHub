@@ -6,11 +6,18 @@
  */
 
 #include "GHForm/AttackHelperSendListener.h"
+#include "GHAttackhelper/GHAttackhelperController.h"
 
 AttackHelperSendListener::AttackHelperSendListener() {
 	// TODO Auto-generated constructor stub
 
 }
+AttackHelperSendListener::AttackHelperSendListener(GHAttackhelperDataSendedListener* sendListener, int ah_id, int quantity) {
+	this->sendListener = sendListener;
+	this->ah_id = ah_id;
+	this->quantity = quantity;
+}
+
 
 AttackHelperSendListener::~AttackHelperSendListener() {
 	// TODO Auto-generated destructor stub
@@ -32,14 +39,10 @@ void AttackHelperSendListener::OnListViewItemStateChanged
 		if(index >= list.GetCount()) {
 			return ;
 		}
-		AppLogDebug("DDDDDDDDDDDDDDDDD");
-//		listView.SetItemEnabled(index, false);
-//
-//
-//		GHAttackhelperData* ahData = (GHAttackhelperData*)(list.GetAt(index));
-//		AppLogDebug("%d, %S", ahData->getDataIndex(), ahData->getItemName().GetPointer());
-//
-//		ahId = ahData->getId();
+		Tizen::Base::String receiver_id( ((GHPlayer*)(list.GetAt(index)))->getId() );
+
+		GHAttackhelperController *ahController = new GHAttackhelperController();
+		ahController->sendAttackhelperData(receiver_id, ah_id, quantity, sendListener);
 	}
 }
 

@@ -4,6 +4,7 @@
 #include "tizenx.h"
 #include "GHPlayer/GHPlayerController.h"
 #include "GHPlayer/GHPlayerLoggedinListener.h"
+#include "GHAttackhelper/GHAttackhelperDataSendedListener.h"
 
 class FormSocial
 	: public Tizen::Ui::Controls::Form
@@ -11,6 +12,7 @@ class FormSocial
 	, public Tizen::Ui::Controls::IFormBackEventListener
  	, public GHPlayerController
  	, public GHPlayerLoggedinListener
+ 	, public GHAttackhelperDataSendedListener
 {
 public:
 	FormSocial(void);
@@ -23,6 +25,7 @@ private:
 	virtual void OnActionPerformed(const Tizen::Ui::Control& source, int actionId);
 	virtual void OnFormBackRequested(Tizen::Ui::Controls::Form& source);
 	virtual void loginPlayerFinished(Tizen::Base::String statusCode);
+	virtual void sendAttackhelperDataFinished(int statusCode);
 
 	void setButtonConfig();
 	Tizen::Ui::Controls::Button* pButtonLogin;

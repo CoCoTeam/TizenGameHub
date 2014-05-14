@@ -9,12 +9,14 @@
 #define ATTACKHELPERSENDLISTENER_H_
 
 #include <GHTizen.h>
+#include "GHAttackhelper/GHAttackhelperDataSendedListener.h"
 
 class AttackHelperSendListener
 	: public Tizen::Ui::Controls::IListViewItemEventListener
 {
 public:
 	AttackHelperSendListener();
+	AttackHelperSendListener(GHAttackhelperDataSendedListener* sendListener, int ah_id, int quantity);
 	virtual ~AttackHelperSendListener();
 
 	void OnListViewContextItemStateChanged(Tizen::Ui::Controls::ListView &listView, int index, int elementId, Tizen::Ui::Controls::ListContextItemStatus state);
@@ -25,7 +27,9 @@ public:
 
 private:
 	Tizen::Base::Collection::ArrayList list;
-	Tizen::Base::String ahId;
+	int ah_id;
+	int quantity;
+	GHAttackhelperDataSendedListener* sendListener;
 };
 
 #endif /* ATTACKHELPERSENDRECEIVER_H_ */
