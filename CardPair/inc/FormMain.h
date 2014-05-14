@@ -5,6 +5,8 @@
 #include "GHPlayer/GHPlayerController.h"
 #include "GHPlayer/GHPlayerLoggedinListener.h"
 #include "GHAttackhelper/GHAttackhelperController.h"
+#include "GHCloudsave/GHCloudsaveController.h"
+#include "GHCloudsave/GHCloudsaveLoadListener.h"
 #include "GHAttackhelper/GHAttackhelperDataRespondedListener.h"
 
 class FormMain
@@ -14,6 +16,7 @@ class FormMain
  	, public Tizen::Ui::Scenes::ISceneEventListener
  	, public GHPlayerController
  	, public GHPlayerLoggedinListener
+ 	, public GHCloudsaveLoadListener
  	, public GHAttackhelperDataRespondedListener
 {
 public:
@@ -35,6 +38,12 @@ private:
 	GHAttackhelperController *ahController;
 	//GHAttackhelperDataRespondedListener
 	virtual void respondAttackhelperDataFinished(GHAttackhelperData* attackhelperData, int accpet_flag);
+
+
+	// Cloud Save
+	GHCloudsaveController *csController;
+	virtual void loadCloudsaveFinished(int slotIdx, Tizen::Base::String data);
+	int csLoadCount = 0;
 
 protected:
 	static const int IDA_BUTTON_PLAY = 101;

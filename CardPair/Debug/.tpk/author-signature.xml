@@ -12,7 +12,7 @@
 </Reference>
 <Reference URI="lib/libTizenGameHubLibrary.so">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>FNr+60QsWSbzkGgJuqiThnIe/wkkVwiC8wTj2TyUpi8=</DigestValue>
+<DigestValue>6gioe0FH9gxwucQPdXPE8v0z1Hc+0DtWGAfqBznGgcA=</DigestValue>
 </Reference>
 <Reference URI="res/720x1280/achievement_complete.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -22,13 +22,17 @@
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>p/arUQetJna0/mGYSnQ0XkCS3qRjV9vd1iyBGu6TwTc=</DigestValue>
 </Reference>
+<Reference URI="res/720x1280/record.png">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>xo/Yd7Cn0I4aGb4Gi+muvQKsLaf3y9GDRmld/PJbXYY=</DigestValue>
+</Reference>
 <Reference URI="res/profile_default.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>tNZlVbJYpw7OpCoC1wpYEWZ+OdUng/HyKJ0C+uzU2mI=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>QLRuqmtRlvk/Wk1eTNe3RIJM4qFGDU/StNXYjNve3fo=</DigestValue>
+<DigestValue>b2uQUAthCRkO1mcT3924wSLi8GGyb2jctkcfHzOUOwQ=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM_ACHIEVEMENT.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -71,9 +75,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-j6G4Wg5kATBGMEbExQFvMcVvjTICE8jznsBGGcZdKPR2ya7xAw1DkRx1DY/z6gVekKhOShtCYmYu
-y/zO4KCzC0jl2bvOwW6JnB6AWGaYv/A9ubdasttxWeohH2kuvFjSXtGumlOJUvzETQvKU6h58z9b
-5ZM5T49Q6j2WLjeykxk=
+ggFQZ7FybCeO2McN4v/Oj05D3Pu+Iq/icxOFwWTwWiLS/TLA627lTLiNf2DF+t3JfL139J7/QJRl
+BYdk6YqaZN6zIrcn6eUICIddW8svHbFjLJTTKoFVZAurjPfM/7OxrGGA2XsLAt1vmPxMGHcFMJV2
+chQ+XDm1PdMSf/Lgn/g=
 </SignatureValue>
 <KeyInfo>
 <X509Data>

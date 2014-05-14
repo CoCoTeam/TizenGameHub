@@ -1,5 +1,6 @@
 #include "FormGameMulti.h"
 #include "AppResourceId.h"
+#include "AppGameData.h"
 
 using namespace Tizen::Base;
 using namespace Tizen::App;
@@ -72,6 +73,10 @@ void FormGameMulti::onStageComplete()
 {
 	AppLog("============================================ Complete Stage ============================================");
 	// 게임 종료, 승리
+
+	isWin = true;
+
+
 //	gameScore, maxCombo
 //	win = saveMyGrade(true)	// 게임 전적 저장 -> cloudSave
 //	if(win > 10) {
@@ -185,6 +190,8 @@ void FormGameMulti::onMatchMyturn(String data){
 				AppLogDebug("============================================ Game Finished =============================================");
 				// 게임 종료, 패배
 
+				isWin = false;
+
 
 			} else {
 				multiController->sendDataToPlayer("", 0);
@@ -209,6 +216,37 @@ void FormGameMulti::onMatchTurnWait(){
 }
 void FormGameMulti::onMatchFinish(String data){
 	AppLogDebug("[onMatchFinish]");
+
+	// Cloud Save ------------------------------------------------
+	// 게임 전적 저장
+	csController = new GHCloudsaveController();
+
+	if(isWin) {
+		int winNum;
+		Integer::Parse(multiplay_winNum, winNum);
+
+		// 승 증가
+		winNum = winNum + 1;
+
+		multiplay_winNum =Integer::ToString(winNum);
+		csController->saveCloudSlotData(multiplay_winNum, 1);
+	}else {
+
+		int loseNum;
+		Integer::Parse(multiplay_loseNum, loseNum);
+
+		// 승 증가
+		loseNum = loseNum + 1;
+
+		multiplay_loseNum =Integer::ToString(loseNum);
+		csController->saveCloudSlotData(multiplay_loseNum, 2);
+
+
+	}
+
+	// -----------------------------------------------------------
+
+
 }
 
 JsonObject* FormGameMulti::parseJson(String data)
@@ -249,4 +287,10 @@ void FormGameMulti::startMyTurnThread()
 	Tizen::System::SystemTime::GetUptime(uptime);
 	multiTick = uptime.GetTicks();
 	pTimerMulti->Start(1000);
+}
+
+// cloud save
+void FormGameMulti::saveCloudsaveFinished(int statusCode)
+{
+	AppLogDebug("saveCloudsaveFinished");
 }

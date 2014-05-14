@@ -4,6 +4,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../src/AppGameData.cpp \
 ../src/AppResourceId.cpp \
 ../src/CardPairApp.cpp \
 ../src/CardPairEntry.cpp \
@@ -20,6 +21,7 @@ CPP_SRCS += \
 ../src/FormSocial.cpp 
 
 OBJS += \
+./src/AppGameData.o \
 ./src/AppResourceId.o \
 ./src/CardPairApp.o \
 ./src/CardPairEntry.o \
@@ -36,6 +38,7 @@ OBJS += \
 ./src/FormSocial.o 
 
 CPP_DEPS += \
+./src/AppGameData.d \
 ./src/AppResourceId.d \
 ./src/CardPairApp.d \
 ./src/CardPairEntry.d \

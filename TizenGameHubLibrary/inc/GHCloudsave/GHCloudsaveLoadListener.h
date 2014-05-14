@@ -16,7 +16,7 @@ public:
 	GHCloudsaveLoadListener();
 	virtual ~GHCloudsaveLoadListener();
 
-	virtual void loadCloudsaveFinished(Tizen::Base::String data) = 0;
+	virtual void loadCloudsaveFinished(int slotIdx, Tizen::Base::String data) = 0;
 };
 
 #endif /* GHCLOUDSAVELOADLISTENER_H_ */

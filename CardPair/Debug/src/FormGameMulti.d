@@ -653,7 +653,14 @@ src/FormGameMulti.d: ../src/FormGameMulti.cpp \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FNetNfcINdefTagConnectionListener.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FNetNfcINfcDeviceDiscoveryEventListener.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FNetNfcINdefPushManagerListener.h \
-  C:\Users\hursujung\TizenGameHub\TizenGameHubLibrary\inc\GHTurnbasedMatch/GHTurnbasedMatchListener.h
+  C:\Users\hursujung\TizenGameHub\TizenGameHubLibrary\inc\GHTurnbasedMatch/GHTurnbasedMatchListener.h \
+  C:\Users\hursujung\TizenGameHub\TizenGameHubLibrary\inc\GHCloudsave/GHCloudsaveController.h \
+  C:\Users\hursujung\TizenGameHub\TizenGameHubLibrary\inc\GHController.h \
+  C:\Users\hursujung\TizenGameHub\TizenGameHubLibrary\inc\GHhttpClient.h \
+  C:\Users\hursujung\TizenGameHub\TizenGameHubLibrary\inc\GHCloudsave/GHCloudsaveListener.h \
+  C:\Users\hursujung\TizenGameHub\TizenGameHubLibrary\inc\GHCloudsave/GHCloudsaveLoadListener.h \
+  C:\Users\hursujung\TizenGameHub\TizenGameHubLibrary\inc\GHCloudsave/GHCloudsaveSaveListener.h \
+  C:\Users\hursujung\TizenGameHub\CardPair\inc\AppGameData.h
 
 C:\Users\hursujung\TizenGameHub\CardPair\inc\FormGameMulti.h:
 
@@ -1964,3 +1971,17 @@ C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/o
 C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FNetNfcINdefPushManagerListener.h:
 
 C:\Users\hursujung\TizenGameHub\TizenGameHubLibrary\inc\GHTurnbasedMatch/GHTurnbasedMatchListener.h:
+
+C:\Users\hursujung\TizenGameHub\TizenGameHubLibrary\inc\GHCloudsave/GHCloudsaveController.h:
+
+C:\Users\hursujung\TizenGameHub\TizenGameHubLibrary\inc\GHController.h:
+
+C:\Users\hursujung\TizenGameHub\TizenGameHubLibrary\inc\GHhttpClient.h:
+
+C:\Users\hursujung\TizenGameHub\TizenGameHubLibrary\inc\GHCloudsave/GHCloudsaveListener.h:
+
+C:\Users\hursujung\TizenGameHub\TizenGameHubLibrary\inc\GHCloudsave/GHCloudsaveLoadListener.h:
+
+C:\Users\hursujung\TizenGameHub\TizenGameHubLibrary\inc\GHCloudsave/GHCloudsaveSaveListener.h:
+
+C:\Users\hursujung\TizenGameHub\CardPair\inc\AppGameData.h:
