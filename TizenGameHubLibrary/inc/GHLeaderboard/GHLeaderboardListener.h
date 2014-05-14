@@ -9,6 +9,7 @@
 #define GHLEADERBOARDLISTENER_H_
 
 #include "GHLeaderboard.h"
+#include "GHPlayerRank.h"
 
 class GHLeaderboardListener {
 public:
@@ -18,6 +19,7 @@ public:
 	virtual void loadLeaderboardFinished(Tizen::Base::Collection::ArrayList* leaderboardList){};
 	virtual void loadLeaderboardRankFinished(GHLeaderboard* _leaderboard){};
 	virtual void updateLeaderboardScoreFinished(int statusCode){};
+	virtual void loadLeaderboardMyRankFinished(GHPlayerRank* pPlayerRank){};
 
 };
 

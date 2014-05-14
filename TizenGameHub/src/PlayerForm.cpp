@@ -497,7 +497,6 @@ void PlayerForm::DownloadStart() {
 
              pManager->SetDownloadListener(this);
              pManager->Start(request,__requestId);
-
 }
 
 void
@@ -512,6 +511,8 @@ PlayerForm::OnDownloadInProgress (RequestId reqId, unsigned long long receivedSi
 
 void
 PlayerForm::OnDownloadCompleted (RequestId reqId, const Tizen::Base::String &path) {
+
+			AppLogDebug("path -----------------------> %S", path.GetPointer());
 
 }
 /*

@@ -6,6 +6,7 @@
  */
 
 #include "GameHub/AppGHLeaderboardController.h"
+#include "GHSharedAuthData.h"
 using namespace Tizen::Base;
 
 AppGHLeaderboardController::AppGHLeaderboardController() {
@@ -41,4 +42,15 @@ void AppGHLeaderboardController::loadLeaderboardRank(String game_id, String lead
 {
 	this->loadLeaderboardRank(game_id, leaderboard_id, startPosition, loadSize);
 	this->currentListener = listener;
+}
+
+// 각 Leaderboard에 해당하는 랭킹 목록을 가져온다.
+void AppGHLeaderboardController::loadLeaderboardMyRank(String game_id, String leaderboardId, GHLeaderboardListLoadedListener * listener)
+{
+	this->currentListener = listener;
+
+	String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
+	String url(L"/f_leaderboards/rank/" + game_id +"/"+ leaderboardId +"/"+ player_id);
+
+	httpPost.RequestHttpGetTran(this, url);
 }

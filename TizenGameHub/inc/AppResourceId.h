@@ -85,6 +85,11 @@ extern const wchar_t* IDC_LISTPANEL_OVERLAY;
 /* IDL_FORM_LEADERBOARDRANK */
 extern const wchar_t* IDL_FORM_LEADERBOARDRANK;
 extern const wchar_t* IDC_LEADERBOARDRANK_LIST_RANK;
+extern const wchar_t* IDC_LEADERBOARDRANK_PANEL_MYRANK;
+extern const wchar_t* IDC_LEADERBOARDRANK_MYRANK_GALLERY;
+extern const wchar_t* IDC_LEADERBOARDRANK_MYRANK_LABEL_NAME;
+extern const wchar_t* IDC_LEADERBOARDRANK_MYRANK_LABEL_RANK;
+extern const wchar_t* IDC_LEADERBOARDRANK_MYRANK_LABEL_SCORE;
 /* IDL_CROPFORM */
 extern const wchar_t* IDF_CROPFROM;
 /*extern const wchar_t* FOOTERITEM1;*/
