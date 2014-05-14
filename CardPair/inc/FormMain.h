@@ -5,6 +5,7 @@
 #include "GHPlayer/GHPlayerController.h"
 #include "GHPlayer/GHPlayerLoggedinListener.h"
 #include "GHAttackhelper/GHAttackhelperController.h"
+#include "GHCloudsave/GHCloudsaveController.h"
 
 class FormMain
 	: public Tizen::Ui::Controls::Form
@@ -31,6 +32,11 @@ private:
 	// GHPlayerLoggedinListener
 	virtual void loginPlayerFinished(Tizen::Base::String statusCode);
 	GHAttackhelperController *ahController;
+
+
+	// Cloud Save
+	GHCloudsaveController *csController;
+
 
 protected:
 	static const int IDA_BUTTON_PLAY = 101;
