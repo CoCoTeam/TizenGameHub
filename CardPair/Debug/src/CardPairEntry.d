@@ -1,5 +1,5 @@
 src/CardPairEntry.d: ../src/CardPairEntry.cpp \
-  C:\Users\JOHEEYEON\workspace\TizenGameHub\CardPair\inc\CardPairApp.h \
+  C:\Users\hursujung\TizenGameHub\CardPair\inc\CardPairApp.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FApp.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FAppTypes.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FBaseString.h \
@@ -487,7 +487,7 @@ src/CardPairEntry.d: ../src/CardPairEntry.cpp \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp/khrplatform.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp/glmacro.h
 
-C:\Users\JOHEEYEON\workspace\TizenGameHub\CardPair\inc\CardPairApp.h:
+C:\Users\hursujung\TizenGameHub\CardPair\inc\CardPairApp.h:
 
 C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FApp.h:
 

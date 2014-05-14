@@ -81,7 +81,7 @@ JoinForm::OnInitializing(void)
 	this->RequestImage(path,500,500,5000);*/
 
 	//다운로드 받은 이미지 경로를 통해 사진을 설정함
-	String user_image_path = Environment::GetMediaPath() + L"Downloads/image.jpg";
+	String user_image_path = Environment::GetMediaPath() + L"Downloads/profile.jpg";
 	AppLogDebug("USER_IMAGE --> %S", user_image_path.GetPointer());
 
 	Image img;
@@ -228,14 +228,17 @@ JoinForm::doJoin()
 
 			String url(L"/players" + player_id );
 
+			//Tizen::Base::Object* tmpobj = reinterpret_cast<Tizen::Base::Object *>(simg_url);
+
 			Tizen::Base::Collection::HashMap* __pMap  = new (std::nothrow) Tizen::Base::Collection::HashMap();
 			__pMap->Construct();
 
 			__pMap->Add(new String("pwd"), new String(strPw));
 			__pMap->Add(new String("name"), new String(strName));
-			__pMap->Add(new String("img_url"), new String(simg_url));
+			//__pMap->Add(new String("img_url"),  tmpobj);
+			__pMap->Add(new String("img_url"),  new String(simg_url));
 
-			AppLog("simg_url put : %s",simg_url.GetPointer());
+			//AppLog("simg_url put : %s",tmpobj.GetPointer());
 
 			httpPost->RequestHttpPutTran(this, url, __pMap);
 		}

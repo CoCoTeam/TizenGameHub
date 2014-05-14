@@ -4,11 +4,11 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>igcLEBlElHMMWMqpd+XXN6qnfxuR0dR9nohVipaNJe0=</DigestValue>
+<DigestValue>HQzVAGUdW112PzkmK7PS6fI6K6TOiB+9npf8EKHATrE=</DigestValue>
 </Reference>
 <Reference URI="bin/CardPair.exe">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>xSj2CAu+d6TLEfTQsNVLjYHAvN37Jrj5/uY6P7wHCmU=</DigestValue>
+<DigestValue>qDV091jx6UDriSDruHVBDFOMEPIei34nkCnhgMpKqkE=</DigestValue>
 </Reference>
 <Reference URI="info/manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -16,7 +16,7 @@
 </Reference>
 <Reference URI="lib/libTizenGameHubLibrary.so">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>FekuvZt63bim9gsLJjLHWXHVPiVPoQHoE833AaIPbbk=</DigestValue>
+<DigestValue>FNr+60QsWSbzkGgJuqiThnIe/wkkVwiC8wTj2TyUpi8=</DigestValue>
 </Reference>
 <Reference URI="res/720x1280/achievement_complete.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -60,7 +60,7 @@
 </Reference>
 <Reference URI="res/screen-size-normal/workflow.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>13oDp3lzaNV0KUkkKB2CPSVruifqtmk5tfItLzSwCBs=</DigestValue>
+<DigestValue>0oJL8oakIOPByUsQGGMKg6kyp50RzKEHKL7XzBAb2jY=</DigestValue>
 </Reference>
 <Reference URI="shared/res/screen-density-xhigh/mainmenu.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -75,9 +75,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-fFPWMIxznsj5nRTUbxKQzywAAVSStiORkUYOpDNF+FMMpq3927srsDrXBY/XT6TH6TKtCmndMthk
-WHrk5ZG67nh52Xrx9XP0Ig1ws7BCuWhoC6oxEq1Wy9G5J5nNfJrLx33qd3FzbcJr8hPeKuJGim7B
-c3ahybbK8StTg8uTsEs=
+AWEm18ErCGPt4w2ry+OhsE+0LGa//X7m9xG6OK5yNi1T37RINc2ttbSRYeVVcsIwKvCi5JYBuH9D
+2bbK89cmbQgySvFXf5p1d1tGN38ZTB+0mKbzaJUX+aq2g9wkC99iWXAvarNdNKoq78sy6isWAgQR
+UBy9e7mJKdkdw2c6u1Q=
 </SignatureValue>
 <KeyInfo>
 <X509Data>

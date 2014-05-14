@@ -492,7 +492,19 @@ void PlayerForm::DownloadStart() {
 
              String url =L"http://54.238.195.222:80/players/pkeykichul/image";
 
+            // DownloadRequest request(url);
+/*             DownloadRequest* requestpath = new DownloadRequest();
+             requestpath->DownloadRequest(url, Environment::GetMediaPath());*/
+
+
+             //파일에 있는 목록 삭제하고 저장!! profile_1, profile_2 이런식으로 저장되기 때문..
+             File file;
+             file.Remove(Environment::GetDefaultDownloadPath() + "profile.jpg");
+
+
              DownloadRequest request(url);
+             request.SetFileName("profile");
+
              DownloadManager* pManager =DownloadManager::GetInstance();
 
              pManager->SetDownloadListener(this);
@@ -507,7 +519,6 @@ PlayerForm::OnDownloadInProgress (RequestId reqId, unsigned long long receivedSi
              strMessage.Append("/ ");
              strMessage.Append((long)totalSize);
 }
-
 
 void
 PlayerForm::OnDownloadCompleted (RequestId reqId, const Tizen::Base::String &path) {

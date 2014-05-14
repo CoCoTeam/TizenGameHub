@@ -1,5 +1,5 @@
 src/CardPairApp.d: ../src/CardPairApp.cpp \
-  C:\Users\JOHEEYEON\workspace\TizenGameHub\CardPair\inc\CardPairApp.h \
+  C:\Users\hursujung\TizenGameHub\CardPair\inc\CardPairApp.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FApp.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FAppTypes.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FBaseString.h \
@@ -486,9 +486,9 @@ src/CardPairApp.d: ../src/CardPairApp.cpp \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp/glplatform.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp/khrplatform.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp/glmacro.h \
-  C:\Users\JOHEEYEON\workspace\TizenGameHub\CardPair\inc\CardPairFrame.h \
-  C:\Users\JOHEEYEON\workspace\TizenGameHub\TizenGameHubLibrary\inc\GHSharedAuthData.h \
-  C:\Users\JOHEEYEON\workspace\TizenGameHub\TizenGameHubLibrary\inc\GHTizen.h \
+  C:\Users\hursujung\TizenGameHub\CardPair\inc\CardPairFrame.h \
+  C:\Users\hursujung\TizenGameHub\TizenGameHubLibrary\inc\GHSharedAuthData.h \
+  C:\Users\hursujung\TizenGameHub\TizenGameHubLibrary\inc\GHTizen.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FWeb.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FWebHistoryItem.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FWebWebHistory.h \
@@ -520,7 +520,7 @@ src/CardPairApp.d: ../src/CardPairApp.cpp \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FWebJsonJsonString.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FWebJsonJsonWriter.h
 
-C:\Users\JOHEEYEON\workspace\TizenGameHub\CardPair\inc\CardPairApp.h:
+C:\Users\hursujung\TizenGameHub\CardPair\inc\CardPairApp.h:
 
 C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FApp.h:
 
@@ -1494,11 +1494,11 @@ C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/o
 
 C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp/glmacro.h:
 
-C:\Users\JOHEEYEON\workspace\TizenGameHub\CardPair\inc\CardPairFrame.h:
+C:\Users\hursujung\TizenGameHub\CardPair\inc\CardPairFrame.h:
 
-C:\Users\JOHEEYEON\workspace\TizenGameHub\TizenGameHubLibrary\inc\GHSharedAuthData.h:
+C:\Users\hursujung\TizenGameHub\TizenGameHubLibrary\inc\GHSharedAuthData.h:
 
-C:\Users\JOHEEYEON\workspace\TizenGameHub\TizenGameHubLibrary\inc\GHTizen.h:
+C:\Users\hursujung\TizenGameHub\TizenGameHubLibrary\inc\GHTizen.h:
 
 C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FWeb.h:
 
