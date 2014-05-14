@@ -4,11 +4,11 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>EPthFyHHMoT1xKvzSSIv029lQ26tHkAxKgsyKI8Nnpw=</DigestValue>
+<DigestValue>bl45UDEX+O/CZeEQKESE4kWEUTWbc1Xf50IhaPLAi+U=</DigestValue>
 </Reference>
 <Reference URI="bin/CardPair.exe">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>qDV091jx6UDriSDruHVBDFOMEPIei34nkCnhgMpKqkE=</DigestValue>
+<DigestValue>UKGREV9Bv1yMtrLRXOxdym39imlrkiGp5hQQXHbDB+I=</DigestValue>
 </Reference>
 <Reference URI="info/manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -79,9 +79,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-kgLLbOnURTZgaNpHZqiIwCWsbhwPDMsabSZzOwoFLlFDGwJMVJWWsd0klCz0EZviQfAsIsBs/oeY
-CL2o+dEKw9LlF4jSKx8c3JRxcYZZL1lsKk6VTCfXHh2hMKpqZvOOHwXNOXaW8m0hgD6Hf9CWxH/S
-yIAPDyB/n6WdeDTn4MY=
+SbY/KBkLf6w2ThPkTjp9otZEZ7vYn0fyxrBuDKQUiEWl+N+uqHGqzpimK9JF2jmrHACYiYvNrRQY
+2OeNkxW7dIR5rtds5m3PkjK4A3vv9TNNb5sP5dvHq8ZKMrK9+x4SwXgjyHg2LIAal6h00Mbrq2o4
+AVw6+u832TSM0b1FEPM=
 </SignatureValue>
 <KeyInfo>
 <X509Data>
