@@ -44,6 +44,19 @@ void FormGameTimeTrial::onStageComplete()
 	AppLog("Complete Stage");
 	String timeStr = pLabelTimer->GetText();		// mm:ss:msms
 	int totalMis = getMillisec(timeStr);
+
+
+	if(totalMis <= 30 * 1000)
+	{
+		GHAchievementController* controller = new GHAchievementController();
+		//controller->loadAchievements(this);
+		controller->completeAchievement("4",this);     // 달성
+	}
+
+	/*if()*/
+
+
+
 //	maxCombo, gameScore, totalMis
 /*	if(maxCombo >= 5) {
 		// [Achievement] 최대 콤보 5회 이상 달성
@@ -60,6 +73,29 @@ void FormGameTimeTrial::onStageComplete()
 
 }
 
+//achievement
+
+void FormGameTimeTrial::completeAchievementFinished(int statusCode)
+{
+	AppLogDebug("[DEBUG] statusCode : %d", statusCode);
+}
+
+/*
+void FormGameTimeTrial::revealAchievementFinished(int statusCode)
+{
+	AppLogDebug("[DEBUG] statusCode : %d", statusCode);
+}
+*/
+
+void FormGameTimeTrial::loadAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList)
+{
+	GHAchievement * test = static_cast<GHAchievement*>(achievementList->GetAt(0));
+	AppLogDebug("[DEBUG] acArr ID : %S", test->getId().GetPointer() );
+}
+
+
+
+
 int FormGameTimeTrial::getMillisec(String timeStr)
 {
 	String sMin, sSec, sMis;
@@ -75,3 +111,4 @@ int FormGameTimeTrial::getMillisec(String timeStr)
 
 	return iMis + iSec*100 + iMin*60*100;
 }
+
