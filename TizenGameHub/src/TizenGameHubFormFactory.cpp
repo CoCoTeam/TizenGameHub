@@ -5,10 +5,12 @@
 #include "LoginForm.h"
 #include "JoinForm.h"
 #include "PlayerForm.h"
+#include "PlayerFriendForm.h"
 #include "GameForm.h"
 #include "AchievementForm.h"
 #include "LeaderboardForm.h"
 #include "LeaderboardRankForm.h"
+#include "FriendSeachForm.h"
 
 using namespace Tizen::Ui::Scenes;
 
@@ -59,6 +61,14 @@ TizenGameHubFormFactory::CreateFormN(const Tizen::Base::String& formId, const Ti
 		pForm->Initialize();
 		pNewForm = pForm;
 	}
+	else if(formId == IDL_FORM_PLAYERFRIEND)
+	{
+		PlayerFriendForm *pForm = new (std::nothrow) PlayerFriendForm();
+		TryReturn(pForm != null, null, "The memory is insufficient.");
+		pSceneManager->AddSceneEventListener(sceneId, *pForm);
+		pForm->Initialize();
+		pNewForm = pForm;
+	}
 	else if(formId == IDL_FORM_GAME)
 	{
 		GameForm *pForm = new (std::nothrow) GameForm();
@@ -88,6 +98,13 @@ TizenGameHubFormFactory::CreateFormN(const Tizen::Base::String& formId, const Ti
 		LeaderboardRankForm *pForm = new (std::nothrow) LeaderboardRankForm();
 		TryReturn(pForm != null, null, "The memory is insufficient.");
 		pSceneManager->AddSceneEventListener(sceneId, *pForm);
+		pForm->Initialize();
+		pNewForm = pForm;
+	}
+	else if(formId == IDL_FORM_SEARCHFRIEND)
+	{
+		FriendSeachForm *pForm = new (std::nothrow) FriendSeachForm();
+		TryReturn(pForm != null, null, "The memory is insufficient.");
 		pForm->Initialize();
 		pNewForm = pForm;
 	}

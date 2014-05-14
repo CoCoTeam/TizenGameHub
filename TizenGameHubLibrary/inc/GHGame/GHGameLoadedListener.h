@@ -12,13 +12,13 @@
 #include "GHGame/GHGameListener.h"
 
 class GHGameLoadedListener
-	: public GHGameListener
+	: public virtual GHGameListener
 {
 public:
 	GHGameLoadedListener();
 	virtual ~GHGameLoadedListener();
 
-	virtual void loadPlayerDataFinished(GHGame* game){};
+	virtual void loadPlayerDataFinished(GHGame* game)=0;
 };
 
 #endif /* GHGAMELOADEDLISTENER_H_ */

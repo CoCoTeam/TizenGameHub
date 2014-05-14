@@ -5,7 +5,7 @@
  *      Author: Administrator
  */
 
-#include "AppGHLeaderboardController.h"
+#include "GameHub/AppGHLeaderboardController.h"
 using namespace Tizen::Base;
 
 AppGHLeaderboardController::AppGHLeaderboardController() {
@@ -31,11 +31,8 @@ void AppGHLeaderboardController::loadLeaderboardRank(String game_id, String lead
 	this->currentListener = null;
 
 	//GET 함수 호출
-	String sOffset, sSize;
-	sOffset.Append(startPosition);
-	sSize.Append(loadSize);
-	String external = "?order=true&start_pos="+sOffset+"&max_length="+sSize;
-	String url(L"/f_leaderboards/rank/" + game_id +"/"+ leaderboard_id );//+ external);
+	String external(L"?start_pos="+Integer::ToString(startPosition)+"&max_length="+Integer::ToString(loadSize));
+	String url(L"/f_leaderboards/rank/" + game_id +"/"+ leaderboard_id + external);
 	AppLogDebug("%S", url.GetPointer());
 
 	httpPost.RequestHttpGetTran(this, url);

@@ -3,6 +3,7 @@
 #include "CardPairFrame.h"
 #include "GHLeaderboard/GHLeaderboardController.h"
 #include "GHAchievement/GHAchievementController.h"
+#include "GHAttackhelper/GHAttackhelperController.h"
 
 using namespace Tizen::Base;
 using namespace Tizen::App;
@@ -37,9 +38,10 @@ FormSocial::OnInitializing(void)
 	SetFormBackEventListener(this);
 
 	// Get a button via resource ID
-	pButtonLogin = static_cast< Button* >(GetControl(IDC_MAIN_BUTTON_PLAY));
+	pButtonLogin = static_cast< Button* >(GetControl(IDC_MAIN_BUTTON_LOGIN));
 	pButtonLeaderboard = static_cast< Button* >(GetControl(IDC_MAIN_BUTTON_LEADERBOARD));
 	pButtonAchievement = static_cast< Button* >(GetControl(IDC_MAIN_BUTTON_ACHIEVEMENT));
+	pButtonAttackHelper = static_cast< Button* >(GetControl(IDC_MAIN_BUTTON_PLAY));
 	if (pButtonLogin != null)
 	{
 		pButtonLogin->SetActionId(IDA_BUTTON_PLAY);
@@ -56,6 +58,12 @@ FormSocial::OnInitializing(void)
 		pButtonAchievement->SetText("Achievement");
 		pButtonAchievement->SetActionId(IDA_BUTTON_ACHIEVEMENT);
 		pButtonAchievement->AddActionEventListener(*this);
+	}
+	if (pButtonAttackHelper != null)
+	{
+		pButtonAttackHelper->SetText("Send Item");
+		pButtonAttackHelper->SetActionId(IDA_BUTTON_ATTACKHELPER);
+		pButtonAttackHelper->AddActionEventListener(*this);
 	}
 	setButtonConfig();
 
@@ -83,7 +91,6 @@ FormSocial::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 	switch(actionId)
 	{
 	case IDA_BUTTON_PLAY:
-		AppLogDebug("Play Button is clicked!");
 		if(!isLogin()) {
 			playerLogin(this);
 		} else {
@@ -93,13 +100,15 @@ FormSocial::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		break;
 
 	case IDA_BUTTON_LEADERBOARD:
-		AppLogDebug("Leaderboard Button is clicked!");
 		leaderboardController.loadLeaderboardForm();
 		break;
 
 	case IDA_BUTTON_ACHIEVEMENT:
-		AppLogDebug("Achievement Button is clicked!");
 		achievementController.loadAchievementForm();
+		break;
+	case IDA_BUTTON_ATTACKHELPER:
+		GHAttackhelperController *ahController = new GHAttackhelperController();
+		ahController->loadDataSendPopup();
 		break;
 
 	}
@@ -120,11 +129,13 @@ void FormSocial::loginPlayerFinished(Tizen::Base::String statusCode)
 
 void FormSocial::setButtonConfig()
 {
+	pButtonLogin->SetShowState(true);
 	if(!isLogin()) {
 		pButtonLogin->SetText("Log In");
 	} else {
 		pButtonLogin->SetText("Log Out");
 	}
+	pButtonAttackHelper->SetEnabled(isLogin());
 	pButtonLeaderboard->SetEnabled(isLogin());
 	pButtonAchievement->SetEnabled(isLogin());
 }

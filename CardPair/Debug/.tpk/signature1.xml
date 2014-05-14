@@ -4,11 +4,19 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<<<<<<< HEAD
 <DigestValue>haQKVgRL/ES2V8Qu6t3VYgiVrXJ1aRx6sL8qnmqAHKg=</DigestValue>
 </Reference>
 <Reference URI="bin/CardPair.exe">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>0x6nLSyEN9DNpGPM9bneZjcNkm/OZtA7PrczxkWa4rg=</DigestValue>
+=======
+<DigestValue>m7OTQnXsNcB/MW3evraewHCWrLURmtMrM3QdTFC6ghY=</DigestValue>
+</Reference>
+<Reference URI="bin/CardPair.exe">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>gwfWzJZASs8CecJssPvYlnS+6VfSOZLSg5Qxhwi7cbA=</DigestValue>
+>>>>>>> d50772aa5b31aad78637807e2c4fd23097705a0c
 </Reference>
 <Reference URI="info/manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -16,19 +24,31 @@
 </Reference>
 <Reference URI="lib/libTizenGameHubLibrary.so">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<<<<<<< HEAD
 <DigestValue>6Dgh1L50IaMTbRAel7NDv6enjZsh5yQsSNxq7VNfG+A=</DigestValue>
+=======
+<DigestValue>THVD2hxexzUSXu200m/0jGpxz3NDW7FjDWDLNDIpwYw=</DigestValue>
+</Reference>
+<Reference URI="res/720x1280/achievement_complete.png">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>vFOVfVPTjEAAyJpNKUEu0fKR9HCHx5mctp/tvpEz0tA=</DigestValue>
+>>>>>>> d50772aa5b31aad78637807e2c4fd23097705a0c
 </Reference>
 <Reference URI="res/720x1280/heart.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>p/arUQetJna0/mGYSnQ0XkCS3qRjV9vd1iyBGu6TwTc=</DigestValue>
 </Reference>
+<Reference URI="res/profile_default.png">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>tNZlVbJYpw7OpCoC1wpYEWZ+OdUng/HyKJ0C+uzU2mI=</DigestValue>
+</Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>33HFb3q/nxUO4E8HAgM4fH8wIiga7Cl24SBr25wU4k8=</DigestValue>
+<DigestValue>QLRuqmtRlvk/Wk1eTNe3RIJM4qFGDU/StNXYjNve3fo=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM_ACHIEVEMENT.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>Ux+Kq3ihdK2uwdKIDuudUHY2DFLNiY3hWdxx4dBb5V8=</DigestValue>
+<DigestValue>+oNeTYlJxM1tj+ALT55yVTSMszIR3XMq8X3yIkQyux4=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM_GAME.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -40,7 +60,7 @@
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM_LEADERBOARDRANK.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>KSkEDlU/lhbennCaqAQhtiYHYMv5lQ/X0mn/m2TAJH0=</DigestValue>
+<DigestValue>jQVkmSvV3TQAyIvywxlx8VbovsRemi7IVfbxKGl2LRI=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM_MODESELECT.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -48,11 +68,11 @@
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_PANEL_LISTPANEL.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>lXN1HFteCvMW79u9FnEf8ceZu7VtP6GLJVA51VYQoEc=</DigestValue>
+<DigestValue>Q4wxeQRUhvn3syFfqw6IJqsnvhFw7nJ+nS45qlyLx5k=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/workflow.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>0oJL8oakIOPByUsQGGMKg6kyp50RzKEHKL7XzBAb2jY=</DigestValue>
+<DigestValue>13oDp3lzaNV0KUkkKB2CPSVruifqtmk5tfItLzSwCBs=</DigestValue>
 </Reference>
 <Reference URI="shared/res/screen-density-xhigh/mainmenu.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -67,9 +87,15 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
+<<<<<<< HEAD
 mLXCgYDGr8QB3b0hHBo6gNQyYIkNt+WRXIBhLDfQOerBWN0AKxrThWwvwbn3AzWpz8tkV3lLA/VP
 YgLtjlb6FT6zwqYRjvF6Ld3J76jDHppflUVKPRvMecQ6RIt49XOxr8EpSrKvfp2cJk6TaBA06ZGO
 nT55H3wmSQ+qxJ4V0wE=
+=======
+qHQ8Amp5G18/EwaUM1ifzKnegUKS86Gas/XeUqi5ERXTV7umUnQZkXNp8CrkCZTUsMsXNG/rhet6
+DrfjA90LrrWyf1T/AA0Xkd4tQjK1zIvLEGOROhqZeWrtrU/MOLRwKNhHYhxGsZJOCzzPui/wn3G+
+6vgU0BI8Ir++kqufA8w=
+>>>>>>> d50772aa5b31aad78637807e2c4fd23097705a0c
 </SignatureValue>
 <KeyInfo>
 <X509Data>

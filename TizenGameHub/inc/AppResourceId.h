@@ -1,6 +1,10 @@
 #ifndef _APP_RESOURCE_ID_H_
 #define _APP_RESOURCE_ID_H_
-//
+/* IDL_FORM_SEARCHFRIEND */
+extern const wchar_t* IDL_FORM_SEARCHFRIEND;
+extern const wchar_t* IDC_SEARCHFRIEND_BUTTON_SEARCH;
+extern const wchar_t* IDC_SEARCHFRIEND_LIST_FRIEND;
+extern const wchar_t* IDC_SEARCHFRIEND_TEXTBOX_FRIEND;
 /* IDL_FORM */
 extern const wchar_t* IDC_JOIN_GALLERY_EDIT;
 extern const wchar_t* IDL_FORM;
@@ -29,12 +33,14 @@ extern const wchar_t* IDC_JOIN_TEXT_PWTITLE;
 extern const wchar_t* IDC_JOIN_GALLERY_PROFILE;
 /* IDL_FORM_PLAYER */
 extern const wchar_t* IDL_FORM_PLAYER;
+extern const wchar_t* IDL_FORM_PLAYERFRIEND;
 extern const wchar_t* IDC_USER_PANEL_USER;
 extern const wchar_t* IDC_USER_LABEL_USERNAME;
 extern const wchar_t* IDC_USER_LABEL_USERSCORETITLE;
 extern const wchar_t* IDC_USER_LABEL_USERSCORE;
 extern const wchar_t* IDC_USER_IMG_USERIMG;
 extern const wchar_t* IDC_USER_BUTTON_USERFRIEND;
+extern const wchar_t* IDC_USER_BUTTON_SEARCHFRIEND;
 // ScrollPanel
 extern const wchar_t* IDC_USER_SCROLLPANEL;
 extern const wchar_t* IDC_USER_PANEL_GAME;
@@ -73,6 +79,9 @@ extern const wchar_t* IDL_PANEL_LISTPANEL;
 extern const wchar_t* IDC_LISTPANEL_IMG;
 extern const wchar_t* IDC_LISTPANEL_LABEL_TITLE;
 extern const wchar_t* IDC_LISTPANEL_LABEL_DESC;
+extern const wchar_t* IDC_LISTPANEL_LABEL_POINT;
+extern const wchar_t* IDC_LISTPANEL_GALLERY_COMPLETE;
+extern const wchar_t* IDC_LISTPANEL_OVERLAY;
 /* IDL_FORM_LEADERBOARDRANK */
 extern const wchar_t* IDL_FORM_LEADERBOARDRANK;
 extern const wchar_t* IDC_LEADERBOARDRANK_LIST_RANK;

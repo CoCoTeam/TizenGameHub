@@ -38,6 +38,8 @@ FormModeSelect::OnInitializing(void)
 	SetFormBackEventListener(this);
 
 	// Get a button via resource ID
+	Tizen::Ui::Controls::Button* pButtonTmp = static_cast< Button* >(GetControl(IDC_MAIN_BUTTON_LOGIN));
+	pButtonTmp->SetShowState(false);
 	Tizen::Ui::Controls::Button* pButtonTime = static_cast< Button* >(GetControl(IDC_MAIN_BUTTON_PLAY));
 	if (pButtonTime != null)
 	{

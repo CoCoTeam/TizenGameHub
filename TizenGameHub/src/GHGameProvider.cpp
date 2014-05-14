@@ -30,24 +30,27 @@ Tizen::Ui::Controls::ListItemBase* GHGameProvider::CreateItem(int index, int ite
 	int width = 0;
 	int height = 0;
 
-	SimpleItem* pItem = new SimpleItem();
+	CustomItem* pItem = new CustomItem();
 	AppAssert(pItem);
-	pItem->Construct(Tizen::Graphics::Dimension(itemWidth, 80), LIST_ANNEX_STYLE_NORMAL);
+	pItem->Construct(Tizen::Graphics::Dimension(itemWidth, 150), LIST_ANNEX_STYLE_NORMAL);
 
-	String text = ((GHGame*)(list.GetAt(index)))->getTitle();
+	GHGame* game = (GHGame*)(list.GetAt(index));
 
 	ByteBuffer *pBuffer = null;
 	Bitmap *pBitmap = null;
 	Image *pImage = new (std::nothrow) Image();
 	pImage->Construct();
-
 	pBuffer = pImage->DecodeToBufferN(Tizen::App::App::GetInstance()->GetAppRootPath()+L"res/icon.png", BITMAP_PIXEL_FORMAT_RGB565,width,height);
-//	SAFE_DELETE(pImage);
-
 	pBitmap = new (std::nothrow) Bitmap();
 	pBitmap->Construct(*pBuffer, Dimension(width, height),BITMAP_PIXEL_FORMAT_RGB565 );
 
-	pItem->SetElement(text, pBitmap);
+	Color cBlack(0x00, 0x00, 0x00);
+	Color cGray(0x93, 0x93, 0x93);
+
+	pItem->AddElement(Rectangle(10, 15, 120, 120), 0, *pBitmap);
+	pItem->AddElement(Rectangle(150, 10, itemWidth-160, 60), 1, game->getTitle(), 45, cBlack, cBlack, cBlack);
+	pItem->AddElement(Rectangle(150, 70, itemWidth-160, 60), 2, game->getDescription(), 30, cGray, cGray, cGray);
+
 	return pItem;
 }
 bool GHGameProvider::DeleteItem

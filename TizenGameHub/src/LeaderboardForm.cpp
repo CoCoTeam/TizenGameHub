@@ -98,7 +98,7 @@ void LeaderboardForm::loadLeaderboardFinished(Tizen::Base::Collection::ArrayList
 void LeaderboardForm::setLeaderboardList()
 {
 	int initX = 20, initY = 10;
-	int posX = 330, posY = 430;
+	int posX = 340, posY = 430;
 
 	for(int i=0 ; i<lb_list->GetCount() ; i++)
 	{

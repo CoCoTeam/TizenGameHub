@@ -8,6 +8,7 @@
 #include "GHPlayer.h"
 #include "GHPlayerListItemEventListener.h"
 #include "TizenGameHubFrame.h"
+#include "GHSharedAuthData.h"
 
 using namespace Tizen::Ui::Scenes;
 
@@ -31,20 +32,20 @@ void GHPlayerListItemEventListener::OnListViewItemStateChanged
 (Tizen::Ui::Controls::ListView &listView, int index, int elementId, Tizen::Ui::Controls::ListItemStatus status)
 {
 	if (status == Tizen::Ui::Controls::LIST_ITEM_STATUS_SELECTED) {
-		Tizen::Base::String playerId = ((GHPlayer*)(list.GetAt(index)))->getId();
+		if(index < list.GetCount())
+		{
+			Tizen::Base::String playerId = ((GHPlayer*)(list.GetAt(index)))->getId();
 
-		Tizen::Base::Collection::ArrayList* pList = new (std::nothrow)Tizen::Base::Collection::ArrayList;
-		AppAssert(pList);
-		pList->Construct();
-		pList->Add( playerId );	// playerId
-		pList->Add( new Tizen::Base::Boolean(false) );	// isLocalPlayer
-		pList->Add( new Tizen::Base::Boolean(false) );	// isFriend
+			Tizen::Base::Collection::ArrayList* pList = new (std::nothrow)Tizen::Base::Collection::ArrayList;
+			AppAssert(pList);
+			pList->Construct();
+			pList->Add( playerId );	// playerId
 
-		// Scene 이동
-		SceneManager* pSceneManager = SceneManager::GetInstance();
-//		pSceneManager->GoForward(ForwardSceneTransition(SCENE_PLAYER, SCENE_TRANSITION_ANIMATION_TYPE_LEFT));
-		pSceneManager->GoForward(ForwardSceneTransition(SCENE_PLAYER, SCENE_TRANSITION_ANIMATION_TYPE_LEFT), pList);
-
+			// Scene 이동
+			SceneManager* pSceneManager = SceneManager::GetInstance();
+			SceneId sceneId = (playerId.Equals(GHSharedAuthData::getSharedInstance().getPlayerId()) ? SCENE_PLAYER : SCENE_PLAYERFRIEND);
+			pSceneManager->GoForward(ForwardSceneTransition(sceneId, SCENE_TRANSITION_ANIMATION_TYPE_LEFT), pList);
+		}
 	}
 }
 
@@ -54,5 +55,4 @@ void GHPlayerListItemEventListener::setItemList(Tizen::Base::Collection::ArrayLi
 	{
 		list.Add( (Tizen::Base::Object*)(_list->GetAt(i)) );
 	}
-
 }

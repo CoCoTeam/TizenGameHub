@@ -18,10 +18,11 @@ GHAttackhelperData::~GHAttackhelperData() {
 }
 
 
-GHAttackhelperData::GHAttackhelperData(int _dataIndex, Tizen::Base::String _senderId, Tizen::Base::String _id, Tizen::Base::String _itemName, int _denyEnable, int _quantity)
+GHAttackhelperData::GHAttackhelperData(int _dataIndex, Tizen::Base::String _senderId, Tizen::Base::String _senderName, Tizen::Base::String _id, Tizen::Base::String _itemName, int _denyEnable, int _quantity)
 {
 	this->dataIndex 	= _dataIndex;
 	this->senderId		= _senderId;
+	this->senderName	= _senderName;
 	this->id 			= _id;
 	this->itemName		= _itemName;
 	this->denyEnable	= _denyEnable;
@@ -38,6 +39,10 @@ int GHAttackhelperData::getDataIndex()
 String GHAttackhelperData::getSenderId()
 {
 	return this->senderId;
+}
+String GHAttackhelperData::getSenderName()
+{
+	return this->senderName;
 }
 String GHAttackhelperData::getId()
 {

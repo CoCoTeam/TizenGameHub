@@ -34,3 +34,6 @@ int GHGame::getAttackHelperCount()		{	return attackhelperCount;}
 bool GHGame::isCloudsaveEnable()		{	return misCloudsaveEnable;}
 bool GHGame::isTurnbasedMultiEnable()	{	return misTurnbasedMultiEnable;}
 
+
+bool GHGame::isPlaying()			{return misPlaying;}
+void GHGame::setIsPlaying(bool b)	{misPlaying = b;}

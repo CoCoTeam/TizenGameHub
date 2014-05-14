@@ -10,12 +10,12 @@
 
 #include "GHPlayer.h"
 
-class GHPlayerProvider
+class PlayerProvider
 : public Tizen::Ui::Controls::IListViewItemProvider
 {
 public:
-	GHPlayerProvider();
-	virtual ~GHPlayerProvider();
+	PlayerProvider();
+	virtual ~PlayerProvider();
 
 	int GetItemCount(void);
 	Tizen::Ui::Controls::ListItemBase* CreateItem(int index, int itemWidth);
