@@ -47,8 +47,8 @@ public:
 	void sendAttackhelperData(Tizen::Base::String receiver_id, Tizen::Base::String ah_id, int quantity, GHAttackhelperDataSendedListener* listener); 	// update listener
 
 	// incremental achievement update
-	void respondAttackhelperData(int data_idx);
-	void respondAttackhelperData(int data_idx, GHAttackhelperDataRespondedListener* listener); 	// update listener
+	void respondAttackhelperData(int data_idx, int accept_flag);
+	void respondAttackhelperData(int data_idx, int accept_flag, GHAttackhelperDataRespondedListener* listener); 	// update listener
 
 	void loadDataSendPopup();
 	void loadDataReceievedPopup(Tizen::Base::Collection::ArrayList* pArr);

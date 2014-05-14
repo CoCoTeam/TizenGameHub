@@ -65,7 +65,9 @@ void AttackHelperReceiveListener::OnListViewItemStateChanged
 void AttackHelperReceiveListener::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 {
 	GHAttackhelperController *ahController = new GHAttackhelperController();
-	ahController->respondAttackhelperData(ahId);
+
+	ahController->respondAttackhelperData(ahId, 1); // 일단 임시로 1 넣어놓음~
+
 	switch(actionId)
 	{
 	case ACTION_POPUP_ACCEPT:
