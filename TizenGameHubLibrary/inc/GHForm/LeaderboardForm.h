@@ -31,8 +31,7 @@ private:
 	virtual void loadLeaderboardFinished(Tizen::Base::Collection::ArrayList* leaderboardList);
 
 	virtual void OnInitialized();
-
-	void setLeaderboardList();
+	virtual void setLeaderboardList();
 
 protected:
 	Tizen::Base::Collection::ArrayList* lb_list;

@@ -540,6 +540,9 @@ GHhttpClient::RequestHttpPutTran(IHttpTransactionEventListener* listener, String
 	r = pHttpTransaction->Submit();
 	TryCatch(r == E_SUCCESS, , "Failed to submit the HttpTransaction.");
 
+
+	AppLog("------------------>test1<-------------------------");
+
 	return r;
 
 CATCH:

@@ -40,8 +40,6 @@ protected:
 
 	bool isTouchEnable;
 
-	void setLeaderboardConfig();
-
 };
 
 #endif /* LISTPANEL_H_ */
