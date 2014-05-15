@@ -6,8 +6,9 @@
  */
 
 #include "GHForm/LeaderboardForm.h"
-#include "AppResourceId.h"
+#include "LibResourceId.h"
 #include "GHForm/ListPanel.h"
+#include "GHLeaderboard/GHLeaderboardController.h"
 
 using namespace Tizen::Ui::Controls;
 using namespace Tizen::Ui::Scenes;
@@ -31,21 +32,24 @@ result LeaderboardForm::OnInitializing(void)
 	result r = E_SUCCESS;
 	AppLogDebug("[LeaderboardForm] OnInitializing()");
 
-	// TODO: Add your initialization code here
-
 	// Setup back event listener
 	SetFormBackEventListener(this);
 
 	pLeaderboard_scrollpanel = static_cast<ScrollPanel*>(GetControl(IDC_LEADERBOARD_SCROLLPANEL));
-	loadLeaderboards(this);
+	OnInitialized();
 
 	return r;
+}
+void LeaderboardForm::OnInitialized()
+{
+	GHLeaderboardController* lbController = new GHLeaderboardController();
+	lbController->loadLeaderboards(this);
 }
 result LeaderboardForm::OnTerminating(void)
 {
 	result r = E_SUCCESS;
-
-	lb_list->RemoveAll();	delete lb_list;
+//	lb_list->RemoveAll();	delete lb_list;
+//	pLeaderboard_scrollpanel->RemoveAllControls();
 
 	return r;
 }
@@ -56,6 +60,9 @@ void LeaderboardForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 }
 void LeaderboardForm::loadLeaderboardFinished(Tizen::Base::Collection::ArrayList* leaderboardList)
 {
+	if(leaderboardList == null) {
+		return;
+	}
 	lb_list = leaderboardList;
 	AppLogDebug("[LeaderboardForm] leaderboardList Received. (listSize : %d)", lb_list->GetCount() );
 	setLeaderboardList();
@@ -66,8 +73,8 @@ void LeaderboardForm::setLeaderboardList()
 	int posX = 330, posY = 430;
 	for(int i=0 ; i<lb_list->GetCount() ; i++)
 	{
-		GHLeaderboard *leaderboard = (GHLeaderboard*)(lb_list->GetAt(0));
-		Panel* pPanelLeaderboard= new ListPanel(leaderboard->getId(), leaderboard->getTitle(), leaderboard->getImgUrl());
+		GHLeaderboard *leaderboard = (GHLeaderboard*)(lb_list->GetAt(i));
+		Panel* pPanelLeaderboard = new ListPanel(*leaderboard);
 		pPanelLeaderboard->SetPosition(initX + posX*(i%2), initY + posY*(i/2));
 		pLeaderboard_scrollpanel->AddControl(pPanelLeaderboard);
 	}

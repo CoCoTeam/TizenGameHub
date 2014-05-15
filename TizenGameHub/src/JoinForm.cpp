@@ -57,6 +57,8 @@ JoinForm::OnInitializing(void)
 
 	// TODO: Add your initialization code here
 
+
+
 	// Setup back event listener
 	SetFormBackEventListener(this);
 
@@ -73,20 +75,24 @@ JoinForm::OnInitializing(void)
 	pTextPwconfirm = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_PWCONFIRM));
 	pTextName = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_NAME));
 
+/*	Gallery *pGalleryProfile;
 	pGalleryProfile = static_cast< Gallery* >(GetControl(IDC_JOIN_GALLERY_PROFILE));
 	pGalleryProfile->SetItemProvider(*this);
-	pGalleryProfile->AddTouchEventListener(*this);
+	pGalleryProfile->AddTouchEventListener(*this);*/
 
-	/*String path = L"http://54.238.195.222:80/players/pkeykichul/image";
-	this->RequestImage(path,500,500,5000);*/
+	String path = L"http://54.238.195.222:80/players/pkeykichul/image";
+	this->RequestImage(path,500,500,5000);
+
+	//AppLog("INITIAL");
 
 	//다운로드 받은 이미지 경로를 통해 사진을 설정함
-	String user_image_path = Environment::GetMediaPath() + L"Downloads/profile.jpg";
+
+	/*	String user_image_path = Environment::GetMediaPath() + L"Downloads/profile.jpg";
 	AppLogDebug("USER_IMAGE --> %S", user_image_path.GetPointer());
 
 	Image img;
 	img.Construct();
-	__pCroppedBmp = img.DecodeN(user_image_path, BITMAP_PIXEL_FORMAT_ARGB8888);
+	__pCroppedBmp = img.DecodeN(user_image_path, BITMAP_PIXEL_FORMAT_ARGB8888);*/
 
 	//simg_url = new String();
 
@@ -115,8 +121,6 @@ JoinForm::RequestImage(const String& path,int width, int height,int timeout)
 
 	uri.SetUri(path);
 
-	// Request image
-
 	//서버에 보내기
 	pImage->DecodeUrl(uri, BITMAP_PIXEL_FORMAT_RGB565, width, height, reqId, *this, timeout);
 
@@ -134,26 +138,69 @@ JoinForm::OnImageDecodeUrlReceived (RequestId reqId, Tizen::Graphics::Bitmap *pB
 	}
 	else
 	{
-		// Create a label and set the background bitmap
-/*		Label* pLabel = new Label();
-		pLabel->Construct(Rectangle(0,50, pBitmap->GetWidth(),pBitmap->GetHeight()),L"");
-		AddControl(*pLabel);
-		pLabel->SetBackgroundBitmap(*pBitmap);
 
-		Draw();Show();*/
+		__pCroppedBmp = pBitmap;
 
-		/*Gallery* pGalleryProfile = static_cast< Gallery* >(GetControl(IDC_JOIN_GALLERY_PROFILE));
+
+		AppLog("Request SUCCESS");
+
+
+
+
+
+		//Gallery *pGalleryProfile;
+		pGalleryProfile = static_cast< Gallery* >(GetControl(IDC_JOIN_GALLERY_PROFILE));
 		pGalleryProfile->SetItemProvider(*this);
-		 */
+		pGalleryProfile->AddTouchEventListener(*this);
 
-		GalleryItem* pGallery = new GalleryItem();
-		pGallery->Construct(*pBitmap);
 
 		pGalleryProfile->RefreshGallery(0,GALLERY_REFRESH_TYPE_ITEM_MODIFY);
 
+		//pGalleryProfile->RefreshGallery(0,GALLERY_REFRESH_TYPE_ITEM_MODIFY);
+
+		AppLog("RefreshGallery add");
 	}
 }
 
+void
+JoinForm::DownloadStart() {
+
+             String url =L"http://54.238.195.222:80/players/pkeykichul/image";
+
+            // DownloadRequest request(url);
+            // DownloadRequest* requestpath = new DownloadRequest();
+            // requestpath->DownloadRequest(url, Environment::GetMediaPath());
+
+
+             //파일에 있는 목록 삭제하고 저장!! profile_1, profile_2 이런식으로 저장되기 때문..
+             File file;
+             file.Remove(Environment::GetDefaultDownloadPath() + "profile.jpg");
+
+
+             DownloadRequest request(url);
+             request.SetFileName("profile");
+
+             DownloadManager* pManager =DownloadManager::GetInstance();
+
+             pManager->SetDownloadListener(this);
+             pManager->Start(request,__requestId);
+}
+
+void
+JoinForm::OnDownloadInProgress (RequestId reqId, unsigned long long receivedSize, unsigned long long totalSize) {
+
+             String strMessage =L"";
+             strMessage.Append((long)receivedSize);
+             strMessage.Append("/ ");
+             strMessage.Append((long)totalSize);
+}
+
+void
+JoinForm::OnDownloadCompleted (RequestId reqId, const Tizen::Base::String &path) {
+
+			AppLogDebug("path -----------------------> %S", path.GetPointer());
+
+}
 
 void
 JoinForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
@@ -168,16 +215,7 @@ JoinForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		break;
 	case IDA_BUTTON_CANCEL:
 		pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_OUT));
-		//for test~!!!
-		/*AppLog("__pCroppedBmp EXIST");
 
-		//String path = L"http://sstatic.naver.net/search/img3/h1_naver.gif";
-		String path = L"http://54.238.195.222:80/players/pkeykichul/image";
-		//String path = L"http://img.naver.net:80/static/www/u/2013/0731/nmms_224940510.gif";
-		//String path = L"http://cfile25.uf.tistory.com/image/112CA2274C2220D2B47CB1";
-
-		this->RequestImage(path,500,500,5000);
-*/
 		break;
 	}
 }
@@ -243,7 +281,7 @@ JoinForm::doJoin()
 
 			//__pMap->Add(new String("img_url"),  new String(simg_url));
 
-			//AppLog("simg_url put : %s",tmpobj.GetPointer());
+			AppLog("simg_url put : %S",simg_url.GetPointer());
 
 			httpPost->RequestHttpPutTran(this, url, __pMap);
 		}
@@ -283,13 +321,13 @@ JoinForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 				pTextEmail->SetText("kichul");
 				pTextEmail->SetEnabled(false);
 
-				pGalleryProfile->SetShowState(true);
+				//pGalleryProfile->SetShowState(true);
 
 				//!! pGalleryProfile->Set이미지
 			}
 			else
 			{
-				pGalleryProfile->SetEnabled(false);
+				//pGalleryProfile->SetEnabled(false);
 			}
 
 		}
@@ -309,9 +347,15 @@ JoinForm::CreateItem(int index)
 
     // Creates an instance of GalleryItem and registers the bitmap to the gallery item
 
+	AppLog("========================test1 ");
 
 	GalleryItem* pGallery = new GalleryItem();
+
+	AppLog("========================test2");
+
 	pGallery->Construct(*__pCroppedBmp);
+
+	AppLog("========================test3");
 
 	return pGallery;
 
@@ -397,6 +441,9 @@ void JoinForm::OnTransactionReadyToRead(String apiCode, String statusCode,IJsonV
 		else if(statusCode == "1")	// (정보 수정 성공)
 		{
 			AppLog("PLAYER_MODIFY success");
+
+			//서버에서 image 다운로드
+			DownloadStart();
 		}
 	}
 
@@ -438,14 +485,25 @@ JoinForm::OnUserEventReceivedN(RequestId requestId, Tizen::Base::Collection::ILi
 	AppLog("Cropping complete");
 	if(requestId == CROPPING_COMPLETE)
 	{
+		AppLogDebug("test1");
+/*
 		if(__pCroppedBmp)
 		{
+			AppLogDebug("__pCroppedBmp !!");
+
 			delete __pCroppedBmp;
 			__pCroppedBmp = null;
+
+			AppLogDebug("__pCroppedBmp null");
 		}
+*/
+
+		AppLogDebug("test2");
 
 		Image img;
 		img.Construct();
+
+		AppLogDebug("test3");
 
 		//Load the appropriate Cropped bitmap
 		if(File::IsFileExist(USER_CROPPED_FILE_PATH))
@@ -453,9 +511,16 @@ JoinForm::OnUserEventReceivedN(RequestId requestId, Tizen::Base::Collection::ILi
 		else
 			__pCroppedBmp = img.DecodeN(DEFAULT_CROPPED_FILE_PATH, BITMAP_PIXEL_FORMAT_RGB565);
 
+		AppLogDebug("test3");
+
 
 		RequestRedraw();
-		//AppLogDebug("------------------crop image set----------------");
+
+		AppLogDebug("test4");
+
+		pGalleryProfile->RefreshGallery(0,GALLERY_REFRESH_TYPE_ITEM_MODIFY);
+
+		AppLogDebug("------------------crop image set----------------");
 		storeImageInternal(__pCroppedBmp);
 		//saveImage();
 	}
@@ -465,13 +530,16 @@ result
 JoinForm::OnDraw()
 {
 
-	pGalleryProfile->RefreshGallery(0,GALLERY_REFRESH_TYPE_ITEM_MODIFY);
-
 	AppLogDebug("---------------------Redraw-----------------");
 
+
+	//pGalleryProfile->RefreshGallery(0,GALLERY_REFRESH_TYPE_ITEM_MODIFY);
+
+	AppLogDebug("test5");
+
 	//이미지 전환
-	/*GalleryItem* pGallery = new GalleryItem();
-    pGallery->Construct(*__ptempBitmap);*/
+/*	GalleryItem* pGallery = new GalleryItem();
+    pGallery->Construct(*__pCroppedBmp);*/
 
 
     count = 0; // 터치 이벤트 재초기화
@@ -493,8 +561,6 @@ JoinForm::CreateBitmapFromByteBufferN(ByteBuffer* pBuffer, const int& width, con
 void
 JoinForm::storeImageInternal(Bitmap *bitmap)
 {
-			//AppLog("22222");
-
 			result r ;
 
 			///////////////////////////////////////////////////////////////// 버퍼 ///////////////////////////////////////////////////////////////////

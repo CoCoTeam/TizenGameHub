@@ -34,7 +34,6 @@ void AppGHLeaderboardController::loadLeaderboardRank(String game_id, String lead
 	//GET 함수 호출
 	String external(L"?start_pos="+Integer::ToString(startPosition)+"&max_length="+Integer::ToString(loadSize));
 	String url(L"/f_leaderboards/rank/" + game_id +"/"+ leaderboard_id + external);
-	AppLogDebug("%S", url.GetPointer());
 
 	httpPost.RequestHttpGetTran(this, url);
 }

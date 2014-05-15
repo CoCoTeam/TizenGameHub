@@ -5,27 +5,25 @@
  *      Author: Administrator
  */
 
-#ifndef LEADERBOARDRANKPROVIDER_H_
-#define LEADERBOARDRANKPROVIDER_H_
+#ifndef APPGHPLAYERPROVIDER_H_
+#define APPGHPLAYERPROVIDER_H_
 
-#include "GHLeaderboard/GHPlayerRank.h"
+#include "GHPlayer/GHPlayer.h"
 
-class LeaderboardRankProvider
+class AppGHPlayerProvider
 : public Tizen::Ui::Controls::IListViewItemProvider
 {
 public:
-	LeaderboardRankProvider();
-	virtual ~LeaderboardRankProvider();
+	AppGHPlayerProvider();
+	virtual ~AppGHPlayerProvider();
 
 	int GetItemCount(void);
 	Tizen::Ui::Controls::ListItemBase* CreateItem(int index, int itemWidth);
 	bool DeleteItem(int index, Tizen::Ui::Controls::ListItemBase* pItem, int itemWidth);
-	void addItemList(Tizen::Base::Collection::ArrayList* _list);
-	void setUnit(Tizen::Base::String _unit);
+	void setItemList(Tizen::Base::Collection::ArrayList* _list);
 
 private:
 	Tizen::Base::Collection::ArrayList list;
-	Tizen::Base::String unit;
 };
 
-#endif /* LEADERBOARDRANKPROVIDER_H_ */
+#endif /* APPGHPLAYERPROVIDER_H_ */

@@ -35,8 +35,10 @@ void GHAchievementController::loadAchievementForm()
 
 	// Add the form to the frame
 	pFrame->AddControl(pForm);
-	pFrame->SetCurrentForm(pForm);
-	pFrame->Invalidate(true);
+	pForm->SetShowState(true);
+	pForm->Show();
+//	pFrame->SetCurrentForm(pForm);
+//	pFrame->Invalidate(true);
 }
 // Achievement 목록을 가져온다.
 void GHAchievementController::loadAchievements(GHAchievementLoadedListener* listener) {

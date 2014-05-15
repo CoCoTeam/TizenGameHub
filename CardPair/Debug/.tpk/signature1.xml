@@ -4,11 +4,19 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>bl45UDEX+O/CZeEQKESE4kWEUTWbc1Xf50IhaPLAi+U=</DigestValue>
+<<<<<<< HEAD
+<DigestValue>/zs6jyteZgyy8qL5d62smLaZhDxT8lSITYndbnlBVSE=</DigestValue>
 </Reference>
 <Reference URI="bin/CardPair.exe">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>UKGREV9Bv1yMtrLRXOxdym39imlrkiGp5hQQXHbDB+I=</DigestValue>
+<DigestValue>ahPieP9E6w0mx+DFSWf797AXgivRVqXoxc5fEU1Rw0U=</DigestValue>
+=======
+<DigestValue>H6HrPcC2Cv75Rhr2RCEw8vgVgBelLwvtQuROURF6I0M=</DigestValue>
+</Reference>
+<Reference URI="bin/CardPair.exe">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>DSDXcPaqNbb/UH/iZQEDJKsL+1av2NiG6+9D1G/EENQ=</DigestValue>
+>>>>>>> 3071353acea4b2ed70819d900f7533cf775d5861
 </Reference>
 <Reference URI="info/manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -16,7 +24,11 @@
 </Reference>
 <Reference URI="lib/libTizenGameHubLibrary.so">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>6gioe0FH9gxwucQPdXPE8v0z1Hc+0DtWGAfqBznGgcA=</DigestValue>
+<<<<<<< HEAD
+<DigestValue>Jj4n7DVlbDzW1emwBIZYw7K8irEp3IhpdtBoCrPh7Vo=</DigestValue>
+=======
+<DigestValue>Ju8JXVn8meZ4kD8dMAtHeinqj/SuHiwan6iitpXGD94=</DigestValue>
+>>>>>>> 3071353acea4b2ed70819d900f7533cf775d5861
 </Reference>
 <Reference URI="res/720x1280/achievement_complete.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -36,7 +48,7 @@
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>b2uQUAthCRkO1mcT3924wSLi8GGyb2jctkcfHzOUOwQ=</DigestValue>
+<DigestValue>tni9SdpJkXZIV4+uxJ2vwanwsVKXBGIx0fCb+llpJis=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM_ACHIEVEMENT.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -79,9 +91,15 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-SbY/KBkLf6w2ThPkTjp9otZEZ7vYn0fyxrBuDKQUiEWl+N+uqHGqzpimK9JF2jmrHACYiYvNrRQY
-2OeNkxW7dIR5rtds5m3PkjK4A3vv9TNNb5sP5dvHq8ZKMrK9+x4SwXgjyHg2LIAal6h00Mbrq2o4
-AVw6+u832TSM0b1FEPM=
+<<<<<<< HEAD
+eVw1XqkXkJaqQ0Maf0ugqNflKJGaH2f8aw4hyJxqnbyhTkqsGaODjpqN9JzcqNjlYZp79acGllzt
+BJjsYOjNoCQJe1WQ9aIA0mc2QGFKuuBvv+DN7WoFHzgcOxvgpaGLN94dgM061HpOl8E050roL3Lb
+oIpp8jNiwJcApK2NLUQ=
+=======
+AjvrGMClvZjElpnRBfAIjNcGUz4MiIUphyqJ00YAE/9JD4K09N5bO0KNyddKEf+/TDdxBLkZ+gzY
+bZg5VIiB3nJgsJuBlNRFaLOUoKN5QOZF05F5PnpKchx/YFk+3NH8t7gFWl1gR0AADq+Qt0aw+ozI
+5pAqQ35LHxjb3Be4gfQ=
+>>>>>>> 3071353acea4b2ed70819d900f7533cf775d5861
 </SignatureValue>
 <KeyInfo>
 <X509Data>

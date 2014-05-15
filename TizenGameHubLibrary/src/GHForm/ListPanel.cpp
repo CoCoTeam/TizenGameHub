@@ -5,7 +5,7 @@
  *      Author: Administrator
  */
 
-#include "AppResourceId.h"
+#include "LibResourceId.h"
 #include "GHForm/ListPanel.h"
 #include "GHForm/LeaderboardRankForm.h"
 //#include "TizenGameHubFrame.h"
@@ -22,13 +22,6 @@ ListPanel::ListPanel() {
 	Construct(IDL_PANEL_LISTPANEL);
 }
 ListPanel::~ListPanel() {
-	if(isTouchEnable) {
-		RemoveTouchEventListener(*this);
-	}
-}
-ListPanel::ListPanel(GHLeaderboard leaderboard)
-{
-
 }
 ListPanel::ListPanel(GHAchievement achievement)
 {
@@ -40,23 +33,42 @@ ListPanel::ListPanel(GHAchievement achievement)
 	imgUrl = achievement.getImgUrl();
 
 	String desc = achievement.getDescription();
-//	int isHidden = achievement.getIsHidden();		// hidden 속성 ( 0: hidden, 1: revealed(default))
-//	int isComplete = achievement.getIsComplete(); 	// 업적 완료 여부
-//	int goalPoint = achievement.getGoalPoint();		// 목표 점수
-//	int	curPoint = achievement.getCurPoint();		// 현재 점수
 
-	Label *pLabelTitle = static_cast< Label* >(GetControl(IDC_LISTPANEL_LABEL_TITLE));
-	Label *pLabelDesc = static_cast< Label* >(GetControl(IDC_LISTPANEL_LABEL_DESC));
-//	Gallery *pImg = static_cast< Gallery* >(GetControl(IDC_LISTPANEL_IMG));
+	int isHidden	= achievement.getIsHidden();		// hidden 속성 ( 0: hidden, 1: revealed(default))
+
+	int isComplete	= achievement.getIsComplete(); 		// 업적 완료 여부
+	int goalPoint	= achievement.getGoalPoint();		// 목표 점수
+	int	curPoint	= achievement.getCurPoint();		// 현재 점수
+
+	Label *pLabelTitle	= static_cast< Label* >(GetControl(IDC_LISTPANEL_LABEL_TITLE));
+	Label *pLabelDesc	= static_cast< Label* >(GetControl(IDC_LISTPANEL_LABEL_DESC));
+	Label *pLabelPoint	= static_cast< Label* >(GetControl(IDC_LISTPANEL_LABEL_POINT));
+	Gallery *pImg = static_cast< Gallery* >(GetControl(IDC_LISTPANEL_IMG));
+	Gallery *pImgComplete = static_cast< Gallery* >(GetControl(IDC_LISTPANEL_GALLERY_COMPLETE));
+	Panel *pPanelOverlay= static_cast< Panel* >(GetControl(IDC_LISTPANEL_OVERLAY));
 
 	pLabelTitle->SetText(title);
 	pLabelDesc->SetText(desc);
 //	pImg->Set
-}
 
-ListPanel::ListPanel(Tizen::Base::String _id, Tizen::Base::String _title, Tizen::Base::String _imgUrl)
-	: id(_id), title(_title), imgUrl(_imgUrl)
+	if(isComplete) {
+		pImgComplete->SetShowState(true);
+		pLabelPoint->SetShowState(false);
+	} else {
+		pLabelPoint->SetText(Integer::ToString(curPoint) +"/"+ Integer::ToString(goalPoint));
+		pImgComplete->SetShowState(false);
+	}
+
+	if(isHidden != 0) {
+		pPanelOverlay->SetShowState(false);
+	}
+}
+ListPanel::ListPanel(GHLeaderboard leaderboard)
 {
+	id = leaderboard.getId();
+	title = leaderboard.getTitle();
+	imgUrl = leaderboard.getImgUrl();
+
 	Construct(IDL_PANEL_LISTPANEL);
 	isTouchEnable = true;
 	AddTouchEventListener(*this);
@@ -64,6 +76,10 @@ ListPanel::ListPanel(Tizen::Base::String _id, Tizen::Base::String _title, Tizen:
 	Label *pLabelTitle = static_cast< Label* >(GetControl(IDC_LISTPANEL_LABEL_TITLE));
 	Label *pLabelDesc = static_cast< Label* >(GetControl(IDC_LISTPANEL_LABEL_DESC));
 	Gallery *pImg = static_cast< Gallery* >(GetControl(IDC_LISTPANEL_IMG));
+	Panel *pPanelOverlay= static_cast< Panel* >(GetControl(IDC_LISTPANEL_OVERLAY));
+	pPanelOverlay->SetShowState(false);
+	Gallery *pImgComplete = static_cast< Gallery* >(GetControl(IDC_LISTPANEL_GALLERY_COMPLETE));
+	pImgComplete->SetShowState(false);
 
 	pLabelTitle->SetText(title);
 //	pImg->Set

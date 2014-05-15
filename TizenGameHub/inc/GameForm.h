@@ -11,7 +11,7 @@
 #include <GHTizen.h>
 #include "GHGame/GHGame.h"
 #include "GHPlayer/GHPlayer.h"
-#include "GHPlayerProvider.h"
+#include "GHForm/PlayerProvider.h"
 #include "GHPlayerListItemEventListener.h"
 //통신
 #include "GHhttpClient.h"

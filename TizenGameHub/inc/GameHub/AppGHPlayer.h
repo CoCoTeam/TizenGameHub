@@ -5,17 +5,17 @@
  *      Author: Administrator
  */
 
-#ifndef GHPLAYERAPP_H_
-#define GHPLAYERAPP_H_
+#ifndef APPGHPLAYER_H_
+#define APPGHPLAYER_H_
 
 #include <GHPlayer/GHPlayer.h>
 
-class GHPlayerApp
+class AppGHPlayer
 	: public GHPlayer
 {
 public:
-	GHPlayerApp();
-	virtual ~GHPlayerApp();
+	AppGHPlayer();
+	virtual ~AppGHPlayer();
 
 	bool isFriend() {return misFriend;}
 	void setIsFriend(bool b) {misFriend = b;}
@@ -26,4 +26,4 @@ private:
 	long totalScore;	// 사용자별 Achievement 총합 점수
 };
 
-#endif /* GHPLAYERAPP_H_ */
+#endif /* APPGHPLAYER_H_ */

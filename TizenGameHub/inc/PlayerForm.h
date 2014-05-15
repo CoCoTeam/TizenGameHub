@@ -13,7 +13,7 @@
 //리스트
 #include "GHPlayer/GHPlayer.h"
 #include "GHGameProvider.h"
-#include "GHPlayerProvider.h"
+#include "GHForm/PlayerProvider.h"
 #include "GHGameListItemEventListener.h"
 #include "GHPlayerListItemEventListener.h"
 //통신

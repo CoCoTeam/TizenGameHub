@@ -52,7 +52,6 @@ FormGame::OnInitializing(void)
 	pLabelYourTurn = static_cast< Label* >(GetControl(IDC_GAME_LABEL_OTHERTURN));
 	pLabelMyTurn->SetShowState(false);
 	pLabelYourTurn->SetShowState(false);
-
 	setTimer();
 
 	if(!isMultiplay) {
@@ -60,6 +59,8 @@ FormGame::OnInitializing(void)
 	}
 	// 멀티 플레이 전용 추가 초기 세팅
 	setAdditionalInitialState();
+
+
 
 	return r;
 }
@@ -422,11 +423,11 @@ void FormGame::compareCard()
 				pTimerMulti->Cancel();
 			} else {
 				pTimerGame->Cancel();
+
+				// 스테이지 클리어 점수 증가
+				gameScore += 1000;
 			}
 			isComplete = true;
-
-			// 스테이지 클리어 점수 증가
-			gameScore += 1000;
 
 			// 스테이지 클리어 시 호출
 			onStageComplete();

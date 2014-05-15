@@ -21,9 +21,9 @@ GHAttackhelperController::GHAttackhelperController() {
 	// TODO Auto-generated constructor stub
 	useProvidedPopup = true;
 }
-GHAttackhelperController::GHAttackhelperController(bool providePopup) {
+GHAttackhelperController::GHAttackhelperController(bool useProvidedPopup) {
 	// TODO Auto-generated constructor stub
-	this->useProvidedPopup = providePopup;
+	this->useProvidedPopup = useProvidedPopup;
 }
 
 GHAttackhelperController::~GHAttackhelperController() {
@@ -55,7 +55,7 @@ void GHAttackhelperController::loadAttackhelperDatas(GHAttackhelperDataResponded
 	httpPost.RequestHttpGetTran(this, url);
 }
 
-// normal achievement update
+// attack helper data를 전송한다.
 void GHAttackhelperController::sendAttackhelperData(String receiver_id, int ah_id, int quantity, GHAttackhelperDataSendedListener* listener)
 {
 	this->sendListener = listener;
@@ -73,7 +73,7 @@ void GHAttackhelperController::sendAttackhelperData(String receiver_id, int ah_i
 	httpPost.RequestHttpPostTran(this, url, __pMap);
 }
 
-// incremental achievement update
+// attack helper data를 수신한다.
 void GHAttackhelperController::respondAttackhelperData(int data_idx, int accept_flag, GHAttackhelperDataRespondedListener* listener)
 {
 	this->respondListener = listener;
@@ -89,6 +89,7 @@ void GHAttackhelperController::respondAttackhelperData(int data_idx, int accept_
 	httpPost.RequestHttpPutTran(this, url, __pMap);
 }
 
+// attack helper 발신 팝업을 호출한다.
 void GHAttackhelperController::loadDataSendPopup(GHAttackhelperDataSendedListener* listener, int ah_id, int quantity)
 {
 	this->sendListener = listener;
@@ -140,6 +141,7 @@ void GHAttackhelperController::loadGamePlayingFriendFinished(Tizen::Base::Collec
 
 }
 
+// attack helper 수신 팝업을 호출한다.
 void GHAttackhelperController::loadDataReceievedPopup(ArrayList* pArr)
 {
 	if(!useProvidedPopup) {

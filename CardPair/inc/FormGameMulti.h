@@ -46,6 +46,8 @@ private:
 	virtual void saveCloudsaveFinished(int statusCode);
 	bool isWin;
 
+
+
 };
 
 #endif	//_CARD_PAIR_FORM_MULTI_H_

@@ -86,12 +86,25 @@ PlayerForm::OnInitializing(void)
 
 	AppLog("__pCroppedBmp EXIST");
 
+	Gallery *pGalleryUserProfile;
+	pGalleryUserProfile = static_cast< Gallery* >(pPanelUser->GetControl(IDC_USER_IMG_USERIMG));
+	pGalleryUserProfile->SetItemProvider(*this);
+
 	/*pGalleryUserProfile->SetItemProvider(*this);
 	pGalleryUserProfile->AddTouchEventListener(*this);*/
 
 	//User Image 설정
-	String path = L"http://54.238.195.222:80/players/pkeykichul/image";
-	this->RequestImage(path,400,400,5000);
+/*	String path = L"http://54.238.195.222:80/players/pkeykichul/image";
+	this->RequestImage(path,400,400,5000);*/
+
+	String user_image_path = Environment::GetMediaPath() + L"Downloads/profile.jpg";
+	AppLogDebug("USER_IMAGE --> %S", user_image_path.GetPointer());
+
+	Image img;
+	img.Construct();
+	__pUserBmp = img.DecodeN(user_image_path, BITMAP_PIXEL_FORMAT_ARGB8888);
+
+	pGalleryUserProfile->RefreshGallery(0,GALLERY_REFRESH_TYPE_ITEM_ADD);
 
 	return r;
 }
@@ -144,9 +157,9 @@ PlayerForm::OnImageDecodeUrlReceived (RequestId reqId, Tizen::Graphics::Bitmap *
 
 		__pUserBmp = pBitmap;
 
-		Gallery *pGalleryUserProfile;
+/*		Gallery *pGalleryUserProfile;
 		pGalleryUserProfile = static_cast< Gallery* >(pPanelUser->GetControl(IDC_USER_IMG_USERIMG));
-		pGalleryUserProfile->SetItemProvider(*this);
+		pGalleryUserProfile->SetItemProvider(*this);*/
 
 		AppLog("========================test2 ");
 
@@ -453,6 +466,7 @@ PlayerForm::CreateItem(int index)
 
 	GalleryItem* pGallery = new GalleryItem();
 	pGallery->Construct(*__pUserBmp);
+
 
 	/*if(__pUserBmp != null)
 	{

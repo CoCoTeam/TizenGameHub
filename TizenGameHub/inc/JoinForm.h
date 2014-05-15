@@ -44,6 +44,7 @@ class JoinForm
     , public Tizen::Ui::ITouchEventListener
     , public Tizen::Net::Http::IHttpProgressEventListener
     , public Tizen::Media::IImageDecodeUrlEventListener
+    ,  public Tizen::Content::IDownloadListener
 
 {
 public:
@@ -133,6 +134,18 @@ private:
 	 virtual void 	OnTouchMoved (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)=0;
 	 virtual void 	OnTouchPressed (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)=0;
 	 virtual void 	OnTouchReleased (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)=0;*/
+
+	 virtual void  OnDownloadCanceled (RequestId reqId) {}
+	 virtual void  OnDownloadCompleted (RequestId reqId, const Tizen::Base::String &path);
+	 virtual void  OnDownloadFailed (RequestId reqId, result r, const Tizen::Base::String &errorCode) {}
+	 virtual void  OnDownloadInProgress (RequestId reqId,unsigned long long receivedSize, unsigned long long totalSize);
+	 virtual void  OnDownloadPaused (RequestId reqId) {}
+
+	     void DownloadStart();
+
+	protected:
+	     RequestId __requestId;
+
 };
 
 #endif /* JOINFORM_H_ */
