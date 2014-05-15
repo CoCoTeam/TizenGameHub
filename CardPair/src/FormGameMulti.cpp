@@ -204,6 +204,64 @@ void FormGameMulti::onMatchTurnWait(){
 void FormGameMulti::onMatchFinish(String data){
 	AppLogDebug("[onMatchFinish]");
 
+	// 마지막 턴 처리 --------------------------------------------
+	if(data == "") {
+
+	}else {
+		JsonObject* pObject = parseJson(data);
+		IJsonValue* pValue = null;
+
+		// Score Setting
+		pObject->GetValue(new String("score"), pValue);
+		JsonNumber *pjScore = static_cast<JsonNumber*>(pValue);
+		int iScore = pjScore->ToInt();
+		delete pjScore;
+		pLabelScore2->SetText(Integer::ToString(iScore));
+		pLabelScore2->Draw();
+
+		// Get ActionType
+		pObject->GetValue(new String("actionType"), pValue);
+		JsonNumber *pjActionType = static_cast<JsonNumber*>(pValue);
+		int actionType = pjActionType->ToInt();
+		delete pjActionType;
+
+		// Get CardNum
+		pObject->GetValue(new String("cardNum"), pValue);
+		JsonNumber *pjCardNum = static_cast<JsonNumber*>(pValue);
+		int cardNum = pjCardNum->ToInt();
+		delete pjCardNum;
+
+		// isFirstFlip
+		if(actionType == 1) {
+			AppLogDebug("actionType : 1");
+			firstSelected = cardNum;
+			setCardVisible(cardNum);	// flip card
+		}
+		// isSecondFlip, isCorrect
+		else if(actionType == 2) {
+			AppLogDebug("actionType : 2");
+			secondSelected = cardNum;
+			setCardVisible(cardNum);	// flip card
+
+			// 맞으면 카드 제거
+			pButtonCard[firstSelected]->SetShowState(false);
+			pButtonCard[secondSelected]->SetShowState(false);
+
+			countRemoved++;
+		}
+		// turnExpired, 틀리면
+		else if(actionType == 3) {
+			AppLogDebug("actionType : 3");
+			if(cardNum >= 0 && cardNum < MAX_CARD_SIZE) {
+				setCardVisible(cardNum);
+			}
+			onMyTurn = false;
+		}
+	}
+
+
+	// -----------------------------------------------------------
+
 	// Cloud Save ------------------------------------------------
 	// 게임 전적 저장
 	csController = new GHCloudsaveController();
@@ -216,7 +274,7 @@ void FormGameMulti::onMatchFinish(String data){
 		winNum = winNum + 1;
 
 		multiplay_winNum =Integer::ToString(winNum);
-		csController->saveCloudSlotData(multiplay_winNum, 1);
+		csController->saveCloudSlotData(multiplay_winNum, 1, this);
 	}else {
 
 		int loseNum;
@@ -226,7 +284,7 @@ void FormGameMulti::onMatchFinish(String data){
 		loseNum = loseNum + 1;
 
 		multiplay_loseNum =Integer::ToString(loseNum);
-		csController->saveCloudSlotData(multiplay_loseNum, 2);
+		csController->saveCloudSlotData(multiplay_loseNum, 2, this);
 
 
 	}
