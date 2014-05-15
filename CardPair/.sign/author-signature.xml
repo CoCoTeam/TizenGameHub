@@ -4,7 +4,7 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="bin/CardPair.exe">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>CI6BO1s9g/G1AL6ioowFz7bPndVm8uLP1lDaGgIU+9E=</DigestValue>
+<DigestValue>DSDXcPaqNbb/UH/iZQEDJKsL+1av2NiG6+9D1G/EENQ=</DigestValue>
 </Reference>
 <Reference URI="info/manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -32,7 +32,7 @@
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>b2uQUAthCRkO1mcT3924wSLi8GGyb2jctkcfHzOUOwQ=</DigestValue>
+<DigestValue>tni9SdpJkXZIV4+uxJ2vwanwsVKXBGIx0fCb+llpJis=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM_ACHIEVEMENT.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -75,9 +75,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-DxSouPNslbhkjT4ffnYlcT3tULtbyFSG2q0zDsnULjDO2OgoIdt0PNevpd8Bev9QXG+RKia58i71
-BGQAABfO5la/gDJtt/l4kgYAcrTWFFbt0EDF40YzSUE+bPLNTffcdIkMwq26emlUSU5ky+y8Twqd
-M3PncemfWNXjjxCCCLs=
+dr7cv5fI+OOx53HBbjEkrG7Zn9P+rgNcJ+BvGIE7I74d1e/7piifCF4eT8AUBk5KrBkxDfRO56aC
++TmBhEpm4qTUY0nkkW2dgAlSAbQmGkULsQcqgqxIlCpT8PW9oe908zkFM1euSB6a6BpvANds19cI
+LpwUf8k+r99daG6FO3A=
 </SignatureValue>
 <KeyInfo>
 <X509Data>

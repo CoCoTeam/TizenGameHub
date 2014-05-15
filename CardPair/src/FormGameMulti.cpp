@@ -338,4 +338,13 @@ void FormGameMulti::startMyTurnThread()
 void FormGameMulti::saveCloudsaveFinished(int statusCode)
 {
 	AppLogDebug("saveCloudsaveFinished");
+	if(statusCode != 0) {
+
+		SceneManager* pSceneManager = SceneManager::GetInstance();
+		AppAssert(pSceneManager);
+		pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_RIGHT));
+
+
+
+	}
 }
