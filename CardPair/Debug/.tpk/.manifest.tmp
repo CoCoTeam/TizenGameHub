@@ -1,17 +1,24 @@
+<<<<<<< HEAD
 author-signature.xml__DEL__/zs6jyteZgyy8qL5d62smLaZhDxT8lSITYndbnlBVSE=
 bin/CardPair.exe__DEL__ahPieP9E6w0mx+DFSWf797AXgivRVqXoxc5fEU1Rw0U=
 info/manifest.xml__DEL__IzsBYC5VIMRolhEDUTm7vHB7kvaS1mC787f6H48LS18=
 lib/libTizenGameHubLibrary.so__DEL__Jj4n7DVlbDzW1emwBIZYw7K8irEp3IhpdtBoCrPh7Vo=
+=======
+author-signature.xml__DEL__H6HrPcC2Cv75Rhr2RCEw8vgVgBelLwvtQuROURF6I0M=
+bin/CardPair.exe__DEL__DSDXcPaqNbb/UH/iZQEDJKsL+1av2NiG6+9D1G/EENQ=
+info/manifest.xml__DEL__IzsBYC5VIMRolhEDUTm7vHB7kvaS1mC787f6H48LS18=
+lib/libTizenGameHubLibrary.so__DEL__Ju8JXVn8meZ4kD8dMAtHeinqj/SuHiwan6iitpXGD94=
+>>>>>>> 3071353acea4b2ed70819d900f7533cf775d5861
 res/720x1280/achievement_complete.png__DEL__vFOVfVPTjEAAyJpNKUEu0fKR9HCHx5mctp/tvpEz0tA=
 res/720x1280/heart.png__DEL__p/arUQetJna0/mGYSnQ0XkCS3qRjV9vd1iyBGu6TwTc=
 res/720x1280/record.png__DEL__xo/Yd7Cn0I4aGb4Gi+muvQKsLaf3y9GDRmld/PJbXYY=
 res/profile_default.png__DEL__tNZlVbJYpw7OpCoC1wpYEWZ+OdUng/HyKJ0C+uzU2mI=
-res/screen-size-normal/IDL_FORM.xml__DEL__b2uQUAthCRkO1mcT3924wSLi8GGyb2jctkcfHzOUOwQ=
+res/screen-size-normal/IDL_FORM.xml__DEL__tni9SdpJkXZIV4+uxJ2vwanwsVKXBGIx0fCb+llpJis=
 res/screen-size-normal/IDL_FORM_ACHIEVEMENT.xml__DEL__+oNeTYlJxM1tj+ALT55yVTSMszIR3XMq8X3yIkQyux4=
 res/screen-size-normal/IDL_FORM_GAME.xml__DEL__997+cUoCuYt/fBn43hdjXFJtNfV5uqQcJBLxQNg13Jc=
 res/screen-size-normal/IDL_FORM_LEADERBOARD.xml__DEL__Bjq67x2aIt2ZrfiLNXBDIlgIxLUDN03t1811DZZiQw4=
 res/screen-size-normal/IDL_FORM_LEADERBOARDRANK.xml__DEL__T5FcTEnAQ0Tc0749N0WJMyWn3gPEd7tn9zoKe17X1+M=
 res/screen-size-normal/IDL_FORM_MODESELECT.xml__DEL__tksYQP1HsC7bAnPRVN3Rpx5ind45esZmBdx8ERXbZC0=
 res/screen-size-normal/IDL_PANEL_LISTPANEL.xml__DEL__Q4wxeQRUhvn3syFfqw6IJqsnvhFw7nJ+nS45qlyLx5k=
-res/screen-size-normal/workflow.xml__DEL__13oDp3lzaNV0KUkkKB2CPSVruifqtmk5tfItLzSwCBs=
+res/screen-size-normal/workflow.xml__DEL__0oJL8oakIOPByUsQGGMKg6kyp50RzKEHKL7XzBAb2jY=
 shared/res/screen-density-xhigh/mainmenu.png__DEL__1d0oEZHqPn+QzNzGIHwj9ODby6x9ggFs9uOsav6jPNs=

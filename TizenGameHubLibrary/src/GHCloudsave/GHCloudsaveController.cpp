@@ -54,11 +54,14 @@ void GHCloudsaveController::OnTransactionReadyToRead(Tizen::Base::String apiCode
 
 	if(apiCode.Equals(CLOUDSAVE_SAVE)) {
 
+		AppLogDebug("CLOUDSAVE_SAVE");
+
 		int stateCode;
 		Integer::Parse(statusCode, stateCode);
 
-		if(this->currentListener != null) this->currentListener->saveCloudsaveFinished(stateCode);
 
+		if(this->currentListener != null) {AppLogDebug("CLOUDSAVE_SAVE2"); this->currentListener->saveCloudsaveFinished(stateCode);}
+		AppLogDebug("CLOUDSAVE_SAVE3");
 
 	} else if(apiCode.Equals(CLOUDSAVE_LOAD)) {
 		String slotdata = null;

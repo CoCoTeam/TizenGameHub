@@ -1,5 +1,6 @@
 #include "FormModeSelect.h"
 #include "AppResourceId.h"
+#include "AppGameData.h"
 #include "CardPairFrame.h"
 #include "GHPlayer/GHPlayerController.h"
 
@@ -61,6 +62,14 @@ FormModeSelect::OnInitializing(void)
 		pButtonMulti->SetActionId(IDA_BUTTON_MULTI);
 		pButtonMulti->AddActionEventListener(*this);
 	}
+
+	// cloud save
+	Tizen::Ui::Controls::Label * pLabelRecord = static_cast < Label* >(GetControl(IDC_LABEL_RECORD));
+	pLabelRecord->SetShowState(false);
+
+	Tizen::Ui::Controls::Label * pLabelRecordImg = static_cast < Label* >(GetControl(IDC_LABEL_RECORDIMG));
+	pLabelRecordImg->SetShowState(false);
+
 
 	return r;
 }

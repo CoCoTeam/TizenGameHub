@@ -32,6 +32,7 @@ extern const wchar_t* IDC_LABEL2;
 extern const wchar_t* IDC_LABEL3;
 extern const wchar_t* IDC_LABEL4;
 extern const wchar_t* IDC_LABEL_RECORD;
+extern const wchar_t* IDC_LABEL_RECORDIMG;
 extern const wchar_t* IDC_MAIN_BUTTON_LOGIN;
 extern const wchar_t* IDC_USER_BUTTON_SEARCHFRIEND;
 extern const wchar_t* IDC_USER_BUTTON_USERFRIEND;
