@@ -50,7 +50,7 @@ class PlayerForm
 	, public GHPlayerAddFriendListener
 	, public Tizen::Media::IImageDecodeUrlEventListener
 	, public Tizen::Ui::Controls::IGalleryItemProvider
-	,  public Tizen::Content::IDownloadListener
+	/*,  public Tizen::Content::IDownloadListener*/
 /*	, public GHController*/
 {
 public:
@@ -125,7 +125,7 @@ private:
 
 	Tizen::Graphics::Bitmap *__pUserBmp;
 
-     virtual void  OnDownloadCanceled (RequestId reqId) {}
+   /*  virtual void  OnDownloadCanceled (RequestId reqId) {}
      virtual void  OnDownloadCompleted (RequestId reqId, const Tizen::Base::String &path);
      virtual void  OnDownloadFailed (RequestId reqId, result r, const Tizen::Base::String &errorCode) {}
      virtual void  OnDownloadInProgress (RequestId reqId,unsigned long long receivedSize, unsigned long long totalSize);
@@ -133,7 +133,7 @@ private:
 
      void DownloadStart();
 protected:
-     RequestId __requestId;
+     RequestId __requestId;*/
 	// GHController
 /*	virtual void OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data);
 	virtual void OnTransactionCompleted(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction);*/

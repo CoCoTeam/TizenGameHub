@@ -32,7 +32,7 @@ using namespace Tizen::Graphics;*/
 
 
 
-JoinForm::JoinForm() : __pCroppedBmp(null), count(0)
+JoinForm::JoinForm() : __pCroppedBmp(null), count(0), simg_url(null)
 {
 	// TODO Auto-generated constructor stub
 }
@@ -87,6 +87,8 @@ JoinForm::OnInitializing(void)
 	Image img;
 	img.Construct();
 	__pCroppedBmp = img.DecodeN(user_image_path, BITMAP_PIXEL_FORMAT_ARGB8888);
+
+	//simg_url = new String();
 
 	return r;
 }
@@ -226,17 +228,20 @@ JoinForm::doJoin()
 
 			String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
 
-			String url(L"/players" + player_id );
+			String url(L"/players/" + player_id );
 
-			//Tizen::Base::Object* tmpobj = reinterpret_cast<Tizen::Base::Object *>(simg_url);
+
+			Tizen::Base::Object* tmpobj = static_cast<Tizen::Base::Object*>(&simg_url);
 
 			Tizen::Base::Collection::HashMap* __pMap  = new (std::nothrow) Tizen::Base::Collection::HashMap();
 			__pMap->Construct();
 
 			__pMap->Add(new String("pwd"), new String(strPw));
 			__pMap->Add(new String("name"), new String(strName));
-			//__pMap->Add(new String("img_url"),  tmpobj);
-			__pMap->Add(new String("img_url"),  new String(simg_url));
+			__pMap->Add(new String("img_url"), tmpobj);
+
+
+			//__pMap->Add(new String("img_url"),  new String(simg_url));
 
 			//AppLog("simg_url put : %s",tmpobj.GetPointer());
 

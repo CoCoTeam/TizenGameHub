@@ -150,8 +150,8 @@ PlayerForm::OnImageDecodeUrlReceived (RequestId reqId, Tizen::Graphics::Bitmap *
 
 		AppLog("========================test2 ");
 
-		//서버에서 image 다운로드
-		DownloadStart();
+/*		//서버에서 image 다운로드
+		DownloadStart();*/
 	}
 }
 
@@ -488,13 +488,13 @@ PlayerForm::GetItemCount(void)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-void PlayerForm::DownloadStart() {
+/*void PlayerForm::DownloadStart() {
 
              String url =L"http://54.238.195.222:80/players/pkeykichul/image";
 
             // DownloadRequest request(url);
-/*             DownloadRequest* requestpath = new DownloadRequest();
-             requestpath->DownloadRequest(url, Environment::GetMediaPath());*/
+             DownloadRequest* requestpath = new DownloadRequest();
+             requestpath->DownloadRequest(url, Environment::GetMediaPath());
 
 
              //파일에 있는 목록 삭제하고 저장!! profile_1, profile_2 이런식으로 저장되기 때문..
@@ -525,7 +525,7 @@ PlayerForm::OnDownloadCompleted (RequestId reqId, const Tizen::Base::String &pat
 
 			AppLogDebug("path -----------------------> %S", path.GetPointer());
 
-}
+}*/
 /*
 void PlayerForm::OnTransactionReadyToRead(String apiCode, String statusCode,IJsonValue* data)
 {
