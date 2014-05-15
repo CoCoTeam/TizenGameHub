@@ -6,7 +6,7 @@
  */
 
 #include "GameHub/AppGHAchievementForm.h"
-#include "AppResourceId.h"
+#include "LibResourceId.h"
 #include "GHSharedAuthData.h"
 #include "GHForm/ListPanel.h"
 #include "TizenGameHubFrame.h"

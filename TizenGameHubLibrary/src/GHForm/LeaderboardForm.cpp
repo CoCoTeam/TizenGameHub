@@ -6,7 +6,7 @@
  */
 
 #include "GHForm/LeaderboardForm.h"
-#include "AppResourceId.h"
+#include "LibResourceId.h"
 #include "GHForm/ListPanel.h"
 #include "GHLeaderboard/GHLeaderboardController.h"
 
@@ -48,8 +48,8 @@ void LeaderboardForm::OnInitialized()
 result LeaderboardForm::OnTerminating(void)
 {
 	result r = E_SUCCESS;
-	lb_list->RemoveAll();	delete lb_list;
-	pLeaderboard_scrollpanel->RemoveAllControls();
+//	lb_list->RemoveAll();	delete lb_list;
+//	pLeaderboard_scrollpanel->RemoveAllControls();
 
 	return r;
 }
@@ -73,7 +73,7 @@ void LeaderboardForm::setLeaderboardList()
 	int posX = 330, posY = 430;
 	for(int i=0 ; i<lb_list->GetCount() ; i++)
 	{
-		GHLeaderboard *leaderboard = (GHLeaderboard*)(lb_list->GetAt(0));
+		GHLeaderboard *leaderboard = (GHLeaderboard*)(lb_list->GetAt(i));
 		Panel* pPanelLeaderboard = new ListPanel(*leaderboard);
 		pPanelLeaderboard->SetPosition(initX + posX*(i%2), initY + posY*(i/2));
 		pLeaderboard_scrollpanel->AddControl(pPanelLeaderboard);

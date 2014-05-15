@@ -6,7 +6,7 @@
  */
 
 #include "GameHub/AppGHLeaderboardForm.h"
-#include "AppResourceId.h"
+#include "LibResourceId.h"
 #include "TizenGameHubFrame.h"
 #include "GameHub/AppListPanel.h"
 #include "GameHub/AppGHLeaderboardController.h"

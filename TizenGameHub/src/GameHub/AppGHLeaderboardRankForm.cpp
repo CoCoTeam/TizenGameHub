@@ -6,7 +6,7 @@
  */
 
 #include "GameHub/AppGHLeaderboardRankForm.h"
-#include "AppResourceId.h"
+#include "LibResourceId.h"
 #include "TizenGameHubFrame.h"
 
 using namespace Tizen::Base;
@@ -14,7 +14,7 @@ using namespace Tizen::Ui::Scenes;
 using namespace Tizen::Ui::Controls;
 
 AppGHLeaderboardRankForm::AppGHLeaderboardRankForm()
-:offset(0)
+:LeaderboardRankForm()
 {
 	// TODO Auto-generated constructor stub
 
@@ -22,42 +22,11 @@ AppGHLeaderboardRankForm::AppGHLeaderboardRankForm()
 AppGHLeaderboardRankForm::~AppGHLeaderboardRankForm() {
 	// TODO Auto-generated destructor stub
 }
-bool AppGHLeaderboardRankForm::Initialize(void)
+void AppGHLeaderboardRankForm::OnInitialized()
 {
-	result r = Construct(IDL_FORM_LEADERBOARDRANK);
-	TryReturn(r == E_SUCCESS, false, "Failed to construct form");
-
-	return true;
+	lbController = new AppGHLeaderboardController();
 }
-result AppGHLeaderboardRankForm::OnInitializing(void)
-{
-	result r = E_SUCCESS;
-
-	// TODO: Add your initialization code here
-
-	// Setup back event listener
-	SetFormBackEventListener(this);
-
-	// Get a button via resource ID
-	pRankListView = (ListView*)(GetControl(IDC_LEADERBOARDRANK_LIST_RANK));
-	pRankListView->AddScrollEventListener(*this);
-	pRankProvider = new AppGHLeaderboardRankProvider();
-
-	return r;
-}
-result AppGHLeaderboardRankForm::OnTerminating(void)
-{
-	result r = E_SUCCESS;
-
-	// TODO: Add your termination code here
-	return r;
-}
-//IActionEventListener
-void AppGHLeaderboardRankForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
-{
-
-}
-//IFormBackEventListener
+// IFormBackEventListener
 void AppGHLeaderboardRankForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 {
 	SceneManager* pSceneManager = SceneManager::GetInstance();
@@ -65,6 +34,7 @@ void AppGHLeaderboardRankForm::OnFormBackRequested(Tizen::Ui::Controls::Form& so
 
 	pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_RIGHT));
 }
+// ISceneEventListener
 void AppGHLeaderboardRankForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 										  const Tizen::Ui::Scenes::SceneId& currentSceneId, Tizen::Base::Collection::IList* pArgs)
 {
@@ -78,74 +48,25 @@ void AppGHLeaderboardRankForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneI
 //			AppLogDebug("[LeaderboardRankForm] Argument Received (%S)", leaderboardId->GetPointer());
 			gameId = *pGameId;
 			leaderboardId = *pLeaderboardId;
-			loadLeaderboardRank(gameId, leaderboardId, this, 0, 8);
-			loadLeaderboardMyRank(gameId, leaderboardId, this);
+
+			lbController->loadLeaderboardRank(gameId, leaderboardId, this, offset, 8);
+			lbController->loadLeaderboardMyRank(gameId, leaderboardId, this);
 		}
 		pArgs->RemoveAll(true);
 		delete pArgs;
 	}
 }
-
 void AppGHLeaderboardRankForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
 										   const Tizen::Ui::Scenes::SceneId& nextSceneId)
 {
 	// TODO: Deactivate your scene here.
 
 }
-
-void AppGHLeaderboardRankForm::loadLeaderboardRankFinished(GHLeaderboard* _leaderboard)
-{
-	if(_leaderboard == null) {
-		return;
-	}
-	leaderboard = _leaderboard;
-	rank_list = leaderboard->getRankList();
-	offset += rank_list->GetCount();
-	AppLogDebug("[LeaderboardRankForm] leaderboardRankList Received. (listSize : %d)", rank_list->GetCount() );
-
-	strUnit = leaderboard->getUnit();
-	pRankProvider->setUnit(strUnit);
-	pRankProvider->addItemList(rank_list);
-
-	pRankListView->SetItemProvider( *pRankProvider );
-	pRankListView->Draw();
-}
-
+// IScrollEventListener
 void AppGHLeaderboardRankForm::OnScrollEndReached(Tizen::Ui::Control &source, Tizen::Ui::Controls::ScrollEndEvent type)
 {
 	if(type == SCROLL_END_EVENT_END_BOTTOM) {
 		AppLogDebug("[LeaderboardRankForm] OnScrollEndReached()");
-		loadLeaderboardRank(gameId, leaderboardId, this, offset, 8);
+		lbController->loadLeaderboardRank(gameId, leaderboardId, this, offset, 8);
 	}
-}
-
-void AppGHLeaderboardRankForm::loadLeaderboardMyRankFinished(GHPlayerRank* pPlayerRank)
-{
-	if(pPlayerRank == null) {
-		pPanelMyrank = static_cast<Panel*>(GetControl(IDC_LEADERBOARDRANK_PANEL_MYRANK));
-		pGallery = static_cast<Gallery*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_GALLERY));
-		pGallery->SetShowState(false);
-		pLabelName = static_cast<Label*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_LABEL_NAME));
-		pLabelName->SetText("No data");
-		Draw();
-		return;
-	}
-	myRank = pPlayerRank;
-	setMyRank();
-}
-
-void AppGHLeaderboardRankForm::setMyRank()
-{
-	// Set My rank Info.
-	pPanelMyrank = static_cast<Panel*>(GetControl(IDC_LEADERBOARDRANK_PANEL_MYRANK));
-	pLabelName = static_cast<Label*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_LABEL_NAME));
-	pLabelScore = static_cast<Label*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_LABEL_SCORE));
-	pLabelRank = static_cast<Label*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_LABEL_RANK));
-	pGallery = static_cast<Gallery*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_GALLERY));
-
-
-	pLabelName->SetText(myRank->getName());
-	pLabelScore->SetText(Integer::ToString(myRank->getScore()) + strUnit);
-	pLabelRank->SetText(Integer::ToString(myRank->getRank()) + " 위");
-	Draw();
 }

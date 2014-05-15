@@ -19,8 +19,6 @@ public:
 	AppGHLeaderboardForm();
 	virtual ~AppGHLeaderboardForm();
 
-	Tizen::Base::Collection::ArrayList* lb_list;
-
 private:
 	//IFormBackEventListener
 	virtual void OnFormBackRequested(Tizen::Ui::Controls::Form& source);
@@ -31,8 +29,8 @@ private:
 									const Tizen::Ui::Scenes::SceneId& nextSceneId);
 
 	virtual void OnInitialized(){};
+	virtual void setLeaderboardList();
 
-	void setLeaderboardList();
 	Tizen::Base::String gameId;
 };
 

@@ -30,12 +30,12 @@
 								</option>
 								<option id="sbi.gnu.cpp.compiler.option.frameworks_inc.cpp.243530856" name="Tizen-Frameworks-Include-Path" superClass="sbi.gnu.cpp.compiler.option.frameworks_inc.cpp" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${SBI_SYSROOT}/usr/include/libxml2&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;C:\tizen-sdk\library&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Users\Administrator\AppData\Local\Tizen\tizen-sdk\library&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${SBI_SYSROOT}/usr/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${SBI_SYSROOT}/usr/include/osp&quot;"/>
 								</option>
 								<option id="sbi.gnu.cpp.compiler.option.frameworks_cflags.cpp.798104408" name="Tizen-Frameworks-Other-Cflags" superClass="sbi.gnu.cpp.compiler.option.frameworks_cflags.cpp" valueType="stringList">
-									<listOptionValue builtIn="false" value="-target arm-tizen-linux-gnueabi -gcc-toolchain &quot;C:/tizen-sdk/tools/smart-build-interface/../arm-linux-gnueabi-gcc-4.5/&quot; -ccc-gcc-name arm-linux-gnueabi-g++ -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -mtune=cortex-a8 -Wno-gnu"/>
+									<listOptionValue builtIn="false" value="-target arm-tizen-linux-gnueabi -gcc-toolchain &quot;C:/Users/Administrator/AppData/Local/Tizen/tizen-sdk/tools/smart-build-interface/../arm-linux-gnueabi-gcc-4.5/&quot; -ccc-gcc-name arm-linux-gnueabi-g++ -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -mtune=cortex-a8 -Wno-gnu"/>
 									<listOptionValue builtIn="false" value=" -fPIE"/>
 									<listOptionValue builtIn="false" value="--sysroot=&quot;${SBI_SYSROOT}&quot;"/>
 								</option>
@@ -60,12 +60,12 @@
 								</option>
 								<option id="sbi.gnu.c.compiler.option.frameworks_inc.cpp.754732650" name="Tizen-Frameworks-Include-Path" superClass="sbi.gnu.c.compiler.option.frameworks_inc.cpp" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${SBI_SYSROOT}/usr/include/libxml2&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;C:\tizen-sdk\library&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Users\Administrator\AppData\Local\Tizen\tizen-sdk\library&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${SBI_SYSROOT}/usr/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${SBI_SYSROOT}/usr/include/osp&quot;"/>
 								</option>
 								<option id="sbi.gnu.c.compiler.option.frameworks_cflags.cpp.899689611" name="Tizen-Frameworks-Other-Cflags" superClass="sbi.gnu.c.compiler.option.frameworks_cflags.cpp" valueType="stringList">
-									<listOptionValue builtIn="false" value="-target arm-tizen-linux-gnueabi -gcc-toolchain &quot;C:/tizen-sdk/tools/smart-build-interface/../arm-linux-gnueabi-gcc-4.5/&quot; -ccc-gcc-name arm-linux-gnueabi-g++ -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -mtune=cortex-a8 -Wno-gnu"/>
+									<listOptionValue builtIn="false" value="-target arm-tizen-linux-gnueabi -gcc-toolchain &quot;C:/Users/Administrator/AppData/Local/Tizen/tizen-sdk/tools/smart-build-interface/../arm-linux-gnueabi-gcc-4.5/&quot; -ccc-gcc-name arm-linux-gnueabi-g++ -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -mtune=cortex-a8 -Wno-gnu"/>
 									<listOptionValue builtIn="false" value=" -fPIE"/>
 									<listOptionValue builtIn="false" value="--sysroot=&quot;${SBI_SYSROOT}&quot;"/>
 								</option>
@@ -83,7 +83,7 @@
 							<tool id="org.tizen.nativeide.tool.sbi.gnu.c.linker.base.276740829" name="C Linker" superClass="org.tizen.nativeide.tool.sbi.gnu.c.linker.base"/>
 							<tool command="clang++.exe" id="org.tizen.nativecpp.tool.sbi.gnu.cpp.linker.24496738" name="C++ Linker" superClass="org.tizen.nativecpp.tool.sbi.gnu.cpp.linker">
 								<option id="sbi.gnu.cpp.linker.option.frameworks_lflags.cpp.79076388" name="Tizen-Frameworks-Other-Lflags" superClass="sbi.gnu.cpp.linker.option.frameworks_lflags.cpp" valueType="stringList">
-									<listOptionValue builtIn="false" value="-target arm-tizen-linux-gnueabi -gcc-toolchain &quot;C:/tizen-sdk/tools/smart-build-interface/../arm-linux-gnueabi-gcc-4.5/&quot; -ccc-gcc-name arm-linux-gnueabi-g++ -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -mtune=cortex-a8 -Xlinker --as-needed"/>
+									<listOptionValue builtIn="false" value="-target arm-tizen-linux-gnueabi -gcc-toolchain &quot;C:/Users/Administrator/AppData/Local/Tizen/tizen-sdk/tools/smart-build-interface/../arm-linux-gnueabi-gcc-4.5/&quot; -ccc-gcc-name arm-linux-gnueabi-g++ -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -mtune=cortex-a8 -Xlinker --as-needed"/>
 									<listOptionValue builtIn="false" value="-pie -lpthread "/>
 									<listOptionValue builtIn="false" value="-Xlinker -rpath=&quot;/opt/usr/apps/riQlIAKKYh/lib&quot;"/>
 									<listOptionValue builtIn="false" value="-Xlinker -rpath=&quot;/home/developer/sdk_tools/lib&quot;"/>
@@ -175,12 +175,12 @@
 								</option>
 								<option id="sbi.gnu.cpp.compiler.option.frameworks_inc.cpp.1148064482" name="Tizen-Frameworks-Include-Path" superClass="sbi.gnu.cpp.compiler.option.frameworks_inc.cpp" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${SBI_SYSROOT}/usr/include/libxml2&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;C:\tizen-sdk\library&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Users\Administrator\AppData\Local\Tizen\tizen-sdk\library&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${SBI_SYSROOT}/usr/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${SBI_SYSROOT}/usr/include/osp&quot;"/>
 								</option>
 								<option id="sbi.gnu.cpp.compiler.option.frameworks_cflags.cpp.1882542791" name="Tizen-Frameworks-Other-Cflags" superClass="sbi.gnu.cpp.compiler.option.frameworks_cflags.cpp" valueType="stringList">
-									<listOptionValue builtIn="false" value="-target arm-tizen-linux-gnueabi -gcc-toolchain &quot;C:/tizen-sdk/tools/smart-build-interface/../arm-linux-gnueabi-gcc-4.5/&quot; -ccc-gcc-name arm-linux-gnueabi-g++ -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -mtune=cortex-a8 -Wno-gnu"/>
+									<listOptionValue builtIn="false" value="-target arm-tizen-linux-gnueabi -gcc-toolchain &quot;C:/Users/Administrator/AppData/Local/Tizen/tizen-sdk/tools/smart-build-interface/../arm-linux-gnueabi-gcc-4.5/&quot; -ccc-gcc-name arm-linux-gnueabi-g++ -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -mtune=cortex-a8 -Wno-gnu"/>
 									<listOptionValue builtIn="false" value=" -fPIE"/>
 									<listOptionValue builtIn="false" value="--sysroot=&quot;${SBI_SYSROOT}&quot;"/>
 								</option>
@@ -201,12 +201,12 @@
 								</option>
 								<option id="sbi.gnu.c.compiler.option.frameworks_inc.cpp.147391381" name="Tizen-Frameworks-Include-Path" superClass="sbi.gnu.c.compiler.option.frameworks_inc.cpp" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${SBI_SYSROOT}/usr/include/libxml2&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;C:\tizen-sdk\library&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Users\Administrator\AppData\Local\Tizen\tizen-sdk\library&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${SBI_SYSROOT}/usr/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${SBI_SYSROOT}/usr/include/osp&quot;"/>
 								</option>
 								<option id="sbi.gnu.c.compiler.option.frameworks_cflags.cpp.473500221" name="Tizen-Frameworks-Other-Cflags" superClass="sbi.gnu.c.compiler.option.frameworks_cflags.cpp" valueType="stringList">
-									<listOptionValue builtIn="false" value="-target arm-tizen-linux-gnueabi -gcc-toolchain &quot;C:/tizen-sdk/tools/smart-build-interface/../arm-linux-gnueabi-gcc-4.5/&quot; -ccc-gcc-name arm-linux-gnueabi-g++ -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -mtune=cortex-a8 -Wno-gnu"/>
+									<listOptionValue builtIn="false" value="-target arm-tizen-linux-gnueabi -gcc-toolchain &quot;C:/Users/Administrator/AppData/Local/Tizen/tizen-sdk/tools/smart-build-interface/../arm-linux-gnueabi-gcc-4.5/&quot; -ccc-gcc-name arm-linux-gnueabi-g++ -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -mtune=cortex-a8 -Wno-gnu"/>
 									<listOptionValue builtIn="false" value=" -fPIE"/>
 									<listOptionValue builtIn="false" value="--sysroot=&quot;${SBI_SYSROOT}&quot;"/>
 								</option>
@@ -221,7 +221,7 @@
 							<tool id="org.tizen.nativeide.tool.sbi.gnu.c.linker.base.1117472858" name="C Linker" superClass="org.tizen.nativeide.tool.sbi.gnu.c.linker.base"/>
 							<tool command="clang++.exe" id="org.tizen.nativecpp.tool.sbi.gnu.cpp.linker.1629146251" name="C++ Linker" superClass="org.tizen.nativecpp.tool.sbi.gnu.cpp.linker">
 								<option id="sbi.gnu.cpp.linker.option.frameworks_lflags.cpp.1062280898" name="Tizen-Frameworks-Other-Lflags" superClass="sbi.gnu.cpp.linker.option.frameworks_lflags.cpp" valueType="stringList">
-									<listOptionValue builtIn="false" value="-target arm-tizen-linux-gnueabi -gcc-toolchain &quot;C:/tizen-sdk/tools/smart-build-interface/../arm-linux-gnueabi-gcc-4.5/&quot; -ccc-gcc-name arm-linux-gnueabi-g++ -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -mtune=cortex-a8 -Xlinker --as-needed"/>
+									<listOptionValue builtIn="false" value="-target arm-tizen-linux-gnueabi -gcc-toolchain &quot;C:/Users/Administrator/AppData/Local/Tizen/tizen-sdk/tools/smart-build-interface/../arm-linux-gnueabi-gcc-4.5/&quot; -ccc-gcc-name arm-linux-gnueabi-g++ -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -mtune=cortex-a8 -Xlinker --as-needed"/>
 									<listOptionValue builtIn="false" value="-pie -lpthread "/>
 									<listOptionValue builtIn="false" value="-Xlinker -rpath=&quot;/opt/usr/apps/riQlIAKKYh/lib&quot;"/>
 									<listOptionValue builtIn="false" value="-Xlinker -rpath=&quot;/home/developer/sdk_tools/lib&quot;"/>
@@ -310,12 +310,12 @@
 								</option>
 								<option id="sbi.gnu.cpp.compiler.option.frameworks_inc.cpp.2028597350" name="Tizen-Frameworks-Include-Path" superClass="sbi.gnu.cpp.compiler.option.frameworks_inc.cpp" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${SBI_SYSROOT}/usr/include/libxml2&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;C:\tizen-sdk\library&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Users\Administrator\AppData\Local\Tizen\tizen-sdk\library&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${SBI_SYSROOT}/usr/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${SBI_SYSROOT}/usr/include/osp&quot;"/>
 								</option>
 								<option id="sbi.gnu.cpp.compiler.option.frameworks_cflags.cpp.416877792" name="Tizen-Frameworks-Other-Cflags" superClass="sbi.gnu.cpp.compiler.option.frameworks_cflags.cpp" valueType="stringList">
-									<listOptionValue builtIn="false" value="-target i386-tizen-linux-gnueabi -gcc-toolchain &quot;C:/tizen-sdk/tools/smart-build-interface/../i386-linux-gnueabi-gcc-4.5/&quot; -ccc-gcc-name i386-linux-gnueabi-g++ -march=i386 -Wno-gnu"/>
+									<listOptionValue builtIn="false" value="-target i386-tizen-linux-gnueabi -gcc-toolchain &quot;C:/Users/Administrator/AppData/Local/Tizen/tizen-sdk/tools/smart-build-interface/../i386-linux-gnueabi-gcc-4.5/&quot; -ccc-gcc-name i386-linux-gnueabi-g++ -march=i386 -Wno-gnu"/>
 									<listOptionValue builtIn="false" value=" -fPIE"/>
 									<listOptionValue builtIn="false" value="--sysroot=&quot;${SBI_SYSROOT}&quot;"/>
 								</option>
@@ -341,12 +341,12 @@
 								</option>
 								<option id="sbi.gnu.c.compiler.option.frameworks_inc.cpp.65265871" name="Tizen-Frameworks-Include-Path" superClass="sbi.gnu.c.compiler.option.frameworks_inc.cpp" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${SBI_SYSROOT}/usr/include/libxml2&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;C:\tizen-sdk\library&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Users\Administrator\AppData\Local\Tizen\tizen-sdk\library&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${SBI_SYSROOT}/usr/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${SBI_SYSROOT}/usr/include/osp&quot;"/>
 								</option>
 								<option id="sbi.gnu.c.compiler.option.frameworks_cflags.cpp.607506235" name="Tizen-Frameworks-Other-Cflags" superClass="sbi.gnu.c.compiler.option.frameworks_cflags.cpp" valueType="stringList">
-									<listOptionValue builtIn="false" value="-target i386-tizen-linux-gnueabi -gcc-toolchain &quot;C:/tizen-sdk/tools/smart-build-interface/../i386-linux-gnueabi-gcc-4.5/&quot; -ccc-gcc-name i386-linux-gnueabi-g++ -march=i386 -Wno-gnu"/>
+									<listOptionValue builtIn="false" value="-target i386-tizen-linux-gnueabi -gcc-toolchain &quot;C:/Users/Administrator/AppData/Local/Tizen/tizen-sdk/tools/smart-build-interface/../i386-linux-gnueabi-gcc-4.5/&quot; -ccc-gcc-name i386-linux-gnueabi-g++ -march=i386 -Wno-gnu"/>
 									<listOptionValue builtIn="false" value=" -fPIE"/>
 									<listOptionValue builtIn="false" value="--sysroot=&quot;${SBI_SYSROOT}&quot;"/>
 								</option>
@@ -366,7 +366,7 @@
 							<tool id="org.tizen.nativeide.tool.sbi.gnu.c.linker.base.1439930707" name="C Linker" superClass="org.tizen.nativeide.tool.sbi.gnu.c.linker.base"/>
 							<tool command="clang++.exe" id="org.tizen.nativecpp.tool.sbi.gnu.cpp.linker.da.646079655" name="C++ Linker" superClass="org.tizen.nativecpp.tool.sbi.gnu.cpp.linker.da">
 								<option id="sbi.gnu.cpp.linker.option.frameworks_lflags.cpp.38902328" name="Tizen-Frameworks-Other-Lflags" superClass="sbi.gnu.cpp.linker.option.frameworks_lflags.cpp" valueType="stringList">
-									<listOptionValue builtIn="false" value="-target i386-tizen-linux-gnueabi -gcc-toolchain &quot;C:/tizen-sdk/tools/smart-build-interface/../i386-linux-gnueabi-gcc-4.5/&quot; -ccc-gcc-name i386-linux-gnueabi-g++ -march=i386 -Xlinker --as-needed"/>
+									<listOptionValue builtIn="false" value="-target i386-tizen-linux-gnueabi -gcc-toolchain &quot;C:/Users/Administrator/AppData/Local/Tizen/tizen-sdk/tools/smart-build-interface/../i386-linux-gnueabi-gcc-4.5/&quot; -ccc-gcc-name i386-linux-gnueabi-g++ -march=i386 -Xlinker --as-needed"/>
 									<listOptionValue builtIn="false" value="-pie -lpthread "/>
 									<listOptionValue builtIn="false" value="-Xlinker -rpath=&quot;/opt/usr/apps/riQlIAKKYh/lib&quot;"/>
 									<listOptionValue builtIn="false" value="-Xlinker -rpath=&quot;/home/developer/sdk_tools/lib&quot;"/>

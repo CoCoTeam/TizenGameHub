@@ -5,7 +5,7 @@
  *      Author: Administrator
  */
 
-#include "AppResourceId.h"
+#include "LibResourceId.h"
 #include "GHForm/ListPanel.h"
 #include "GHForm/LeaderboardRankForm.h"
 //#include "TizenGameHubFrame.h"
@@ -69,10 +69,6 @@ ListPanel::ListPanel(GHLeaderboard leaderboard)
 	title = leaderboard.getTitle();
 	imgUrl = leaderboard.getImgUrl();
 
-	setLeaderboardConfig();
-}
-void ListPanel::setLeaderboardConfig()
-{
 	Construct(IDL_PANEL_LISTPANEL);
 	isTouchEnable = true;
 	AddTouchEventListener(*this);
@@ -91,8 +87,8 @@ void ListPanel::setLeaderboardConfig()
 	pLabelTitle->AddTouchEventListener(*this);
 	pLabelDesc->AddTouchEventListener(*this);
 	pImg->AddTouchEventListener(*this);
-
 }
+
 void ListPanel::OnTouchReleased (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)
 {
 	Tizen::Ui::Controls::Frame *pFrame = Tizen::App::UiApp::GetInstance()->GetAppFrame()->GetFrame();

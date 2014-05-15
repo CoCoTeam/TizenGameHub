@@ -6,7 +6,7 @@
  */
 
 #include "GameHub/AppListPanel.h"
-#include "AppResourceId.h"
+#include "LibResourceId.h"
 #include "TizenGameHubFrame.h"
 #include <FMedia.h>
 
@@ -20,12 +20,9 @@ AppListPanel::AppListPanel() {
 AppListPanel::~AppListPanel() {
 }
 AppListPanel::AppListPanel(GHLeaderboard leaderboard)
+: ListPanel(leaderboard)
 {
-	id = leaderboard.getId();
-	title = leaderboard.getTitle();
-	imgUrl = leaderboard.getImgUrl();
 
-	setLeaderboardConfig();
 }
 
 void AppListPanel::setGameId(Tizen::Base::String game_id)

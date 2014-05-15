@@ -6,7 +6,7 @@
  */
 
 #include "GHForm/AchievementForm.h"
-#include "AppResourceId.h"
+#include "LibResourceId.h"
 #include "GHForm/ListPanel.h"
 #include "GHAchievement/GHAchievementController.h"
 
@@ -46,8 +46,8 @@ result AchievementForm::OnTerminating(void)
 {
 	result r = E_SUCCESS;
 
-	ac_list->RemoveAll();	delete ac_list;
-	pAchievement_scrollpanel->RemoveAllControls();
+//	ac_list->RemoveAll();	delete ac_list;
+//	pAchievement_scrollpanel->RemoveAllControls();
 
 	return r;
 }
