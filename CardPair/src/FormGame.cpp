@@ -422,11 +422,11 @@ void FormGame::compareCard()
 				pTimerMulti->Cancel();
 			} else {
 				pTimerGame->Cancel();
+
+				// 스테이지 클리어 점수 증가
+				gameScore += 1000;
 			}
 			isComplete = true;
-
-			// 스테이지 클리어 점수 증가
-			gameScore += 1000;
 
 			// 스테이지 클리어 시 호출
 			onStageComplete();

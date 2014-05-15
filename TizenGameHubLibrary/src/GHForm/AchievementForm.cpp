@@ -5,9 +5,10 @@
  *      Author: Administrator
  */
 
-#include "AppResourceId.h"
 #include "GHForm/AchievementForm.h"
+#include "AppResourceId.h"
 #include "GHForm/ListPanel.h"
+#include "GHAchievement/GHAchievementController.h"
 
 using namespace Tizen::Ui::Controls;
 using namespace Tizen::Ui::Scenes;
@@ -32,9 +33,14 @@ result AchievementForm::OnInitializing(void)
 
 	// Get a panel via resource ID
 	pAchievement_scrollpanel = static_cast<ScrollPanel*>(GetControl(IDC_ACHIEVEMENT_SCROLLPANEL));
-	loadAchievements(this);
+	OnInitialized();
 
 	return r;
+}
+void AchievementForm::OnInitialized()
+{
+	GHAchievementController* acController = new GHAchievementController();
+	acController->loadAchievements(this);
 }
 result AchievementForm::OnTerminating(void)
 {
@@ -52,6 +58,9 @@ void AchievementForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 }
 void AchievementForm::loadAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList)
 {
+	if(achievementList == null) {
+		return;
+	}
 	ac_list = achievementList;
 	AppLogDebug("[AchievementForm] achievementArray Received. (arraySize : %d)", ac_list->GetCount() );
 	setAchievementList();

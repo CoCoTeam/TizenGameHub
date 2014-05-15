@@ -7,9 +7,9 @@
 #include "PlayerForm.h"
 #include "PlayerFriendForm.h"
 #include "GameForm.h"
-#include "AchievementForm.h"
-#include "LeaderboardForm.h"
-#include "LeaderboardRankForm.h"
+#include "GameHub/AppGHAchievementForm.h"
+#include "GameHub/AppGHLeaderboardForm.h"
+#include "GameHub/AppGHLeaderboardRankForm.h"
 #include "FriendSeachForm.h"
 
 using namespace Tizen::Ui::Scenes;
@@ -79,7 +79,7 @@ TizenGameHubFormFactory::CreateFormN(const Tizen::Base::String& formId, const Ti
 	}
 	else if(formId == IDL_FORM_ACHIEVEMENT)
 	{
-		AchievementForm *pForm = new (std::nothrow) AchievementForm();
+		AppGHAchievementForm *pForm = new (std::nothrow) AppGHAchievementForm();
 		TryReturn(pForm != null, null, "The memory is insufficient.");
 		pSceneManager->AddSceneEventListener(sceneId, *pForm);
 		pForm->Initialize();
@@ -87,7 +87,7 @@ TizenGameHubFormFactory::CreateFormN(const Tizen::Base::String& formId, const Ti
 	}
 	else if(formId == IDL_FORM_LEADERBOARD)
 	{
-		LeaderboardForm *pForm = new (std::nothrow) LeaderboardForm();
+		AppGHLeaderboardForm *pForm = new (std::nothrow) AppGHLeaderboardForm();
 		TryReturn(pForm != null, null, "The memory is insufficient.");
 		pSceneManager->AddSceneEventListener(sceneId, *pForm);
 		pForm->Initialize();
@@ -95,7 +95,7 @@ TizenGameHubFormFactory::CreateFormN(const Tizen::Base::String& formId, const Ti
 	}
 	else if(formId == IDL_FORM_LEADERBOARDRANK)
 	{
-		LeaderboardRankForm *pForm = new (std::nothrow) LeaderboardRankForm();
+		AppGHLeaderboardRankForm *pForm = new (std::nothrow) AppGHLeaderboardRankForm();
 		TryReturn(pForm != null, null, "The memory is insufficient.");
 		pSceneManager->AddSceneEventListener(sceneId, *pForm);
 		pForm->Initialize();

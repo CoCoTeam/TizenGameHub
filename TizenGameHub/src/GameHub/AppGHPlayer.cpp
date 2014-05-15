@@ -5,16 +5,16 @@
  *      Author: Administrator
  */
 
-#include "GameHub/GHPlayerApp.h"
+#include "GameHub/AppGHPlayer.h"
 
-GHPlayerApp::GHPlayerApp()
+AppGHPlayer::AppGHPlayer()
 :misFriend(false)
 {
 	// TODO Auto-generated constructor stub
 
 }
 
-GHPlayerApp::~GHPlayerApp() {
+AppGHPlayer::~AppGHPlayer() {
 	// TODO Auto-generated destructor stub
 }
 

@@ -15,6 +15,7 @@ FormGameMulti::FormGameMulti(void)
 	isMultiplay = true;
 	onMyTurn = false;
 	isGameFirst = true;
+	isWin = false;
 }
 
 FormGameMulti::~FormGameMulti(void)
@@ -89,13 +90,14 @@ void FormGameMulti::onStageComplete()
  */
 void FormGameMulti::onTurnFinished(int actionType, int cardNum, bool isCorrect)
 {
-	int finished = 1;
+	int finished = 0;
 	if(isComplete) {
-		finished = 0;
+		finished = 1;
 	}
 	String data("{\'actionType\':"+Integer::ToString(actionType)+ ",\'cardNum\':"+Integer::ToString(cardNum) +",\'score\':"+Integer::ToString(gameScore)
-				+ ",\'isCorrect\':\'"+Boolean::ToString(isCorrect)+ "\',\'isFinished\':"+Integer::ToString(finished) +"}");
-	multiController->sendDataToPlayer(data, 0);
+				+ ",\'isCorrect\':\'"+Boolean::ToString(isCorrect)+ "\'}");
+	multiController->sendDataToPlayer(data, finished);
+	AppLogDebug("%S", data.GetPointer());
 }
 
 // GHTurnbasedMatchListener
@@ -180,22 +182,7 @@ void FormGameMulti::onMatchMyturn(String data){
 
 			countRemoved++;
 
-			pObject->GetValue(new String("isFinished"), pValue);
-			JsonNumber *pjIsFinished = static_cast<JsonNumber*>(pValue);
-			bool isFinished = (pjIsFinished->ToInt() == 0 ? true : false);
-			delete pjIsFinished;
-
-			// isGameFinished
-			if(isFinished) {
-				AppLogDebug("============================================ Game Finished =============================================");
-				// 게임 종료, 패배
-
-				isWin = false;
-
-
-			} else {
-				multiController->sendDataToPlayer("", 0);
-			}
+			multiController->sendDataToPlayer("", 0);
 		}
 		// turnExpired, 틀리면
 		else if(actionType == 3) {
