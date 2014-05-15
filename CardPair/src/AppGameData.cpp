@@ -12,7 +12,7 @@ using namespace Tizen::Base;
 
 String multiplay_winNum = "";
 String multiplay_loseNum = "";
-
+int playNum = 0;
 
 
 //AppGameData::AppGameData() {

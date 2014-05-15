@@ -13,6 +13,7 @@
 
 extern Tizen::Base::String multiplay_winNum;
 extern Tizen::Base::String multiplay_loseNum;
+extern int playNum;
 
 //class AppGameData {
 //public:
