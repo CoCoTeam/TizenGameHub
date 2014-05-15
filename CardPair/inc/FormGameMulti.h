@@ -5,10 +5,13 @@
 #include "FormGame.h"
 #include "GHTurnbasedMatch/GHTurnbasedMatchController.h"
 #include "GHTurnbasedMatch/GHTurnbasedMatchListener.h"
+#include "GHCloudsave/GHCloudsaveController.h"
+#include "GHCloudsave/GHCloudsaveSaveListener.h"
 
 class FormGameMulti
 	: public FormGame
 	, public GHTurnbasedMatchListener
+	, public GHCloudsaveSaveListener
 {
 public:
 	FormGameMulti(void);
@@ -37,6 +40,11 @@ private:
 	int firstSelected, secondSelected;
 	bool isGameFirst;
 	Tizen::Ui::Controls::Label *pLabelScore2;
+
+	// Cloud Save
+	GHCloudsaveController *csController;
+	virtual void saveCloudsaveFinished(int statusCode);
+	bool isWin;
 
 };
 

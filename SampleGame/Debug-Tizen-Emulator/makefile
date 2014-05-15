@@ -46,7 +46,7 @@ main-build: ThreadUI.exe secondary-outputs
 ThreadUI.exe: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C++ Linker'
-	clang++.exe -o"ThreadUI.exe" $(OBJS) $(USER_OBJS) $(LIBS) -LC:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\SampleGame\lib -target i386-tizen-linux-gnueabi -gcc-toolchain "C:/Users/Administrator/AppData/Local/Tizen/tizen-sdk/tools/smart-build-interface/../i386-linux-gnueabi-gcc-4.5/" -ccc-gcc-name i386-linux-gnueabi-g++ -march=i386 -Xlinker --as-needed -pie -lpthread -Xlinker -rpath="/opt/usr/apps/v9lmtasqpV/lib" -Xlinker -rpath="/home/developer/sdk_tools/lib" --sysroot="C:/Users/Administrator/AppData/Local/Tizen/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native" -L"C:/Users/Administrator/AppData/Local/Tizen/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/lib" -L"C:/Users/Administrator/AppData/Local/Tizen/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/lib/osp" -losp-uifw -losp-appfw -losp-image -losp-json -losp-ime -losp-net -lpthread -losp-content -losp-locations -losp-telephony -losp-uix -losp-media -losp-messaging -losp-web -losp-social -losp-wifi -losp-bluetooth -losp-nfc -losp-face -losp-secure-element -losp-speech-tts -losp-speech-stt -losp-shell -losp-shell-core -losp-vision -lxml2 -lalut -lopenal
+	clang++.exe -o"ThreadUI.exe" $(OBJS) $(USER_OBJS) $(LIBS) -LC:\Users\JOHEEYEON\workspace\TizenGameHub\SampleGame\lib -target i386-tizen-linux-gnueabi -gcc-toolchain "C:/tizen-sdk/tools/smart-build-interface/../i386-linux-gnueabi-gcc-4.5/" -ccc-gcc-name i386-linux-gnueabi-g++ -march=i386 -Xlinker --as-needed -pie -lpthread -Xlinker -rpath="/opt/usr/apps/v9lmtasqpV/lib" -Xlinker -rpath="/home/developer/sdk_tools/lib" --sysroot="C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native" -L"C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/lib" -L"C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-emulator-2.2.native/usr/lib/osp" -losp-uifw -losp-appfw -losp-image -losp-json -losp-ime -losp-net -lpthread -losp-content -losp-locations -losp-telephony -losp-uix -losp-media -losp-messaging -losp-web -losp-social -losp-wifi -losp-bluetooth -losp-nfc -losp-face -losp-secure-element -losp-speech-tts -losp-speech-stt -losp-shell -losp-shell-core -losp-vision -lxml2 -lalut -lopenal
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -56,7 +56,7 @@ clean:
 	-@echo ' '
 
 pre-build:
-	-cp -rf C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\Debug\libTizenGameHubLibrary.so C:\Users\Administrator\Documents\workspace\tizen\TizenGameHub\SampleGame\lib
+	-cp -rf C:\Users\JOHEEYEON\workspace\TizenGameHub\TizenGameHubLibrary\Debug\libTizenGameHubLibrary.so C:\Users\JOHEEYEON\workspace\TizenGameHub\SampleGame\lib
 	-@echo ' '
 
 secondary-outputs: $(MO_FILES) $(EDJ_FILES)

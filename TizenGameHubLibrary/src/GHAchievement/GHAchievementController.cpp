@@ -116,6 +116,8 @@ void GHAchievementController::setAchievement(String ac_id, GHAchievementSettedLi
 // 모든 통신의 콜백에서 호출하는 함수
 void GHAchievementController::OnTransactionReadyToRead(String apiCode, String statusCode, IJsonValue* data){
 
+	AppLogDebug(">> test <<");
+
 	AppLogDebug("[DEBUG] apiCode : %S", apiCode.GetPointer() );
 	AppLogDebug("[DEBUG] statusCode : %S", statusCode.GetPointer() );
 
@@ -181,7 +183,11 @@ void GHAchievementController::OnTransactionReadyToRead(String apiCode, String st
 		int stateCode;
 		Integer::Parse(statusCode, stateCode);
 
+		AppLogDebug("[DEBUG]ACHIEVEMENT_COMPLETE ");
+
 		if(this->currentListener != null) this->currentListener->completeAchievementFinished(stateCode);
+
+
 
 	} else if(apiCode.Equals(ACHIEVEMENT_SET)) { // ACHIEVEMENT_SET
 		int stateCode;
