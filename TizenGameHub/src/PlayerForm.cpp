@@ -88,16 +88,8 @@ PlayerForm::OnInitializing(void)
 
 
 	pGalleryUserProfile = static_cast< Gallery* >(pPanelUser->GetControl(IDC_USER_IMG_USERIMG));
-	pGalleryUserProfile->SetItemProvider(*this);
 
-/*	String user_image_path = Environment::GetMediaPath() + L"Downloads/profile.jpg";
-	AppLogDebug("USER_IMAGE --> %S", user_image_path.GetPointer());
 
-	Image img;
-	img.Construct();
-	__pUserBmp = img.DecodeN(user_image_path, BITMAP_PIXEL_FORMAT_ARGB8888);
-
-	pGalleryUserProfile->RefreshGallery(0,GALLERY_REFRESH_TYPE_ITEM_MODIFY);*/
 
 	return r;
 }
@@ -262,9 +254,15 @@ PlayerForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 	img.Construct();
 	__pUserBmp = img.DecodeN(user_image_path, BITMAP_PIXEL_FORMAT_ARGB8888);
 
-	pGalleryUserProfile->RefreshGallery(0,GALLERY_REFRESH_TYPE_ITEM_MODIFY);
+	if(__pUserBmp)
+	{
+		pGalleryUserProfile->SetItemProvider(*this);
+		pGalleryUserProfile->RefreshGallery(0,GALLERY_REFRESH_TYPE_ITEM_MODIFY);
 
-	AppLogDebug("=======================> !! 2 <=========================== ");
+		AppLogDebug("=======================> !! 2 <=========================== ");
+	}
+
+
 
 	// TODO: Activate your scene here.
 	if (pArgs != null)

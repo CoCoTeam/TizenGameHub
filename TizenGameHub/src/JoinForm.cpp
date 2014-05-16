@@ -75,13 +75,18 @@ JoinForm::OnInitializing(void)
 	pTextPwconfirm = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_PWCONFIRM));
 	pTextName = static_cast< EditField* >(GetControl(IDC_JOIN_EDITTEXT_NAME));
 
+	pGalleryProfile = static_cast< Gallery* >(GetControl(IDC_JOIN_GALLERY_PROFILE));
+	pGalleryProfile->AddTouchEventListener(*this);
+
 /*	Gallery *pGalleryProfile;
 	pGalleryProfile = static_cast< Gallery* >(GetControl(IDC_JOIN_GALLERY_PROFILE));
 	pGalleryProfile->SetItemProvider(*this);
 	pGalleryProfile->AddTouchEventListener(*this);*/
 
-	String path = L"http://54.238.195.222:80/players/"+ GHSharedAuthData::getSharedInstance().getPlayerId()  +"/image";
-	this->RequestImage(path,500,500,5000);
+
+
+/*	String path = L"http://54.238.195.222:80/players/"+ GHSharedAuthData::getSharedInstance().getPlayerId()  +"/image";
+	this->RequestImage(path,500,500,5000);*/
 
 	//AppLog("INITIAL");
 
@@ -144,12 +149,9 @@ JoinForm::OnImageDecodeUrlReceived (RequestId reqId, Tizen::Graphics::Bitmap *pB
 
 		AppLog("Request SUCCESS");
 
-
-		//Gallery *pGalleryProfile;
 		pGalleryProfile = static_cast< Gallery* >(GetControl(IDC_JOIN_GALLERY_PROFILE));
 		pGalleryProfile->SetItemProvider(*this);
 		pGalleryProfile->AddTouchEventListener(*this);
-
 
 		pGalleryProfile->RefreshGallery(0,GALLERY_REFRESH_TYPE_ITEM_MODIFY);
 
@@ -325,13 +327,24 @@ JoinForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 				pTextEmail->SetText("kichul");
 				pTextEmail->SetEnabled(false);
 
-				//pGalleryProfile->SetShowState(true);
+				String path = L"http://54.238.195.222:80/players/"+ GHSharedAuthData::getSharedInstance().getPlayerId()  +"/image";
+				this->RequestImage(path,500,500,5000);
 
+
+
+				/*if(pGalleryProfile)
+				{
+					pGalleryProfile->RefreshGallery(0, GALLERY_REFRESH_TYPE_ITEM_MODIFY);
+					pGalleryProfile->SetItemProvider(*this);
+
+				}*/
+
+				pGalleryProfile->SetShowState(true);
 				//!! pGalleryProfile->Set이미지
 			}
 			else
 			{
-				//pGalleryProfile->SetEnabled(false);
+				pGalleryProfile->SetShowState(false);
 			}
 
 		}
@@ -522,6 +535,7 @@ JoinForm::OnUserEventReceivedN(RequestId requestId, Tizen::Base::Collection::ILi
 
 		AppLogDebug("test4");
 
+		pGalleryProfile->SetItemProvider(*this);
 		pGalleryProfile->RefreshGallery(0,GALLERY_REFRESH_TYPE_ITEM_MODIFY);
 
 		AppLogDebug("------------------crop image set----------------");
