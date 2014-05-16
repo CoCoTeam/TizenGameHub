@@ -86,25 +86,18 @@ PlayerForm::OnInitializing(void)
 
 	AppLog("__pCroppedBmp EXIST");
 
-	Gallery *pGalleryUserProfile;
+
 	pGalleryUserProfile = static_cast< Gallery* >(pPanelUser->GetControl(IDC_USER_IMG_USERIMG));
 	pGalleryUserProfile->SetItemProvider(*this);
 
-	/*pGalleryUserProfile->SetItemProvider(*this);
-	pGalleryUserProfile->AddTouchEventListener(*this);*/
-
-	//User Image 설정
-/*	String path = L"http://54.238.195.222:80/players/pkeykichul/image";
-	this->RequestImage(path,400,400,5000);*/
-
-	String user_image_path = Environment::GetMediaPath() + L"Downloads/profile.jpg";
+/*	String user_image_path = Environment::GetMediaPath() + L"Downloads/profile.jpg";
 	AppLogDebug("USER_IMAGE --> %S", user_image_path.GetPointer());
 
 	Image img;
 	img.Construct();
 	__pUserBmp = img.DecodeN(user_image_path, BITMAP_PIXEL_FORMAT_ARGB8888);
 
-	pGalleryUserProfile->RefreshGallery(0,GALLERY_REFRESH_TYPE_ITEM_ADD);
+	pGalleryUserProfile->RefreshGallery(0,GALLERY_REFRESH_TYPE_ITEM_MODIFY);*/
 
 	return r;
 }
@@ -259,6 +252,20 @@ void
 PlayerForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 										  const Tizen::Ui::Scenes::SceneId& currentSceneId, Tizen::Base::Collection::IList* pArgs)
 {
+	AppLogDebug("=======================> !! <=========================== ");
+
+
+	String user_image_path = Environment::GetMediaPath() + L"Downloads/profile.jpg";
+	AppLogDebug("USER_IMAGE --> %S", user_image_path.GetPointer());
+
+	Image img;
+	img.Construct();
+	__pUserBmp = img.DecodeN(user_image_path, BITMAP_PIXEL_FORMAT_ARGB8888);
+
+	pGalleryUserProfile->RefreshGallery(0,GALLERY_REFRESH_TYPE_ITEM_MODIFY);
+
+	AppLogDebug("=======================> !! 2 <=========================== ");
+
 	// TODO: Activate your scene here.
 	if (pArgs != null)
 	{
@@ -269,8 +276,10 @@ PlayerForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 			isLocalPlayer = (*mPlayerId == GHSharedAuthData::getSharedInstance().getPlayerId() ? true : false);
 			setFooterMenu();
 
+
 			// 사용자 데이터 수신
 			getCurrentPlayerData( *mPlayerId );
+
 		}
 //		pArgs->RemoveAll(true);
 		delete pArgs;
@@ -462,23 +471,12 @@ PlayerForm::CreateItem(int index)
 
     // Creates an instance of GalleryItem and registers the bitmap to the gallery item
 
-	AppLog("__pCroppedBmp NULL");
+	//AppLog("__pCroppedBmp NULL");
 
 	GalleryItem* pGallery = new GalleryItem();
 	pGallery->Construct(*__pUserBmp);
 
-
-	/*if(__pUserBmp != null)
-	{
-		delete __pUserBmp;
-		__pUserBmp = null;
-		AppLog("__pUserBmp NotNull");
-	}
-	else
-	{
-		AppLog("__pUserBmp Null");
-	}
-*/
+	AppLogDebug("__pUserBmp set");
 
 	return pGallery;
 

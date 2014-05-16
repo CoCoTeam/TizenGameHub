@@ -80,7 +80,7 @@ JoinForm::OnInitializing(void)
 	pGalleryProfile->SetItemProvider(*this);
 	pGalleryProfile->AddTouchEventListener(*this);*/
 
-	String path = L"http://54.238.195.222:80/players/pkeykichul/image";
+	String path = L"http://54.238.195.222:80/players/"+ GHSharedAuthData::getSharedInstance().getPlayerId()  +"/image";
 	this->RequestImage(path,500,500,5000);
 
 	//AppLog("INITIAL");
@@ -143,9 +143,6 @@ JoinForm::OnImageDecodeUrlReceived (RequestId reqId, Tizen::Graphics::Bitmap *pB
 
 
 		AppLog("Request SUCCESS");
-
-
-
 
 
 		//Gallery *pGalleryProfile;
@@ -211,7 +208,14 @@ JoinForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 	switch(actionId)
 	{
 	case IDA_BUTTON_JOIN:
-		doJoin();
+/*		if( !(isPlayerJoin->ToBool()) )	// (수정 시퀀스면) 뒤로
+		{
+			pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_OUT));
+		}
+		else
+		{*/
+			doJoin();
+	/*	}*/
 		break;
 	case IDA_BUTTON_CANCEL:
 		pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_OUT));
@@ -347,15 +351,15 @@ JoinForm::CreateItem(int index)
 
     // Creates an instance of GalleryItem and registers the bitmap to the gallery item
 
-	AppLog("========================test1 ");
+	//AppLog("========================test1 ");
 
 	GalleryItem* pGallery = new GalleryItem();
 
-	AppLog("========================test2");
+	//AppLog("========================test2");
 
 	pGallery->Construct(*__pCroppedBmp);
 
-	AppLog("========================test3");
+	//AppLog("========================test3");
 
 	return pGallery;
 
