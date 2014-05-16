@@ -5,6 +5,13 @@
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <<<<<<< HEAD
+<DigestValue>GCZYQlxhtL0y3lVPDQUbS0cT5ktfyBVis4JzaGoT9pk=</DigestValue>
+</Reference>
+<Reference URI="bin/CardPair.exe">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>WOmU2vTcVieZ8pJCmK/No/NZh/J3VyTqlxpsx1Uoy/o=</DigestValue>
+=======
+<<<<<<< HEAD
 <DigestValue>/zs6jyteZgyy8qL5d62smLaZhDxT8lSITYndbnlBVSE=</DigestValue>
 </Reference>
 <Reference URI="bin/CardPair.exe">
@@ -17,6 +24,7 @@
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>DSDXcPaqNbb/UH/iZQEDJKsL+1av2NiG6+9D1G/EENQ=</DigestValue>
 >>>>>>> 3071353acea4b2ed70819d900f7533cf775d5861
+>>>>>>> 45cb000cffd8d8b57362374f473356058cd00273
 </Reference>
 <Reference URI="info/manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -48,7 +56,7 @@
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>tni9SdpJkXZIV4+uxJ2vwanwsVKXBGIx0fCb+llpJis=</DigestValue>
+<DigestValue>1ARFNcl+3w7SyY//lEAWFUF5vTE3cQjHvL3CLVfTKaU=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM_ACHIEVEMENT.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -92,6 +100,11 @@
 </SignedInfo>
 <SignatureValue>
 <<<<<<< HEAD
+FfSKQhmHydEQq1RhLR3BZCwgforaOyoXdqVoqmaTIcb6kIC97fH5+PW92OOj1EyrYJ8Q8jnx6g5a
+rfXDlAu7GsQNxIYZDKx1wVDyftCksRj9DrPgL1HFpHI+BWyeHDbPY1MUU8A0S641QDkeVwlEQEDh
+hn86vsIGjGvdJYcZxZc=
+=======
+<<<<<<< HEAD
 eVw1XqkXkJaqQ0Maf0ugqNflKJGaH2f8aw4hyJxqnbyhTkqsGaODjpqN9JzcqNjlYZp79acGllzt
 BJjsYOjNoCQJe1WQ9aIA0mc2QGFKuuBvv+DN7WoFHzgcOxvgpaGLN94dgM061HpOl8E050roL3Lb
 oIpp8jNiwJcApK2NLUQ=
@@ -100,6 +113,7 @@ AjvrGMClvZjElpnRBfAIjNcGUz4MiIUphyqJ00YAE/9JD4K09N5bO0KNyddKEf+/TDdxBLkZ+gzY
 bZg5VIiB3nJgsJuBlNRFaLOUoKN5QOZF05F5PnpKchx/YFk+3NH8t7gFWl1gR0AADq+Qt0aw+ozI
 5pAqQ35LHxjb3Be4gfQ=
 >>>>>>> 3071353acea4b2ed70819d900f7533cf775d5861
+>>>>>>> 45cb000cffd8d8b57362374f473356058cd00273
 </SignatureValue>
 <KeyInfo>
 <X509Data>

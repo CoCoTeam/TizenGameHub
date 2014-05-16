@@ -30,6 +30,7 @@ const wchar_t* IDC_LABEL1 = L"IDC_LABEL1";
 const wchar_t* IDC_LABEL2 = L"IDC_LABEL2";
 const wchar_t* IDC_LABEL3 = L"IDC_LABEL3";
 const wchar_t* IDC_LABEL4 = L"IDC_LABEL4";
+const wchar_t* IDC_LABEL_PLAYNUM = L"IDC_LABEL_PLAYNUM";
 const wchar_t* IDC_LABEL_RECORD = L"IDC_LABEL_RECORD";
 const wchar_t* IDC_LABEL_RECORDIMG = L"IDC_LABEL_RECORDIMG";
 const wchar_t* IDC_MAIN_BUTTON_LOGIN = L"IDC_MAIN_BUTTON_LOGIN";
