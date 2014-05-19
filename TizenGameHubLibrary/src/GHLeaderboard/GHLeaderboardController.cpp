@@ -8,6 +8,7 @@
 #include "GHSharedAuthData.h"
 #include "GHForm/LeaderboardForm.h"
 #include "GHLeaderboard/GHLeaderboardController.h"
+#include "LibResourceId.h"
 
 using namespace Tizen::Base::Collection;
 using namespace Tizen::Web::Json;
@@ -26,14 +27,8 @@ GHLeaderboardController::~GHLeaderboardController() {
 // LeaderboardForm(Page)을 로드한다.
 void GHLeaderboardController::loadLeaderboardForm()
 {
-	Tizen::Ui::Controls::Frame *pFrame = Tizen::App::UiApp::GetInstance()->GetAppFrame()->GetFrame();
-	LeaderboardForm* pForm = new (std::nothrow) LeaderboardForm();
-	pForm->Initialize();
-
-	// Add the form to the frame
-	pFrame->AddControl(pForm);
-	pFrame->SetCurrentForm(pForm);
-	pForm->Invalidate(true);
+	Tizen::Ui::Scenes::SceneManager* pSceneManager = Tizen::Ui::Scenes::SceneManager::GetInstance();
+	pSceneManager->GoForward(Tizen::Ui::Scenes::ForwardSceneTransition(SCENE_GHFORM_LEADERBOARD, Tizen::Ui::Scenes::SCENE_TRANSITION_ANIMATION_TYPE_LEFT));
 }
 
 // Leaderboard 목록을 가져온다.

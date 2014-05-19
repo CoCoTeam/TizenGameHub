@@ -19,7 +19,7 @@ AchievementForm::~AchievementForm() {
 }
 bool AchievementForm::Initialize(void)
 {
-	result r = Construct(IDL_FORM_ACHIEVEMENT);
+	result r = Construct(IDL_GHFORM_ACHIEVEMENT);
 	TryReturn(r == E_SUCCESS, false, "Failed to construct form");
 
 	return true;
@@ -54,7 +54,9 @@ result AchievementForm::OnTerminating(void)
 //IFormBackEventListener
 void AchievementForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 {
-	source.GetParent()->RemoveControl(source);
+	SceneManager* pSceneManager = SceneManager::GetInstance();
+	AppAssert(pSceneManager);
+	pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_RIGHT));
 }
 void AchievementForm::loadAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList)
 {

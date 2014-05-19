@@ -18,6 +18,7 @@
 class LeaderboardRankForm
 	: public Tizen::Ui::Controls::Form
 	, public Tizen::Ui::Controls::IFormBackEventListener
+	, public Tizen::Ui::Scenes::ISceneEventListener
 	, public Tizen::Ui::Controls::IScrollEventListener
 	, public GHLeaderboardController
 	, public GHLeaderboardListLoadedListener
@@ -34,8 +35,14 @@ private:
 	virtual result OnTerminating(void);
 	// IFormBackEventListener
 	virtual void OnFormBackRequested(Tizen::Ui::Controls::Form& source);
+	//ISceneEventListener
+	virtual void OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
+								   const Tizen::Ui::Scenes::SceneId& currentSceneId, Tizen::Base::Collection::IList* pArgs);
+	virtual void OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
+									const Tizen::Ui::Scenes::SceneId& nextSceneId);
 	// IScrollEventListener
 	virtual void OnScrollEndReached(Tizen::Ui::Control &source, Tizen::Ui::Controls::ScrollEndEvent type);
+
 	// GHLeaderboardListLoadedListener
 	virtual void loadLeaderboardRankFinished(GHLeaderboard* _leaderboard);
 	// GHLeaderboardMyRankLoadedListener

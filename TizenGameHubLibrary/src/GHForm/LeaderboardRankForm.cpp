@@ -25,7 +25,7 @@ LeaderboardRankForm::~LeaderboardRankForm() {
 }
 bool LeaderboardRankForm::Initialize(void)
 {
-	result r = Construct(IDL_FORM_LEADERBOARDRANK);
+	result r = Construct(IDL_GHFORM_LEADERBOARDRANK);
 	TryReturn(r == E_SUCCESS, false, "Failed to construct form");
 
 	return true;
@@ -61,16 +61,41 @@ result LeaderboardRankForm::OnTerminating(void)
 
 	return r;
 }
+void LeaderboardRankForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
+										  const Tizen::Ui::Scenes::SceneId& currentSceneId, Tizen::Base::Collection::IList* pArgs)
+{
+	// TODO: Activate your scene here.
+	if (pArgs != null)
+	{
+		if (pArgs->GetCount())
+		{
+			String* lb_id = static_cast<Tizen::Base::String*>(pArgs->GetAt(0));
+			AppLogDebug("dhskljfhsdjkhgkjhsdjkf %S", lb_id->GetPointer());
+
+			// 사용자 데이터 수신
+			loadLeaderboardRank(*lb_id, this);
+			loadLeaderboardMyRank(*lb_id, this);
+		}
+//		pArgs->RemoveAll(true);
+		delete pArgs;
+	}
+}
+
+void LeaderboardRankForm::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
+										   const Tizen::Ui::Scenes::SceneId& nextSceneId)
+{
+}
 // IFormBackEventListener
 void LeaderboardRankForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 {
-	source.GetParent()->RemoveControl(source);
+	SceneManager* pSceneManager = SceneManager::GetInstance();
+	AppAssert(pSceneManager);
+	pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_RIGHT));
 }
 // IScrollEventListener
 void LeaderboardRankForm::OnScrollEndReached(Tizen::Ui::Control &source, Tizen::Ui::Controls::ScrollEndEvent type)
 {
 	if(type == SCROLL_END_EVENT_END_BOTTOM) {
-		AppLogDebug("[LeaderboardRankForm] OnScrollEndReached()");
 		loadLeaderboardRank(leaderboardId, this, offset, 8);
 	}
 }
