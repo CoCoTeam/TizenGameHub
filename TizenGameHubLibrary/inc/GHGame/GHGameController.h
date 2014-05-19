@@ -11,6 +11,8 @@
 #include "GHTizen.h"
 #include "GHPlayer/GHPlayer.h"
 #include "GHGame/GHGameListener.h"
+#include "GHGame/GHGameLoadedListener.h"
+#include "GHGame/GHGamePlayingFriendListener.h"
 #include "GHController.h"
 
 const Tizen::Base::String GAME_GAMEDATA = "41";
@@ -24,11 +26,11 @@ public:
 	virtual ~GHGameController();
 
 	// 게임 정보 가져오기
-	void getGameData(Tizen::Base::String gameId, GHGameListener* listener = null);
+	void getGameData(Tizen::Base::String gameId, GHGameLoadedListener* listener = null);
 
 	// 게임을 플레이하는 친구 정보 가져오기
 	void getGamePlayingFriends(Tizen::Base::String gameId, int start_pos=0, int max_length=8);
-	void getGamePlayingFriends(Tizen::Base::String gameId, GHGameListener* listener, int start_pos=0, int max_length=8);
+	void getGamePlayingFriends(Tizen::Base::String gameId, GHGamePlayingFriendListener* listener, int start_pos=0, int max_length=8);
 
 private:
 	virtual void OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data);
