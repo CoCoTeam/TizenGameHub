@@ -14,7 +14,7 @@
 
 class AppGHLeaderboardRankForm
 	: public LeaderboardRankForm
-	, public Tizen::Ui::Scenes::ISceneEventListener
+	, virtual public Tizen::Ui::Scenes::ISceneEventListener
 {
 public:
 	AppGHLeaderboardRankForm();

@@ -91,12 +91,13 @@ ListPanel::ListPanel(GHLeaderboard leaderboard)
 
 void ListPanel::OnTouchReleased (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)
 {
-	Tizen::Ui::Controls::Frame *pFrame = Tizen::App::UiApp::GetInstance()->GetAppFrame()->GetFrame();
-	LeaderboardRankForm* pForm = new (std::nothrow) LeaderboardRankForm(getId());
-	pForm->Initialize();
+	Tizen::Base::Collection::ArrayList* pList = new (std::nothrow)Tizen::Base::Collection::ArrayList;
+	AppAssert(pList);
+	pList->Construct();
+	pList->Add( new Tizen::Base::String(getId()) );	// isJoin
 
-	// Add the form to the frame
-	pFrame->AddControl(pForm);
-	pFrame->SetCurrentForm(pForm);
-	pForm->Invalidate(true);
+	Tizen::Ui::Scenes::SceneManager* pSceneManager = Tizen::Ui::Scenes::SceneManager::GetInstance();
+	pSceneManager->GoForward(Tizen::Ui::Scenes::ForwardSceneTransition(SCENE_GHFORM_LEADERBOARDRANK, Tizen::Ui::Scenes::SCENE_TRANSITION_ANIMATION_TYPE_LEFT), pList);
 }
+
+

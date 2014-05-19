@@ -125,6 +125,7 @@ private:
 
 	Tizen::Graphics::Bitmap *__pUserBmp;
 
+
    /*  virtual void  OnDownloadCanceled (RequestId reqId) {}
      virtual void  OnDownloadCompleted (RequestId reqId, const Tizen::Base::String &path);
      virtual void  OnDownloadFailed (RequestId reqId, result r, const Tizen::Base::String &errorCode) {}
