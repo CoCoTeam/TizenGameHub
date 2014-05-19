@@ -100,6 +100,9 @@ void GHAchievementController::setAchievement(String ac_id, int point) {
 	__pMap->Add(new String("ac_id"), new String(ac_id));
 	__pMap->Add(new String("point"), new String(Integer::ToString(point)));
 
+
+	AppLogDebug("Point  -->   %d", point);
+
 	httpPost.RequestHttpPutTran(this, url, __pMap);
 }
 void GHAchievementController::setAchievement(String ac_id, int point, GHAchievementSettedListener* listener) {

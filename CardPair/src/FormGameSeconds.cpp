@@ -65,8 +65,7 @@ void FormGameSeconds::onStageComplete()
 	}
 	setInitialState();
 
-	GHAchievementController* Achievementcontroller = new GHAchievementController();
-	Achievementcontroller->setAchievement("4", this);
+	//game_count++;
 
 
 }
@@ -88,6 +87,11 @@ void FormGameSeconds::onGameEnded()
 		AppLog("totalMis complete !!");
 	}
 
+	Achievementcontroller->loadAchievements(this);
+	Achievementcontroller->setAchievement("4", 10 , this);  // 10번 수행 했을 때
+	Achievementcontroller->loadAchievements(this);
+
+
 	Leaderboardcontroller->updateLeaderboardScore("key_aa_0", gameScore, this);
 
 	// 리더보드
@@ -97,10 +101,35 @@ void FormGameSeconds::onGameEnded()
 }
 
 //achievement
+void FormGameSeconds::loadAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList) {
+	// TEST
+	GHAchievement * test = static_cast<GHAchievement*>(achievementList->GetAt(1));
+	AppLogDebug("[DEBUG] acArr ID : %S", test->getId().GetPointer() );
+	AppLogDebug("[DEBUG] getGoalPoint : %d", test->getGoalPoint());
+	AppLogDebug("[DEBUG] getCurPoint : %d", test->getCurPoint());
+
+	if(test->getCurPoint() == 10)
+	{
+		// 10 번 게임을 했을 때
+		GHAchievementController* Achievementcontroller = new GHAchievementController();
+		Achievementcontroller->completeAchievement("4",this);
+
+		/*Tizen::Ui::Controls::Popup* pPopup = new Tizen::Ui::Controls::Popup();
+		pPopup->Construct(true, Tizen::Graphics::Dimension(600, 800));
+		pPopup->SetTitleText("Attack-Helper");
+
+		pPopup->SetShowState(true);
+		pPopup->Show();*/
+	}
+}
+void FormGameSeconds::setAchievementFinished(int statusCode)
+{
+	AppLogDebug("[DEBUG] setAchievementFinishedstatusCode : %d", statusCode);
+}
 
 void FormGameSeconds::completeAchievementFinished(int statusCode)
 {
-	AppLogDebug("[DEBUG] completeAchievementFinished statusCode : %d", statusCode);
+	AppLogDebug("[DEBUG] completeAchievementFinished statusCode ===> : %d", statusCode);
 }
 
 

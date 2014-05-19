@@ -77,12 +77,16 @@ void FormGameMulti::onStageComplete()
 
 	isWin = true;
 
+	//	gameScore, maxCombo
 
-//	gameScore, maxCombo
-//	win = saveMyGrade(true)	// 게임 전적 저장 -> cloudSave
-//	if(win > 10) {
-//		// [Achievement] 멀티플레이 10승 달성
-//	}
+	//win = saveMyGrade(true);	// 게임 전적 저장 -> cloudSave
+	// [Achievement] 멀티플레이 10승 달성
+	/*GHAchievementController* Achievementcontroller = new GHAchievementController();
+	if(multiplay_winNum >= 3)
+	{
+		Achievementcontroller->completeAchievement("4",this);
+		AppLog("totalMis complete !!");
+	}*/
 
 }
 /*
@@ -291,7 +295,23 @@ void FormGameMulti::onMatchFinish(String data){
 
 	// -----------------------------------------------------------
 
+	GHAchievementController* Achievementcontroller = new GHAchievementController();
 
+	AppLog("multiplay_winNum : %S ", multiplay_winNum.GetPointer());
+
+	if(multiplay_winNum.CompareTo("5") == 0)  // 5 번 이기면 complete
+	{
+		Achievementcontroller->completeAchievement("4",this);
+		AppLog("totalMis complete !!");
+	}
+
+	// ---------------------------------------------------------
+
+}
+
+void FormGameMulti::completeAchievementFinished(int statusCode)
+{
+	AppLogDebug("[DEBUG] completeAchievementFinished statusCode ===> : %d", statusCode);
 }
 
 JsonObject* FormGameMulti::parseJson(String data)
