@@ -8,6 +8,7 @@
 #include "GHSharedAuthData.h"
 #include "GHAchievement/GHAchievementController.h"
 #include "GHForm/AchievementForm.h"
+#include "LibResourceId.h"
 
 using namespace Tizen::Base::Collection;
 using namespace Tizen::Net::Http;
@@ -29,20 +30,12 @@ GHAchievementController::~GHAchievementController() {
 // AchievementForm(Page)을 로드한다.
 void GHAchievementController::loadAchievementForm()
 {
-	Tizen::Ui::Controls::Frame *pFrame = Tizen::App::UiApp::GetInstance()->GetAppFrame()->GetFrame();
-	AchievementForm* pForm = new (std::nothrow) AchievementForm();
-	pForm->Initialize();
-
-	// Add the form to the frame
-	pFrame->AddControl(pForm);
-	pForm->SetShowState(true);
-	pForm->Show();
-//	pFrame->SetCurrentForm(pForm);
-//	pFrame->Invalidate(true);
+	Tizen::Ui::Scenes::SceneManager* pSceneManager = Tizen::Ui::Scenes::SceneManager::GetInstance();
+	pSceneManager->GoForward(Tizen::Ui::Scenes::ForwardSceneTransition(SCENE_GHFORM_ACHIEVEMENT, Tizen::Ui::Scenes::SCENE_TRANSITION_ANIMATION_TYPE_LEFT));
 }
 // Achievement 목록을 가져온다.
-void GHAchievementController::loadAchievements(GHAchievementLoadedListener* listener) {
-
+void GHAchievementController::loadAchievements(GHAchievementLoadedListener * listener)
+{
 	this->currentListener = listener;
 
 	//GET 함수 호출

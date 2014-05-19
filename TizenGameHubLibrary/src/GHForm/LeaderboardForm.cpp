@@ -22,7 +22,7 @@ LeaderboardForm::~LeaderboardForm() {
 }
 bool LeaderboardForm::Initialize(void)
 {
-	result r = Construct(IDL_FORM_LEADERBOARD);
+	result r = Construct(IDL_GHFORM_LEADERBOARD);
 	TryReturn(r == E_SUCCESS, false, "Failed to construct form");
 
 	return true;
@@ -56,7 +56,9 @@ result LeaderboardForm::OnTerminating(void)
 //IFormBackEventListener
 void LeaderboardForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 {
-	source.GetParent()->RemoveControl(source);
+	SceneManager* pSceneManager = SceneManager::GetInstance();
+	AppAssert(pSceneManager);
+	pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_RIGHT));
 }
 void LeaderboardForm::loadLeaderboardFinished(Tizen::Base::Collection::ArrayList* leaderboardList)
 {

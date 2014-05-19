@@ -1,6 +1,7 @@
 #include "CardPairFrame.h"
 #include "CardPairFormFactory.h"
 #include "AppResourceId.h"
+#include "LibResourceId.h"
 
 using namespace Tizen::Base;
 using namespace Tizen::Ui;
@@ -36,6 +37,10 @@ CardPairFrame::OnInitializing(void)
 	pSceneManager->RegisterScene(SCENE_GAME_TIMETRIAL, IDL_FORM_GAME, L"");
 	pSceneManager->RegisterScene(SCENE_GAME_SECONDS, IDL_FORM_GAME2, L"");
 	pSceneManager->RegisterScene(SCENE_GAME_MULTI, IDL_FORM_GAME3, L"");
+
+	pSceneManager->RegisterScene(SCENE_GHFORM_ACHIEVEMENT, IDL_GHFORM_ACHIEVEMENT, L"");
+	pSceneManager->RegisterScene(SCENE_GHFORM_LEADERBOARD, IDL_GHFORM_LEADERBOARD, L"");
+	pSceneManager->RegisterScene(SCENE_GHFORM_LEADERBOARDRANK, IDL_GHFORM_LEADERBOARDRANK, L"");
 
 	// Go to the scene.
 	result r = pSceneManager->GoForward(ForwardSceneTransition(SCENE_MAIN));
