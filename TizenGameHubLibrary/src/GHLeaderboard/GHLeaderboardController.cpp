@@ -221,7 +221,7 @@ void GHLeaderboardController::OnTransactionReadyToRead(String apiCode, String st
 			int stateCode;
 			Integer::Parse(statusCode, stateCode);
 
-			//AppLogDebug("[DEBUG] : %d", stateCode);
+			AppLogDebug("LEADERBOARD_SCORE [DEBUG] : %d", stateCode);
 
 			if(this->currentListener != null) this->currentListener->updateLeaderboardScoreFinished(stateCode);
 

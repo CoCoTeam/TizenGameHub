@@ -4,27 +4,11 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<<<<<<< HEAD
-<DigestValue>GCZYQlxhtL0y3lVPDQUbS0cT5ktfyBVis4JzaGoT9pk=</DigestValue>
+<DigestValue>V20MUJzJMDEmtC7O2U/eBExIWTYdCNFdImw9h5OBuzs=</DigestValue>
 </Reference>
 <Reference URI="bin/CardPair.exe">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>WOmU2vTcVieZ8pJCmK/No/NZh/J3VyTqlxpsx1Uoy/o=</DigestValue>
-=======
-<<<<<<< HEAD
-<DigestValue>/zs6jyteZgyy8qL5d62smLaZhDxT8lSITYndbnlBVSE=</DigestValue>
-</Reference>
-<Reference URI="bin/CardPair.exe">
-<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>ahPieP9E6w0mx+DFSWf797AXgivRVqXoxc5fEU1Rw0U=</DigestValue>
-=======
-<DigestValue>H6HrPcC2Cv75Rhr2RCEw8vgVgBelLwvtQuROURF6I0M=</DigestValue>
-</Reference>
-<Reference URI="bin/CardPair.exe">
-<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>DSDXcPaqNbb/UH/iZQEDJKsL+1av2NiG6+9D1G/EENQ=</DigestValue>
->>>>>>> 3071353acea4b2ed70819d900f7533cf775d5861
->>>>>>> 45cb000cffd8d8b57362374f473356058cd00273
+<DigestValue>iieXWX4EmVR8LC74d0PuLolbDZZ0bjvbWTwHWYWnpVg=</DigestValue>
 </Reference>
 <Reference URI="info/manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -32,11 +16,7 @@
 </Reference>
 <Reference URI="lib/libTizenGameHubLibrary.so">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<<<<<<< HEAD
-<DigestValue>Jj4n7DVlbDzW1emwBIZYw7K8irEp3IhpdtBoCrPh7Vo=</DigestValue>
-=======
-<DigestValue>Ju8JXVn8meZ4kD8dMAtHeinqj/SuHiwan6iitpXGD94=</DigestValue>
->>>>>>> 3071353acea4b2ed70819d900f7533cf775d5861
+<DigestValue>M5Slzia5gS0sZNgmtA5fhZtDdTt58UtDq9v4bfATlWQ=</DigestValue>
 </Reference>
 <Reference URI="res/720x1280/achievement_complete.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -99,21 +79,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-<<<<<<< HEAD
-FfSKQhmHydEQq1RhLR3BZCwgforaOyoXdqVoqmaTIcb6kIC97fH5+PW92OOj1EyrYJ8Q8jnx6g5a
-rfXDlAu7GsQNxIYZDKx1wVDyftCksRj9DrPgL1HFpHI+BWyeHDbPY1MUU8A0S641QDkeVwlEQEDh
-hn86vsIGjGvdJYcZxZc=
-=======
-<<<<<<< HEAD
-eVw1XqkXkJaqQ0Maf0ugqNflKJGaH2f8aw4hyJxqnbyhTkqsGaODjpqN9JzcqNjlYZp79acGllzt
-BJjsYOjNoCQJe1WQ9aIA0mc2QGFKuuBvv+DN7WoFHzgcOxvgpaGLN94dgM061HpOl8E050roL3Lb
-oIpp8jNiwJcApK2NLUQ=
-=======
-AjvrGMClvZjElpnRBfAIjNcGUz4MiIUphyqJ00YAE/9JD4K09N5bO0KNyddKEf+/TDdxBLkZ+gzY
-bZg5VIiB3nJgsJuBlNRFaLOUoKN5QOZF05F5PnpKchx/YFk+3NH8t7gFWl1gR0AADq+Qt0aw+ozI
-5pAqQ35LHxjb3Be4gfQ=
->>>>>>> 3071353acea4b2ed70819d900f7533cf775d5861
->>>>>>> 45cb000cffd8d8b57362374f473356058cd00273
+MF/6YdPABI/XjsYGcUSLQOZCtUpYKd33CtDm42/E+eK9KwAGpeu+I51FG0hfImmXJGDLlw30Iipf
+Fp36Fuqw8z+ifLWrmpQfO9L392TpOZJ0EadrZSHJS09/Rx8gkvrUVGG+RxRrmRFxs8B+8KO63AS/
+UEoMclXbUvCKDzrCuBY=
 </SignatureValue>
 <KeyInfo>
 <X509Data>

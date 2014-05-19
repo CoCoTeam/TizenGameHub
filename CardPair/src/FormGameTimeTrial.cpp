@@ -47,38 +47,23 @@ void FormGameTimeTrial::onStageComplete()
 
 
 	GHAchievementController* Achievementcontroller = new GHAchievementController();
-	//GHLeaderboardController* Leaderboardcontroller = new GHLeaderboardController();
+	GHLeaderboardController* Leaderboardcontroller = new GHLeaderboardController();
 
 	if(totalMis <= 30 * 1000)
 	{
-			//Achievementcontroller->loadAchievements(this);
-			Achievementcontroller->completeAchievement("4",this);     // 달성
-			AppLog("totalMis complete !!");
+		Achievementcontroller->completeAchievement("4",this);     // 달성
+		AppLog("totalMis complete !!");
 	}
 
-	/*	if(maxCombo >= 5)
-		{
-			Achievementcontroller->revealAchievement("4");            // 숨겨있던 achievement
-			AppLog("maxCombo complete !!");
-		}*/
+/*	if(maxCombo >= 5)
+	{
+		Achievementcontroller->revealAchievement("4");            // 숨겨있던 achievement
+		AppLog("maxCombo complete !!");
+	}*/
 
-
-	/*	Leaderboardcontroller->updateLeaderboardScore("key_aa_0", totalMis);
-		AppLog("complete !!");*/
-
-	//	maxCombo, gameScore, totalMis
-	/*	if(maxCombo >= 5) {
-			// [Achievement] 최대 콤보 5회 이상 달성
-
-		}
-		if(totalMis <= 30 * 1000) {
-			// [Achievement] 30초 이내에 달성
-
-		}*/
-
-		// 리더보드
-	//	leaderboardUpdate(ld_id, totalMis);	// 시간 리더보드 업데이트
-
+	// time score update
+	Leaderboardcontroller->updateLeaderboardScore("key_aa_1", totalMis, this);
+	AppLog("complete !!");
 
 }
 
@@ -88,6 +73,26 @@ void FormGameTimeTrial::completeAchievementFinished(int statusCode)
 {
 	AppLogDebug("[DEBUG] completeAchievementFinished statusCode : %d", statusCode);
 }
+
+
+void FormGameTimeTrial::updateLeaderboardScoreFinished(int statusCode)
+{
+	AppLogDebug("[DEBUG] updateLeaderboardScoreFinished statusCode : %d", statusCode);
+
+	if(statusCode == 1)
+	{
+		AppLogDebug("--------------> Update <-----------------");
+
+	}
+	else if(statusCode == 2)
+	{
+		AppLogDebug("--------------> No Update <-----------------");
+	}
+}
+
+
+
+
 
 /*
 void FormGameTimeTrial::revealAchievementFinished(int statusCode)
