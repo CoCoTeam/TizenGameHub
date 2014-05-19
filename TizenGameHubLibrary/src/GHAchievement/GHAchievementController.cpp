@@ -92,7 +92,7 @@ void GHAchievementController::completeAchievement(String ac_id, GHAchievementCom
 }
 
 // incremental achievement update
-void GHAchievementController::setAchievement(String ac_id) {
+void GHAchievementController::setAchievement(String ac_id, int point) {
 	this->currentListener = null;
 
 	String game_id(GHSharedAuthData::getSharedInstance().getGameId());
@@ -105,13 +105,13 @@ void GHAchievementController::setAchievement(String ac_id) {
 	__pMap->Add(new String("game_id"), new String(game_id));
 	__pMap->Add(new String("player_id"), new String(player_id));
 	__pMap->Add(new String("ac_id"), new String(ac_id));
-	__pMap->Add(new String("point"), new String(Integer::ToString(10)));
+	__pMap->Add(new String("point"), new String(Integer::ToString(point)));
 
 	httpPost.RequestHttpPutTran(this, url, __pMap);
 }
-void GHAchievementController::setAchievement(String ac_id, GHAchievementSettedListener* listener) {
+void GHAchievementController::setAchievement(String ac_id, int point, GHAchievementSettedListener* listener) {
 	this->currentListener = listener;
-	this->setAchievement(ac_id);
+	this->setAchievement(ac_id, point);
 }
 
 
