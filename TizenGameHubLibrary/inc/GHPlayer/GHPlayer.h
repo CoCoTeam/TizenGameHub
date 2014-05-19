@@ -9,16 +9,7 @@
 #define GHPLAYER_H_
 
 #include "GHTizen.h"
-/*
-player_id	사용자 고유키
-email		사용자 계정 id (email)
-pwd			password
-name		보여지는 이름 (NickName)
-img_url		프로필 이미지 url
-*/
-/*
-getGameInstance();
- */
+
 class GHPlayer
 	: public Tizen::Base::Object
 {
@@ -29,8 +20,7 @@ protected:
 	Tizen::Base::String name;		// 사용자 이름
 	Tizen::Base::String imgUrl;		// 사용자 프로필이미지 URL
 
-	bool misFriend;
-	long totalScore;				// 사용자별 Achievement 총합 점수
+	bool is_Friend;
 
 
 public:
@@ -53,7 +43,6 @@ public:
 
 	bool isFriend();
 	void setIsFriend(bool b);
-	long getTotalScore();
 };
 
 #endif /* GHUSER_H_ */

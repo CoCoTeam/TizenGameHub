@@ -18,7 +18,7 @@
 class LeaderboardRankForm
 	: public Tizen::Ui::Controls::Form
 	, public Tizen::Ui::Controls::IFormBackEventListener
-	, public Tizen::Ui::Scenes::ISceneEventListener
+	, virtual public Tizen::Ui::Scenes::ISceneEventListener
 	, public Tizen::Ui::Controls::IScrollEventListener
 	, public GHLeaderboardController
 	, public GHLeaderboardListLoadedListener
