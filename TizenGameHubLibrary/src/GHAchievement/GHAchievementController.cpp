@@ -154,6 +154,8 @@ void GHAchievementController::OnTransactionReadyToRead(String apiCode, String st
 				int iCurPoint 			= getIntByKey(pJsonOject, pkeyCurPoint);
 
 				// 리스트에 추가
+				GHAchievement* ac = new GHAchievement(sId, sTitle, sDesc, sImgUrl, iPrize, iHidden, iComplete, iGoalPoint, iCurPoint);
+				AppLogDebug("%S", ac->ToString().GetPointer());
 				acArr->Add(new GHAchievement(sId, sTitle, sDesc, sImgUrl, iPrize, iHidden, iComplete, iGoalPoint, iCurPoint));
 
 			}

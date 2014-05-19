@@ -348,3 +348,24 @@ void FormGameMulti::saveCloudsaveFinished(int statusCode)
 
 	}
 }
+
+/*void FormGameMulti::completeAchievementFinished(int statusCode)
+{
+	AppLogDebug("[DEBUG] completeAchievementFinished statusCode : %d", statusCode);
+}
+
+
+void FormGameMulti::updateLeaderboardScoreFinished(int statusCode)
+{
+	AppLogDebug("[DEBUG] updateLeaderboardScoreFinished statusCode : %d", statusCode);
+
+	if(statusCode == 1)
+	{
+		AppLogDebug("--------------> Update <-----------------");
+
+	}
+	else if(statusCode == 2)
+	{
+		AppLogDebug("--------------> No Update <-----------------");
+	}
+}*/

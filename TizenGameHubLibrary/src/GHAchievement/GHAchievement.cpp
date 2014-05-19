@@ -46,3 +46,10 @@ int 	GHAchievement::getIsComplete()	{ return this->isComplete; }
 int 	GHAchievement::getGoalPoint()	{ return this->goalPoint; }
 int 	GHAchievement::getCurPoint()	{ return this->curPoint; }
 int 	GHAchievement::getPrize()		{ return this->prize; }
+
+Tizen::Base::String GHAchievement::ToString()
+{
+	Tizen::Base::String ret(id +"/"+ title +"/"+ description +"/"+ imgUrl +"/"+
+			Integer::ToString(prize) +"/"+ Integer::ToString(isHidden) +"/"+ Integer::ToString(isComplete) +"/"+ Integer::ToString(goalPoint) +"/"+ Integer::ToString(curPoint));
+	return ret;
+}

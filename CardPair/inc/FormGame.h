@@ -4,6 +4,7 @@
 #include "tizenx.h"
 #include "AppResourceId.h"
 
+
 class FormGame
 	: public Tizen::Ui::Controls::Form
 	, public Tizen::Ui::IActionEventListener
@@ -61,7 +62,6 @@ public:
 
 protected:
 	static const int IDA_CARD_BASE = 300;
-
 };
 
 #endif	//_CARDPAIR_FORM_GAME_H_

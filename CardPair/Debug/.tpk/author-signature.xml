@@ -4,11 +4,7 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="bin/CardPair.exe">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<<<<<<< HEAD
-<DigestValue>iieXWX4EmVR8LC74d0PuLolbDZZ0bjvbWTwHWYWnpVg=</DigestValue>
-=======
-<DigestValue>0kQENSLpkJdXpRkR2Pu2CnkE60aqhHG5NHd/Mxr1me4=</DigestValue>
->>>>>>> d4edd92d127a808d0a81e3b2e80eb8253ee7a2d8
+<DigestValue>rN+mMbXFZGb+3DznYV9PLVDi1YkdHXk0iaWPW7MZmo4=</DigestValue>
 </Reference>
 <Reference URI="info/manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -16,11 +12,7 @@
 </Reference>
 <Reference URI="lib/libTizenGameHubLibrary.so">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<<<<<<< HEAD
-<DigestValue>M5Slzia5gS0sZNgmtA5fhZtDdTt58UtDq9v4bfATlWQ=</DigestValue>
-=======
-<DigestValue>qm2Sn7HxKREfKvX9AD9XzzpPUFNLRrEk3IBMvY83Duc=</DigestValue>
->>>>>>> d4edd92d127a808d0a81e3b2e80eb8253ee7a2d8
+<DigestValue>Zi/ILsKSecnGrprh+gXxLE4xl1qzP9U+IbacnVSE4mM=</DigestValue>
 </Reference>
 <Reference URI="res/720x1280/achievement_complete.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -68,7 +60,7 @@
 </Reference>
 <Reference URI="res/screen-size-normal/workflow.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>13oDp3lzaNV0KUkkKB2CPSVruifqtmk5tfItLzSwCBs=</DigestValue>
+<DigestValue>0oJL8oakIOPByUsQGGMKg6kyp50RzKEHKL7XzBAb2jY=</DigestValue>
 </Reference>
 <Reference URI="shared/res/screen-density-xhigh/mainmenu.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -83,20 +75,13 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-<<<<<<< HEAD
-IlDm8sLsLtLFOYSVNGkgtVbYmVugJTDaor7H6cqbNY58nKAiDOj5uDvHKJEccxLe+l9qJsV2x/i6
-6LlPmfgU3o7N+gPdz09rQ90b4HZe6PMtSHSwPxQvZYKK9VaFd02G0YFRW1jDCGYd6hU/4BYCpC7h
-UlS2GfXlu0Ywn3yQnSQ=
-=======
-LIGuGy101a/Rx4X8YoYMseNaqKfi3U78M9CmloN6aR24Mvxo6LKpjhGwVnKH/DOrIBE7StMKSR2N
-3V92S/7iHYb7OlqWMvmeRgsohZwJLH2tF0XxM7uwXH3B5HBscGVQqZ2Uh+ZCKJFRlZTqtXwUroq3
-tB2ZM2BRKsP0av3Cwo0=
->>>>>>> d4edd92d127a808d0a81e3b2e80eb8253ee7a2d8
+Vz8pHwY7ODhOgX1J8dOgmN60Bgc60DTLEQLq+8BrSV9PIqDes7zB1YwPhqxWzRK/p+N8+Ol6hrL/
+dWZ7pPn9Y3dcC66Hqs/CLYcFl/h1a6uy81vFamuAeI/AOIvVhQI4BGlZj+5n+GCeONi553hvQ6Ce
+F1C8VTBX1Zr20YP7WGU=
 </SignatureValue>
 <KeyInfo>
 <X509Data>
 <X509Certificate>
-<<<<<<< HEAD
 MIIClTCCAX2gAwIBAgIGAUSV/uxEMA0GCSqGSIb3DQEBBQUAMFYxGjAYBgNVBAoMEVRpemVuIEFz
 c29jaWF0aW9uMRowGAYDVQQLDBFUaXplbiBBc3NvY2lhdGlvbjEcMBoGA1UEAwwTVGl6ZW4gRGV2
 ZWxvcGVycyBDQTAeFw0xMjExMDEwMDAwMDBaFw0xOTAxMDEwMDAwMDBaMBExDzANBgNVBAMMBmF1
@@ -109,20 +94,6 @@ PaklkuV1iMHmRex3aO5tnOgcdka3bN/BMvwEMh4c5FlMJdDRUJgQMMeqV4ogBc96N6UpySsWWUri
 o4P4TbC+xp0D25WkgxAon0xs9lKmriAiHTpcYqRMZO+jwVqc5cSy2aFFuFIY30NZVDCbt+F2w4pE
 1PwDQBFbgyUDkjM9Anca3ZZxPEHsSO+wdNwS43mL8KbA70R2uVriLlz7lBjQJTG6f8Ua+y9oKwy6
 bhcNqNx/TZYovZJqeDwcnR3lvPYQba0uC8RIykaJ6O3TIpmK9GA=
-=======
-MIIClTCCAX2gAwIBAgIGAUWDJyH9MA0GCSqGSIb3DQEBBQUAMFYxGjAYBgNVBAoMEVRpemVuIEFz
-c29jaWF0aW9uMRowGAYDVQQLDBFUaXplbiBBc3NvY2lhdGlvbjEcMBoGA1UEAwwTVGl6ZW4gRGV2
-ZWxvcGVycyBDQTAeFw0xMjExMDEwMDAwMDBaFw0xOTAxMDEwMDAwMDBaMBExDzANBgNVBAMMBmF1
-dGhvcjCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAkMQEWGIl8Qd6/lJaAqEMk08MN8I3juKT
-8fO3VjR/H7H9PQSY0bEVBiEj3LUA4rNdkHPt3/IxhlW96l7fdOKYCnQy8DyaXxRxDCanuHLz7qtG
-knYxEkjrJgSz+mSV/kfPBlqS5eOEU5/FEEKD+YP/2WcC+W7nu/PMUudZm41j0JECAwEAAaMyMDAw
-DAYDVR0TAQH/BAIwADALBgNVHQ8EBAMCB4AwEwYDVR0lBAwwCgYIKwYBBQUHAwMwDQYJKoZIhvcN
-AQEFBQADggEBAMCswmn1cO6DlyeWqkVaZnegqhJMIxutnYCzN5Dn0NLoziiemcjiY5Y7tMwk9yIe
-0aSX722uklhTZ2ngYU+QmhnTFUq3tlMaMFqtINi098bslWAz6j6FMJhwLUELuTv3jO9RlqKCCogE
-S4Q9aQqs+Wvq45QxbdPBzNXmjKO+t0tq3AUmpn1CHvMi7GiZF9GdiXe6M43SVtKgX+MwKjXZL1S9
-OWyE/oGdHkYx1gSxV4HcYKszOUJvm+W+g9mMHkS5gyUryT4uzWTmT5c7MS+nY+myReXrBxvumCdH
-w9N/W6cTDVlA3MBDfuOLjL7GW6iwq3rGGCT9ODGBEIuApDy8exg=
->>>>>>> d4edd92d127a808d0a81e3b2e80eb8253ee7a2d8
 </X509Certificate>
 <X509Certificate>
 MIIDOTCCAiGgAwIBAgIBATANBgkqhkiG9w0BAQUFADBYMRowGAYDVQQKDBFUaXplbiBBc3NvY2lh

@@ -45,6 +45,7 @@ public:
 	int 	getCurPoint();
 	int 	getPrize();
 	//----------------------------------------------------------------
+	Tizen::Base::String ToString();
 
 };
 

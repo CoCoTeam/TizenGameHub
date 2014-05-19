@@ -64,6 +64,11 @@ void FormGameSeconds::onStageComplete()
 
 	}
 	setInitialState();
+
+	GHAchievementController* Achievementcontroller = new GHAchievementController();
+	Achievementcontroller->setAchievement("4", this);
+
+
 }
 /*
  * 시간 종료 시 호출되는 함수 (게임 종료)
@@ -73,14 +78,43 @@ void FormGameSeconds::onGameEnded()
 	AppLog("onGameEnded()");
 	pLabelTimer->SetText("00:00:00");
 
-//	maxCombo, gameScore
-/*	if(maxCombo >= 5) {
-		// [Achievement] 최대 콤보 5회 이상 달성
 
-	}*/
+	GHAchievementController* Achievementcontroller = new GHAchievementController();
+	GHLeaderboardController* Leaderboardcontroller = new GHLeaderboardController();
+
+	if(maxCombo >= 5)
+	{
+		Achievementcontroller->completeAchievement("4",this);
+		AppLog("totalMis complete !!");
+	}
+
+	Leaderboardcontroller->updateLeaderboardScore("key_aa_0", gameScore, this);
 
 	// 리더보드
-//	leaderboardUpdate(ld_id2, gameScore);	// 최종 점수 리더보드 업데이트
+//	leaderboardUpdate(ld, gameScore);	// 최종 점수 리더보드 업데이트
 
 
+}
+
+//achievement
+
+void FormGameSeconds::completeAchievementFinished(int statusCode)
+{
+	AppLogDebug("[DEBUG] completeAchievementFinished statusCode : %d", statusCode);
+}
+
+
+void FormGameSeconds::updateLeaderboardScoreFinished(int statusCode)
+{
+	AppLogDebug("[DEBUG] updateLeaderboardScoreFinished statusCode : %d", statusCode);
+
+	if(statusCode == 1)
+	{
+		AppLogDebug("--------------> Update <-----------------");
+
+	}
+	else if(statusCode == 2)
+	{
+		AppLogDebug("--------------> No Update <-----------------");
+	}
 }

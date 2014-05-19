@@ -75,7 +75,7 @@ void AchievementForm::setAchievementList()
 	int completeCount = 0;
 	for(int i=0 ; i<ac_list->GetCount() ; i++)
 	{
-		GHAchievement *achievement = (GHAchievement*)(ac_list->GetAt(0));
+		GHAchievement *achievement = (GHAchievement*)(ac_list->GetAt(i));
 		Panel* pPanelAchievement = new ListPanel(*achievement);
 		pPanelAchievement->SetPosition(initX + posX*(i%2), initY + posY*(i/2));
 		pAchievement_scrollpanel->AddControl(pPanelAchievement);
