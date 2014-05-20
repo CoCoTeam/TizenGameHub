@@ -1,5 +1,9 @@
 src/CardPairFrame.d: ../src/CardPairFrame.cpp \
+<<<<<<< HEAD
   C:\Users\kichul\Documents\workspace\tizen\TizenGameHub\CardPair\inc\CardPairFrame.h \
+=======
+  C:\Users\JOHEEYEON\workspace\TizenGameHub\CardPair\inc\CardPairFrame.h \
+>>>>>>> 075e2c6551aa47635ab4e406696cf8782f20f5f6
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FApp.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FAppTypes.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FBaseString.h \
@@ -486,10 +490,17 @@ src/CardPairFrame.d: ../src/CardPairFrame.cpp \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp/glplatform.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp/khrplatform.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp/glmacro.h \
+<<<<<<< HEAD
   C:\Users\kichul\Documents\workspace\tizen\TizenGameHub\CardPair\inc\CardPairFormFactory.h \
   C:\Users\kichul\Documents\workspace\tizen\TizenGameHub\CardPair\inc\AppResourceId.h
 
 C:\Users\kichul\Documents\workspace\tizen\TizenGameHub\CardPair\inc\CardPairFrame.h:
+=======
+  C:\Users\JOHEEYEON\workspace\TizenGameHub\CardPair\inc\CardPairFormFactory.h \
+  C:\Users\JOHEEYEON\workspace\TizenGameHub\CardPair\inc\AppResourceId.h
+
+C:\Users\JOHEEYEON\workspace\TizenGameHub\CardPair\inc\CardPairFrame.h:
+>>>>>>> 075e2c6551aa47635ab4e406696cf8782f20f5f6
 
 C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FApp.h:
 
@@ -1463,6 +1474,12 @@ C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/o
 
 C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp/glmacro.h:
 
+<<<<<<< HEAD
 C:\Users\kichul\Documents\workspace\tizen\TizenGameHub\CardPair\inc\CardPairFormFactory.h:
 
 C:\Users\kichul\Documents\workspace\tizen\TizenGameHub\CardPair\inc\AppResourceId.h:
+=======
+C:\Users\JOHEEYEON\workspace\TizenGameHub\CardPair\inc\CardPairFormFactory.h:
+
+C:\Users\JOHEEYEON\workspace\TizenGameHub\CardPair\inc\AppResourceId.h:
+>>>>>>> 075e2c6551aa47635ab4e406696cf8782f20f5f6

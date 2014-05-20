@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 author-signature.xml__DEL__2Y5Kzemru5DVRa7R0bdnyjJQVXx4bRZ48ahEYyW8qr0=
 bin/CardPair.exe__DEL__gf9dPJnG4vm1P5Lvz38L+uARHl3076Gno6hQMLnqKSk=
 info/manifest.xml__DEL__IzsBYC5VIMRolhEDUTm7vHB7kvaS1mC787f6H48LS18=
@@ -19,15 +20,20 @@ bin/CardPair.exe__DEL__gwfWzJZASs8CecJssPvYlnS+6VfSOZLSg5Qxhwi7cbA=
 info/manifest.xml__DEL__IzsBYC5VIMRolhEDUTm7vHB7kvaS1mC787f6H48LS18=
 lib/libTizenGameHubLibrary.so__DEL__hNrs9r+BIIpUHWfrN/jWnMN5oCI4qsoh6+4iILzCI8g=
 >>>>>>> 60fadecf4259ed9843470429ccf43f2a6ae93cd9
+=======
+author-signature.xml__DEL__WB3G+q5KPb9+O3pM9jKyvqh08jmFMI9zYtIsJTXjGaQ=
+bin/CardPair.exe__DEL__LjBlwIl8Eqpt3ehHG4qQ7lcrhbBjF0ekmdaLNMCCGHs=
+info/manifest.xml__DEL__IzsBYC5VIMRolhEDUTm7vHB7kvaS1mC787f6H48LS18=
+lib/libTizenGameHubLibrary.so__DEL__qrtLUl8EGfasu+NQpzxi/GuqXdig5htolYnuNuozCsU=
+>>>>>>> 075e2c6551aa47635ab4e406696cf8782f20f5f6
 res/720x1280/achievement_complete.png__DEL__vFOVfVPTjEAAyJpNKUEu0fKR9HCHx5mctp/tvpEz0tA=
->>>>>>> d50772aa5b31aad78637807e2c4fd23097705a0c
 res/720x1280/heart.png__DEL__p/arUQetJna0/mGYSnQ0XkCS3qRjV9vd1iyBGu6TwTc=
 res/profile_default.png__DEL__tNZlVbJYpw7OpCoC1wpYEWZ+OdUng/HyKJ0C+uzU2mI=
 res/screen-size-normal/IDL_FORM.xml__DEL__QLRuqmtRlvk/Wk1eTNe3RIJM4qFGDU/StNXYjNve3fo=
 res/screen-size-normal/IDL_FORM_ACHIEVEMENT.xml__DEL__+oNeTYlJxM1tj+ALT55yVTSMszIR3XMq8X3yIkQyux4=
 res/screen-size-normal/IDL_FORM_GAME.xml__DEL__997+cUoCuYt/fBn43hdjXFJtNfV5uqQcJBLxQNg13Jc=
 res/screen-size-normal/IDL_FORM_LEADERBOARD.xml__DEL__Bjq67x2aIt2ZrfiLNXBDIlgIxLUDN03t1811DZZiQw4=
-res/screen-size-normal/IDL_FORM_LEADERBOARDRANK.xml__DEL__jQVkmSvV3TQAyIvywxlx8VbovsRemi7IVfbxKGl2LRI=
+res/screen-size-normal/IDL_FORM_LEADERBOARDRANK.xml__DEL__T5FcTEnAQ0Tc0749N0WJMyWn3gPEd7tn9zoKe17X1+M=
 res/screen-size-normal/IDL_FORM_MODESELECT.xml__DEL__tksYQP1HsC7bAnPRVN3Rpx5ind45esZmBdx8ERXbZC0=
 res/screen-size-normal/IDL_PANEL_LISTPANEL.xml__DEL__Q4wxeQRUhvn3syFfqw6IJqsnvhFw7nJ+nS45qlyLx5k=
 res/screen-size-normal/workflow.xml__DEL__0oJL8oakIOPByUsQGGMKg6kyp50RzKEHKL7XzBAb2jY=

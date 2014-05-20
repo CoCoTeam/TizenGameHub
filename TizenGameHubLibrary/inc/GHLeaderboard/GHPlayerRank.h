@@ -8,7 +8,7 @@
 #ifndef GHPLAYERRANK_H_
 #define GHPLAYERRANK_H_
 
-#include "GHPlayer.h"
+#include "GHPlayer/GHPlayer.h"
 
 class GHPlayerRank
 	: public GHPlayer

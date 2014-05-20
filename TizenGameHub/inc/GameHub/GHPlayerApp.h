@@ -8,7 +8,7 @@
 #ifndef GHPLAYERAPP_H_
 #define GHPLAYERAPP_H_
 
-#include <GHPlayer.h>
+#include <GHPlayer/GHPlayer.h>
 
 class GHPlayerApp
 	: public GHPlayer

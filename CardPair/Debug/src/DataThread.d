@@ -1,5 +1,9 @@
 src/DataThread.d: ../src/DataThread.cpp \
+<<<<<<< HEAD
   C:\Users\kichul\Documents\workspace\tizen\TizenGameHub\CardPair\inc\DataThread.h \
+=======
+  C:\Users\JOHEEYEON\workspace\TizenGameHub\CardPair\inc\DataThread.h \
+>>>>>>> 075e2c6551aa47635ab4e406696cf8782f20f5f6
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FBase.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FBaseTypes.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FBaseLog.h \
@@ -417,7 +421,11 @@ src/DataThread.d: ../src/DataThread.cpp \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FUiTouchEffect.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FUiTouchEffectTypes.h
 
+<<<<<<< HEAD
 C:\Users\kichul\Documents\workspace\tizen\TizenGameHub\CardPair\inc\DataThread.h:
+=======
+C:\Users\JOHEEYEON\workspace\TizenGameHub\CardPair\inc\DataThread.h:
+>>>>>>> 075e2c6551aa47635ab4e406696cf8782f20f5f6
 
 C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FBase.h:
 

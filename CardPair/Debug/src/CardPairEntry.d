@@ -1,5 +1,9 @@
 src/CardPairEntry.d: ../src/CardPairEntry.cpp \
+<<<<<<< HEAD
   C:\Users\kichul\Documents\workspace\tizen\TizenGameHub\CardPair\inc\CardPairApp.h \
+=======
+  C:\Users\JOHEEYEON\workspace\TizenGameHub\CardPair\inc\CardPairApp.h \
+>>>>>>> 075e2c6551aa47635ab4e406696cf8782f20f5f6
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FApp.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FAppTypes.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FBaseString.h \
@@ -487,7 +491,11 @@ src/CardPairEntry.d: ../src/CardPairEntry.cpp \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp/khrplatform.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp/glmacro.h
 
+<<<<<<< HEAD
 C:\Users\kichul\Documents\workspace\tizen\TizenGameHub\CardPair\inc\CardPairApp.h:
+=======
+C:\Users\JOHEEYEON\workspace\TizenGameHub\CardPair\inc\CardPairApp.h:
+>>>>>>> 075e2c6551aa47635ab4e406696cf8782f20f5f6
 
 C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FApp.h:
 

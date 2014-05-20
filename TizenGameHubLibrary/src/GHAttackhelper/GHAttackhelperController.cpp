@@ -24,14 +24,11 @@ GHAttackhelperController::GHAttackhelperController() {
 
 GHAttackhelperController::~GHAttackhelperController() {
 	// TODO Auto-generated destructor stub
-	if(pPopup != null) {
-		delete pPopup;
-		pPopup = null;
-	}
 }
 
 // attack helper 목록을 가져온다.
-void GHAttackhelperController::loadAttackhelpers(GHAttackhelperLoadedListener * listener){
+void GHAttackhelperController::loadAttackhelpers(GHAttackhelperLoadedListener * listener)
+{
 	this->currentListener = listener;
 
 	//GET 함수 호출
@@ -42,7 +39,9 @@ void GHAttackhelperController::loadAttackhelpers(GHAttackhelperLoadedListener * 
 }
 
 // attack helper data 목록을 가져온다.
-void GHAttackhelperController::loadAttackhelperDatas(GHAttackhelperDataLoadedListener* listener){
+void GHAttackhelperController::loadAttackhelperDatas(GHAttackhelperDataLoadedListener* listener)
+{
+	this->currentListener = listener;
 
 	//GET 함수 호출
 	String game_id(GHSharedAuthData::getSharedInstance().getGameId());
@@ -140,7 +139,12 @@ void GHAttackhelperController::loadDataReceievedPopup(ArrayList* pArr)
 	pPopup->Construct(true, Tizen::Graphics::Dimension(600, 800));
 	pPopup->SetTitleText("Attack-Helper");
 
-	if(pArr != null && pArr->GetCount() > 0) {	// (데이터가 있으면) 리스트 뷰 생성
+	if(pArr == null || pArr->GetCount() == 0) {	// (데이터가 없으면) 메시지
+		Tizen::Ui::Controls::Label *pLabelNoItem = new Tizen::Ui::Controls::Label();
+		pLabelNoItem->Construct(Tizen::Graphics::Rectangle(25, 100, 550, 100), "새로 받은 아이템이 없습니다.");
+		pPopup->AddControl(pLabelNoItem);
+	}
+	else {	// (데이터가 있으면) 리스트 뷰 생성
 		Tizen::Ui::Controls::ListView* pAhList = new Tizen::Ui::Controls::ListView();
 		pAhList->Construct(Tizen::Graphics::Rectangle(25, 20, 550, 500), false, false);
 
@@ -152,11 +156,6 @@ void GHAttackhelperController::loadDataReceievedPopup(ArrayList* pArr)
 		pAhList->AddListViewItemEventListener( *pListener );
 
 		pPopup->AddControl(pAhList);
-	}
-	else {	// (데이터가 없으면) 메시지
-		Tizen::Ui::Controls::Label *pLabelNoItem = new Tizen::Ui::Controls::Label();
-		pLabelNoItem->Construct(Tizen::Graphics::Rectangle(25, 100, 550, 100), "새로 받은 아이템이 없습니다.");
-		pPopup->AddControl(pLabelNoItem);
 	}
 
 	Tizen::Ui::Controls::Button* pButtonClose = new Tizen::Ui::Controls::Button();
@@ -216,7 +215,7 @@ void GHAttackhelperController::OnTransactionReadyToRead(String apiCode, String s
 			ahArr = null;
 		}
 
-//		if(this->currentListener != null) this->currentListener->loadAttackhelperFinished(ahArr);
+		if(this->currentListener != null) this->currentListener->loadAttackhelperFinished(ahArr);
 
 
 	} else if(apiCode.Equals(ATTACKHELPER_DATA_LOAD)) {
@@ -263,7 +262,6 @@ void GHAttackhelperController::OnTransactionReadyToRead(String apiCode, String s
 
 		// 사용자에게 팝업 제공
 		loadDataReceievedPopup(ahdArr);
-
 
 		if(this->currentListener != null) this->currentListener->loadAttackhelperDataFinished(ahdArr);
 

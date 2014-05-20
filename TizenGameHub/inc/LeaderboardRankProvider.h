@@ -8,7 +8,7 @@
 #ifndef LEADERBOARDRANKPROVIDER_H_
 #define LEADERBOARDRANKPROVIDER_H_
 
-#include "GHPlayerRank.h"
+#include "GHLeaderboard/GHPlayerRank.h"
 
 class LeaderboardRankProvider
 : public Tizen::Ui::Controls::IListViewItemProvider

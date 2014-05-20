@@ -1,6 +1,11 @@
 src/FormModeSelect.d: ../src/FormModeSelect.cpp \
+<<<<<<< HEAD
   C:\Users\kichul\Documents\workspace\tizen\TizenGameHub\CardPair\inc\FormModeSelect.h \
   C:\Users\kichul\Documents\workspace\tizen\TizenGameHub\CardPair\inc/tizenx.h \
+=======
+  C:\Users\JOHEEYEON\workspace\TizenGameHub\CardPair\inc\FormModeSelect.h \
+  C:\Users\JOHEEYEON\workspace\TizenGameHub\CardPair\inc/tizenx.h \
+>>>>>>> 075e2c6551aa47635ab4e406696cf8782f20f5f6
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FApp.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FAppTypes.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FBaseString.h \
@@ -517,6 +522,7 @@ src/FormModeSelect.d: ../src/FormModeSelect.cpp \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp/glplatform.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp/khrplatform.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp/glmacro.h \
+<<<<<<< HEAD
   C:\Users\kichul\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHPlayer/GHPlayerLoggedinListener.h \
   C:\Users\kichul\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHPlayer.h \
   C:\Users\kichul\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc/GHTizen.h \
@@ -526,6 +532,17 @@ src/FormModeSelect.d: ../src/FormModeSelect.cpp \
   C:\Users\kichul\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHPlayer/GHPlayerController.h \
   C:\Users\kichul\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHAppRegistry.h \
   C:\Users\kichul\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHhttpClient.h \
+=======
+  C:\Users\JOHEEYEON\workspace\TizenGameHub\TizenGameHubLibrary\inc\GHPlayer/GHPlayerLoggedinListener.h \
+  C:\Users\JOHEEYEON\workspace\TizenGameHub\TizenGameHubLibrary\inc\GHPlayer/GHPlayer.h \
+  C:\Users\JOHEEYEON\workspace\TizenGameHub\TizenGameHubLibrary\inc\GHTizen.h \
+  C:\Users\JOHEEYEON\workspace\TizenGameHub\TizenGameHubLibrary\inc\GHPlayer/GHPlayerListener.h \
+  C:\Users\JOHEEYEON\workspace\TizenGameHub\CardPair\inc\AppResourceId.h \
+  C:\Users\JOHEEYEON\workspace\TizenGameHub\CardPair\inc\CardPairFrame.h \
+  C:\Users\JOHEEYEON\workspace\TizenGameHub\TizenGameHubLibrary\inc\GHPlayer/GHPlayerController.h \
+  C:\Users\JOHEEYEON\workspace\TizenGameHub\TizenGameHubLibrary\inc\GHAppRegistry.h \
+  C:\Users\JOHEEYEON\workspace\TizenGameHub\TizenGameHubLibrary\inc\GHhttpClient.h \
+>>>>>>> 075e2c6551aa47635ab4e406696cf8782f20f5f6
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FNet.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FNetNetTypes.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FNetIpAddress.h \
@@ -657,12 +674,21 @@ src/FormModeSelect.d: ../src/FormModeSelect.cpp \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FNetNfcINdefTagConnectionListener.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FNetNfcINfcDeviceDiscoveryEventListener.h \
   C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FNetNfcINdefPushManagerListener.h \
+<<<<<<< HEAD
   C:\Users\kichul\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHController.h \
   C:\Users\kichul\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHPlayer/GHPlayerLoadedListener.h
 
 C:\Users\kichul\Documents\workspace\tizen\TizenGameHub\CardPair\inc\FormModeSelect.h:
 
 C:\Users\kichul\Documents\workspace\tizen\TizenGameHub\CardPair\inc/tizenx.h:
+=======
+  C:\Users\JOHEEYEON\workspace\TizenGameHub\TizenGameHubLibrary\inc\GHController.h \
+  C:\Users\JOHEEYEON\workspace\TizenGameHub\TizenGameHubLibrary\inc\GHPlayer/GHPlayerLoadedListener.h
+
+C:\Users\JOHEEYEON\workspace\TizenGameHub\CardPair\inc\FormModeSelect.h:
+
+C:\Users\JOHEEYEON\workspace\TizenGameHub\CardPair\inc/tizenx.h:
+>>>>>>> 075e2c6551aa47635ab4e406696cf8782f20f5f6
 
 C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FApp.h:
 
@@ -1696,6 +1722,7 @@ C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/o
 
 C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp/glmacro.h:
 
+<<<<<<< HEAD
 C:\Users\kichul\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHPlayer/GHPlayerLoggedinListener.h:
 
 C:\Users\kichul\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHPlayer.h:
@@ -1713,6 +1740,25 @@ C:\Users\kichul\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\G
 C:\Users\kichul\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHAppRegistry.h:
 
 C:\Users\kichul\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHhttpClient.h:
+=======
+C:\Users\JOHEEYEON\workspace\TizenGameHub\TizenGameHubLibrary\inc\GHPlayer/GHPlayerLoggedinListener.h:
+
+C:\Users\JOHEEYEON\workspace\TizenGameHub\TizenGameHubLibrary\inc\GHPlayer/GHPlayer.h:
+
+C:\Users\JOHEEYEON\workspace\TizenGameHub\TizenGameHubLibrary\inc\GHTizen.h:
+
+C:\Users\JOHEEYEON\workspace\TizenGameHub\TizenGameHubLibrary\inc\GHPlayer/GHPlayerListener.h:
+
+C:\Users\JOHEEYEON\workspace\TizenGameHub\CardPair\inc\AppResourceId.h:
+
+C:\Users\JOHEEYEON\workspace\TizenGameHub\CardPair\inc\CardPairFrame.h:
+
+C:\Users\JOHEEYEON\workspace\TizenGameHub\TizenGameHubLibrary\inc\GHPlayer/GHPlayerController.h:
+
+C:\Users\JOHEEYEON\workspace\TizenGameHub\TizenGameHubLibrary\inc\GHAppRegistry.h:
+
+C:\Users\JOHEEYEON\workspace\TizenGameHub\TizenGameHubLibrary\inc\GHhttpClient.h:
+>>>>>>> 075e2c6551aa47635ab4e406696cf8782f20f5f6
 
 C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FNet.h:
 
@@ -1976,6 +2022,12 @@ C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/o
 
 C:/tizen-sdk/platforms/tizen2.2/rootstraps/tizen-device-2.2.native/usr/include/osp\FNetNfcINdefPushManagerListener.h:
 
+<<<<<<< HEAD
 C:\Users\kichul\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHController.h:
 
 C:\Users\kichul\Documents\workspace\tizen\TizenGameHub\TizenGameHubLibrary\inc\GHPlayer/GHPlayerLoadedListener.h:
+=======
+C:\Users\JOHEEYEON\workspace\TizenGameHub\TizenGameHubLibrary\inc\GHController.h:
+
+C:\Users\JOHEEYEON\workspace\TizenGameHub\TizenGameHubLibrary\inc\GHPlayer/GHPlayerLoadedListener.h:
+>>>>>>> 075e2c6551aa47635ab4e406696cf8782f20f5f6

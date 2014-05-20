@@ -5,7 +5,7 @@
  *      Author: Administrator
  */
 
-#include "GHGame.h"
+#include "GHGame/GHGame.h"
 #include "GHGameListItemEventListener.h"
 #include "TizenGameHubFrame.h"
 

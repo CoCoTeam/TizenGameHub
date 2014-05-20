@@ -5,7 +5,7 @@
  *      Author: Administrator
  */
 
-#include "GHGame.h"
+#include "GHGame/GHGame.h"
 
 GHGame::GHGame() {
 	// TODO Auto-generated constructor stub

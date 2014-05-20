@@ -5,7 +5,7 @@
  *      Author: hursujung
  */
 
-#include "GHPlayerRank.h"
+#include "GHLeaderboard/GHPlayerRank.h"
 
 using namespace Tizen::Base;
 

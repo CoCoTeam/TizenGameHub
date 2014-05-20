@@ -13,7 +13,7 @@
 #include <FUix.h>
 #include <FMedia.h>
 #include <FGraphics.h>
-#include "GHGame.h"
+#include "GHGame/GHGame.h"
 
 class GHGameProvider
 : public Tizen::Ui::Controls::IListViewItemProvider

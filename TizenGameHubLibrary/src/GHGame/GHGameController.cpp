@@ -5,7 +5,7 @@
  *      Author: Administrator
  */
 
-#include "GHGame.h"
+#include "GHGame/GHGame.h"
 #include "GHGame/GHGameController.h"
 #include "GHSharedAuthData.h"
 

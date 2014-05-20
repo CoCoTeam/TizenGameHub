@@ -5,7 +5,7 @@
  *      Author: Administrator
  */
 
-#include "GHLeaderboard.h"
+#include "GHLeaderboard/GHLeaderboard.h"
 
 using namespace Tizen::Base;
 

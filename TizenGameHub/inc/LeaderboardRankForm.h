@@ -9,7 +9,7 @@
 #define LEADERBOARDRANKFORM_H_
 
 #include "GHTizen.h"
-#include "GHLeaderboard.h"
+#include "GHLeaderboard/GHLeaderboard.h"
 //#include "GHLeaderboard/GHLeaderboard"
 #include "GameHub/AppGHLeaderboardController.h"
 #include "GHLeaderboard/GHLeaderboardListLoadedListener.h"
