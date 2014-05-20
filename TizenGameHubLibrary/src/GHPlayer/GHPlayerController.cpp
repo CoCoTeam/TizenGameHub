@@ -42,7 +42,7 @@ bool GHPlayerController::isLogin(){
 }
 
 // 사용자 로그인 팝업 생성
-void GHPlayerController::getLoginPopup(GHPlayerListener* listener)
+void GHPlayerController::getLoginPopup(GHPlayerLoggedinListener* listener)
 {
 	Tizen::Ui::Controls::MessageBox msgBox;
 	int modalResult;
@@ -81,7 +81,7 @@ void GHPlayerController::getLoginPopup(GHPlayerListener* listener)
 	}
 }
 // 사용자 로그인
-void GHPlayerController::playerLogin(GHPlayerListener* listener)
+void GHPlayerController::playerLogin(GHPlayerLoggedinListener* listener)
 {
 	String email;
 	String pwd;
@@ -99,7 +99,7 @@ void GHPlayerController::playerLogin(GHPlayerListener* listener)
 	return ;
 }
 // 사용자 로그인
-void GHPlayerController::playerLogin(Tizen::Base::String email, Tizen::Base::String pwd, GHPlayerListener* listener)
+void GHPlayerController::playerLogin(Tizen::Base::String email, Tizen::Base::String pwd, GHPlayerLoggedinListener* listener)
 {
 	// Set current Listener
 	this->currentListener = listener;
@@ -128,7 +128,7 @@ void GHPlayerController::playerLogin(Tizen::Base::String email, Tizen::Base::Str
 }
 
 // 사용자 정보 가져오기
-void GHPlayerController::getPlayerData(Tizen::Base::String playerId, GHPlayerListener* listener)
+void GHPlayerController::getPlayerData(Tizen::Base::String playerId, GHPlayerLoadedListener* listener)
 {
 	// Set current Listener
 	this->currentListener = listener;
@@ -171,13 +171,13 @@ void GHPlayerController::getPlayerGameList(Tizen::Base::String playerId, int sta
 
 	httpPost.RequestHttpGetTran(this, url);
 }
-void GHPlayerController::getPlayerGameList(Tizen::Base::String playerId, GHPlayerListener* listener, int start_pos, int max_length)
+void GHPlayerController::getPlayerGameList(Tizen::Base::String playerId, GHPlayerGamesLoadedListener* listener, int start_pos, int max_length)
 {
 	this->currentListener = listener;
 	this->getPlayerGameList(playerId, start_pos, max_length);
 }
 
-void GHPlayerController::searchFriend(Tizen::Base::String searchKey, GHPlayerListener* listener)
+void GHPlayerController::searchFriend(Tizen::Base::String searchKey, GHPlayerSearchFriendListener* listener)
 {
 	// Set current Listener
 	this->currentListener = listener;
@@ -186,7 +186,7 @@ void GHPlayerController::searchFriend(Tizen::Base::String searchKey, GHPlayerLis
 	String url(L"/players/search/" + searchKey);
 	httpPost.RequestHttpGetTran(this, url);
 }
-void GHPlayerController::addFriend(Tizen::Base::String playerId, Tizen::Base::String friendEmail, GHPlayerListener* listener)
+void GHPlayerController::addFriend(Tizen::Base::String playerId, Tizen::Base::String friendEmail, GHPlayerAddFriendListener* listener)
 {
 	// Set current Listener
 	this->currentListener = listener;
@@ -205,7 +205,7 @@ void GHPlayerController::getFriendsList(Tizen::Base::String player_id, int start
 	String url(L"/players/" + player_id + "/friends?start_pos=" + Integer::ToString(start_pos) +"&max_length="+ Integer::ToString(max_length));
 	httpPost.RequestHttpGetTran(this, url);
 }
-void GHPlayerController::getFriendsList(Tizen::Base::String playerId, GHPlayerListener* listener, int start_pos, int max_length)
+void GHPlayerController::getFriendsList(Tizen::Base::String playerId, GHPlayerFriendsLoadedListener* listener, int start_pos, int max_length)
 {
 	this->currentListener = listener;
 	this->getFriendsList(playerId, start_pos, max_length);

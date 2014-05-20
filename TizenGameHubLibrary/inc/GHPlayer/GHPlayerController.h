@@ -15,6 +15,11 @@
 #include "GHPlayer.h"
 #include "GHPlayer/GHPlayerListener.h"
 #include "GHPlayer/GHPlayerLoadedListener.h"
+#include "GHPlayer/GHPlayerLoggedinListener.h"
+#include "GHPlayer/GHPlayerGamesLoadedListener.h"
+#include "GHPlayer/GHPlayerFriendsLoadedListener.h"
+#include "GHPlayer/GHPlayerAddFriendListener.h"
+#include "GHPlayer/GHPlayerSearchFriendListener.h"
 
 
 const Tizen::Base::String PLAYER_LOGIN = "02";
@@ -37,13 +42,13 @@ public:
 	bool isLogin();
 
 	// 사용자 로그인
-	void playerLogin(GHPlayerListener* listener = null);
-	void playerLogin(Tizen::Base::String email, Tizen::Base::String pwd, GHPlayerListener* listener = null);
+	void playerLogin(GHPlayerLoggedinListener* listener = null);
+	void playerLogin(Tizen::Base::String email, Tizen::Base::String pwd, GHPlayerLoggedinListener* listener = null);
 	// 사용자 로그인 팝업 생성
-	void getLoginPopup(GHPlayerListener* listener = null);
+	void getLoginPopup(GHPlayerLoggedinListener* listener = null);
 
 	// 사용자 정보 가져오기
-	void getPlayerData(Tizen::Base::String playerId, GHPlayerListener* listener = null);
+	void getPlayerData(Tizen::Base::String playerId, GHPlayerLoadedListener* listener = null);
 
 	// 사용자 로그아웃
 	void playerLogout();
@@ -53,15 +58,15 @@ public:
 
 	//사용자가 플레이하는 게임 리스트 가져오기
 	void getPlayerGameList(Tizen::Base::String playerId, int start_pos=0, int max_length=5);
-	void getPlayerGameList(Tizen::Base::String playerId, GHPlayerListener* listener, int start_pos=0, int max_length=5);
+	void getPlayerGameList(Tizen::Base::String playerId, GHPlayerGamesLoadedListener* listener, int start_pos=0, int max_length=5);
 
 	// 친구 검색
-	void searchFriend(Tizen::Base::String searchKey, GHPlayerListener* listener = null);
+	void searchFriend(Tizen::Base::String searchKey, GHPlayerSearchFriendListener* listener = null);
 	// 친구 추가
-	void addFriend(Tizen::Base::String playerId, Tizen::Base::String friendEmail, GHPlayerListener* listener = null);
+	void addFriend(Tizen::Base::String playerId, Tizen::Base::String friendEmail, GHPlayerAddFriendListener* listener = null);
 	// 사용자의 친구 리스트 불러오기
 	void getFriendsList(Tizen::Base::String player_id, int start_pos=0, int max_length=8);
-	void getFriendsList(Tizen::Base::String playerId, GHPlayerListener* listener, int start_pos=0, int max_length=8);
+	void getFriendsList(Tizen::Base::String playerId, GHPlayerFriendsLoadedListener* listener, int start_pos=0, int max_length=8);
 
 	//IProgressPopupEventListener
 	virtual void OnProgressPopupCanceled();
