@@ -96,9 +96,6 @@ void FormGameTimeTrial::updateLeaderboardScoreFinished(int statusCode)
 }
 
 
-
-
-
 /*
 void FormGameTimeTrial::revealAchievementFinished(int statusCode)
 {

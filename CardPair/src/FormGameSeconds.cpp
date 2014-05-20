@@ -87,17 +87,30 @@ void FormGameSeconds::onGameEnded()
 		AppLog("totalMis complete !!");
 	}
 
-	Achievementcontroller->loadAchievements(this);
+/*	Achievementcontroller->loadAchievements(this);
 	Achievementcontroller->setAchievement("4", 10 , this);  // 10번 수행 했을 때
-	Achievementcontroller->loadAchievements(this);
+	Achievementcontroller->loadAchievements(this);*/
 
 
+	AppLog("gameScore : %d", gameScore);
 	Leaderboardcontroller->updateLeaderboardScore("key_aa_0", gameScore, this);
 
 	// 리더보드
 //	leaderboardUpdate(ld, gameScore);	// 최종 점수 리더보드 업데이트
 
 
+}
+
+
+void FormGameSeconds::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
+{
+	ParentOnActionPerformed(source, actionId);
+	switch(actionId) {
+	case ACTION_POPUP_CLOSE:
+		delete pPopup;
+		pPopup = null;
+		break;
+	}
 }
 
 //achievement
@@ -122,6 +135,7 @@ void FormGameSeconds::loadAchievementFinished(Tizen::Base::Collection::ArrayList
 		pPopup->Show();*/
 	}
 }
+
 void FormGameSeconds::setAchievementFinished(int statusCode)
 {
 	AppLogDebug("[DEBUG] setAchievementFinishedstatusCode : %d", statusCode);
@@ -132,7 +146,6 @@ void FormGameSeconds::completeAchievementFinished(int statusCode)
 	AppLogDebug("[DEBUG] completeAchievementFinished statusCode ===> : %d", statusCode);
 }
 
-
 void FormGameSeconds::updateLeaderboardScoreFinished(int statusCode)
 {
 	AppLogDebug("[DEBUG] updateLeaderboardScoreFinished statusCode : %d", statusCode);
@@ -140,6 +153,19 @@ void FormGameSeconds::updateLeaderboardScoreFinished(int statusCode)
 	if(statusCode == 1)
 	{
 		AppLogDebug("--------------> Update <-----------------");
+
+		pPopup = new Popup();
+		pPopup->Construct(true, Tizen::Graphics::Dimension(600, 800));
+		pPopup->SetTitleText("Leaderboard update !!");
+
+		Button* pButtonClose = new Button();
+		pButtonClose->Construct(Tizen::Graphics::Rectangle(100, 600, 400, 100), "닫  기");
+		pButtonClose->SetActionId(ACTION_POPUP_CLOSE);
+		pButtonClose->AddActionEventListener(*this);
+		pPopup->AddControl(pButtonClose);
+
+		pPopup->SetShowState(true);
+		pPopup->Show();
 
 	}
 	else if(statusCode == 2)
