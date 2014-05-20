@@ -69,6 +69,7 @@ FormMain::OnInitializing(void)
 	csLoadCount = 0;
 	playNum = 5;
 
+
 	return r;
 }
 
@@ -208,6 +209,5 @@ void FormMain::respondAttackhelperDataFinished(GHAttackhelperData* attackhelperD
 
 
 }
-
 
 

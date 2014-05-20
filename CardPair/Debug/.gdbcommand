@@ -1,0 +1,2 @@
+set sysroot C:\tizen-sdk\platforms\tizen2.2\rootstraps\tizen-device-2.2.native
+set debug-file-directory C:\tizen-sdk\platforms\tizen2.2\rootstraps\tizen-device-2.2.native\usr\lib\debug
