@@ -45,25 +45,27 @@ void FormGameTimeTrial::onStageComplete()
 	String timeStr = pLabelTimer->GetText();		// mm:ss:msms
 	int totalMis = getMillisec(timeStr);
 
+	// achievement 와 Leaderboard 적용
 
 	GHAchievementController* Achievementcontroller = new GHAchievementController();
 	GHLeaderboardController* Leaderboardcontroller = new GHLeaderboardController();
 
 	if(totalMis <= 30 * 1000)
 	{
-		Achievementcontroller->completeAchievement("4",this);     // 달성
+		Achievementcontroller->completeAchievement("4",this);     // 30 초 안에 달성
 		AppLog("totalMis complete !!");
 	}
 
-/*	if(maxCombo >= 5)
+	if(maxCombo >= 5)
 	{
-		Achievementcontroller->revealAchievement("4");            // 숨겨있던 achievement
+		Achievementcontroller->revealAchievement("4", this);            // 콤보 5번 이상
 		AppLog("maxCombo complete !!");
-	}*/
+	}
 
 	// time score update
 	Leaderboardcontroller->updateLeaderboardScore("key_aa_1", totalMis, this);
 	AppLog("complete !!");
+
 
 }
 
@@ -74,7 +76,10 @@ void FormGameTimeTrial::completeAchievementFinished(int statusCode)
 	AppLogDebug("[DEBUG] completeAchievementFinished statusCode : %d", statusCode);
 }
 
-
+void FormGameTimeTrial::revealAchievementFinished(int statusCode)
+{
+	AppLogDebug("[DEBUG] revealAchievementFinished statusCode : %d", statusCode);
+}
 void FormGameTimeTrial::updateLeaderboardScoreFinished(int statusCode)
 {
 	AppLogDebug("[DEBUG] updateLeaderboardScoreFinished statusCode : %d", statusCode);

@@ -100,6 +100,9 @@ void GHAchievementController::setAchievement(String ac_id, int point) {
 	__pMap->Add(new String("ac_id"), new String(ac_id));
 	__pMap->Add(new String("point"), new String(Integer::ToString(point)));
 
+
+	AppLogDebug("Point  -->   %d", point);
+
 	httpPost.RequestHttpPutTran(this, url, __pMap);
 }
 void GHAchievementController::setAchievement(String ac_id, int point, GHAchievementSettedListener* listener) {
@@ -154,6 +157,8 @@ void GHAchievementController::OnTransactionReadyToRead(String apiCode, String st
 				int iCurPoint 			= getIntByKey(pJsonOject, pkeyCurPoint);
 
 				// 리스트에 추가
+				GHAchievement* ac = new GHAchievement(sId, sTitle, sDesc, sImgUrl, iPrize, iHidden, iComplete, iGoalPoint, iCurPoint);
+				AppLogDebug("%S", ac->ToString().GetPointer());
 				acArr->Add(new GHAchievement(sId, sTitle, sDesc, sImgUrl, iPrize, iHidden, iComplete, iGoalPoint, iCurPoint));
 
 			}

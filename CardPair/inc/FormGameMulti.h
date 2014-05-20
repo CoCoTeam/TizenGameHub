@@ -8,10 +8,15 @@
 #include "GHCloudsave/GHCloudsaveController.h"
 #include "GHCloudsave/GHCloudsaveSaveListener.h"
 
+#include "GHAchievement/GHAchievementController.h"
+#include "GHAchievement/GHAchievementCompletedListener.h"
+
+
 class FormGameMulti
 	: public FormGame
 	, public GHTurnbasedMatchListener
 	, public GHCloudsaveSaveListener
+	, public GHAchievementCompletedListener
 {
 public:
 	FormGameMulti(void);
@@ -46,7 +51,7 @@ private:
 	virtual void saveCloudsaveFinished(int statusCode);
 	bool isWin;
 
-
+	virtual void completeAchievementFinished(int statusCode);
 
 };
 
