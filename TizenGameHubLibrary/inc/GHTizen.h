@@ -12,6 +12,5 @@
 #include <gl.h>
 #include <FMedia.h>
 
-#define STRING Tizen::Base::String
 
 #endif
