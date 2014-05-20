@@ -24,7 +24,7 @@ GHGameController::~GHGameController() {
 }
 
 // 게임 정보 가져오기
-void GHGameController::getGameData(Tizen::Base::String gameId, GHGameListener* listener)
+void GHGameController::getGameData(Tizen::Base::String gameId, GHGameLoadedListener* listener)
 {
 	this->currentListener = listener;
 
@@ -44,7 +44,7 @@ void GHGameController::getGamePlayingFriends(Tizen::Base::String gameId, int sta
 	String url(L"/f_games/" + gameId +"/"+ player_id +"/friends?start_pos="+Integer::ToString(start_pos) +"&max_length="+Integer::ToString(max_length));
 	httpPost.RequestHttpGetTran(this, url);
 }
-void GHGameController::getGamePlayingFriends(Tizen::Base::String gameId, GHGameListener* listener, int start_pos, int max_length)
+void GHGameController::getGamePlayingFriends(Tizen::Base::String gameId, GHGamePlayingFriendListener* listener, int start_pos, int max_length)
 {
 	this->currentListener = listener;
 

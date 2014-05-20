@@ -4,6 +4,7 @@
 #include "GHLeaderboard/GHLeaderboardController.h"
 #include "GHAchievement/GHAchievementController.h"
 #include "GHAttackhelper/GHAttackhelperController.h"
+#include "AppGameData.h"
 
 using namespace Tizen::Base;
 using namespace Tizen::App;
@@ -67,6 +68,13 @@ FormSocial::OnInitializing(void)
 	}
 	setButtonConfig();
 
+	// cloud save
+	Tizen::Ui::Controls::Label * pLabelRecord = static_cast < Label* >(GetControl(IDC_LABEL_RECORD));
+	String str = multiplay_winNum + "승 " + multiplay_loseNum + "패";
+
+	pLabelRecord->SetText(str);
+	pLabelRecord->Draw();
+
 	return r;
 }
 
@@ -108,7 +116,7 @@ FormSocial::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		break;
 	case IDA_BUTTON_ATTACKHELPER:
 		GHAttackhelperController *ahController = new GHAttackhelperController();
-		ahController->loadDataSendPopup();
+		ahController->loadDataSendPopup(this, 1, 1);
 		break;
 
 	}
@@ -138,4 +146,10 @@ void FormSocial::setButtonConfig()
 	pButtonAttackHelper->SetEnabled(isLogin());
 	pButtonLeaderboard->SetEnabled(isLogin());
 	pButtonAchievement->SetEnabled(isLogin());
+}
+
+void FormSocial::sendAttackhelperDataFinished(int statusCode)
+{
+	AppLogDebug("sendAttackhelperDataFinished", statusCode);
+
 }

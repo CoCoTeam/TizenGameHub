@@ -45,8 +45,8 @@ public:
 	void completeAchievement(Tizen::Base::String ac_id, GHAchievementCompletedListener* listener); 	// update listener
 
 	// incremental achievement update
-	void setAchievement(Tizen::Base::String ac_id);
-	void setAchievement(Tizen::Base::String ac_id, GHAchievementSettedListener* listener); 	// update listener
+	void setAchievement(Tizen::Base::String ac_id, int point);
+	void setAchievement(Tizen::Base::String ac_id, int point, GHAchievementSettedListener* listener); 	// update listener
 
 protected:
 	GHAchievementListener* currentListener;

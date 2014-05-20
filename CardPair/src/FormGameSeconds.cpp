@@ -64,6 +64,10 @@ void FormGameSeconds::onStageComplete()
 
 	}
 	setInitialState();
+
+	//game_count++;
+
+
 }
 /*
  * 시간 종료 시 호출되는 함수 (게임 종료)
@@ -73,14 +77,73 @@ void FormGameSeconds::onGameEnded()
 	AppLog("onGameEnded()");
 	pLabelTimer->SetText("00:00:00");
 
-//	maxCombo, gameScore
-/*	if(maxCombo >= 5) {
-		// [Achievement] 최대 콤보 5회 이상 달성
 
-	}*/
+	GHAchievementController* Achievementcontroller = new GHAchievementController();
+	GHLeaderboardController* Leaderboardcontroller = new GHLeaderboardController();
+
+	if(maxCombo >= 5)
+	{
+		Achievementcontroller->completeAchievement("4",this);
+		AppLog("totalMis complete !!");
+	}
+
+	Achievementcontroller->loadAchievements(this);
+	Achievementcontroller->setAchievement("4", 10 , this);  // 10번 수행 했을 때
+	Achievementcontroller->loadAchievements(this);
+
+
+	Leaderboardcontroller->updateLeaderboardScore("key_aa_0", gameScore, this);
 
 	// 리더보드
-//	leaderboardUpdate(ld_id2, gameScore);	// 최종 점수 리더보드 업데이트
+//	leaderboardUpdate(ld, gameScore);	// 최종 점수 리더보드 업데이트
 
 
+}
+
+//achievement
+void FormGameSeconds::loadAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList) {
+	// TEST
+	GHAchievement * test = static_cast<GHAchievement*>(achievementList->GetAt(1));
+	AppLogDebug("[DEBUG] acArr ID : %S", test->getId().GetPointer() );
+	AppLogDebug("[DEBUG] getGoalPoint : %d", test->getGoalPoint());
+	AppLogDebug("[DEBUG] getCurPoint : %d", test->getCurPoint());
+
+	if(test->getCurPoint() == 10)
+	{
+		// 10 번 게임을 했을 때
+		GHAchievementController* Achievementcontroller = new GHAchievementController();
+		Achievementcontroller->completeAchievement("4",this);
+
+		/*Tizen::Ui::Controls::Popup* pPopup = new Tizen::Ui::Controls::Popup();
+		pPopup->Construct(true, Tizen::Graphics::Dimension(600, 800));
+		pPopup->SetTitleText("Attack-Helper");
+
+		pPopup->SetShowState(true);
+		pPopup->Show();*/
+	}
+}
+void FormGameSeconds::setAchievementFinished(int statusCode)
+{
+	AppLogDebug("[DEBUG] setAchievementFinishedstatusCode : %d", statusCode);
+}
+
+void FormGameSeconds::completeAchievementFinished(int statusCode)
+{
+	AppLogDebug("[DEBUG] completeAchievementFinished statusCode ===> : %d", statusCode);
+}
+
+
+void FormGameSeconds::updateLeaderboardScoreFinished(int statusCode)
+{
+	AppLogDebug("[DEBUG] updateLeaderboardScoreFinished statusCode : %d", statusCode);
+
+	if(statusCode == 1)
+	{
+		AppLogDebug("--------------> Update <-----------------");
+
+	}
+	else if(statusCode == 2)
+	{
+		AppLogDebug("--------------> No Update <-----------------");
+	}
 }

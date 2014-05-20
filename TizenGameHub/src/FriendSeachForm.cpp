@@ -8,7 +8,7 @@
 #include "FriendSeachForm.h"
 #include "AppResourceId.h"
 #include "TizenGameHubFrame.h"
-#include "GHPlayerProvider.h"
+#include "GHForm/PlayerProvider.h"
 #include "GHPlayerListItemEventListener.h"
 #include "GHSharedAuthData.h"
 

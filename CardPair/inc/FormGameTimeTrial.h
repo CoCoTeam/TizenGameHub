@@ -4,16 +4,21 @@
 #include "tizenx.h"
 #include "FormGame.h"
 
+
 #include "GHAchievement/GHAchievementController.h"
-#include "GHAchievement/GHAchievementLoadedListener.h"
-//#include "GHAchievement/GHAchievementRevealedListener.h"
+#include "GHLeaderboard/GHLeaderboardController.h"
+//#include "GHAchievement/GHAchievementLoadedListener.h"
+#include "GHAchievement/GHAchievementRevealedListener.h"
 #include "GHAchievement/GHAchievementCompletedListener.h"
+#include "GHLeaderboard/GHLeaderboardScoreUpdatedListener.h"
+
 
 class FormGameTimeTrial
 	: public FormGame
-	, public GHAchievementLoadedListener
-	//, public GHAchievementRevealedListener
+	//, public GHAchievementLoadedListener
+	, public GHAchievementRevealedListener
 	, public GHAchievementCompletedListener
+	, public GHLeaderboardScoreUpdatedListener
 {
 public:
 	FormGameTimeTrial(void);
@@ -31,9 +36,10 @@ private:
 
 
 	// GHLeaderboard
-	virtual void loadAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList);
-	//virtual void revealAchievementFinished(int statusCode);
+	//virtual void loadAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList);
+	virtual void revealAchievementFinished(int statusCode);
 	virtual void completeAchievementFinished(int statusCode);
+	virtual void updateLeaderboardScoreFinished(int statusCode);
 };
 
 #endif	//_CARD_PAIR_FORM_TIMETRIAL_H_

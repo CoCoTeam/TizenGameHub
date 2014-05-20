@@ -38,6 +38,5 @@ void GHPlayer::setEmail(Tizen::Base::String _email)		{this->email = _email; }
 void GHPlayer::setName(Tizen::Base::String _name)		{this->name= _name; }
 void GHPlayer::setImgUrl(Tizen::Base::String _imgUrl)	{this->imgUrl=_imgUrl; }
 
-bool GHPlayer::isFriend() 			{return misFriend;}
-void GHPlayer::setIsFriend(bool b) 	{misFriend = b;}
-long GHPlayer::getTotalScore() 		{return 123456;}
+bool GHPlayer::isFriend() 			{return is_Friend;}
+void GHPlayer::setIsFriend(bool b) 	{is_Friend = b;}

@@ -39,14 +39,18 @@ CardPairApp::OnAppInitializing(AppRegistry& appRegistry)
 bool
 CardPairApp::OnAppInitialized(void)
 {
-	//Set sharedInstance
-	GHSharedAuthData & sharedInstance = GHSharedAuthData::getSharedInstance();
-	sharedInstance.setGameId("640724e90c77aab5fc5e9266a5674bfd");
+   //Set sharedInstance
+   GHSharedAuthData & sharedInstance = GHSharedAuthData::getSharedInstance();
+   sharedInstance.setGameId("key_aa");
 
-	//...
-	//...
+   // Create the application frame.
+   CardPairFrame* pCardPairFrame = new (std::nothrow) CardPairFrame;
+   TryReturn(pCardPairFrame != null, false, "The memory is insufficient.");
+   pCardPairFrame->Construct();
+   pCardPairFrame->SetName(L"CardPair");
+   AddFrame(*pCardPairFrame);
 
-	return true;
+   return true;
 }
 
 bool

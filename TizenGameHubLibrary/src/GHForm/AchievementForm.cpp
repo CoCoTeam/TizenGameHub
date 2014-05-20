@@ -5,9 +5,10 @@
  *      Author: Administrator
  */
 
-#include "AppResourceId.h"
 #include "GHForm/AchievementForm.h"
+#include "LibResourceId.h"
 #include "GHForm/ListPanel.h"
+#include "GHAchievement/GHAchievementController.h"
 
 using namespace Tizen::Ui::Controls;
 using namespace Tizen::Ui::Scenes;
@@ -18,7 +19,7 @@ AchievementForm::~AchievementForm() {
 }
 bool AchievementForm::Initialize(void)
 {
-	result r = Construct(IDL_FORM_ACHIEVEMENT);
+	result r = Construct(IDL_GHFORM_ACHIEVEMENT);
 	TryReturn(r == E_SUCCESS, false, "Failed to construct form");
 
 	return true;
@@ -32,26 +33,36 @@ result AchievementForm::OnInitializing(void)
 
 	// Get a panel via resource ID
 	pAchievement_scrollpanel = static_cast<ScrollPanel*>(GetControl(IDC_ACHIEVEMENT_SCROLLPANEL));
-	loadAchievements(this);
+	OnInitialized();
 
 	return r;
+}
+void AchievementForm::OnInitialized()
+{
+	GHAchievementController* acController = new GHAchievementController();
+	acController->loadAchievements(this);
 }
 result AchievementForm::OnTerminating(void)
 {
 	result r = E_SUCCESS;
 
-	ac_list->RemoveAll();	delete ac_list;
-	pAchievement_scrollpanel->RemoveAllControls();
+//	ac_list->RemoveAll();	delete ac_list;
+//	pAchievement_scrollpanel->RemoveAllControls();
 
 	return r;
 }
 //IFormBackEventListener
 void AchievementForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 {
-	source.GetParent()->RemoveControl(source);
+	SceneManager* pSceneManager = SceneManager::GetInstance();
+	AppAssert(pSceneManager);
+	pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_RIGHT));
 }
 void AchievementForm::loadAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList)
 {
+	if(achievementList == null) {
+		return;
+	}
 	ac_list = achievementList;
 	AppLogDebug("[AchievementForm] achievementArray Received. (arraySize : %d)", ac_list->GetCount() );
 	setAchievementList();
@@ -64,7 +75,7 @@ void AchievementForm::setAchievementList()
 	int completeCount = 0;
 	for(int i=0 ; i<ac_list->GetCount() ; i++)
 	{
-		GHAchievement *achievement = (GHAchievement*)(ac_list->GetAt(0));
+		GHAchievement *achievement = (GHAchievement*)(ac_list->GetAt(i));
 		Panel* pPanelAchievement = new ListPanel(*achievement);
 		pPanelAchievement->SetPosition(initX + posX*(i%2), initY + posY*(i/2));
 		pAchievement_scrollpanel->AddControl(pPanelAchievement);

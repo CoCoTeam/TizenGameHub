@@ -9,6 +9,7 @@
 #define ATTACKHELPERRECEIVELISTENER_H_
 
 #include <GHTizen.h>
+#include "GHAttackhelper/GHAttackhelperDataRespondedListener.h"
 
 class AttackHelperReceiveListener
 	: public Tizen::Ui::Controls::IListViewItemEventListener
@@ -16,6 +17,7 @@ class AttackHelperReceiveListener
 {
 public:
 	AttackHelperReceiveListener();
+	AttackHelperReceiveListener(GHAttackhelperDataRespondedListener* respondListener);
 	virtual ~AttackHelperReceiveListener();
 
 	void OnListViewContextItemStateChanged(Tizen::Ui::Controls::ListView &listView, int index, int elementId, Tizen::Ui::Controls::ListContextItemStatus state);
@@ -29,6 +31,7 @@ public:
 
 private:
 	Tizen::Base::Collection::ArrayList list;
+	GHAttackhelperDataRespondedListener* respondListener;
 
 	int ahId;
 	Tizen::Ui::Controls::Popup *pPopup;

@@ -8,6 +8,7 @@
 #include "GHSharedAuthData.h"
 #include "GHAchievement/GHAchievementController.h"
 #include "GHForm/AchievementForm.h"
+#include "LibResourceId.h"
 
 using namespace Tizen::Base::Collection;
 using namespace Tizen::Net::Http;
@@ -29,18 +30,12 @@ GHAchievementController::~GHAchievementController() {
 // AchievementForm(Page)을 로드한다.
 void GHAchievementController::loadAchievementForm()
 {
-	Tizen::Ui::Controls::Frame *pFrame = Tizen::App::UiApp::GetInstance()->GetAppFrame()->GetFrame();
-	AchievementForm* pForm = new (std::nothrow) AchievementForm();
-	pForm->Initialize();
-
-	// Add the form to the frame
-	pFrame->AddControl(pForm);
-	pFrame->SetCurrentForm(pForm);
-	pFrame->Invalidate(true);
+	Tizen::Ui::Scenes::SceneManager* pSceneManager = Tizen::Ui::Scenes::SceneManager::GetInstance();
+	pSceneManager->GoForward(Tizen::Ui::Scenes::ForwardSceneTransition(SCENE_GHFORM_ACHIEVEMENT, Tizen::Ui::Scenes::SCENE_TRANSITION_ANIMATION_TYPE_LEFT));
 }
 // Achievement 목록을 가져온다.
-void GHAchievementController::loadAchievements(GHAchievementLoadedListener* listener) {
-
+void GHAchievementController::loadAchievements(GHAchievementLoadedListener * listener)
+{
 	this->currentListener = listener;
 
 	//GET 함수 호출
@@ -90,7 +85,7 @@ void GHAchievementController::completeAchievement(String ac_id, GHAchievementCom
 }
 
 // incremental achievement update
-void GHAchievementController::setAchievement(String ac_id) {
+void GHAchievementController::setAchievement(String ac_id, int point) {
 	this->currentListener = null;
 
 	String game_id(GHSharedAuthData::getSharedInstance().getGameId());
@@ -103,18 +98,23 @@ void GHAchievementController::setAchievement(String ac_id) {
 	__pMap->Add(new String("game_id"), new String(game_id));
 	__pMap->Add(new String("player_id"), new String(player_id));
 	__pMap->Add(new String("ac_id"), new String(ac_id));
-	__pMap->Add(new String("point"), new String(Integer::ToString(10)));
+	__pMap->Add(new String("point"), new String(Integer::ToString(point)));
+
+
+	AppLogDebug("Point  -->   %d", point);
 
 	httpPost.RequestHttpPutTran(this, url, __pMap);
 }
-void GHAchievementController::setAchievement(String ac_id, GHAchievementSettedListener* listener) {
+void GHAchievementController::setAchievement(String ac_id, int point, GHAchievementSettedListener* listener) {
 	this->currentListener = listener;
-	this->setAchievement(ac_id);
+	this->setAchievement(ac_id, point);
 }
 
 
 // 모든 통신의 콜백에서 호출하는 함수
 void GHAchievementController::OnTransactionReadyToRead(String apiCode, String statusCode, IJsonValue* data){
+
+	AppLogDebug(">> test <<");
 
 	AppLogDebug("[DEBUG] apiCode : %S", apiCode.GetPointer() );
 	AppLogDebug("[DEBUG] statusCode : %S", statusCode.GetPointer() );
@@ -157,6 +157,8 @@ void GHAchievementController::OnTransactionReadyToRead(String apiCode, String st
 				int iCurPoint 			= getIntByKey(pJsonOject, pkeyCurPoint);
 
 				// 리스트에 추가
+				GHAchievement* ac = new GHAchievement(sId, sTitle, sDesc, sImgUrl, iPrize, iHidden, iComplete, iGoalPoint, iCurPoint);
+				AppLogDebug("%S", ac->ToString().GetPointer());
 				acArr->Add(new GHAchievement(sId, sTitle, sDesc, sImgUrl, iPrize, iHidden, iComplete, iGoalPoint, iCurPoint));
 
 			}
@@ -181,7 +183,11 @@ void GHAchievementController::OnTransactionReadyToRead(String apiCode, String st
 		int stateCode;
 		Integer::Parse(statusCode, stateCode);
 
+		AppLogDebug("[DEBUG]ACHIEVEMENT_COMPLETE ");
+
 		if(this->currentListener != null) this->currentListener->completeAchievementFinished(stateCode);
+
+
 
 	} else if(apiCode.Equals(ACHIEVEMENT_SET)) { // ACHIEVEMENT_SET
 		int stateCode;

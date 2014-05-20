@@ -18,7 +18,7 @@ public:
 	virtual void loadAchievementFinished(Tizen::Base::Collection::ArrayList* attackhelperList) {};
 	virtual void setAchievementFinished(int statusCode) {};
 	virtual void revealAchievementFinished(int statusCode) {};
-	virtual void completeAchievementFinished(int statusCode) {};
+	virtual void completeAchievementFinished(int statusCode) { AppLogDebug("[DEBUG]ACHIEVEMENT"); };
 };
 
 #endif /* GHACHIEVEMENTLISTENER_H_ */

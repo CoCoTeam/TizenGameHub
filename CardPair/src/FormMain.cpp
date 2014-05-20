@@ -1,5 +1,6 @@
 #include "FormMain.h"
 #include "AppResourceId.h"
+#include "AppGameData.h"
 #include "CardPairFrame.h"
 #include "GHLeaderboard/GHLeaderboardController.h"
 #include "GHAchievement/GHAchievementController.h"
@@ -64,6 +65,11 @@ FormMain::OnInitializing(void)
 
 	playerLogin(this);
 
+	// cloud save
+	csLoadCount = 0;
+	playNum = 5;
+
+
 	return r;
 }
 
@@ -119,6 +125,17 @@ FormMain::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 										  const Tizen::Ui::Scenes::SceneId& currentSceneId, Tizen::Base::Collection::IList* pArgs)
 {
 	// TODO: Activate your scene here.
+	Tizen::Ui::Controls::Label * pLabelPlayNum = static_cast < Label* >(GetControl(IDC_LABEL_PLAYNUM));
+	String str = Integer::ToString(playNum);
+	pLabelPlayNum->SetText(str);
+	pLabelPlayNum->Draw();
+
+
+	// clound save 데이터를 불러온다. (멀티플레이 전적)
+	csController = new GHCloudsaveController();
+	csController->loadCloudSlotData(1,this); // 멀티플레이 승 데이터
+	csController->loadCloudSlotData(2,this); // 멀티플레이 패 데이터
+
 
 }
 
@@ -134,7 +151,63 @@ void FormMain::loginPlayerFinished(Tizen::Base::String statusCode)
 {
 	if(statusCode != "0") {
 		ahController = new GHAttackhelperController();
-		ahController->loadAttackhelperDatas();
+		ahController->loadAttackhelperDatas(this);
+
+		// clound save 데이터를 불러온다. (멀티플레이 전적)
+		csController = new GHCloudsaveController();
+		csController->loadCloudSlotData(1,this); // 멀티플레이 승 데이터
+		csController->loadCloudSlotData(2,this); // 멀티플레이 패 데이터
+
 	}
 }
+void FormMain::loadCloudsaveFinished(int slotIdx, Tizen::Base::String data)
+{
+	if(slotIdx == 1) { // 승
+		csLoadCount++;
+		multiplay_winNum = data;
+		AppLogDebug("loadCloudsaveFinished : 1");
+	}else if(slotIdx == 2) { // 패
+		AppLogDebug("loadCloudsaveFinished : 2");
+		multiplay_loseNum = data;
+		csLoadCount++;
+	}
+
+	if(csLoadCount % 2 == 0) {	// 승/패 데이터가 모두 왔을 때
+		Tizen::Ui::Controls::Label * pLabelRecord = static_cast < Label* >(GetControl(IDC_LABEL_RECORD));
+		String str = multiplay_winNum + "승 " + multiplay_loseNum + "패";
+
+		if(pLabelRecord != null) {
+			pLabelRecord->SetText(str);
+			pLabelRecord->Draw();
+		}
+	}
+}
+
+
+
+void FormMain::respondAttackhelperDataFinished(GHAttackhelperData* attackhelperData, int accpet_flag)
+{
+	AppLogDebug("respondAttackhelperDataFinished");
+
+	if(attackhelperData == null) {
+		return;
+	}
+
+	if(accpet_flag == 1) {	 // 수락
+		int quantity = attackhelperData->getQuantity();
+		playNum += quantity;
+
+		AppLogDebug("respondAttackhelperDataFinished : %d", playNum);
+		Tizen::Ui::Controls::Label * pLabelPlayNum = static_cast < Label* >(GetControl(IDC_LABEL_PLAYNUM));
+		String str = Integer::ToString(playNum);
+		pLabelPlayNum->SetText(str);
+		pLabelPlayNum->Draw();
+
+	}else {
+		return;
+	}
+
+
+}
+
 

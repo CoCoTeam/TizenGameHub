@@ -20,7 +20,6 @@ class ListPanel
 public:
 	ListPanel();
 	virtual ~ListPanel();
-	ListPanel(Tizen::Base::String _id, Tizen::Base::String _title, Tizen::Base::String _imgUrl);
 	ListPanel(GHLeaderboard leaderboard);
 	ListPanel(GHAchievement achievement);
 	//ITouchEventListener
@@ -31,11 +30,11 @@ public:
 	virtual void OnTouchReleased (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo);
 
 
+protected:
 	Tizen::Base::String getId();
 	Tizen::Base::String getTitle();
 	Tizen::Base::String getImgUrl();
 
-private:
 	Tizen::Base::String id;
 	Tizen::Base::String title;
 	Tizen::Base::String imgUrl;

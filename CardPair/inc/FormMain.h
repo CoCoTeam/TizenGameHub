@@ -5,6 +5,9 @@
 #include "GHPlayer/GHPlayerController.h"
 #include "GHPlayer/GHPlayerLoggedinListener.h"
 #include "GHAttackhelper/GHAttackhelperController.h"
+#include "GHCloudsave/GHCloudsaveController.h"
+#include "GHCloudsave/GHCloudsaveLoadListener.h"
+#include "GHAttackhelper/GHAttackhelperDataRespondedListener.h"
 
 class FormMain
 	: public Tizen::Ui::Controls::Form
@@ -13,6 +16,8 @@ class FormMain
  	, public Tizen::Ui::Scenes::ISceneEventListener
  	, public GHPlayerController
  	, public GHPlayerLoggedinListener
+ 	, public GHCloudsaveLoadListener
+ 	, public GHAttackhelperDataRespondedListener
 {
 public:
 	FormMain(void);
@@ -28,9 +33,17 @@ private:
 								   const Tizen::Ui::Scenes::SceneId& currentSceneId, Tizen::Base::Collection::IList* pArgs);
 	virtual void OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
 									const Tizen::Ui::Scenes::SceneId& nextSceneId);
-	// GHPlayerLoggedinListener
+	//GHPlayerLoggedinListener
 	virtual void loginPlayerFinished(Tizen::Base::String statusCode);
 	GHAttackhelperController *ahController;
+	//GHAttackhelperDataRespondedListener
+	virtual void respondAttackhelperDataFinished(GHAttackhelperData* attackhelperData, int accpet_flag);
+
+
+	// Cloud Save
+	GHCloudsaveController *csController;
+	virtual void loadCloudsaveFinished(int slotIdx, Tizen::Base::String data);
+	int csLoadCount = 0;
 
 protected:
 	static const int IDA_BUTTON_PLAY = 101;

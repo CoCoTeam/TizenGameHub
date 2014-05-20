@@ -28,12 +28,16 @@ void GHController::OnTransactionReadyToRead(HttpSession& httpSession, HttpTransa
 	AppLog("OnTransactionReadyToRead");
 
 	HttpResponse* pHttpResponse = httpTransaction.GetResponse();
+
 	if (pHttpResponse->GetHttpStatusCode() == HTTP_STATUS_OK)
 	{
+		AppLog("TEST 1");
+
 		HttpHeader* pHttpHeader = pHttpResponse->GetHeader();
 		if (pHttpHeader != null)
 		{
 
+			AppLog("TEST 2");
 			String* tempHeaderString = pHttpHeader->GetRawHeaderN();
 
 			// 응답받은 데이터를 버퍼에 가져온다.
@@ -57,7 +61,7 @@ void GHController::OnTransactionReadyToRead(HttpSession& httpSession, HttpTransa
 			IJsonValue* pDataValue = null;
 			pJsonObj->GetValue(pStrDataKey, pDataValue);
 
-			//AppLogDebug("api : %S, status : %S", pApiStr->GetPointer(), pStatusStr->GetPointer());
+			AppLogDebug("api : %S, status : %S", pApiStr->GetPointer(), pStatusStr->GetPointer());
 
 			// 자식 객체의 함수를 호출한다.
 			String apiCode(pApiStr->GetPointer());
@@ -73,6 +77,8 @@ void GHController::OnTransactionReadyToRead(HttpSession& httpSession, HttpTransa
 			delete pBuffer;
 		}
 	}
+	AppLog("TEST 3");
+
 }
 
 void GHController::OnTransactionAborted(HttpSession& httpSession, HttpTransaction& httpTransaction, result r)

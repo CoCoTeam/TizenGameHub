@@ -13,6 +13,10 @@ AttackHelperReceiveListener::AttackHelperReceiveListener() {
 	// TODO Auto-generated constructor stub
 
 }
+AttackHelperReceiveListener::AttackHelperReceiveListener(GHAttackhelperDataRespondedListener* respondListener)
+{
+	this->respondListener = respondListener;
+}
 
 AttackHelperReceiveListener::~AttackHelperReceiveListener() {
 	// TODO Auto-generated destructor stub
@@ -35,10 +39,7 @@ void AttackHelperReceiveListener::OnListViewItemStateChanged
 			return ;
 		}
 		listView.SetItemEnabled(index, false);
-
-
 		GHAttackhelperData* ahData = (GHAttackhelperData*)(list.GetAt(index));
-		AppLogDebug("%d, %S", ahData->getDataIndex(), ahData->getItemName().GetPointer());
 
 		ahId = ahData->getDataIndex();
 
@@ -65,17 +66,21 @@ void AttackHelperReceiveListener::OnListViewItemStateChanged
 void AttackHelperReceiveListener::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 {
 	GHAttackhelperController *ahController = new GHAttackhelperController();
-
-	ahController->respondAttackhelperData(ahId, 1); // 일단 임시로 1 넣어놓음~
+	int acceptFlag = 0;
 
 	switch(actionId)
 	{
 	case ACTION_POPUP_ACCEPT:
+		acceptFlag = 1;
 		break;
 
 	case ACTION_POPUP_DENY:
+		acceptFlag = 0;
 		break;
 	}
+
+	ahController->respondAttackhelperData(ahId, acceptFlag, respondListener);
+
 	if(pPopup != null) {
 		delete pPopup;
 		pPopup = null;

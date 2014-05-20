@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 author-signature.xml__DEL__2Y5Kzemru5DVRa7R0bdnyjJQVXx4bRZ48ahEYyW8qr0=
 bin/CardPair.exe__DEL__gf9dPJnG4vm1P5Lvz38L+uARHl3076Gno6hQMLnqKSk=
 info/manifest.xml__DEL__IzsBYC5VIMRolhEDUTm7vHB7kvaS1mC787f6H48LS18=
@@ -26,10 +27,17 @@ bin/CardPair.exe__DEL__LjBlwIl8Eqpt3ehHG4qQ7lcrhbBjF0ekmdaLNMCCGHs=
 info/manifest.xml__DEL__IzsBYC5VIMRolhEDUTm7vHB7kvaS1mC787f6H48LS18=
 lib/libTizenGameHubLibrary.so__DEL__qrtLUl8EGfasu+NQpzxi/GuqXdig5htolYnuNuozCsU=
 >>>>>>> 075e2c6551aa47635ab4e406696cf8782f20f5f6
+=======
+author-signature.xml__DEL__eCQE9DAQ/avsQP/2He9AYGe+q1/so+RPxYjZWXdG1Xk=
+bin/CardPair.exe__DEL__LtHes8nOv1Qv8eQHwfhUiPkI+CKMA9gIekEDRfFXG4Y=
+info/manifest.xml__DEL__IzsBYC5VIMRolhEDUTm7vHB7kvaS1mC787f6H48LS18=
+lib/libTizenGameHubLibrary.so__DEL__Mgbc8wvBwXY1KUAoB1scQgMuxh/dm+CP+5CG+qMUGPc=
+>>>>>>> b30b69763567d7e197dbdc67bc007a70c4a97456
 res/720x1280/achievement_complete.png__DEL__vFOVfVPTjEAAyJpNKUEu0fKR9HCHx5mctp/tvpEz0tA=
 res/720x1280/heart.png__DEL__p/arUQetJna0/mGYSnQ0XkCS3qRjV9vd1iyBGu6TwTc=
+res/720x1280/record.png__DEL__xo/Yd7Cn0I4aGb4Gi+muvQKsLaf3y9GDRmld/PJbXYY=
 res/profile_default.png__DEL__tNZlVbJYpw7OpCoC1wpYEWZ+OdUng/HyKJ0C+uzU2mI=
-res/screen-size-normal/IDL_FORM.xml__DEL__QLRuqmtRlvk/Wk1eTNe3RIJM4qFGDU/StNXYjNve3fo=
+res/screen-size-normal/IDL_FORM.xml__DEL__1ARFNcl+3w7SyY//lEAWFUF5vTE3cQjHvL3CLVfTKaU=
 res/screen-size-normal/IDL_FORM_ACHIEVEMENT.xml__DEL__+oNeTYlJxM1tj+ALT55yVTSMszIR3XMq8X3yIkQyux4=
 res/screen-size-normal/IDL_FORM_GAME.xml__DEL__997+cUoCuYt/fBn43hdjXFJtNfV5uqQcJBLxQNg13Jc=
 res/screen-size-normal/IDL_FORM_LEADERBOARD.xml__DEL__Bjq67x2aIt2ZrfiLNXBDIlgIxLUDN03t1811DZZiQw4=

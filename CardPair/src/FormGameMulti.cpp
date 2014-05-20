@@ -1,5 +1,6 @@
 #include "FormGameMulti.h"
 #include "AppResourceId.h"
+#include "AppGameData.h"
 
 using namespace Tizen::Base;
 using namespace Tizen::App;
@@ -14,6 +15,7 @@ FormGameMulti::FormGameMulti(void)
 	isMultiplay = true;
 	onMyTurn = false;
 	isGameFirst = true;
+	isWin = false;
 }
 
 FormGameMulti::~FormGameMulti(void)
@@ -72,11 +74,19 @@ void FormGameMulti::onStageComplete()
 {
 	AppLog("============================================ Complete Stage ============================================");
 	// 게임 종료, 승리
-//	gameScore, maxCombo
-//	win = saveMyGrade(true)	// 게임 전적 저장 -> cloudSave
-//	if(win > 10) {
-//		// [Achievement] 멀티플레이 10승 달성
-//	}
+
+	isWin = true;
+
+	//	gameScore, maxCombo
+
+	//win = saveMyGrade(true);	// 게임 전적 저장 -> cloudSave
+	// [Achievement] 멀티플레이 10승 달성
+	/*GHAchievementController* Achievementcontroller = new GHAchievementController();
+	if(multiplay_winNum >= 3)
+	{
+		Achievementcontroller->completeAchievement("4",this);
+		AppLog("totalMis complete !!");
+	}*/
 
 }
 /*
@@ -84,13 +94,14 @@ void FormGameMulti::onStageComplete()
  */
 void FormGameMulti::onTurnFinished(int actionType, int cardNum, bool isCorrect)
 {
-	int finished = 1;
+	int finished = 0;
 	if(isComplete) {
-		finished = 0;
+		finished = 1;
 	}
 	String data("{\'actionType\':"+Integer::ToString(actionType)+ ",\'cardNum\':"+Integer::ToString(cardNum) +",\'score\':"+Integer::ToString(gameScore)
-				+ ",\'isCorrect\':\'"+Boolean::ToString(isCorrect)+ "\',\'isFinished\':"+Integer::ToString(finished) +"}");
-	multiController->sendDataToPlayer(data, 0);
+				+ ",\'isCorrect\':\'"+Boolean::ToString(isCorrect)+ "\'}");
+	multiController->sendDataToPlayer(data, finished);
+	AppLogDebug("%S", data.GetPointer());
 }
 
 // GHTurnbasedMatchListener
@@ -175,20 +186,7 @@ void FormGameMulti::onMatchMyturn(String data){
 
 			countRemoved++;
 
-			pObject->GetValue(new String("isFinished"), pValue);
-			JsonNumber *pjIsFinished = static_cast<JsonNumber*>(pValue);
-			bool isFinished = (pjIsFinished->ToInt() == 0 ? true : false);
-			delete pjIsFinished;
-
-			// isGameFinished
-			if(isFinished) {
-				AppLogDebug("============================================ Game Finished =============================================");
-				// 게임 종료, 패배
-
-
-			} else {
-				multiController->sendDataToPlayer("", 0);
-			}
+			multiController->sendDataToPlayer("", 0);
 		}
 		// turnExpired, 틀리면
 		else if(actionType == 3) {
@@ -209,6 +207,111 @@ void FormGameMulti::onMatchTurnWait(){
 }
 void FormGameMulti::onMatchFinish(String data){
 	AppLogDebug("[onMatchFinish]");
+
+	// 마지막 턴 처리 --------------------------------------------
+	if(data == "") {
+
+	}else {
+		JsonObject* pObject = parseJson(data);
+		IJsonValue* pValue = null;
+
+		// Score Setting
+		pObject->GetValue(new String("score"), pValue);
+		JsonNumber *pjScore = static_cast<JsonNumber*>(pValue);
+		int iScore = pjScore->ToInt();
+		delete pjScore;
+		pLabelScore2->SetText(Integer::ToString(iScore));
+		pLabelScore2->Draw();
+
+		// Get ActionType
+		pObject->GetValue(new String("actionType"), pValue);
+		JsonNumber *pjActionType = static_cast<JsonNumber*>(pValue);
+		int actionType = pjActionType->ToInt();
+		delete pjActionType;
+
+		// Get CardNum
+		pObject->GetValue(new String("cardNum"), pValue);
+		JsonNumber *pjCardNum = static_cast<JsonNumber*>(pValue);
+		int cardNum = pjCardNum->ToInt();
+		delete pjCardNum;
+
+		// isFirstFlip
+		if(actionType == 1) {
+			AppLogDebug("actionType : 1");
+			firstSelected = cardNum;
+			setCardVisible(cardNum);	// flip card
+		}
+		// isSecondFlip, isCorrect
+		else if(actionType == 2) {
+			AppLogDebug("actionType : 2");
+			secondSelected = cardNum;
+			setCardVisible(cardNum);	// flip card
+
+			// 맞으면 카드 제거
+			pButtonCard[firstSelected]->SetShowState(false);
+			pButtonCard[secondSelected]->SetShowState(false);
+
+			countRemoved++;
+		}
+		// turnExpired, 틀리면
+		else if(actionType == 3) {
+			AppLogDebug("actionType : 3");
+			if(cardNum >= 0 && cardNum < MAX_CARD_SIZE) {
+				setCardVisible(cardNum);
+			}
+			onMyTurn = false;
+		}
+	}
+
+
+	// -----------------------------------------------------------
+
+	// Cloud Save ------------------------------------------------
+	// 게임 전적 저장
+	csController = new GHCloudsaveController();
+
+	if(isWin) {
+		int winNum;
+		Integer::Parse(multiplay_winNum, winNum);
+
+		// 승 증가
+		winNum = winNum + 1;
+
+		multiplay_winNum =Integer::ToString(winNum);
+		csController->saveCloudSlotData(multiplay_winNum, 1, this);
+	}else {
+
+		int loseNum;
+		Integer::Parse(multiplay_loseNum, loseNum);
+
+		// 승 증가
+		loseNum = loseNum + 1;
+
+		multiplay_loseNum =Integer::ToString(loseNum);
+		csController->saveCloudSlotData(multiplay_loseNum, 2, this);
+
+
+	}
+
+	// -----------------------------------------------------------
+
+	GHAchievementController* Achievementcontroller = new GHAchievementController();
+
+	AppLog("multiplay_winNum : %S ", multiplay_winNum.GetPointer());
+
+	if(multiplay_winNum.CompareTo("5") == 0)  // 5 번 이기면 complete
+	{
+		Achievementcontroller->completeAchievement("4",this);
+		AppLog("totalMis complete !!");
+	}
+
+	// ---------------------------------------------------------
+
+}
+
+void FormGameMulti::completeAchievementFinished(int statusCode)
+{
+	AppLogDebug("[DEBUG] completeAchievementFinished statusCode ===> : %d", statusCode);
 }
 
 JsonObject* FormGameMulti::parseJson(String data)
@@ -250,3 +353,39 @@ void FormGameMulti::startMyTurnThread()
 	multiTick = uptime.GetTicks();
 	pTimerMulti->Start(1000);
 }
+
+// cloud save
+void FormGameMulti::saveCloudsaveFinished(int statusCode)
+{
+	AppLogDebug("saveCloudsaveFinished");
+	if(statusCode != 0) {
+
+		SceneManager* pSceneManager = SceneManager::GetInstance();
+		AppAssert(pSceneManager);
+		pSceneManager->GoBackward(BackwardSceneTransition(SCENE_TRANSITION_ANIMATION_TYPE_RIGHT));
+
+
+
+	}
+}
+
+/*void FormGameMulti::completeAchievementFinished(int statusCode)
+{
+	AppLogDebug("[DEBUG] completeAchievementFinished statusCode : %d", statusCode);
+}
+
+
+void FormGameMulti::updateLeaderboardScoreFinished(int statusCode)
+{
+	AppLogDebug("[DEBUG] updateLeaderboardScoreFinished statusCode : %d", statusCode);
+
+	if(statusCode == 1)
+	{
+		AppLogDebug("--------------> Update <-----------------");
+
+	}
+	else if(statusCode == 2)
+	{
+		AppLogDebug("--------------> No Update <-----------------");
+	}
+}*/

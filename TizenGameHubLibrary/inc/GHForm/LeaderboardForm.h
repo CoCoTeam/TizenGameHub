@@ -10,20 +10,17 @@
 
 #include <GHTizen.h>
 #include "GHLeaderboard/GHLeaderboard.h"
-#include "GHLeaderboard/GHLeaderboardController.h"
 #include "GHLeaderboard/GHLeaderboardDataLoadedListener.h"
 
 class LeaderboardForm
 	: public Tizen::Ui::Controls::Form
 	, public Tizen::Ui::Controls::IFormBackEventListener
-	, public GHLeaderboardController
 	, public GHLeaderboardDataLoadedListener
 {
 public:
 	LeaderboardForm();
 	virtual ~LeaderboardForm();
 	bool Initialize(void);
-
 
 private:
 	virtual result OnInitializing(void);
@@ -33,9 +30,13 @@ private:
 	//GHLeaderboardDataLoadedListener
 	virtual void loadLeaderboardFinished(Tizen::Base::Collection::ArrayList* leaderboardList);
 
-	void setLeaderboardList();
+	virtual void OnInitialized();
+	virtual void setLeaderboardList();
+
+protected:
 	Tizen::Base::Collection::ArrayList* lb_list;
 	Tizen::Ui::Controls::ScrollPanel* pLeaderboard_scrollpanel;
+
 };
 
 #endif /* LEADERBOARDFORM_H_ */

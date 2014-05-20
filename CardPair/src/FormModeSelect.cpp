@@ -1,5 +1,6 @@
 #include "FormModeSelect.h"
 #include "AppResourceId.h"
+#include "AppGameData.h"
 #include "CardPairFrame.h"
 #include "GHPlayer/GHPlayerController.h"
 
@@ -62,6 +63,20 @@ FormModeSelect::OnInitializing(void)
 		pButtonMulti->AddActionEventListener(*this);
 	}
 
+	// cloud save
+	Tizen::Ui::Controls::Label * pLabelRecord = static_cast < Label* >(GetControl(IDC_LABEL_RECORD));
+	pLabelRecord->SetShowState(false);
+
+	Tizen::Ui::Controls::Label * pLabelRecordImg = static_cast < Label* >(GetControl(IDC_LABEL_RECORDIMG));
+	pLabelRecordImg->SetShowState(false);
+
+	// attackhelper
+	Tizen::Ui::Controls::Label * pLabelPlayNum = static_cast < Label* >(GetControl(IDC_LABEL_PLAYNUM));
+	String str = Integer::ToString(playNum);
+	pLabelPlayNum->SetText(str);
+	pLabelPlayNum->Draw();
+
+
 	return r;
 }
 
@@ -122,7 +137,15 @@ void FormModeSelect::loginPlayerFinished(Tizen::Base::String statusCode)
 
 bool FormModeSelect::checkHeart()
 {
+	if(playNum > 0)	{
+		playNum--;
+		Tizen::Ui::Controls::Label * pLabelPlayNum = static_cast < Label* >(GetControl(IDC_LABEL_PLAYNUM));
+		String str = Integer::ToString(playNum);
+		pLabelPlayNum->SetText(str);
+		pLabelPlayNum->Draw();
 
-	return true;
+		return true;
+	}
+	else return false;
 }
 
