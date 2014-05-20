@@ -37,7 +37,7 @@ private:
 	void onGameEnded();
 	Tizen::Base::TimeSpan timespan = null;
 	static const int GAME_SEC = 10;
-	//int game_count = 0; // 게임횟수
+	int game_count = 0; // 게임횟수
 
 	virtual void loadAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList);
 	virtual void completeAchievementFinished(int statusCode);
