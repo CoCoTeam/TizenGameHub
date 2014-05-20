@@ -264,10 +264,6 @@ void GHPlayerController::OnTransactionReadyToRead(Tizen::Base::String apiCode, T
 
 				player = new GHPlayer(sId, sEmail, sName, sImgUrl);
 				player->setIsFriend(bIsFriend);
-				if(bIsFriend)
-					AppLogDebug("true");
-				else
-					AppLogDebug("false");
 
 				// KEY NAME DELETE
 				delete pkeyId;		delete pkeyEmail;

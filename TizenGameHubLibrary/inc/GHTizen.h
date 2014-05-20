@@ -10,6 +10,7 @@
 #include <FGraphics.h>
 #include <FWeb.h>
 #include <gl.h>
+#include <FMedia.h>
 
 #define STRING Tizen::Base::String
 

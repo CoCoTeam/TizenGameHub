@@ -12,7 +12,7 @@
 </Reference>
 <Reference URI="lib/libTizenGameHubLibrary.so">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>qm2Sn7HxKREfKvX9AD9XzzpPUFNLRrEk3IBMvY83Duc=</DigestValue>
+<DigestValue>oslE84uwOSKZhMJTqk9lg3fWmd1nJJxjPaY2dBc+SUQ=</DigestValue>
 </Reference>
 <Reference URI="res/720x1280/achievement_complete.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -22,9 +22,21 @@
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>p/arUQetJna0/mGYSnQ0XkCS3qRjV9vd1iyBGu6TwTc=</DigestValue>
 </Reference>
+<Reference URI="res/720x1280/icon.png">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>9R42C2K/gmgT+f1EnHjjFj/K35EgBw0lscIoWm5bd9M=</DigestValue>
+</Reference>
+<Reference URI="res/720x1280/profile_default.png">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>tNZlVbJYpw7OpCoC1wpYEWZ+OdUng/HyKJ0C+uzU2mI=</DigestValue>
+</Reference>
 <Reference URI="res/720x1280/record.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>xo/Yd7Cn0I4aGb4Gi+muvQKsLaf3y9GDRmld/PJbXYY=</DigestValue>
+</Reference>
+<Reference URI="res/icon.png">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>9R42C2K/gmgT+f1EnHjjFj/K35EgBw0lscIoWm5bd9M=</DigestValue>
 </Reference>
 <Reference URI="res/profile_default.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -48,7 +60,7 @@
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM_LEADERBOARDRANK.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>T5FcTEnAQ0Tc0749N0WJMyWn3gPEd7tn9zoKe17X1+M=</DigestValue>
+<DigestValue>pBZpE8jO/UAWFbL42fKoI1DrY3Zqcqc1sWAu8THIJkI=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_FORM_MODESELECT.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -56,7 +68,7 @@
 </Reference>
 <Reference URI="res/screen-size-normal/IDL_PANEL_LISTPANEL.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>Q4wxeQRUhvn3syFfqw6IJqsnvhFw7nJ+nS45qlyLx5k=</DigestValue>
+<DigestValue>L1tg2Jqrb18oRonMiXYXmcl+HhKr4CCLrCgvDAtNJ0A=</DigestValue>
 </Reference>
 <Reference URI="res/screen-size-normal/workflow.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -75,9 +87,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-LIGuGy101a/Rx4X8YoYMseNaqKfi3U78M9CmloN6aR24Mvxo6LKpjhGwVnKH/DOrIBE7StMKSR2N
-3V92S/7iHYb7OlqWMvmeRgsohZwJLH2tF0XxM7uwXH3B5HBscGVQqZ2Uh+ZCKJFRlZTqtXwUroq3
-tB2ZM2BRKsP0av3Cwo0=
+c7Q1du+tADzqG5/jDKm/QLxuStjjqYvMR7+giAzvim8HyUWMzxmog3bRXx8w+8dwcsXGMz2Nxy+Y
+KiJj3so8KkhGXyCVpMf/MhOb77puZObMfKjg9W6saei15lCn2sghvKjbrvL6GiyPgSRCU6FibH/4
+6NfQeNpCunmaKDBZvK8=
 </SignatureValue>
 <KeyInfo>
 <X509Data>

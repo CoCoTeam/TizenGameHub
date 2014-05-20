@@ -20,6 +20,7 @@ class LeaderboardRankForm
 	, public Tizen::Ui::Controls::IFormBackEventListener
 	, virtual public Tizen::Ui::Scenes::ISceneEventListener
 	, public Tizen::Ui::Controls::IScrollEventListener
+	, public Tizen::Media::IImageDecodeUrlEventListener
 	, public GHLeaderboardController
 	, public GHLeaderboardListLoadedListener
 	, public GHLeaderboardMyRankLoadedListener
@@ -47,6 +48,9 @@ private:
 	virtual void loadLeaderboardRankFinished(GHLeaderboard* _leaderboard);
 	// GHLeaderboardMyRankLoadedListener
 	virtual void loadLeaderboardMyRankFinished(GHPlayerRank* pPlayerRank);
+	void RequestImage(const Tizen::Base::String& path,int width, int height, int timeout=5000);
+	virtual void OnImageDecodeUrlReceived(RequestId reqId, Tizen::Graphics::Bitmap *pBitmap, result r, const Tizen::Base::String errorCode, const Tizen::Base::String errorMessage);
+
 
 	virtual void OnInitialized();
 
@@ -57,6 +61,8 @@ private:
 
 	void setMyRank();
 	GHPlayerRank *myRank;
+	Tizen::Ui::Controls::Panel *pPanelMyrank;
+	Tizen::Ui::Controls::Label *pImgProfile;
 	Tizen::Base::String strUnit;
 
 protected:

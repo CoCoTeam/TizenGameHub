@@ -32,17 +32,13 @@ using namespace Tizen::Graphics;*/
 
 
 
-JoinForm::JoinForm() : __pCroppedBmp(null), count(0), simg_url(null)
-{
-	// TODO Auto-generated constructor stub
-}
+JoinForm::JoinForm()
+	: __pCroppedBmp(null), count(0), simg_url(null)
+{}
 
-JoinForm::~JoinForm() {
-	// TODO Auto-generated destructor stub
-}
+JoinForm::~JoinForm() {}
 
-bool
-JoinForm::Initialize(void)
+bool JoinForm::Initialize(void)
 {
 	result r = Construct(IDL_FORM_JOIN);
 	TryReturn(r == E_SUCCESS, false, "Failed to construct form");
@@ -50,8 +46,7 @@ JoinForm::Initialize(void)
 	return true;
 }
 
-result
-JoinForm::OnInitializing(void)
+result JoinForm::OnInitializing(void)
 {
 	result r = E_SUCCESS;
 
@@ -108,14 +103,11 @@ result
 JoinForm::OnTerminating(void)
 {
 	result r = E_SUCCESS;
-
-	// TODO: Add your termination code here
 	return r;
 }
 
 // Request the image and add the image pointer to the list
-void
-JoinForm::RequestImage(const String& path,int width, int height,int timeout)
+void JoinForm::RequestImage(const String& path,int width, int height,int timeout)
 {
 	Image* pImage = new Image();
 	pImage->Construct();
@@ -128,7 +120,6 @@ JoinForm::RequestImage(const String& path,int width, int height,int timeout)
 
 	//서버에 보내기
 	pImage->DecodeUrl(uri, BITMAP_PIXEL_FORMAT_RGB565, width, height, reqId, *this, timeout);
-
 }
 
 // Receive the image and call the delete timer
@@ -143,7 +134,6 @@ JoinForm::OnImageDecodeUrlReceived(RequestId reqId, Tizen::Graphics::Bitmap *pBi
 	}
 	else
 	{
-
 		__pCroppedBmp = pBitmap;
 
 
@@ -175,29 +165,13 @@ JoinForm::DownloadStart()
 	 File file;
 	 file.Remove(Environment::GetDefaultDownloadPath() + "profile.jpg");
 
-
 	 DownloadRequest request(url);
 	 request.SetFileName("profile");
 
-	 DownloadManager* pManager =DownloadManager::GetInstance();
+	 DownloadManager* pManager = DownloadManager::GetInstance();
 
 	 pManager->SetDownloadListener(this);
 	 pManager->Start(request,__requestId);
-}
-
-void
-JoinForm::OnDownloadInProgress (RequestId reqId, unsigned long long receivedSize, unsigned long long totalSize)
-{
-	 String strMessage =L"";
-	 strMessage.Append((long)receivedSize);
-	 strMessage.Append("/ ");
-	 strMessage.Append((long)totalSize);
-}
-
-void
-JoinForm::OnDownloadCompleted (RequestId reqId, const Tizen::Base::String &path)
-{
-	AppLogDebug("path -----------------------> %S", path.GetPointer());
 }
 
 void
@@ -327,15 +301,12 @@ JoinForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 				pTextEmail->SetEnabled(false);
 
 				String path = L"http://54.238.195.222:80/players/"+ GHSharedAuthData::getSharedInstance().getPlayerId()  +"/image";
-				this->RequestImage(path,500,500,5000);
-
-
+				this->RequestImage(path, 500, 500, 5000);
 
 				/*if(pGalleryProfile)
 				{
 					pGalleryProfile->RefreshGallery(0, GALLERY_REFRESH_TYPE_ITEM_MODIFY);
 					pGalleryProfile->SetItemProvider(*this);
-
 				}*/
 
 				pGalleryProfile->SetShowState(true);
@@ -463,11 +434,9 @@ void JoinForm::OnTransactionReadyToRead(String apiCode, String statusCode,IJsonV
 
 }
 
-void
-JoinForm::OnTransactionCompleted(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction)
+void JoinForm::OnTransactionCompleted(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction)
 {
-
-	 AppLog("success");
+	AppLog("success");
 
 	Tizen::Net::Http::HttpMultipartEntity* pMultipartEntity = static_cast< Tizen::Net::Http::HttpMultipartEntity* >(httpTransaction.GetUserObject());
 
@@ -489,8 +458,7 @@ JoinForm::OnTransactionCompleted(Tizen::Net::Http::HttpSession& httpSession, Tiz
 
 }
 //CROP IMAGE
-void
-JoinForm::OnUserEventReceivedN(RequestId requestId, Tizen::Base::Collection::IList* pArgs)
+void JoinForm::OnUserEventReceivedN(RequestId requestId, Tizen::Base::Collection::IList* pArgs)
 {
 	AppLog("Cropping complete");
 	if(requestId == CROPPING_COMPLETE)
@@ -537,10 +505,8 @@ JoinForm::OnUserEventReceivedN(RequestId requestId, Tizen::Base::Collection::ILi
 	}
 }
 
-result
-JoinForm::OnDraw()
+result JoinForm::OnDraw()
 {
-
 	AppLogDebug("---------------------Redraw-----------------");
 
 
@@ -558,8 +524,7 @@ JoinForm::OnDraw()
 	return E_SUCCESS;
 }
 
-Bitmap*
-JoinForm::CreateBitmapFromByteBufferN(ByteBuffer* pBuffer, const int& width, const int& height)
+Bitmap* JoinForm::CreateBitmapFromByteBufferN(ByteBuffer* pBuffer, const int& width, const int& height)
 {
 	Dimension dim(width, height);
 	Bitmap* pBmp = new (std::nothrow) Bitmap;
@@ -569,8 +534,7 @@ JoinForm::CreateBitmapFromByteBufferN(ByteBuffer* pBuffer, const int& width, con
 	return pBmp;
 }
 
-void
-JoinForm::storeImageInternal(Bitmap *bitmap)
+void JoinForm::storeImageInternal(Bitmap *bitmap)
 {
 	result r ;
 
@@ -610,18 +574,15 @@ JoinForm::storeImageInternal(Bitmap *bitmap)
 	AppLog("Successed.\n");
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 	//////////////// 바이트를 다시 이미지로 변환
 	__ptempBitmap = CreateBitmapFromByteBufferN(pImageByteBuff, width, height);
 
-	//서버에 보내기
+	//서버에 업로드 요청하기
 	GHhttpClient* httpPost = new GHhttpClient();
 	httpPost->RequestImageUpload(this, this, L"/players/imageupload", pImageByteBuff);
 }
 
-
-String
-JoinForm::CreateUniqueFileName( void )
+String JoinForm::CreateUniqueFileName( void )
 {
 	AppLog("-------------------------check3------------------");
 
@@ -672,18 +633,28 @@ JoinForm::ShowMessageBox(const String& title, const String& message)
 	messageBox.ShowAndWait(modalResult);
 }
 
-
 // IHttpProgressEventListener
-void
-JoinForm::OnHttpDownloadInProgress(Tizen::Net::Http::HttpSession& httpSession,Tizen::Net::Http::HttpTransaction& httpTransaction, long long currentLength, long long totalLength)
-{
-   AppLog("---Download Current Bytes: %lld, Total Bytes: %ll d---", currentLength, totalLength);
-}
-void
-JoinForm::OnHttpUploadInProgress(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction, long long currentLength, long long totalLength)
-{
-   AppLog("---Upload Current Bytes: %lld, Total Bytes: %lld---", currentLength, totalLength);
-}
+//void JoinForm::OnHttpDownloadInProgress(Tizen::Net::Http::HttpSession& httpSession,Tizen::Net::Http::HttpTransaction& httpTransaction, long long currentLength, long long totalLength)
+//{
+//   AppLog("---Download Current Bytes: %lld, Total Bytes: %ll d---", currentLength, totalLength);
+//}
+//void JoinForm::OnHttpUploadInProgress(Tizen::Net::Http::HttpSession& httpSession, Tizen::Net::Http::HttpTransaction& httpTransaction, long long currentLength, long long totalLength)
+//{
+//   AppLog("---Upload Current Bytes: %lld, Total Bytes: %lld---", currentLength, totalLength);
+//}
+// IDownloadListener
+//void JoinForm::OnDownloadInProgress (RequestId reqId, unsigned long long receivedSize, unsigned long long totalSize)
+//{
+//	 String strMessage =L"";
+//	 strMessage.Append((long)receivedSize);
+//	 strMessage.Append("/ ");
+//	 strMessage.Append((long)totalSize);
+//}
+//
+//void JoinForm::OnDownloadCompleted (RequestId reqId, const Tizen::Base::String &path)
+//{
+//	AppLogDebug("path -----------------------> %S", path.GetPointer());
+//}
 
 void
 JoinForm::OnTouchPressed (const Tizen::Ui::Control &source, const Tizen::Graphics::Point &currentPosition, const Tizen::Ui::TouchEventInfo &touchInfo)
