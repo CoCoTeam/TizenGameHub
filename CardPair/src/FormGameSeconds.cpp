@@ -65,9 +65,6 @@ void FormGameSeconds::onStageComplete()
 	}
 	setInitialState();
 
-	//game_count++;
-
-
 }
 /*
  * 시간 종료 시 호출되는 함수 (게임 종료)
@@ -87,20 +84,15 @@ void FormGameSeconds::onGameEnded()
 		AppLog("totalMis complete !!");
 	}
 
-	// 게임 횟수 카운트
-
 	Achievementcontroller->loadAchievements(this);
 
-	AppLog("-----------------> game loadAchievements <----------------------");
-
+	//AppLog("-----------------> game loadAchievements <----------------------");
 
 	//AppLog("gameScore : %d", gameScore);
 	Leaderboardcontroller->updateLeaderboardScore("key_aa_0", gameScore, this);
 
 	// 리더보드
 //	leaderboardUpdate(ld, gameScore);	// 최종 점수 리더보드 업데이트
-
-
 }
 
 
@@ -126,22 +118,22 @@ void FormGameSeconds::loadAchievementFinished(Tizen::Base::Collection::ArrayList
 	GHAchievementController* Achievementcontroller;
 	Achievementcontroller = new GHAchievementController();
 
+	// 게임 횟수 카운트
 	game_count = test->getCurPoint();
 	AppLogDebug("game_count --> %d", game_count);
 
-
-	if(test->getCurPoint() == 14)
+	if(game_count == 14)
 	{
-		AppLogDebug("10번 게임!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		AppLogDebug("%d 번 게임!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", game_count);
 
 		// 10 번 게임을 했을 때
 		Achievementcontroller->completeAchievement("4",this);
 	}
-
-	game_count++;
-	Achievementcontroller->setAchievement("4", game_count , this);  // 10번 수행 했을 때
-
-	//Achievementcontroller->loadAchievements(this);
+	else
+	{
+		game_count++;
+		Achievementcontroller->setAchievement("4", game_count , this);  // 게임 카운트를 증가시켜 set 함
+	}
 }
 
 void FormGameSeconds::setAchievementFinished(int statusCode)
@@ -182,3 +174,7 @@ void FormGameSeconds::updateLeaderboardScoreFinished(int statusCode)
 		AppLogDebug("--------------> No Update <-----------------");
 	}
 }
+/*void FormGameSeconds::revealAchievementFinished(int statusCode)
+{
+	AppLogDebug("[DEBUG] revealAchievementFinished statusCode : %d", statusCode);
+}*/

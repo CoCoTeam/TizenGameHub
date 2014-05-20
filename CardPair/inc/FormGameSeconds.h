@@ -19,6 +19,7 @@ class FormGameSeconds
 	, public GHLeaderboardScoreUpdatedListener
 	, public GHAchievementSettedListener
 	, public GHAchievementLoadedListener
+	//, public GHAchievementRevealedListener
 	, public virtual Tizen::Ui::IActionEventListener
 {
 public:
@@ -43,12 +44,13 @@ private:
 	virtual void completeAchievementFinished(int statusCode);
 	virtual void updateLeaderboardScoreFinished(int statusCode);
 	virtual void setAchievementFinished(int statusCode);
-
+	//virtual void revealAchievementFinished(int statusCode);
 
 	static const int ACTION_POPUP_CLOSE = 111;
 	Tizen::Ui::Controls::Popup* pPopup;
 
 	void OnActionPerformed(const Tizen::Ui::Control& source, int actionId);
+
 
 };
 

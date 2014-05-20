@@ -50,15 +50,15 @@ void FormGameTimeTrial::onStageComplete()
 	GHAchievementController* Achievementcontroller = new GHAchievementController();
 	GHLeaderboardController* Leaderboardcontroller = new GHLeaderboardController();
 
-	if(totalMis <= 30 * 1000)
+	if(totalMis <= 60 * 1000)
 	{
-		Achievementcontroller->completeAchievement("4",this);     // 30 초 안에 달성
+		Achievementcontroller->revealAchievement("5", this);        // 30초 안에 달성
 		AppLog("totalMis complete !!");
 	}
 
 	if(maxCombo >= 5)
 	{
-		Achievementcontroller->revealAchievement("4", this);            // 콤보 5번 이상
+		Achievementcontroller->completeAchievement("4",this);       // 콤보 5번 이상
 		AppLog("maxCombo complete !!");
 	}
 
