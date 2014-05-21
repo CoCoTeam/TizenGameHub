@@ -47,7 +47,7 @@ GameForm::OnInitializing(void)
 	AppLog("[GameForm] OnInitializing");
 
 	pPanelGame = static_cast< Panel* >(GetControl(IDC_GAME_PANEL_GAME));
-	pGalleryGameImg = static_cast< Gallery* >(pPanelGame->GetControl(IDC_GAME_IMG_GAMEIMG));
+	pImgGame = static_cast< Label* >(pPanelGame->GetControl(IDC_GAME_IMG_GAMEIMG));
 	pLabelGameName = static_cast< Label* >(pPanelGame->GetControl(IDC_GAME_LABEL_GAMENAME));
 	pLabelDeveloper = static_cast< Label* >(pPanelGame->GetControl(IDC_GAME_LABEL_DEVELOPER));
 	pButtonGame = static_cast< Button* >(pPanelGame->GetControl(IDC_GAME_BUTTON_DOWNLOAD));
@@ -171,6 +171,8 @@ void GameForm::setGameData()
 	pLabelGameName->SetText( mGame->getTitle() );
 	pLabelGameDesc->SetText( mGame->getDescription() );
 	//ImgUrl : %S", mGame->getImgUrl().GetPointer());
+//	pImgGame->SetBackgroundFromUrl("a");
+	RequestImage( mGame->getId(), pImgGame->GetWidth(), pImgGame->GetHeight());
 
 	if(mGame->isPlaying()) {
 		pButtonGame->SetText(L"Play");
@@ -182,6 +184,32 @@ void GameForm::setGameData()
 
 	Draw();
 }
+void GameForm::RequestImage(const Tizen::Base::String& path,int width, int height, int timeout)
+{
+	Tizen::Media::Image* pImage = new Tizen::Media::Image();
+	pImage->Construct();
+
+	// Set a URL
+	Tizen::Base::Utility::Uri uri;
+	uri.SetUri(L"http://54.238.195.222:80/f_games/"+ path +"/image");
+
+	RequestId reqId;
+
+	//서버에 보내기
+	pImage->DecodeUrl(uri, Tizen::Graphics::BITMAP_PIXEL_FORMAT_RGB565, width, height, reqId, *this, timeout);
+}
+// Receive the image and call the delete timer
+void GameForm::OnImageDecodeUrlReceived(RequestId reqId, Tizen::Graphics::Bitmap *pBitmap, result r, const Tizen::Base::String errorCode, const Tizen::Base::String errorMessage)
+{
+	if(IsFailed(r)) {
+		AppLog("Request failed: errorCode(%ls) errorMessage(%ls)", errorCode.GetPointer(), errorMessage.GetPointer());
+	}
+	else {
+		pImgGame->SetBackgroundBitmap(*pBitmap);
+		pImgGame->Draw();
+	}
+}
+
 void GameForm::loadGamePlayingFriendFinished(Tizen::Base::Collection::ArrayList* friendsList)
 {
 	if(friendsList == null) {

@@ -65,7 +65,7 @@ private:
 
 	Panel *pPanelUser;
 	Label *pLabelUserName, *pLabelUserScore;
-	Gallery *pGalleryUserProfile;
+	Label *pImgProfile;
 	Button *pButtonUserFriend, *pButtonSearchFriend;
 
 	Panel *pPanelScroll, *pPanelGame, *pPanelFriend;
@@ -115,7 +115,7 @@ private:
 	static const int IDA_BUTTON_SEARCHFRIEND = 102;
 
 	 //
-	 void RequestImage(const Tizen::Base::String& path,int width, int height,int timeout);
+	 void RequestImage(const Tizen::Base::String& path,int width, int height,int timeout=5000);
 	 virtual void  OnImageDecodeUrlReceived (RequestId reqId, Tizen::Graphics::Bitmap *pBitmap, result r, const Tizen::Base::String errorCode, const Tizen::Base::String errorMessage);
 
 	 //IGalleryItemProvider

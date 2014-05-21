@@ -93,6 +93,10 @@ FormGame::OnTerminating(void)
 void
 FormGame::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 {
+	ParentOnActionPerformed(source, actionId);
+}
+void FormGame::ParentOnActionPerformed(const Tizen::Ui::Control& source, int actionId)
+{
 	SceneManager* pSceneManager = SceneManager::GetInstance();
 	AppAssert(pSceneManager);
 

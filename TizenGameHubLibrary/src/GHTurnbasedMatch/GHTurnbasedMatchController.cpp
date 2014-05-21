@@ -57,9 +57,8 @@ void GHTurnbasedMatchController::ReceiveData(ListenerType::Type flag, Tizen::Bas
 		currentListener->onMatchTurnWait();
 		break;
 	case ListenerType::OnMatchFinish:
-		AppLogDebug("zzzzzzzzzzzzzzzzzzzzz");
+
 		this->OnCloseSocket();
-		AppLogDebug("zzzzzzzzzzzzzzzzzzzzz2");
 		currentListener->onMatchFinish(data);
 		break;
 	default:
@@ -69,7 +68,6 @@ void GHTurnbasedMatchController::ReceiveData(ListenerType::Type flag, Tizen::Bas
 
 
 //개발자에게 사용하라고 공개하는 함수 ///////////////////////////////////////////////////////////////////////////
-
 void GHTurnbasedMatchController::sendDataToSetting(String data) {
 	String jData = "{\"flag\":12, \"data\":\"" + data + "\"}";
 	AppLogDebug("sendDataToSetting");
@@ -93,6 +91,13 @@ void GHTurnbasedMatchController::readyForPlay(){
 
 	this->SendData(jData);
 }
+
+void GHTurnbasedMatchController::connectSocketServer(GHTurnbasedMatchListener* listener){
+	this->connectSocketServer("54.238.195.222", 8082, listener);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 result
 GHTurnbasedMatchController::connectSocketServer(String ipAddress, int port, GHTurnbasedMatchListener* listener)

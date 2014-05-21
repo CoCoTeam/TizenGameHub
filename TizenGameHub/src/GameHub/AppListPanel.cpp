@@ -41,5 +41,6 @@ void AppListPanel::OnTouchReleased (const Tizen::Ui::Control &source, const Tize
 
 	// Scene 이동
 	SceneManager* pSceneManager = SceneManager::GetInstance();
+	AppAssert(pSceneManager);
 	pSceneManager->GoForward(ForwardSceneTransition(SCENE_LEADERBOARDRANK, SCENE_TRANSITION_ANIMATION_TYPE_LEFT), pList);
 }

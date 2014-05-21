@@ -38,6 +38,7 @@ public:
 	virtual ~GHAttackhelperController();
 
 	// attack helper 목록을 가져온다.
+
 	void loadAttackhelpers(GHAttackhelperLoadedListener* listener = null);				// load listener
 
 	// attack helper data 목록을 가져온다.
