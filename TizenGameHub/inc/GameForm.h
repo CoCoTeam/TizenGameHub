@@ -9,10 +9,12 @@
 #define GAMEFORM_H_
 
 #include <GHTizen.h>
+#include <FMedia.h>
 #include "GHGame/GHGame.h"
 #include "GHPlayer/GHPlayer.h"
 #include "GHForm/PlayerProvider.h"
 #include "GHPlayerListItemEventListener.h"
+#include "GHForm/GHLabel.h"
 //통신
 #include "GHhttpClient.h"
 #include "GHGame/GHGameController.h"
@@ -31,6 +33,7 @@ class GameForm
 	, public GHGameController
 	, public GHGameLoadedListener
 	, public GHGamePlayingFriendListener
+	, public Tizen::Media::IImageDecodeUrlEventListener
 {
 public:
 	GameForm();
@@ -41,7 +44,7 @@ private:
 	GHGame *mGame;
 
 	Panel *pPanelGame;
-	Gallery *pGalleryGameImg;
+	Label *pImgGame;
 	Label *pLabelGameName, *pLabelDeveloper;
 	Button *pButtonGame;
 	Panel *pPanelScroll, *pPanelGameDetail, *pPanelFriend, *pPanelFunction;
@@ -77,6 +80,10 @@ private:
 	void getGameInstance(Tizen::Base::String id);
 	void setGameData();
 	void setPlayerList();
+
+	void RequestImage(const Tizen::Base::String& path,int width, int height, int timeout = 5000);
+	virtual void OnImageDecodeUrlReceived(RequestId reqId, Tizen::Graphics::Bitmap *pBitmap, result r, const Tizen::Base::String errorCode, const Tizen::Base::String errorMessage);
+
 
 	void changePanel(int selected);
 	void setFooterMenu();

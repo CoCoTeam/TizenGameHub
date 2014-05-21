@@ -41,7 +41,7 @@ CardPairApp::OnAppInitialized(void)
 {
 	//Set sharedInstance
 	GHSharedAuthData & sharedInstance = GHSharedAuthData::getSharedInstance();
-	sharedInstance.setGameId("key_aa");
+	sharedInstance.setGameId("f88f101c5f774dce3f302239a5047495");
 
 	// Create the application frame.
 	CardPairFrame* pCardPairFrame = new (std::nothrow) CardPairFrame;

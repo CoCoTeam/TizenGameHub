@@ -41,6 +41,9 @@ result LeaderboardRankForm::OnInitializing(void)
 	pRankListView = static_cast<ListView*>(GetControl(IDC_LEADERBOARDRANK_LIST_RANK));
 	pRankListView->AddScrollEventListener(*this);
 	pRankProvider = new LeaderboardRankProvider();
+	pPanelMyrank = static_cast<Panel*>(GetControl(IDC_LEADERBOARDRANK_PANEL_MYRANK));
+	pImgProfile = static_cast<Label*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_GALLERY));
+	pImgProfile->SetShowState(false);
 
 	OnInitialized();
 
@@ -96,7 +99,7 @@ void LeaderboardRankForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 void LeaderboardRankForm::OnScrollEndReached(Tizen::Ui::Control &source, Tizen::Ui::Controls::ScrollEndEvent type)
 {
 	if(type == SCROLL_END_EVENT_END_BOTTOM) {
-		loadLeaderboardRank(leaderboardId, this, offset, 8);
+		loadLeaderboardRank(leaderboardId, this, offset, 15);
 	}
 }
 // GHLeaderboardListLoadedListener
@@ -120,9 +123,7 @@ void LeaderboardRankForm::loadLeaderboardRankFinished(GHLeaderboard* _leaderboar
 void LeaderboardRankForm::loadLeaderboardMyRankFinished(GHPlayerRank* pPlayerRank)
 {
 	if(pPlayerRank == null) {
-		Tizen::Ui::Controls::Panel *pPanelMyrank = static_cast<Panel*>(GetControl(IDC_LEADERBOARDRANK_PANEL_MYRANK));
-		Tizen::Ui::Controls::Gallery *pGallery = static_cast<Gallery*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_GALLERY));
-		pGallery->SetShowState(false);
+		pImgProfile->SetShowState(false);
 		Tizen::Ui::Controls::Label *pLabelName = static_cast<Label*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_LABEL_NAME));
 		pLabelName->SetText("No data");
 		Draw();
@@ -135,14 +136,40 @@ void LeaderboardRankForm::loadLeaderboardMyRankFinished(GHPlayerRank* pPlayerRan
 void LeaderboardRankForm::setMyRank()
 {
 	// Set My rank Info.
-	Tizen::Ui::Controls::Panel *pPanelMyrank = static_cast<Panel*>(GetControl(IDC_LEADERBOARDRANK_PANEL_MYRANK));
 	Tizen::Ui::Controls::Label *pLabelName = static_cast<Label*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_LABEL_NAME));
 	Tizen::Ui::Controls::Label *pLabelScore = static_cast<Label*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_LABEL_SCORE));
 	Tizen::Ui::Controls::Label *pLabelRank = static_cast<Label*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_LABEL_RANK));
-	Tizen::Ui::Controls::Gallery *pGallery = static_cast<Gallery*>(pPanelMyrank->GetControl(IDC_LEADERBOARDRANK_MYRANK_GALLERY));
 
 	pLabelName->SetText(myRank->getName());
 	pLabelScore->SetText(Integer::ToString(myRank->getScore()) + strUnit);
 	pLabelRank->SetText(Integer::ToString(myRank->getRank()) + " 위");
+	pImgProfile->SetShowState(true);
+	RequestImage(myRank->getId(), pImgProfile->GetWidth(), pImgProfile->GetHeight());
 	Draw();
+}
+
+void LeaderboardRankForm::RequestImage(const Tizen::Base::String& path,int width, int height, int timeout)
+{
+	Tizen::Media::Image* pImage = new Tizen::Media::Image();
+	pImage->Construct();
+
+	// Set a URL
+	Tizen::Base::Utility::Uri uri;
+	uri.SetUri(L"http://54.238.195.222:80/players/"+ path +"/image");
+
+	RequestId reqId;
+
+	//서버에 보내기
+	pImage->DecodeUrl(uri, Tizen::Graphics::BITMAP_PIXEL_FORMAT_RGB565, width, height, reqId, *this, timeout);
+}
+// Receive the image and call the delete timer
+void LeaderboardRankForm::OnImageDecodeUrlReceived(RequestId reqId, Tizen::Graphics::Bitmap *pBitmap, result r, const Tizen::Base::String errorCode, const Tizen::Base::String errorMessage)
+{
+	if(IsFailed(r)) {
+		AppLog("Request failed: errorCode(%ls) errorMessage(%ls)", errorCode.GetPointer(), errorMessage.GetPointer());
+	}
+	else {
+		pImgProfile->SetBackgroundBitmap(*pBitmap);
+		pImgProfile->Draw();
+	}
 }

@@ -65,8 +65,8 @@ private:
 
 	Panel *pPanelUser;
 	Label *pLabelUserName, *pLabelUserScore;
-	Gallery *pGalleryUserProfile;
-	Button *pButtonUserFriend, *pButtonSearchFriend;
+	Label *pImgProfile;
+	Button *pButtonUserFriend, *pButtonLogout, *pButtonSearchFriend;
 
 	Panel *pPanelScroll, *pPanelGame, *pPanelFriend;
 	ArrayList *pGameList, *pFriendList;
@@ -113,9 +113,10 @@ private:
 	static const int ID_FOOTER_SECOND_TAB = 802;
 	static const int IDA_BUTTON_USER = 101;
 	static const int IDA_BUTTON_SEARCHFRIEND = 102;
+	static const int IDA_BUTTON_LOGOUT = 103;
 
 	 //
-	 void RequestImage(const Tizen::Base::String& path,int width, int height,int timeout);
+	 void RequestImage(const Tizen::Base::String& path,int width, int height,int timeout=5000);
 	 virtual void  OnImageDecodeUrlReceived (RequestId reqId, Tizen::Graphics::Bitmap *pBitmap, result r, const Tizen::Base::String errorCode, const Tizen::Base::String errorMessage);
 
 	 //IGalleryItemProvider

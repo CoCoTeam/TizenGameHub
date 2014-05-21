@@ -1,17 +1,25 @@
+<<<<<<< HEAD
 author-signature.xml__DEL__Zyo80BxK8l63n3Inpd2F2xmUWsv/J8TkyRbY0KEUM1c=
 bin/CardPair.exe__DEL__K3JwBbq36jFU2zvv+0yUGBEbvEu2EcxGXRlfrgMgnHs=
+=======
+author-signature.xml__DEL__VdSV5OH/7s0SGy+ectKbyu/o2nXYxyYa4IYGKbmDsjI=
+bin/CardPair.exe__DEL__DHRhUHZ8XyOPKq2eczqqlV15yLJf3RKpl7FP0MDIG8Y=
+>>>>>>> a4d8df9121ae4f116e4b092e59fb934848540937
 info/manifest.xml__DEL__IzsBYC5VIMRolhEDUTm7vHB7kvaS1mC787f6H48LS18=
-lib/libTizenGameHubLibrary.so__DEL__fJTVh7pTsFb0gGY0bzMPndgu2fp7jM+Jv3HNXnIYtW8=
+lib/libTizenGameHubLibrary.so__DEL__VrafyrVzlRAWij7k3nvJTBvoBdRF8bq35jJnfAwE/oA=
 res/720x1280/achievement_complete.png__DEL__vFOVfVPTjEAAyJpNKUEu0fKR9HCHx5mctp/tvpEz0tA=
 res/720x1280/heart.png__DEL__p/arUQetJna0/mGYSnQ0XkCS3qRjV9vd1iyBGu6TwTc=
+res/720x1280/icon.png__DEL__9R42C2K/gmgT+f1EnHjjFj/K35EgBw0lscIoWm5bd9M=
+res/720x1280/profile_default.png__DEL__tNZlVbJYpw7OpCoC1wpYEWZ+OdUng/HyKJ0C+uzU2mI=
 res/720x1280/record.png__DEL__xo/Yd7Cn0I4aGb4Gi+muvQKsLaf3y9GDRmld/PJbXYY=
+res/icon.png__DEL__9R42C2K/gmgT+f1EnHjjFj/K35EgBw0lscIoWm5bd9M=
 res/profile_default.png__DEL__tNZlVbJYpw7OpCoC1wpYEWZ+OdUng/HyKJ0C+uzU2mI=
 res/screen-size-normal/IDL_FORM.xml__DEL__1ARFNcl+3w7SyY//lEAWFUF5vTE3cQjHvL3CLVfTKaU=
 res/screen-size-normal/IDL_FORM_ACHIEVEMENT.xml__DEL__+oNeTYlJxM1tj+ALT55yVTSMszIR3XMq8X3yIkQyux4=
 res/screen-size-normal/IDL_FORM_GAME.xml__DEL__997+cUoCuYt/fBn43hdjXFJtNfV5uqQcJBLxQNg13Jc=
 res/screen-size-normal/IDL_FORM_LEADERBOARD.xml__DEL__Bjq67x2aIt2ZrfiLNXBDIlgIxLUDN03t1811DZZiQw4=
-res/screen-size-normal/IDL_FORM_LEADERBOARDRANK.xml__DEL__T5FcTEnAQ0Tc0749N0WJMyWn3gPEd7tn9zoKe17X1+M=
+res/screen-size-normal/IDL_FORM_LEADERBOARDRANK.xml__DEL__pBZpE8jO/UAWFbL42fKoI1DrY3Zqcqc1sWAu8THIJkI=
 res/screen-size-normal/IDL_FORM_MODESELECT.xml__DEL__tksYQP1HsC7bAnPRVN3Rpx5ind45esZmBdx8ERXbZC0=
-res/screen-size-normal/IDL_PANEL_LISTPANEL.xml__DEL__Q4wxeQRUhvn3syFfqw6IJqsnvhFw7nJ+nS45qlyLx5k=
+res/screen-size-normal/IDL_PANEL_LISTPANEL.xml__DEL__L1tg2Jqrb18oRonMiXYXmcl+HhKr4CCLrCgvDAtNJ0A=
 res/screen-size-normal/workflow.xml__DEL__0oJL8oakIOPByUsQGGMKg6kyp50RzKEHKL7XzBAb2jY=
 shared/res/screen-density-xhigh/mainmenu.png__DEL__1d0oEZHqPn+QzNzGIHwj9ODby6x9ggFs9uOsav6jPNs=

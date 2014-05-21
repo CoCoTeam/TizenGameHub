@@ -31,13 +31,11 @@ void GHController::OnTransactionReadyToRead(HttpSession& httpSession, HttpTransa
 
 	if (pHttpResponse->GetHttpStatusCode() == HTTP_STATUS_OK)
 	{
-		AppLog("TEST 1");
 
 		HttpHeader* pHttpHeader = pHttpResponse->GetHeader();
 		if (pHttpHeader != null)
 		{
 
-			AppLog("TEST 2");
 			String* tempHeaderString = pHttpHeader->GetRawHeaderN();
 
 			// 응답받은 데이터를 버퍼에 가져온다.
@@ -45,7 +43,6 @@ void GHController::OnTransactionReadyToRead(HttpSession& httpSession, HttpTransa
 
 			// 받아온 buffer를  JsonValue로 파싱한다.
 			IJsonValue* pValue = JsonParser::ParseN(*pBuffer);
-
 			JsonObject* pJsonObj = static_cast<JsonObject*>(pValue);
 
 			String* pStrApiKey     = new String(L"apiCode");
@@ -78,7 +75,6 @@ void GHController::OnTransactionReadyToRead(HttpSession& httpSession, HttpTransa
 			delete pBuffer;
 		}
 	}
-	AppLog("TEST 3");
 
 }
 
@@ -103,7 +99,8 @@ void GHController::OnTransactionCompleted(HttpSession& httpSession, HttpTransact
 {
 	AppLog("OnTransactionCompleted");
 
-	delete &httpTransaction;
+	if(&httpTransaction != null)
+		delete &httpTransaction;
 }
 
 void GHController::OnTransactionCertVerificationRequiredN(HttpSession& httpSession, HttpTransaction& httpTransaction, Tizen::Base::String* pCert)

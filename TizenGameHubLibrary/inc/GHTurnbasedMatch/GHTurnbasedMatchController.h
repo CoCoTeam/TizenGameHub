@@ -35,9 +35,12 @@ public:
 	// Socket Listener Overloading
 	virtual void OnSocketConnected(Tizen::Net::Sockets::Socket& socket);
 	virtual void ReceiveData(ListenerType::Type flag, Tizen::Base::String data);
-
-	// class member function
+private:
 	virtual result connectSocketServer(Tizen::Base::String ipAddress, int port, GHTurnbasedMatchListener* listener);
+
+public:
+	// class member function
+	virtual void connectSocketServer(GHTurnbasedMatchListener* listener);
 	virtual void sendDataToSetting(Tizen::Base::String data);
 	virtual void sendDataToPlayer(Tizen::Base::String data, int isFinish);
 	virtual void readyForPlay();

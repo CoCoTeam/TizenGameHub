@@ -43,13 +43,11 @@ ListPanel::ListPanel(GHAchievement achievement)
 	Label *pLabelTitle	= static_cast< Label* >(GetControl(IDC_LISTPANEL_LABEL_TITLE));
 	Label *pLabelDesc	= static_cast< Label* >(GetControl(IDC_LISTPANEL_LABEL_DESC));
 	Label *pLabelPoint	= static_cast< Label* >(GetControl(IDC_LISTPANEL_LABEL_POINT));
-	Gallery *pImg = static_cast< Gallery* >(GetControl(IDC_LISTPANEL_IMG));
 	Gallery *pImgComplete = static_cast< Gallery* >(GetControl(IDC_LISTPANEL_GALLERY_COMPLETE));
 	Panel *pPanelOverlay= static_cast< Panel* >(GetControl(IDC_LISTPANEL_OVERLAY));
 
 	pLabelTitle->SetText(title);
 	pLabelDesc->SetText(desc);
-//	pImg->Set
 
 	if(isComplete) {
 		pImgComplete->SetShowState(true);
@@ -59,7 +57,7 @@ ListPanel::ListPanel(GHAchievement achievement)
 		pImgComplete->SetShowState(false);
 	}
 
-	if(isHidden != 0) {
+	if(isHidden == 0) {
 		pPanelOverlay->SetShowState(false);
 	}
 }
@@ -75,14 +73,13 @@ ListPanel::ListPanel(GHLeaderboard leaderboard)
 
 	Label *pLabelTitle = static_cast< Label* >(GetControl(IDC_LISTPANEL_LABEL_TITLE));
 	Label *pLabelDesc = static_cast< Label* >(GetControl(IDC_LISTPANEL_LABEL_DESC));
-	Gallery *pImg = static_cast< Gallery* >(GetControl(IDC_LISTPANEL_IMG));
+	Label *pImg = static_cast< Label* >(GetControl(IDC_LISTPANEL_IMG));
 	Panel *pPanelOverlay= static_cast< Panel* >(GetControl(IDC_LISTPANEL_OVERLAY));
 	pPanelOverlay->SetShowState(false);
 	Gallery *pImgComplete = static_cast< Gallery* >(GetControl(IDC_LISTPANEL_GALLERY_COMPLETE));
 	pImgComplete->SetShowState(false);
 
 	pLabelTitle->SetText(title);
-//	pImg->Set
 
 	pLabelTitle->AddTouchEventListener(*this);
 	pLabelDesc->AddTouchEventListener(*this);
@@ -94,9 +91,11 @@ void ListPanel::OnTouchReleased (const Tizen::Ui::Control &source, const Tizen::
 	Tizen::Base::Collection::ArrayList* pList = new (std::nothrow)Tizen::Base::Collection::ArrayList;
 	AppAssert(pList);
 	pList->Construct();
-	pList->Add( new Tizen::Base::String(getId()) );	// isJoin
+	pList->Add( new Tizen::Base::String(getId()) );
 
 	Tizen::Ui::Scenes::SceneManager* pSceneManager = Tizen::Ui::Scenes::SceneManager::GetInstance();
+	AppAssert(pSceneManager);
+	AppLogDebug("[ListPanel] OnTouchReleased. (id:%S)", getId().GetPointer());
 	pSceneManager->GoForward(Tizen::Ui::Scenes::ForwardSceneTransition(SCENE_GHFORM_LEADERBOARDRANK, Tizen::Ui::Scenes::SCENE_TRANSITION_ANIMATION_TYPE_LEFT), pList);
 }
 

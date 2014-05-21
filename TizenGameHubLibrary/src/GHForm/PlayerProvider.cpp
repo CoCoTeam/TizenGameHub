@@ -20,7 +20,6 @@ PlayerProvider::~PlayerProvider() {
 
 int PlayerProvider::GetItemCount(void)
 {
-	AppLog("[GameHub] Friend List Count : %d",list.GetCount());
 	return list.GetCount();
 }
 Tizen::Ui::Controls::ListItemBase* PlayerProvider::CreateItem(int index, int itemWidth)
@@ -48,8 +47,7 @@ Tizen::Ui::Controls::ListItemBase* PlayerProvider::CreateItem(int index, int ite
 	pItem->AddElement(Rectangle(120, 10, 300, 70), 1, player->getName(), 40, cBlack, cBlack, cBlack);
 	return pItem;
 }
-bool PlayerProvider::DeleteItem
-(int index, Tizen::Ui::Controls::ListItemBase* pItem, int itemWidth)
+bool PlayerProvider::DeleteItem(int index, Tizen::Ui::Controls::ListItemBase* pItem, int itemWidth)
 {
 	return false;
 }

@@ -40,3 +40,9 @@ void GHPlayer::setImgUrl(Tizen::Base::String _imgUrl)	{this->imgUrl=_imgUrl; }
 
 bool GHPlayer::isFriend() 			{return is_Friend;}
 void GHPlayer::setIsFriend(bool b) 	{is_Friend = b;}
+
+Tizen::Base::String GHPlayer::ToString()
+{
+	Tizen::Base::String ret("Id:"+getId() +" /Email:"+getEmail() +" /Name:"+getName() +" /ImgUrl:"+getImgUrl());
+	return ret;
+}

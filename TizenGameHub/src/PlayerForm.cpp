@@ -66,6 +66,7 @@ PlayerForm::OnInitializing(void)
 	pLabelUserName = static_cast< Label* >(pPanelUser->GetControl(IDC_USER_LABEL_USERNAME));
 	pLabelUserScore = static_cast< Label* >(pPanelUser->GetControl(IDC_USER_LABEL_USERSCORE));
 	pButtonUserFriend = static_cast< Button* >(pPanelUser->GetControl(IDC_USER_BUTTON_USERFRIEND));
+	pButtonLogout = static_cast< Button* >(pPanelUser->GetControl(IDC_USER_BUTTON_LOGOUT));
 	pPanelScroll = static_cast< Panel* >(GetControl(IDC_USER_SCROLLPANEL));
 	pPanelGame = static_cast< Panel* >(pPanelScroll->GetControl(IDC_USER_PANEL_GAME));
 	pPanelFriend = static_cast< Panel* >(pPanelScroll->GetControl(IDC_USER_PANEL_FRIEND));
@@ -87,70 +88,11 @@ PlayerForm::OnInitializing(void)
 	AppLog("__pCroppedBmp EXIST");
 
 
-	pGalleryUserProfile = static_cast< Gallery* >(pPanelUser->GetControl(IDC_USER_IMG_USERIMG));
+	pImgProfile = static_cast< Label* >(pPanelUser->GetControl(IDC_USER_IMG_USERIMG));
 
 
 
 	return r;
-}
-
-void
-PlayerForm::RequestImage(const String& path,int width, int height,int timeout)
-{
-	Image* pImage = new Image();
-	pImage->Construct();
-
-	// Set a URL
-	Uri uri;
-	RequestId reqId;
-
-	uri.SetUri(path);
-
-	//서버에 보내기
-	pImage->DecodeUrl(uri, BITMAP_PIXEL_FORMAT_RGB565, width, height, reqId, *this, timeout);
-
-	//pGalleryUserProfile->SetItemProvider(*this);
-
-}
-
-// Receive the image and call the delete timer
-void
-PlayerForm::OnImageDecodeUrlReceived (RequestId reqId, Tizen::Graphics::Bitmap *pBitmap, result r, const Tizen::Base::String errorCode, const Tizen::Base::String errorMessage)
-{
-	AppLog("OnImageDecodeUrlReceived");
-	AppLog("reqId : %d",reqId);
-	if(IsFailed(r))
-	{
-		AppLog("Request failed: errorCode(%ls) errorMessage(%ls)", errorCode.GetPointer(), errorMessage.GetPointer());
-	}
-	else
-	{
-		AppLog("========================test1 ");
-
-		// Create a label and set the background bitmap
-/*
-		Label* pLabel = new Label();
-		pLabel->Construct(Rectangle(0,50, pBitmap->GetWidth(),pBitmap->GetHeight()),L"");
-		AddControl(*pLabel);
-		pLabel->SetBackgroundBitmap(*pBitmap);
-
-		Draw();Show();
-*/
-
-/*		Gallery* pGalleryProfile = static_cast< Gallery* >(GetControl(IDC_GAME_IMG_GAMEIMG));
-		pGalleryProfile->SetItemProvider(*this);*/
-
-		__pUserBmp = pBitmap;
-
-/*		Gallery *pGalleryUserProfile;
-		pGalleryUserProfile = static_cast< Gallery* >(pPanelUser->GetControl(IDC_USER_IMG_USERIMG));
-		pGalleryUserProfile->SetItemProvider(*this);*/
-
-		AppLog("========================test2 ");
-
-/*		//서버에서 image 다운로드
-		DownloadStart();*/
-	}
 }
 
 result
@@ -191,6 +133,10 @@ PlayerForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		break;
 	case IDA_BUTTON_SEARCHFRIEND:
 		pSceneManager->GoForward(ForwardSceneTransition(SCENE_SEARCHFRIEND, SCENE_TRANSITION_ANIMATION_TYPE_LEFT));
+		break;
+
+	case IDA_BUTTON_LOGOUT:
+		playerLogout();
 		break;
 
 	case ID_FOOTER_FIRST_TAB:
@@ -244,26 +190,6 @@ void
 PlayerForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 										  const Tizen::Ui::Scenes::SceneId& currentSceneId, Tizen::Base::Collection::IList* pArgs)
 {
-	AppLogDebug("=======================> !! <=========================== ");
-
-
-	String user_image_path = Environment::GetMediaPath() + L"Downloads/profile.jpg";
-	AppLogDebug("USER_IMAGE --> %S", user_image_path.GetPointer());
-
-	Image img;
-	img.Construct();
-	__pUserBmp = img.DecodeN(user_image_path, BITMAP_PIXEL_FORMAT_ARGB8888);
-
-	if(__pUserBmp)
-	{
-		pGalleryUserProfile->SetItemProvider(*this);
-		pGalleryUserProfile->RefreshGallery(0,GALLERY_REFRESH_TYPE_ITEM_MODIFY);
-
-		AppLogDebug("=======================> !! 2 <=========================== ");
-	}
-
-
-
 	// TODO: Activate your scene here.
 	if (pArgs != null)
 	{
@@ -273,7 +199,6 @@ PlayerForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 			mPlayerId = static_cast<Tizen::Base::String*>(pArgs->GetAt(0));
 			isLocalPlayer = (*mPlayerId == GHSharedAuthData::getSharedInstance().getPlayerId() ? true : false);
 			setFooterMenu();
-
 
 			// 사용자 데이터 수신
 			getCurrentPlayerData( *mPlayerId );
@@ -314,16 +239,22 @@ void PlayerForm::setPlayerData()
 
 	//!! 프로필 이미지 세팅
 	//	pGalleryUserProfile->Set
+	RequestImage(mPlayer->getId(), pImgProfile->GetWidth(), pImgProfile->GetHeight());
 
 
 	if( isLocalPlayer ) {
 		// 버튼 정보 변경
 		pButtonUserFriend->SetText( "정보 수정" );
+		pButtonLogout->SetShowState(true);
+		pButtonLogout->SetActionId(IDA_BUTTON_LOGOUT);
+		pButtonLogout->AddActionEventListener(*this);
 
 		// 친구 리스트 설정
 		getFriends( mPlayer->getId() );
 	}
 	else {
+		pButtonLogout->SetShowState(false);
+
 		// 버튼 정보 변경
 		if( isFriend ) {
 			pButtonUserFriend->SetText( "친구 해제" );
@@ -339,7 +270,31 @@ void PlayerForm::setPlayerData()
 
 	Draw();
 }
+void PlayerForm::RequestImage(const Tizen::Base::String& path,int width, int height, int timeout)
+{
+	Tizen::Media::Image* pImage = new Tizen::Media::Image();
+	pImage->Construct();
 
+	// Set a URL
+	Tizen::Base::Utility::Uri uri;
+	uri.SetUri(L"http://54.238.195.222:80/players/"+ path +"/image");
+
+	RequestId reqId;
+
+	//서버에 보내기
+	pImage->DecodeUrl(uri, Tizen::Graphics::BITMAP_PIXEL_FORMAT_RGB565, width, height, reqId, *this, timeout);
+}
+// Receive the image and call the delete timer
+void PlayerForm::OnImageDecodeUrlReceived(RequestId reqId, Tizen::Graphics::Bitmap *pBitmap, result r, const Tizen::Base::String errorCode, const Tizen::Base::String errorMessage)
+{
+	if(IsFailed(r)) {
+		AppLog("Request failed: errorCode(%ls) errorMessage(%ls)", errorCode.GetPointer(), errorMessage.GetPointer());
+	}
+	else {
+		pImgProfile->SetBackgroundBitmap(*pBitmap);
+		pImgProfile->Draw();
+	}
+}
 void PlayerForm::getGames(String playerId)
 {
 	pGameList = new ArrayList();
@@ -414,7 +369,7 @@ void PlayerForm::setFooterMenu()
 
 	FooterItem footerItem1;
 	footerItem1.Construct(ID_FOOTER_FIRST_TAB);
-	footerItem1.SetText(L"사용자 정보");
+	footerItem1.SetText(L"게임 정보");
 	pFooter->AddItem(footerItem1);
 
 	FooterItem footerItem2;
@@ -450,10 +405,10 @@ void PlayerForm::OnScrollEndReached(Tizen::Ui::Control &source, Tizen::Ui::Contr
 {
 	if(type == SCROLL_END_EVENT_END_BOTTOM) {
 		if(source.Equals(*pListViewFriend)) {
-			getFriendsList(mPlayer->getId(), this, friendOffset, 8);
+			getFriendsList(mPlayer->getId(), this, friendOffset, 15);
 		}
 		else if(source.Equals(*pListViewGame)) {
-			getPlayerGameList(mPlayer->getId(), this, gameOffset, 8);
+			getPlayerGameList(mPlayer->getId(), this, gameOffset, 15);
 		}
 	}
 }

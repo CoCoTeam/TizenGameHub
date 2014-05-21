@@ -16,7 +16,8 @@
 #include "GHGame/GHGame.h"
 
 class GHGameProvider
-: public Tizen::Ui::Controls::IListViewItemProvider
+	: public Tizen::Ui::Controls::IListViewItemProvider
+	, public Tizen::Media::IImageDecodeUrlEventListener
 {
 public:
 	GHGameProvider();
@@ -29,8 +30,13 @@ public:
 
 	void setItemList(Tizen::Base::Collection::ArrayList* _list);
 
+	void RequestImage(const Tizen::Base::String& path, RequestId reqId, int width, int height,int timeout=5000);
+	virtual void OnImageDecodeUrlReceived (RequestId reqId, Tizen::Graphics::Bitmap *pBitmap, result r, const Tizen::Base::String errorCode, const Tizen::Base::String errorMessage);
+
+
 private:
 	Tizen::Base::Collection::ArrayList list;
+	Tizen::Base::Collection::ArrayList ItemList;
 };
 
 #endif /* GHGAMEPROVIDER_H_ */

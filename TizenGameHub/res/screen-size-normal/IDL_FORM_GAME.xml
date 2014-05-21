@@ -29,13 +29,13 @@
         <layout height="57.0" mode="Portrait" width="277.0" x="352.0" y="197.0"/>
         <layout height="74.0" mode="Landscape" width="136.0" x="347.0" y="555.0"/>
     </Button>
-    <Gallery id="IDC_GAME_IMG_GAMEIMG" parent="IDC_GAME_PANEL_GAME">
-        <property accessibilityHint="" backgroundColor="" bitmapPathOfEmptyGallery="" slideShowAnimation="GALLERY_ANIMATION_PAGE" slideShowAnimationDuration="3000" slideShowViewDuration="10" textOfEmptyGallery="" zoomingEnabled="false"/>
+    <Label id="IDC_GAME_IMG_GAMEIMG" parent="IDC_GAME_PANEL_GAME">
+        <property accessibilityHint="" backgroundBitmapPath="icon.png" backgroundColor="" backgroundColorOpacity="0" horizontalAlign="ALIGN_CENTER" leftMargin="16" text="" textColor="" textSize="32.0" textStyle="" topMargin="0" verticalAlign="ALIGN_MIDDLE"/>
         <layout height="222.0" mode="Portrait" width="207.0" x="45.0" y="32.0"/>
         <layout height="222.0" mode="Landscape" width="411.0" x="87.0" y="63.0"/>
-    </Gallery>
+    </Label>
     <Label id="IDC_GAME_LABEL_DEVELOPER" parent="IDC_GAME_PANEL_GAME">
-        <property accessibilityHint="" backgroundBitmapPath="" backgroundColor="" backgroundColorOpacity="0" horizontalAlign="ALIGN_LEFT" leftMargin="5" text="개발자 정보" textColor="" textSize="20.0" textStyle="LABEL_TEXT_STYLE_NORMAL" topMargin="0" verticalAlign="ALIGN_TOP"/>
+        <property accessibilityHint="" backgroundBitmapPath="" backgroundColor="" backgroundColorOpacity="0" horizontalAlign="ALIGN_LEFT" leftMargin="5" text="" textColor="" textSize="20.0" textStyle="LABEL_TEXT_STYLE_NORMAL" topMargin="0" verticalAlign="ALIGN_TOP"/>
         <layout height="78.0" mode="Portrait" width="331.0" x="325.0" y="107.0"/>
         <layout height="38.0" mode="Landscape" width="301.0" x="323.0" y="112.0"/>
     </Label>
