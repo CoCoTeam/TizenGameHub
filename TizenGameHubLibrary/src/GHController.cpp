@@ -43,7 +43,6 @@ void GHController::OnTransactionReadyToRead(HttpSession& httpSession, HttpTransa
 
 			// 받아온 buffer를  JsonValue로 파싱한다.
 			IJsonValue* pValue = JsonParser::ParseN(*pBuffer);
-
 			JsonObject* pJsonObj = static_cast<JsonObject*>(pValue);
 
 			String* pStrApiKey     = new String(L"apiCode");

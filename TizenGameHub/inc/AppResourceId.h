@@ -41,6 +41,7 @@ extern const wchar_t* IDC_USER_LABEL_USERSCORETITLE;
 extern const wchar_t* IDC_USER_LABEL_USERSCORE;
 extern const wchar_t* IDC_USER_IMG_USERIMG;
 extern const wchar_t* IDC_USER_BUTTON_USERFRIEND;
+extern const wchar_t* IDC_USER_BUTTON_LOGOUT;
 extern const wchar_t* IDC_USER_BUTTON_SEARCHFRIEND;
 // ScrollPanel
 extern const wchar_t* IDC_USER_SCROLLPANEL;

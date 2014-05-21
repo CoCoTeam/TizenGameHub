@@ -3,7 +3,6 @@
 
 #include "tizenx.h"
 #include "FormGame.h"
-
 #include "GHTizen.h"
 #include "GHAchievement/GHAchievementController.h"
 #include "GHLeaderboard/GHLeaderboardController.h"

@@ -66,6 +66,7 @@ PlayerForm::OnInitializing(void)
 	pLabelUserName = static_cast< Label* >(pPanelUser->GetControl(IDC_USER_LABEL_USERNAME));
 	pLabelUserScore = static_cast< Label* >(pPanelUser->GetControl(IDC_USER_LABEL_USERSCORE));
 	pButtonUserFriend = static_cast< Button* >(pPanelUser->GetControl(IDC_USER_BUTTON_USERFRIEND));
+	pButtonLogout = static_cast< Button* >(pPanelUser->GetControl(IDC_USER_BUTTON_LOGOUT));
 	pPanelScroll = static_cast< Panel* >(GetControl(IDC_USER_SCROLLPANEL));
 	pPanelGame = static_cast< Panel* >(pPanelScroll->GetControl(IDC_USER_PANEL_GAME));
 	pPanelFriend = static_cast< Panel* >(pPanelScroll->GetControl(IDC_USER_PANEL_FRIEND));
@@ -132,6 +133,10 @@ PlayerForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		break;
 	case IDA_BUTTON_SEARCHFRIEND:
 		pSceneManager->GoForward(ForwardSceneTransition(SCENE_SEARCHFRIEND, SCENE_TRANSITION_ANIMATION_TYPE_LEFT));
+		break;
+
+	case IDA_BUTTON_LOGOUT:
+		playerLogout();
 		break;
 
 	case ID_FOOTER_FIRST_TAB:
@@ -240,11 +245,16 @@ void PlayerForm::setPlayerData()
 	if( isLocalPlayer ) {
 		// 버튼 정보 변경
 		pButtonUserFriend->SetText( "정보 수정" );
+		pButtonLogout->SetShowState(true);
+		pButtonLogout->SetActionId(IDA_BUTTON_LOGOUT);
+		pButtonLogout->AddActionEventListener(*this);
 
 		// 친구 리스트 설정
 		getFriends( mPlayer->getId() );
 	}
 	else {
+		pButtonLogout->SetShowState(false);
+
 		// 버튼 정보 변경
 		if( isFriend ) {
 			pButtonUserFriend->SetText( "친구 해제" );

@@ -80,7 +80,7 @@ void FormGameSeconds::onGameEnded()
 
 	if(maxCombo >= 5)
 	{
-		Achievementcontroller->completeAchievement("4",this);
+		Achievementcontroller->completeAchievement("3",this);
 		AppLog("totalMis complete !!");
 	}
 
@@ -89,7 +89,7 @@ void FormGameSeconds::onGameEnded()
 	//AppLog("-----------------> game loadAchievements <----------------------");
 
 	//AppLog("gameScore : %d", gameScore);
-	Leaderboardcontroller->updateLeaderboardScore("key_aa_0", gameScore, this);
+	Leaderboardcontroller->updateLeaderboardScore("62afe41024c6a49f00dae9712a90ef02", gameScore, this);
 
 	// 리더보드
 //	leaderboardUpdate(ld, gameScore);	// 최종 점수 리더보드 업데이트
@@ -122,17 +122,17 @@ void FormGameSeconds::loadAchievementFinished(Tizen::Base::Collection::ArrayList
 	game_count = test->getCurPoint();
 	AppLogDebug("game_count --> %d", game_count);
 
-	if(game_count == 14)
+	if(game_count == 5)
 	{
 		AppLogDebug("%d 번 게임!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", game_count);
 
 		// 10 번 게임을 했을 때
-		Achievementcontroller->completeAchievement("4",this);
+		Achievementcontroller->completeAchievement("2",this);
 	}
 	else
 	{
 		game_count++;
-		Achievementcontroller->setAchievement("4", game_count , this);  // 게임 카운트를 증가시켜 set 함
+		Achievementcontroller->setAchievement("2", game_count , this);  // 게임 카운트를 증가시켜 set 함
 	}
 }
 

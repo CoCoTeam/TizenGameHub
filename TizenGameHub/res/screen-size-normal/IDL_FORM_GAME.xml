@@ -35,7 +35,7 @@
         <layout height="222.0" mode="Landscape" width="411.0" x="87.0" y="63.0"/>
     </Label>
     <Label id="IDC_GAME_LABEL_DEVELOPER" parent="IDC_GAME_PANEL_GAME">
-        <property accessibilityHint="" backgroundBitmapPath="" backgroundColor="" backgroundColorOpacity="0" horizontalAlign="ALIGN_LEFT" leftMargin="5" text="개발자 정보" textColor="" textSize="20.0" textStyle="LABEL_TEXT_STYLE_NORMAL" topMargin="0" verticalAlign="ALIGN_TOP"/>
+        <property accessibilityHint="" backgroundBitmapPath="" backgroundColor="" backgroundColorOpacity="0" horizontalAlign="ALIGN_LEFT" leftMargin="5" text="" textColor="" textSize="20.0" textStyle="LABEL_TEXT_STYLE_NORMAL" topMargin="0" verticalAlign="ALIGN_TOP"/>
         <layout height="78.0" mode="Portrait" width="331.0" x="325.0" y="107.0"/>
         <layout height="38.0" mode="Landscape" width="301.0" x="323.0" y="112.0"/>
     </Label>

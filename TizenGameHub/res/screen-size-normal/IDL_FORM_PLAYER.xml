@@ -30,7 +30,7 @@
     </Label>
     <Button id="IDC_USER_BUTTON_USERFRIEND" parent="IDC_USER_PANEL_USER">
         <property DisabledBitmapX="0.0" DisabledBitmapY="0.0" NormalBitmapX="0.0" NormalBitmapY="0.0" PressedBitmapX="0.0" PressedBitmapY="0.0" accessibilityHint="" disableTextColor="" disabledBGBitmapPath="" disabledBitmapPath="" disabledColor="" disabledColorOpacity="100" highlightedBGBitmapPath="" highlightedBitmapPath="" highlightedBitmapX="0.0" highlightedBitmapY="0.0" highlightedColor="" highlightedColorOpacity="100" highlightedTextColor="" horizontalAlign="ALIGN_CENTER" normalBGBitmapPath="" normalBitmapPath="" normalColor="" normalColorOpacity="100" normalTextColor="" pressedBGBitmapPath="" pressedBitmapPath="" pressedColor="" pressedColorOpacity="100" pressedTextColor="" text="친구 요청" textSize="32.0" verticalAlign="ALIGN_MIDDLE"/>
-        <layout height="57.0" mode="Portrait" width="277.0" x="352.0" y="197.0"/>
+        <layout height="57.0" mode="Portrait" width="277.0" x="352.0" y="207.0"/>
         <layout height="74.0" mode="Landscape" width="136.0" x="347.0" y="555.0"/>
     </Button>
     <Label id="IDC_USER_IMG_USERIMG" parent="IDC_USER_PANEL_USER">
@@ -39,10 +39,15 @@
         <layout height="222.0" mode="Landscape" width="411.0" x="87.0" y="63.0"/>
     </Label>
     <Label id="IDC_USER_LABEL_USERSCORETITLE" parent="IDC_USER_PANEL_USER">
-        <property accessibilityHint="" backgroundBitmapPath="" backgroundColor="" backgroundColorOpacity="0" horizontalAlign="ALIGN_RIGHT" leftMargin="16" text="Total Score :" textColor="" textSize="20.0" textStyle="LABEL_TEXT_STYLE_NORMAL" topMargin="0" verticalAlign="ALIGN_MIDDLE"/>
-        <layout height="38.0" mode="Portrait" width="151.0" x="325.0" y="107.0"/>
+        <property accessibilityHint="" backgroundBitmapPath="" backgroundColor="" backgroundColorOpacity="0" horizontalAlign="ALIGN_RIGHT" leftMargin="16" text="" textColor="" textSize="20.0" textStyle="LABEL_TEXT_STYLE_NORMAL" topMargin="0" verticalAlign="ALIGN_MIDDLE"/>
+        <layout height="38.0" mode="Portrait" width="151.0" x="325.0" y="101.0"/>
         <layout height="38.0" mode="Landscape" width="301.0" x="323.0" y="112.0"/>
     </Label>
+    <Button id="IDC_USER_BUTTON_LOGOUT" parent="IDC_USER_PANEL_USER">
+        <property DisabledBitmapX="0.0" DisabledBitmapY="0.0" NormalBitmapX="0.0" NormalBitmapY="0.0" PressedBitmapX="0.0" PressedBitmapY="0.0" accessibilityHint="" disableTextColor="" disabledBGBitmapPath="" disabledBitmapPath="" disabledColor="" disabledColorOpacity="100" highlightedBGBitmapPath="" highlightedBitmapPath="" highlightedBitmapX="0.0" highlightedBitmapY="0.0" highlightedColor="" highlightedColorOpacity="100" highlightedTextColor="" horizontalAlign="ALIGN_CENTER" normalBGBitmapPath="" normalBitmapPath="" normalColor="" normalColorOpacity="100" normalTextColor="" pressedBGBitmapPath="" pressedBitmapPath="" pressedColor="" pressedColorOpacity="100" pressedTextColor="" text="로그 아웃" textSize="32.0" verticalAlign="ALIGN_MIDDLE"/>
+        <layout height="57.0" mode="Portrait" width="277.0" x="352.0" y="144.0"/>
+        <layout height="74.0" mode="Landscape" width="136.0" x="357.0" y="273.0"/>
+    </Button>
     <ScrollPanel id="IDC_USER_SCROLLPANEL" parent="IDL_FORM_PLAYER">
         <property autoResizingEnabled="true" backgroundColor="" backgroundColorOpacity="0" clientAreaHeight="0" clientAreaWidth="0" pageScrollEnabled="false" scrollBarVisible="true" scrollDirection="SCROLL_PANEL_SCROLL_DIRECTION_VERTICAL" scrollInputMode="SCROLL_INPUT_MODE_ALLOW_ANY_DIRECTION"/>
         <panelLayout height="673.0" mode="Portrait" width="720.0"/>

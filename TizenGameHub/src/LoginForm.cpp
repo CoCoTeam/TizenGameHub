@@ -81,10 +81,6 @@ LoginForm::OnInitializing(void)
 ////		login(strEmail, strPw);
 		doLogin();
 	}
-	else {	//!! for debug
-		pTextEmail->SetText(String("kichul"));
-		pTextPw->SetText(String("k"));
-	}
 	//------------------------------------------------------
 
 	return r;

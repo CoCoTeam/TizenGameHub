@@ -25,7 +25,7 @@ void FormGameMulti::setAdditionalInitialState()
 {
 	pLabelTimer->SetText("");
 	multiController = new GHTurnbasedMatchController();
-	multiController->connectSocketServer("54.238.195.222", 8082, this);
+	multiController->connectSocketServer(this);
 
 
 	pLabelScore2 = static_cast< Label* >(GetControl(IDC_GAME_LABEL_SCORE2));
@@ -302,7 +302,7 @@ void FormGameMulti::onMatchFinish(String data){
 	if(multiplay_winNum.CompareTo("5") == 0)  // 5 번 이기면 complete
 	{
 		Achievementcontroller->completeAchievement("4",this);
-		AppLog("totalMis complete !!");
+		AppLog("multiplay_winNum complete !!");
 	}
 
 	// ---------------------------------------------------------

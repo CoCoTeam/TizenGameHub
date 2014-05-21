@@ -296,6 +296,7 @@ GHSocket::OnCloseSocket(void)
 
             __pSocket->Close();
         }
+
 //
 //        if (__pTcpSocket != null)
 //        {
