@@ -93,7 +93,7 @@ void GHTurnbasedMatchController::readyForPlay(){
 }
 
 void GHTurnbasedMatchController::connectSocketServer(GHTurnbasedMatchListener* listener){
-	this->connectSocketServer('54.238.195.222', 8082, listener);
+	this->connectSocketServer("54.238.195.222", 8082, listener);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////

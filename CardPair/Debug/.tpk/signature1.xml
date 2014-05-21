@@ -4,47 +4,11 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<DigestValue>2Y5Kzemru5DVRa7R0bdnyjJQVXx4bRZ48ahEYyW8qr0=</DigestValue>
+<DigestValue>w9ltLTwcDlaJrOkMyDVUJLKXcnVjS67ieA7izVzexjQ=</DigestValue>
 </Reference>
 <Reference URI="bin/CardPair.exe">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>gf9dPJnG4vm1P5Lvz38L+uARHl3076Gno6hQMLnqKSk=</DigestValue>
-=======
-<<<<<<< HEAD
-<DigestValue>1EkTD+yERzUL0glMEzARsn2TXOgIq5+3qU4bnAmGPdI=</DigestValue>
-=======
-<<<<<<< HEAD
-<DigestValue>haQKVgRL/ES2V8Qu6t3VYgiVrXJ1aRx6sL8qnmqAHKg=</DigestValue>
-</Reference>
-<Reference URI="bin/CardPair.exe">
-<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>0x6nLSyEN9DNpGPM9bneZjcNkm/OZtA7PrczxkWa4rg=</DigestValue>
-=======
-<DigestValue>m7OTQnXsNcB/MW3evraewHCWrLURmtMrM3QdTFC6ghY=</DigestValue>
->>>>>>> 091de08d63a0fb0ee5b83026b83ca515c8b0184d
-</Reference>
-<Reference URI="bin/CardPair.exe">
-<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>gwfWzJZASs8CecJssPvYlnS+6VfSOZLSg5Qxhwi7cbA=</DigestValue>
->>>>>>> d50772aa5b31aad78637807e2c4fd23097705a0c
->>>>>>> 60fadecf4259ed9843470429ccf43f2a6ae93cd9
-=======
-<DigestValue>WB3G+q5KPb9+O3pM9jKyvqh08jmFMI9zYtIsJTXjGaQ=</DigestValue>
-</Reference>
-<Reference URI="bin/CardPair.exe">
-<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>LjBlwIl8Eqpt3ehHG4qQ7lcrhbBjF0ekmdaLNMCCGHs=</DigestValue>
->>>>>>> 075e2c6551aa47635ab4e406696cf8782f20f5f6
-=======
-<DigestValue>eCQE9DAQ/avsQP/2He9AYGe+q1/so+RPxYjZWXdG1Xk=</DigestValue>
-</Reference>
-<Reference URI="bin/CardPair.exe">
-<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>LtHes8nOv1Qv8eQHwfhUiPkI+CKMA9gIekEDRfFXG4Y=</DigestValue>
->>>>>>> b30b69763567d7e197dbdc67bc007a70c4a97456
+<DigestValue>RBqpIN3u4GEM61mpbadGyVh4L2+h2I9VCFAmYSrRILo=</DigestValue>
 </Reference>
 <Reference URI="info/manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -52,26 +16,7 @@
 </Reference>
 <Reference URI="lib/libTizenGameHubLibrary.so">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<DigestValue>aQ5G4YW2dBYOPQfpPeAjkzBBBw5gwutLfYr3mzBVmlY=</DigestValue>
-=======
-<<<<<<< HEAD
-<DigestValue>hNrs9r+BIIpUHWfrN/jWnMN5oCI4qsoh6+4iILzCI8g=</DigestValue>
-=======
-<<<<<<< HEAD
-<DigestValue>6Dgh1L50IaMTbRAel7NDv6enjZsh5yQsSNxq7VNfG+A=</DigestValue>
-=======
-<DigestValue>THVD2hxexzUSXu200m/0jGpxz3NDW7FjDWDLNDIpwYw=</DigestValue>
->>>>>>> 091de08d63a0fb0ee5b83026b83ca515c8b0184d
->>>>>>> 60fadecf4259ed9843470429ccf43f2a6ae93cd9
-=======
-<DigestValue>qrtLUl8EGfasu+NQpzxi/GuqXdig5htolYnuNuozCsU=</DigestValue>
->>>>>>> 075e2c6551aa47635ab4e406696cf8782f20f5f6
-=======
-<DigestValue>Mgbc8wvBwXY1KUAoB1scQgMuxh/dm+CP+5CG+qMUGPc=</DigestValue>
->>>>>>> b30b69763567d7e197dbdc67bc007a70c4a97456
+<DigestValue>tzaaxsHrmk6ELbPtr1QqF/I0tOKLJDC/QZf5qhlBKi0=</DigestValue>
 </Reference>
 <Reference URI="res/720x1280/achievement_complete.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -134,39 +79,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-Rm8Squ5JGM70r8dpVCmyCQtplqgETmObwRDsMuIFiyXU7ya5j6ctI/3XmQUmZ1VN6gtj28GINagr
-fNiciB3cQNoNejiLuJ7jDKxhbslOSrJeaUOtfh6noZ2Hem3MJMwi78lK6A1sVbPg9tVofYstNOui
-JnixvRiDTatmTFpwl+I=
-=======
-<<<<<<< HEAD
-nvo2pNVCaMYpvyLzeMwCeHUt66Y0OUWGHF80XUZDyFWyorHYhr3caXLBv9BkshZNd5dg+mfwGpep
-fAMuFVcpLBEsAVg66G7isw3OF1s56z4BzVRrHJktqeMm4tT8T+D0+P3zKJy+YskaDQQFhD2LQsr6
-vtsNRj/z66g2gE830zw=
-=======
-<<<<<<< HEAD
-mLXCgYDGr8QB3b0hHBo6gNQyYIkNt+WRXIBhLDfQOerBWN0AKxrThWwvwbn3AzWpz8tkV3lLA/VP
-YgLtjlb6FT6zwqYRjvF6Ld3J76jDHppflUVKPRvMecQ6RIt49XOxr8EpSrKvfp2cJk6TaBA06ZGO
-nT55H3wmSQ+qxJ4V0wE=
-=======
-qHQ8Amp5G18/EwaUM1ifzKnegUKS86Gas/XeUqi5ERXTV7umUnQZkXNp8CrkCZTUsMsXNG/rhet6
-DrfjA90LrrWyf1T/AA0Xkd4tQjK1zIvLEGOROhqZeWrtrU/MOLRwKNhHYhxGsZJOCzzPui/wn3G+
-6vgU0BI8Ir++kqufA8w=
->>>>>>> d50772aa5b31aad78637807e2c4fd23097705a0c
->>>>>>> 091de08d63a0fb0ee5b83026b83ca515c8b0184d
->>>>>>> 60fadecf4259ed9843470429ccf43f2a6ae93cd9
-=======
-Sz/IGJ85ZPQxY0n2/L6cBmIr+8OnvK+CPs2KLgUi3L5X16fJftw4/oKnxH1VGMh8f6KAg87uKqJX
-lDnFGyTotZ2zzpENYRWHNVdnstqXbmGDtjw6SbW8kQsZ8m12/7HwB0alvuo5Yt5WZHgI3ziDv0Rq
-sZ8K3pIpDAaXXcI8Bl4=
->>>>>>> 075e2c6551aa47635ab4e406696cf8782f20f5f6
-=======
-gUagrI8cXMXbJP1kz4bi1/qs8aApmH13urCp9zFMdWv3wAavnEAqm+OGS84JC5dSGUOkPQ9ljgvF
-NH9STz2bzxxYNVW9CD+AXeui1rc3daFCjyyHtdDxQnmFgrolpjF8nv2LcR1VMkSiv6DMVq1CYRxc
-kjbpMw7HXKIGpiUBsBQ=
->>>>>>> b30b69763567d7e197dbdc67bc007a70c4a97456
+OYKExlL4fbDoR9gkaaTSddT1e1BP3A4leDsUvmg0ZVQ2/aLe7eTD3LADww4FTOWD+pTuCuiuLEHS
+WvrteDrOtX9ggrZxCGa2nEk1RXjWPSUZyaci0SsOPSYr8t3ii02Hosw7bdZaIcaEsy4FML0GCIXJ
+SSE8uE1L/5kqf9lgVc8=
 </SignatureValue>
 <KeyInfo>
 <X509Data>
