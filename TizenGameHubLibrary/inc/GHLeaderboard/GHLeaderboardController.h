@@ -37,8 +37,8 @@ public:
 	void loadLeaderboards(GHLeaderboardDataLoadedListener * listener);
 
 	// 각 Leaderboard에 해당하는 랭킹 목록을 가져온다.
-	void loadLeaderboardRank(Tizen::Base::String leaderboardId, int start_position = 0, int max_length = 10);
-	void loadLeaderboardRank(Tizen::Base::String leaderboardId, GHLeaderboardListLoadedListener * listener, int start_position = 0, int max_length = 10);
+	void loadLeaderboardRank(Tizen::Base::String leaderboardId, int start_position = 0, int max_length = 15);
+	void loadLeaderboardRank(Tizen::Base::String leaderboardId, GHLeaderboardListLoadedListener * listener, int start_position = 0, int max_length = 15);
 
 	// 해당 Leaderboard에 대한 해당 player의 랭킹 정보를 가져온다.
 	void loadLeaderboardMyRank(Tizen::Base::String leaderboardId, GHLeaderboardListLoadedListener * listener);

@@ -57,7 +57,7 @@ ListPanel::ListPanel(GHAchievement achievement)
 		pImgComplete->SetShowState(false);
 	}
 
-	if(isHidden != 0) {
+	if(isHidden == 0) {
 		pPanelOverlay->SetShowState(false);
 	}
 }

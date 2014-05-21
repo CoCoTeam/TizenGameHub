@@ -29,8 +29,8 @@ public:
 	void getGameData(Tizen::Base::String gameId, GHGameLoadedListener* listener = null);
 
 	// 게임을 플레이하는 친구 정보 가져오기
-	void getGamePlayingFriends(Tizen::Base::String gameId, int start_pos=0, int max_length=8);
-	void getGamePlayingFriends(Tizen::Base::String gameId, GHGamePlayingFriendListener* listener, int start_pos=0, int max_length=8);
+	void getGamePlayingFriends(Tizen::Base::String gameId, int start_pos=0, int max_length=15);
+	void getGamePlayingFriends(Tizen::Base::String gameId, GHGamePlayingFriendListener* listener, int start_pos=0, int max_length=15);
 
 private:
 	virtual void OnTransactionReadyToRead(Tizen::Base::String apiCode, Tizen::Base::String statusCode, Tizen::Web::Json::IJsonValue* data);

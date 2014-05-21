@@ -49,7 +49,7 @@ void AppGHLeaderboardRankForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneI
 			gameId = *pGameId;
 			leaderboardId = *pLeaderboardId;
 
-			lbController->loadLeaderboardRank(gameId, leaderboardId, this, offset, 8);
+			lbController->loadLeaderboardRank(gameId, leaderboardId, this, offset, 15);
 			lbController->loadLeaderboardMyRank(gameId, leaderboardId, this);
 		}
 		pArgs->RemoveAll(true);
@@ -67,6 +67,6 @@ void AppGHLeaderboardRankForm::OnScrollEndReached(Tizen::Ui::Control &source, Ti
 {
 	if(type == SCROLL_END_EVENT_END_BOTTOM) {
 		AppLogDebug("[LeaderboardRankForm] OnScrollEndReached()");
-		lbController->loadLeaderboardRank(gameId, leaderboardId, this, offset, 8);
+		lbController->loadLeaderboardRank(gameId, leaderboardId, this, offset, 15);
 	}
 }

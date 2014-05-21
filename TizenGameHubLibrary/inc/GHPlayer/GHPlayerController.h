@@ -57,16 +57,16 @@ public:
 	void playerJoinToGame(Tizen::Base::String playerId, Tizen::Base::String gameId);
 
 	//사용자가 플레이하는 게임 리스트 가져오기
-	void getPlayerGameList(Tizen::Base::String playerId, int start_pos=0, int max_length=5);
-	void getPlayerGameList(Tizen::Base::String playerId, GHPlayerGamesLoadedListener* listener, int start_pos=0, int max_length=5);
+	void getPlayerGameList(Tizen::Base::String playerId, int start_pos=0, int max_length=15);
+	void getPlayerGameList(Tizen::Base::String playerId, GHPlayerGamesLoadedListener* listener, int start_pos=0, int max_length=15);
 
 	// 친구 검색
 	void searchFriend(Tizen::Base::String searchKey, GHPlayerSearchFriendListener* listener = null);
 	// 친구 추가
 	void addFriend(Tizen::Base::String playerId, Tizen::Base::String friendEmail, GHPlayerAddFriendListener* listener = null);
 	// 사용자의 친구 리스트 불러오기
-	void getFriendsList(Tizen::Base::String player_id, int start_pos=0, int max_length=8);
-	void getFriendsList(Tizen::Base::String playerId, GHPlayerFriendsLoadedListener* listener, int start_pos=0, int max_length=8);
+	void getFriendsList(Tizen::Base::String player_id, int start_pos=0, int max_length=15);
+	void getFriendsList(Tizen::Base::String playerId, GHPlayerFriendsLoadedListener* listener, int start_pos=0, int max_length=15);
 
 	//IProgressPopupEventListener
 	virtual void OnProgressPopupCanceled();

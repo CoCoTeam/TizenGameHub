@@ -395,10 +395,10 @@ void PlayerForm::OnScrollEndReached(Tizen::Ui::Control &source, Tizen::Ui::Contr
 {
 	if(type == SCROLL_END_EVENT_END_BOTTOM) {
 		if(source.Equals(*pListViewFriend)) {
-			getFriendsList(mPlayer->getId(), this, friendOffset, 8);
+			getFriendsList(mPlayer->getId(), this, friendOffset, 15);
 		}
 		else if(source.Equals(*pListViewGame)) {
-			getPlayerGameList(mPlayer->getId(), this, gameOffset, 8);
+			getPlayerGameList(mPlayer->getId(), this, gameOffset, 15);
 		}
 	}
 }

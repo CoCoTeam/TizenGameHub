@@ -99,7 +99,7 @@ void LeaderboardRankForm::OnFormBackRequested(Tizen::Ui::Controls::Form& source)
 void LeaderboardRankForm::OnScrollEndReached(Tizen::Ui::Control &source, Tizen::Ui::Controls::ScrollEndEvent type)
 {
 	if(type == SCROLL_END_EVENT_END_BOTTOM) {
-		loadLeaderboardRank(leaderboardId, this, offset, 8);
+		loadLeaderboardRank(leaderboardId, this, offset, 15);
 	}
 }
 // GHLeaderboardListLoadedListener

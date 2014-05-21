@@ -100,7 +100,8 @@ void GHController::OnTransactionCompleted(HttpSession& httpSession, HttpTransact
 {
 	AppLog("OnTransactionCompleted");
 
-	delete &httpTransaction;
+	if(&httpTransaction != null)
+		delete &httpTransaction;
 }
 
 void GHController::OnTransactionCertVerificationRequiredN(HttpSession& httpSession, HttpTransaction& httpTransaction, Tizen::Base::String* pCert)
