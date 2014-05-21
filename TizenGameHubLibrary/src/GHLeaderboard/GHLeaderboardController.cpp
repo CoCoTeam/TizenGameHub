@@ -77,8 +77,18 @@ void GHLeaderboardController::updateLeaderboardScore(Tizen::Base::String leaderb
 
 	String* game_id = new String(GHSharedAuthData::getSharedInstance().getGameId());
 	String* lb_id = new String(leaderboardId);
-	Long* pScore = new Long(score);
+
+	String temp_score;
+	temp_score = Long::ToString(score);
+	String* S_score = new String(temp_score);
+
+	//Long* pScore = new Long(score);
 	String* player_id = new String(GHSharedAuthData::getSharedInstance().getPlayerId());
+
+	//String S_score;
+	//S_score = Long::ToString(pScore);
+
+	AppLogDebug("score : %S", S_score->GetPointer());
 
 	//Put 함수 호출
 	String url(L"/f_leaderboards/update");
@@ -86,8 +96,10 @@ void GHLeaderboardController::updateLeaderboardScore(Tizen::Base::String leaderb
 	__pMap->Construct();
 	__pMap->Add(new String("game_id"), game_id);
 	__pMap->Add(new String("lb_id"), lb_id);
-	__pMap->Add(new String("score"), pScore);
+	__pMap->Add(new String("score"), S_score);
 	__pMap->Add(new String("player_id"), player_id);
+
+
 
 	httpPost.RequestHttpPutTran(this, url, __pMap);
 }

@@ -7,7 +7,7 @@
 
 class FormGame
 	: public Tizen::Ui::Controls::Form
-	, public Tizen::Ui::IActionEventListener
+	, public virtual Tizen::Ui::IActionEventListener
 	, public Tizen::Ui::Controls::IFormBackEventListener
 	, public Tizen::Base::Runtime::ITimerEventListener
 {
@@ -19,6 +19,7 @@ public:
 	virtual result OnInitializing(void);
 	virtual result OnTerminating(void);
 	virtual void OnActionPerformed(const Tizen::Ui::Control& source, int actionId);
+	void ParentOnActionPerformed(const Tizen::Ui::Control& source, int actionId);
 	virtual void OnFormBackRequested(Tizen::Ui::Controls::Form& source);
 
 	long initialTime;

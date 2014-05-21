@@ -1,6 +1,7 @@
 #ifndef _APP_RESOURCE_ID_H_
 #define _APP_RESOURCE_ID_H_
 /* IDL_FORM_SEARCHFRIEND */
+extern const wchar_t* IDC_GAME_IMG_GAME;
 extern const wchar_t* IDL_FORM_SEARCHFRIEND;
 extern const wchar_t* IDC_SEARCHFRIEND_BUTTON_SEARCH;
 extern const wchar_t* IDC_SEARCHFRIEND_LIST_FRIEND;

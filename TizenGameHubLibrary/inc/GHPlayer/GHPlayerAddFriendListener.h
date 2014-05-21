@@ -11,7 +11,9 @@
 #include "GHPlayer.h"
 #include "GHPlayer/GHPlayerListener.h"
 
-class GHPlayerAddFriendListener {
+class GHPlayerAddFriendListener
+: public virtual GHPlayerListener
+{
 public:
 	GHPlayerAddFriendListener();
 	virtual ~GHPlayerAddFriendListener();

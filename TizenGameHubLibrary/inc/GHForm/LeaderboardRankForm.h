@@ -9,6 +9,7 @@
 #define LEADERBOARDRANKFORM_H_
 
 #include "GHTizen.h"
+#include <FMedia.h>
 #include "GHLeaderboard/GHLeaderboard.h"
 #include "GHLeaderboard/GHLeaderboardController.h"
 #include "GHLeaderboard/GHLeaderboardListLoadedListener.h"
@@ -18,6 +19,7 @@
 class LeaderboardRankForm
 	: public Tizen::Ui::Controls::Form
 	, public Tizen::Ui::Controls::IFormBackEventListener
+	, public Tizen::Media::IImageDecodeUrlEventListener
 	, virtual public Tizen::Ui::Scenes::ISceneEventListener
 	, public Tizen::Ui::Controls::IScrollEventListener
 	, public GHLeaderboardController
@@ -48,6 +50,10 @@ private:
 	// GHLeaderboardMyRankLoadedListener
 	virtual void loadLeaderboardMyRankFinished(GHPlayerRank* pPlayerRank);
 
+	void RequestImage(const Tizen::Base::String& path,int width, int height, int timeout=5000);
+	virtual void OnImageDecodeUrlReceived(RequestId reqId, Tizen::Graphics::Bitmap *pBitmap, result r, const Tizen::Base::String errorCode, const Tizen::Base::String errorMessage);
+
+
 	virtual void OnInitialized();
 
 	GHLeaderboard* leaderboard;						// 해당 리더보드의 정보
@@ -57,6 +63,8 @@ private:
 
 	void setMyRank();
 	GHPlayerRank *myRank;
+	Tizen::Ui::Controls::Panel *pPanelMyrank;
+	Tizen::Ui::Controls::Label *pImgProfile;
 	Tizen::Base::String strUnit;
 
 protected:

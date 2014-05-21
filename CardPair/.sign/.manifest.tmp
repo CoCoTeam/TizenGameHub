@@ -1,17 +1,39 @@
+<<<<<<< HEAD
 author-signature.xml__DEL__w9ltLTwcDlaJrOkMyDVUJLKXcnVjS67ieA7izVzexjQ=
 bin/CardPair.exe__DEL__RBqpIN3u4GEM61mpbadGyVh4L2+h2I9VCFAmYSrRILo=
 info/manifest.xml__DEL__IzsBYC5VIMRolhEDUTm7vHB7kvaS1mC787f6H48LS18=
 lib/libTizenGameHubLibrary.so__DEL__tzaaxsHrmk6ELbPtr1QqF/I0tOKLJDC/QZf5qhlBKi0=
+=======
+<<<<<<< HEAD
+author-signature.xml__DEL__wx4ZMVqTFj9RedExrMNA7qFlHDD09cU/gYmU4mLOo4k=
+bin/CardPair.exe__DEL__0kQENSLpkJdXpRkR2Pu2CnkE60aqhHG5NHd/Mxr1me4=
+info/manifest.xml__DEL__IzsBYC5VIMRolhEDUTm7vHB7kvaS1mC787f6H48LS18=
+lib/libTizenGameHubLibrary.so__DEL__oslE84uwOSKZhMJTqk9lg3fWmd1nJJxjPaY2dBc+SUQ=
+=======
+author-signature.xml__DEL__G3H+I63TSjtxYGYov1BYPjcZ9ZMsPfdrRVGA+kXNg64=
+bin/CardPair.exe__DEL__WzDIOBtK+xec3YYA98s1Xp74m22dvrDq+wti4YUHerc=
+info/manifest.xml__DEL__IzsBYC5VIMRolhEDUTm7vHB7kvaS1mC787f6H48LS18=
+lib/libTizenGameHubLibrary.so__DEL__fJTVh7pTsFb0gGY0bzMPndgu2fp7jM+Jv3HNXnIYtW8=
+>>>>>>> 0c674d8dd2495816976c67f540e9b8f7b19739f8
+>>>>>>> 545d0096240cbdbcaabed078ba4141a55f317d00
 res/720x1280/achievement_complete.png__DEL__vFOVfVPTjEAAyJpNKUEu0fKR9HCHx5mctp/tvpEz0tA=
 res/720x1280/heart.png__DEL__p/arUQetJna0/mGYSnQ0XkCS3qRjV9vd1iyBGu6TwTc=
+res/720x1280/icon.png__DEL__9R42C2K/gmgT+f1EnHjjFj/K35EgBw0lscIoWm5bd9M=
+res/720x1280/profile_default.png__DEL__tNZlVbJYpw7OpCoC1wpYEWZ+OdUng/HyKJ0C+uzU2mI=
 res/720x1280/record.png__DEL__xo/Yd7Cn0I4aGb4Gi+muvQKsLaf3y9GDRmld/PJbXYY=
+res/icon.png__DEL__9R42C2K/gmgT+f1EnHjjFj/K35EgBw0lscIoWm5bd9M=
 res/profile_default.png__DEL__tNZlVbJYpw7OpCoC1wpYEWZ+OdUng/HyKJ0C+uzU2mI=
 res/screen-size-normal/IDL_FORM.xml__DEL__1ARFNcl+3w7SyY//lEAWFUF5vTE3cQjHvL3CLVfTKaU=
 res/screen-size-normal/IDL_FORM_ACHIEVEMENT.xml__DEL__+oNeTYlJxM1tj+ALT55yVTSMszIR3XMq8X3yIkQyux4=
 res/screen-size-normal/IDL_FORM_GAME.xml__DEL__997+cUoCuYt/fBn43hdjXFJtNfV5uqQcJBLxQNg13Jc=
 res/screen-size-normal/IDL_FORM_LEADERBOARD.xml__DEL__Bjq67x2aIt2ZrfiLNXBDIlgIxLUDN03t1811DZZiQw4=
-res/screen-size-normal/IDL_FORM_LEADERBOARDRANK.xml__DEL__T5FcTEnAQ0Tc0749N0WJMyWn3gPEd7tn9zoKe17X1+M=
+res/screen-size-normal/IDL_FORM_LEADERBOARDRANK.xml__DEL__pBZpE8jO/UAWFbL42fKoI1DrY3Zqcqc1sWAu8THIJkI=
 res/screen-size-normal/IDL_FORM_MODESELECT.xml__DEL__tksYQP1HsC7bAnPRVN3Rpx5ind45esZmBdx8ERXbZC0=
+<<<<<<< HEAD
+res/screen-size-normal/IDL_PANEL_LISTPANEL.xml__DEL__L1tg2Jqrb18oRonMiXYXmcl+HhKr4CCLrCgvDAtNJ0A=
+res/screen-size-normal/workflow.xml__DEL__13oDp3lzaNV0KUkkKB2CPSVruifqtmk5tfItLzSwCBs=
+=======
 res/screen-size-normal/IDL_PANEL_LISTPANEL.xml__DEL__Q4wxeQRUhvn3syFfqw6IJqsnvhFw7nJ+nS45qlyLx5k=
 res/screen-size-normal/workflow.xml__DEL__0oJL8oakIOPByUsQGGMKg6kyp50RzKEHKL7XzBAb2jY=
+>>>>>>> 0c674d8dd2495816976c67f540e9b8f7b19739f8
 shared/res/screen-density-xhigh/mainmenu.png__DEL__1d0oEZHqPn+QzNzGIHwj9ODby6x9ggFs9uOsav6jPNs=
