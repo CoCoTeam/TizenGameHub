@@ -165,6 +165,10 @@ void FormGameSeconds::updateLeaderboardScoreFinished(int statusCode)
 		pButtonClose->AddActionEventListener(*this);
 		pPopup->AddControl(pButtonClose);
 
+		Tizen::Ui::Controls::Label *pLabelNoItem = new Tizen::Ui::Controls::Label();
+		pLabelNoItem->Construct(Tizen::Graphics::Rectangle(25, 100, 550, 100), "랭킹 업데이트가 되었습니다.");
+		pPopup->AddControl(pLabelNoItem);
+
 		pPopup->SetShowState(true);
 		pPopup->Show();
 

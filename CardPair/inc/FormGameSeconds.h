@@ -14,8 +14,8 @@
 
 class FormGameSeconds
 	: public FormGame
-	, public GHAchievementCompletedListener
-	, public GHLeaderboardScoreUpdatedListener
+	, public virtual GHAchievementCompletedListener
+	, public virtual GHLeaderboardScoreUpdatedListener
 	, public GHAchievementSettedListener
 	, public GHAchievementLoadedListener
 	//, public GHAchievementRevealedListener

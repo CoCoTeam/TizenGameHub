@@ -96,19 +96,11 @@ void FormGameTimeTrial::updateLeaderboardScoreFinished(int statusCode)
 	}
 }
 
-
-/*
-void FormGameTimeTrial::revealAchievementFinished(int statusCode)
-{
-	AppLogDebug("[DEBUG] statusCode : %d", statusCode);
-}
-*/
-
-/*void FormGameTimeTrial::loadAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList)
+void FormGameTimeTrial::loadAchievementFinished(Tizen::Base::Collection::ArrayList* achievementList)
 {
 	GHAchievement * test = static_cast<GHAchievement*>(achievementList->GetAt(0));
 	AppLogDebug("[DEBUG] acArr ID : %S", test->getId().GetPointer() );
-}*/
+}
 
 
 

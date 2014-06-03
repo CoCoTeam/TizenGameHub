@@ -22,6 +22,7 @@
 #include "CropForm.h"
 #include "GHAchievement/GHAchievementController.h"
 
+#include "GHAppRegistry.h"
 
 
 const Tizen::Base::String IMAGE_UPLOAD = "00";

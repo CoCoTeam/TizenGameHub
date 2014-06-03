@@ -61,6 +61,7 @@ public:
 	bool isMultiplay;
 	Tizen::Ui::Controls::Label *pLabelMyTurn, *pLabelYourTurn;
 
+
 protected:
 	static const int IDA_CARD_BASE = 300;
 };

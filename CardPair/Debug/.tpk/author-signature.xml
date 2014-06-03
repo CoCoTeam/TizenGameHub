@@ -4,7 +4,15 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="bin/CardPair.exe">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<<<<<<< HEAD
 <DigestValue>yU3zmAf4BgL9ohEIqzK9GNDYacR1hxkG+ChpTlU6ZKk=</DigestValue>
+=======
+<<<<<<< HEAD
+<DigestValue>K3JwBbq36jFU2zvv+0yUGBEbvEu2EcxGXRlfrgMgnHs=</DigestValue>
+=======
+<DigestValue>DHRhUHZ8XyOPKq2eczqqlV15yLJf3RKpl7FP0MDIG8Y=</DigestValue>
+>>>>>>> a4d8df9121ae4f116e4b092e59fb934848540937
+>>>>>>> 2e0d98dcd80ac83290ec1585155dcbc73fa4579e
 </Reference>
 <Reference URI="info/manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -55,9 +63,21 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
+<<<<<<< HEAD
 MMkX9laQfhaseW17uLdxv4XCcXoO2IQ7sCzpDuXC559XNq6TyHxism4aPoo2Dxi91rADHY4+rNrM
 WaO5AZeoSDB4mo7FEeOJ3ATpmxlXb/UqR5sTtpPNd4K9yMaO7yDLIDX5RD3Ez46oZDzzh9EF5h5v
 mxbSdekzL4pSZHihOE8=
+=======
+<<<<<<< HEAD
+lknOtuATFmDB6mcYEG9KAv/yRDcfgfaLXzVxEujVHKQURcPhABegBofxI36R3TVRxjIhMXwRk1yP
+s64IJcxkfw7w8lHjFXngQXAbLza+m3dQiK4e9DcfpLYYu35ub3BndemoNsO1L+0nbmcqJf5j/Rkf
+vwRhjMB9G4TbdStc3x8=
+=======
+W4NsMJQbCCg9LeMPguRkPXmOsu9SKF7QQdMZOMYttbBkP7jPQMWyEMn739oS6OU1jLP9yQ20cjsx
+cY5gWtHhZnCEalZpvPjd9vb+gAi4VOv8cYeKPQ9gcUmp5eJNht8hawb7JcIxhnwYOZNxC9TJ9esY
+pnjJz2qPz55p+duBIek=
+>>>>>>> a4d8df9121ae4f116e4b092e59fb934848540937
+>>>>>>> 2e0d98dcd80ac83290ec1585155dcbc73fa4579e
 </SignatureValue>
 <KeyInfo>
 <X509Data>

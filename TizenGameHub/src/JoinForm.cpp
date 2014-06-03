@@ -213,7 +213,7 @@ JoinForm::doJoin()
 	String strName = pTextName->GetText();
 
 
-	if(strEmail == null || strPw == null || strPwconfirm == null || strName == null)
+	/*if(strEmail == null || strPw == null || strPwconfirm == null || strName == null)
 	{
 		msgBox.Construct(L"Join", L"빈칸을 채워주세요.", MSGBOX_STYLE_OK);
 		msgBox.ShowAndWait(modalResult);
@@ -242,9 +242,7 @@ JoinForm::doJoin()
 		else {
 
 			GHhttpClient* httpPost = new GHhttpClient();
-
 			String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
-
 			String url(L"/players/" + player_id );
 
 
@@ -264,7 +262,68 @@ JoinForm::doJoin()
 
 			httpPost->RequestHttpPutTran(this, url, __pMap);
 		}
+	}*/
+
+
+	// 가입 시퀀스
+
+	if( isPlayerJoin->ToBool() )
+	{
+		if(strEmail == null || strPw == null || strPwconfirm == null || strName == null)
+			{
+				msgBox.Construct(L"Join", L"빈칸을 채워주세요.", MSGBOX_STYLE_OK);
+				msgBox.ShowAndWait(modalResult);
+			}
+			else if(strPw != strPwconfirm)
+			{
+				msgBox.Construct(L"Join", L"비밀번호가 다릅니다.", MSGBOX_STYLE_OK);
+				msgBox.ShowAndWait(modalResult);
+			}
+			else
+			{
+				GHhttpClient* httpPost = new GHhttpClient();
+
+				Tizen::Base::Collection::HashMap* __pMap = new (std::nothrow) Tizen::Base::Collection::HashMap();
+				__pMap->Construct();
+
+				__pMap->Add(new String("email"), new String(strEmail));
+				__pMap->Add(new String("pwd"), new String(strPw));
+				__pMap->Add(new String("name"), new String(strName));
+
+				//post 함수 호출
+				httpPost->RequestHttpPostTran(this, L"/players", __pMap);
+
+			}
 	}
+
+	// 수정 시퀀스
+	else
+	{
+			GHhttpClient* httpPost = new GHhttpClient();
+			String player_id(GHSharedAuthData::getSharedInstance().getPlayerId());
+			String url(L"/players/" + player_id );
+
+
+			Tizen::Base::Object* tmpobj = static_cast<Tizen::Base::Object*>(&simg_url);
+
+			Tizen::Base::Collection::HashMap* __pMap  = new (std::nothrow) Tizen::Base::Collection::HashMap();
+			__pMap->Construct();
+
+			__pMap->Add(new String("pwd"), new String(strPw));
+			__pMap->Add(new String("name"), new String(strName));
+			__pMap->Add(new String("img_url"), tmpobj);
+
+
+			//__pMap->Add(new String("img_url"),  new String(simg_url));
+
+			AppLog("simg_url put : %S",simg_url.GetPointer());
+
+			httpPost->RequestHttpPutTran(this, url, __pMap);
+	}
+
+
+
+
 	return r;
 }
 
@@ -296,8 +355,14 @@ JoinForm::OnSceneActivatedN(const Tizen::Ui::Scenes::SceneId& previousSceneId,
 
 			if( !(isPlayerJoin->ToBool()) )	// (수정 시퀀스면) 프로필 편집 Panel 추가
 			{
+				GHAppRegistry appReg;
+				String strEmail;
+
+				appReg.get(appReg.email, strEmail);
+
 				pButtonJoin->SetText( "Edit" );
-				pTextEmail->SetText("kichul");
+
+				pTextEmail->SetText(strEmail);
 				pTextEmail->SetEnabled(false);
 
 				String path = L"http://54.238.195.222:80/players/"+ GHSharedAuthData::getSharedInstance().getPlayerId()  +"/image";

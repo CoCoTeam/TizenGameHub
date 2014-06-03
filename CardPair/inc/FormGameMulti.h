@@ -8,15 +8,17 @@
 #include "GHCloudsave/GHCloudsaveController.h"
 #include "GHCloudsave/GHCloudsaveSaveListener.h"
 
+
 #include "GHAchievement/GHAchievementController.h"
 #include "GHAchievement/GHAchievementCompletedListener.h"
+
 
 
 class FormGameMulti
 	: public FormGame
 	, public GHTurnbasedMatchListener
 	, public GHCloudsaveSaveListener
-	, public GHAchievementCompletedListener
+	, public virtual GHAchievementCompletedListener
 {
 public:
 	FormGameMulti(void);

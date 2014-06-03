@@ -301,13 +301,14 @@ void FormGameMulti::onMatchFinish(String data){
 
 	if(multiplay_winNum.CompareTo("5") == 0)  // 5 번 이기면 complete
 	{
-		Achievementcontroller->completeAchievement("4",this);
-		AppLog("multiplay_winNum complete !!");
+		Achievementcontroller->completeAchievement("4", this);
+		AppLog("totalMis complete !!");
 	}
 
 	// ---------------------------------------------------------
 
 }
+
 
 void FormGameMulti::completeAchievementFinished(int statusCode)
 {

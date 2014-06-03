@@ -1,8 +1,21 @@
+<<<<<<< HEAD
 author-signature.xml__DEL__AljXQ8HIIDfQp4ewfJNGbqFMyxu1bTkL7lpy1x1KPf4=
 bin/CardPair.exe__DEL__yU3zmAf4BgL9ohEIqzK9GNDYacR1hxkG+ChpTlU6ZKk=
 info/manifest.xml__DEL__PEQxnz+Thoyv6z0gK6uxOTRMPPs+dYKh5aLv+aW9eM0=
 lib/libTizenGameHubLibrary.so__DEL__qeAlL4uTX60x2aUwZK3e8WTZAr7N/QAH8OAp0XatJkM=
 res/720x1280/card.png__DEL__irY1X8c+QQoNCawTUbDV4ikiOj6dqUoA+YoAoMhZXow=
+=======
+<<<<<<< HEAD
+author-signature.xml__DEL__Zyo80BxK8l63n3Inpd2F2xmUWsv/J8TkyRbY0KEUM1c=
+bin/CardPair.exe__DEL__K3JwBbq36jFU2zvv+0yUGBEbvEu2EcxGXRlfrgMgnHs=
+=======
+author-signature.xml__DEL__VdSV5OH/7s0SGy+ectKbyu/o2nXYxyYa4IYGKbmDsjI=
+bin/CardPair.exe__DEL__DHRhUHZ8XyOPKq2eczqqlV15yLJf3RKpl7FP0MDIG8Y=
+>>>>>>> a4d8df9121ae4f116e4b092e59fb934848540937
+info/manifest.xml__DEL__IzsBYC5VIMRolhEDUTm7vHB7kvaS1mC787f6H48LS18=
+lib/libTizenGameHubLibrary.so__DEL__VrafyrVzlRAWij7k3nvJTBvoBdRF8bq35jJnfAwE/oA=
+res/720x1280/achievement_complete.png__DEL__vFOVfVPTjEAAyJpNKUEu0fKR9HCHx5mctp/tvpEz0tA=
+>>>>>>> 2e0d98dcd80ac83290ec1585155dcbc73fa4579e
 res/720x1280/heart.png__DEL__p/arUQetJna0/mGYSnQ0XkCS3qRjV9vd1iyBGu6TwTc=
 res/720x1280/record.png__DEL__xo/Yd7Cn0I4aGb4Gi+muvQKsLaf3y9GDRmld/PJbXYY=
 res/screen-size-normal/IDL_FORM.xml__DEL__1ARFNcl+3w7SyY//lEAWFUF5vTE3cQjHvL3CLVfTKaU=
