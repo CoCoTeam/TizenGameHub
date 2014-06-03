@@ -137,6 +137,7 @@ PlayerForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 
 	case IDA_BUTTON_LOGOUT:
 		playerLogout();
+		pSceneManager->GoForward(ForwardSceneTransition(SCENE_LOGIN, SCENE_TRANSITION_ANIMATION_TYPE_LEFT, SCENE_HISTORY_OPTION_NO_HISTORY));
 		break;
 
 	case ID_FOOTER_FIRST_TAB:

@@ -11,18 +11,12 @@
     <Apps>
         <ApiVersion>2.2</ApiVersion>
         <Privileges>
-<<<<<<< HEAD
             <Privilege>http://tizen.org/privilege/content.read</Privilege>
             <Privilege>http://tizen.org/privilege/socket</Privilege>
-=======
-            <Privilege>http://tizen.org/privilege/download</Privilege>
-            <Privilege>http://tizen.org/privilege/socket</Privilege>
-            <Privilege>http://tizen.org/privilege/content.read</Privilege>
-            <Privilege>http://tizen.org/privilege/http</Privilege>
->>>>>>> d50772aa5b31aad78637807e2c4fd23097705a0c
             <Privilege>http://tizen.org/privilege/application.launch</Privilege>
             <Privilege>http://tizen.org/privilege/http</Privilege>
             <Privilege>http://tizen.org/privilege/content.write</Privilege>
+            <Privilege>http://tizen.org/privilege/download</Privilege>
         </Privileges>
         <UiApp LaunchingHistoryVisible="True" Main="True" MenuIconVisible="True" Name="TizenGameHub">
             <UiScalability BaseScreenSize="Normal" CoordinateSystem="Logical" LogicalCoordinate="720"/>
@@ -31,7 +25,7 @@
                 <DisplayName Locale="eng-GB">TizenGameHub</DisplayName>
             </DisplayNames>
             <Icons>
-                <Icon Section="MainMenu">mainmenu.png</Icon>
+                <Icon Section="MainMenu">icon.png</Icon>
             </Icons>
             <LaunchConditions/>
         </UiApp>

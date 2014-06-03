@@ -196,7 +196,7 @@ void GameForm::RequestImage(const Tizen::Base::String& path,int width, int heigh
 	RequestId reqId;
 
 	//서버에 보내기
-	pImage->DecodeUrl(uri, Tizen::Graphics::BITMAP_PIXEL_FORMAT_RGB565, width, height, reqId, *this, timeout);
+	pImage->DecodeUrl(uri, Tizen::Graphics::BITMAP_PIXEL_FORMAT_ARGB8888, width, height, reqId, *this, timeout);
 }
 // Receive the image and call the delete timer
 void GameForm::OnImageDecodeUrlReceived(RequestId reqId, Tizen::Graphics::Bitmap *pBitmap, result r, const Tizen::Base::String errorCode, const Tizen::Base::String errorMessage)

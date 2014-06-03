@@ -50,7 +50,7 @@ void GHPlayerController::getLoginPopup(GHPlayerLoggedinListener* listener)
 	msgBox.SetSize(600, 800);
 
     Tizen::Ui::Controls::EditField* pTextEmail = new Tizen::Ui::Controls::EditField();
-    pTextEmail->Construct(Tizen::Graphics::Rectangle(60, 110, 550, 65));
+    pTextEmail->Construct(Tizen::Graphics::Rectangle(60, 110, 550, 65), Tizen::Ui::Controls::EDIT_FIELD_STYLE_EMAIL_SMALL);
     pTextEmail->SetGuideText(String("Email"));
 	msgBox.AddControl(pTextEmail);
 
@@ -58,11 +58,6 @@ void GHPlayerController::getLoginPopup(GHPlayerLoggedinListener* listener)
     pTextPwd->Construct(Tizen::Graphics::Rectangle(60, 185, 550, 65), Tizen::Ui::Controls::EDIT_FIELD_STYLE_PASSWORD);
     pTextPwd->SetGuideText(String("Password"));
 	msgBox.AddControl(pTextPwd);
-
-	//!! for debug---
-	pTextEmail->SetText(String("kichul"));
-	pTextPwd->SetText(String("kichul"));
-	//---------------
 
 	msgBox.ShowAndWait(modalResult);
 
@@ -89,6 +84,7 @@ void GHPlayerController::playerLogin(GHPlayerLoggedinListener* listener)
 	appReg.get(appReg.pwd, pwd);
 
 	if(email != NULL && pwd != NULL) {
+		AppLogDebug("%S", email.GetPointer());
 		if(email != "") {
 			playerLogin(email, pwd, listener);
 			return ;
@@ -142,8 +138,8 @@ void GHPlayerController::getPlayerData(Tizen::Base::String playerId, GHPlayerLoa
 void GHPlayerController::playerLogout()
 {
 	// Save AppRegistry Data(Email, Password)----------
-	appReg.put(appReg.email, NULL);
-	appReg.put(appReg.pwd, NULL);
+	appReg.put(appReg.email, "");
+	appReg.put(appReg.pwd, "");
 
 	GHSharedAuthData::getSharedInstance().setPlayerId("");
 }

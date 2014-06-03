@@ -78,8 +78,7 @@ LoginForm::OnInitializing(void)
 
 		pTextEmail->SetText(strEmail);
 		pTextPw->SetText(strPw);
-////		login(strEmail, strPw);
-		doLogin();
+//		doLogin();
 	}
 	//------------------------------------------------------
 
@@ -112,9 +111,7 @@ LoginForm::OnActionPerformed(const Tizen::Ui::Control& source, int actionId)
 		pSceneManager->GoForward(ForwardSceneTransition(SCENE_JOIN, SCENE_TRANSITION_ANIMATION_TYPE_DEPTH_IN), pList);
 		break;
 	case IDA_BUTTON_LOGIN:
-		//!! do Login
 		doLogin();
-
 		break;
 	}
 }

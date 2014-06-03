@@ -19,7 +19,7 @@
                 <DisplayName Locale="eng-GB">CardPair</DisplayName>
             </DisplayNames>
             <Icons>
-                <Icon Section="MainMenu">mainmenu.png</Icon>
+                <Icon Section="MainMenu">card.png</Icon>
             </Icons>
             <LaunchConditions/>
         </UiApp>

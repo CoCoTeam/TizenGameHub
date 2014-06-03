@@ -150,6 +150,7 @@ FormMain::OnSceneDeactivated(const Tizen::Ui::Scenes::SceneId& currentSceneId,
 void FormMain::loginPlayerFinished(Tizen::Base::String statusCode)
 {
 	if(statusCode != "0") {
+		// AttackHelper 수신 데이터를 불러온다 (하트)
 		ahController = new GHAttackhelperController();
 		ahController->loadAttackhelperDatas(this);
 
@@ -157,18 +158,19 @@ void FormMain::loginPlayerFinished(Tizen::Base::String statusCode)
 		csController = new GHCloudsaveController();
 		csController->loadCloudSlotData(1,this); // 멀티플레이 승 데이터
 		csController->loadCloudSlotData(2,this); // 멀티플레이 패 데이터
-
 	}
 }
 void FormMain::loadCloudsaveFinished(int slotIdx, Tizen::Base::String data)
 {
 	if(slotIdx == 1) { // 승
-		csLoadCount++;
-		multiplay_winNum = data;
 		AppLogDebug("loadCloudsaveFinished : 1");
+		multiplay_winNum = data;
+		AppLogDebug("%S 승!!!", multiplay_winNum.GetPointer());
+		csLoadCount++;
 	}else if(slotIdx == 2) { // 패
 		AppLogDebug("loadCloudsaveFinished : 2");
 		multiplay_loseNum = data;
+		AppLogDebug("%S 패!!!", multiplay_loseNum.GetPointer());
 		csLoadCount++;
 	}
 
